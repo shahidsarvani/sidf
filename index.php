@@ -1,4 +1,4 @@
 <?php
 
-header('location:admin/controller/dashboard.php');
+header('location:frontend');
 ?>
