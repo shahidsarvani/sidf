@@ -17,9 +17,9 @@ class Database
         } else {
             $database = array(
                 'host' => 'localhost',
-                'db' => '',
-                'user' => '',
-                'pass' => ''
+                'db' => 'sidf',
+                'user' => 'admin_sidf',
+                'pass' => '4wf4Y?n7'
             );
         }
 
