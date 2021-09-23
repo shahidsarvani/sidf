@@ -1,8 +1,9 @@
 <?php
-
-// define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/admin');
+echo json_encode($_SERVER);
+die();
+// define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/cms');
 // define('USER_SITE_URL', 'http://localhost/PHP/sidf');
-define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/admin');
+define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/cms');
 define('USER_SITE_URL', 'https://sidf.digitalpoin8.com');
 
 $email_config = array(

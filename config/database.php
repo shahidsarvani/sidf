@@ -1,16 +1,23 @@
+
 <?php
 
+//Database.php
 
+class Database
+{
+	function connect()
+	{
+        $database = array(
+            'host' => 'localhost',
+            'db' => 'sidf',
+            'user' => 'root',
+            'pass' => ''
+        );
+        
+        $connect = mysqli_connect($database['host'], $database['user'], $database['pass'], $database['db']);
 
-$database = array(
-    'host' => 'localhost',
-    'db' => 'sidf',
-    'user' => 'root',
-    'pass' => ''
-);
-
-$connection = mysqli_connect($database['host'], $database['user'], $database['pass'], $database['db']);
-
-if (!$connection) {
-    header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
+		return $connect;
+	}
 }
+
+?>
