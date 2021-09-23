@@ -4,16 +4,17 @@
         <div class="d-flex">
             <div class="breadcrumb">
                 <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                <span class="breadcrumb-item active">Dashboard</span>
+                <span class="breadcrumb-item active">Screens</span>
             </div>
         </div>
     </div>
 </div>
 <!-- /page header -->
+
 <!-- Content area -->
 <div class="content">
 
-<h4>Admin Dashboard</h4>
+    <h4>Here Screens will be added</h4>
 
 </div>
 <!-- /content area -->
@@ -35,7 +36,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#navlink-dashboard').addClass('active');
+        $('#navlink-screens').addClass('active');
     })
 </script>
 
