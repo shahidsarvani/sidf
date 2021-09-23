@@ -1,7 +1,9 @@
 <?php
 
-define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/admin');
-define('USER_SITE_URL', 'http://localhost/PHP/sidf');
+// define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/admin');
+// define('USER_SITE_URL', 'http://localhost/PHP/sidf');
+define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/admin');
+define('USER_SITE_URL', 'https://sidf.digitalpoin8.com');
 
 $email_config = array(
     'email_address' => 'hamza0952454@gmail.com',
