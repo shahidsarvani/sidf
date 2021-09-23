@@ -1,3 +1,2 @@
 RewriteEngine on
-CheckSpelling On 
 CheckCaseOnly On
