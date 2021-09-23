@@ -3,3 +3,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteMap tolowercase int:tolower  
 RewriteRule ^(.*)$ ${tolowercase:$1}
+AllowOverride All
