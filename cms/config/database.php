@@ -1,0 +1,32 @@
+
+<?php
+
+//Database.php
+
+class Database
+{
+    function connect()
+    {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            $database = array(
+                'host' => 'localhost',
+                'db' => 'sidf',
+                'user' => 'root',
+                'pass' => ''
+            );
+        } else {
+            $database = array(
+                'host' => 'localhost',
+                'db' => '',
+                'user' => '',
+                'pass' => ''
+            );
+        }
+
+        $connect = mysqli_connect($database['host'], $database['user'], $database['pass'], $database['db']);
+
+        return $connect;
+    }
+}
+
+?>

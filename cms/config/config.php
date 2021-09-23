@@ -1,9 +1,11 @@
 <?php
 if($_SERVER['HTTP_HOST'] == 'localhost'){
     define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/cms');
+    define('ADMIN_ASSET', 'http://localhost/PHP/sidf/assets/admin_assets');
     define('USER_SITE_URL', 'http://localhost/PHP/sidf');
 } else {
     define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/cms');
+    define('ADMIN_ASSET', 'https://sidf.digitalpoin8.com/assets/admin_assets');
     define('USER_SITE_URL', 'https://sidf.digitalpoin8.com');
 }
 

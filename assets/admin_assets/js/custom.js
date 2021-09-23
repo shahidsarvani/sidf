@@ -53,9 +53,9 @@ var LoginValidation = function() {
             unhighlight: function(element, errorClass) {
                 $(element).removeClass(errorClass);
             },
-            success: function(label) {
-                label.addClass('validation-valid-label').text('Success.'); // remove to hide Success message
-            },
+            // success: function(label) {
+            //     label.addClass('validation-valid-label').text('Success.'); // remove to hide Success message
+            // },
             submitHandler: function() {
                 document.forms['login-form'].submit();
             },

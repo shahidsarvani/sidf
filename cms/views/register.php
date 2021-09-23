@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,28 +9,28 @@
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<link href="./../../assets/admin_assets/css/custom.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/custom.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="./../../assets/admin_assets/global_assets/js/main/jquery.min.js"></script>
-	<script src="./../../assets/admin_assets/global_assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="./../../assets/admin_assets/global_assets/js/plugins/loaders/blockui.min.js"></script>
-	<script src="./../../assets/admin_assets/global_assets/js/plugins/ui/ripple.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/main/jquery.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/main/bootstrap.bundle.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/loaders/blockui.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/ui/ripple.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="./../../assets/admin_assets/global_assets/js/plugins/forms/validation/validate.min.js"></script>
-	<script src="./../../assets/admin_assets/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/validation/validate.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
 
-	<script src="./../../assets/admin_assets/js/app.js"></script>
-	<script src="./../../assets/admin_assets/js/custom.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/js/app.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/js/custom.js"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -48,6 +48,14 @@
 
 				<!-- Login card -->
 				<form class="login-form login-form" action="<?php echo ADMIN_SITE_URL . '/controller/register.php' ?>" method="post" id="signup-form">
+					<?php if (isset($errors)) : ?>
+						<div class="alert alert-danger border-0 alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert">
+								<span>×</span>
+							</button>
+							<?php echo $errors; ?>
+						</div>
+					<?php endif; ?>
 					<div class="card mb-0">
 						<div class="card-body">
 							<div class="text-center mb-3">
@@ -62,12 +70,12 @@
 									<i class="icon-mention text-muted"></i>
 								</div>
 							</div>
-                            <div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                <div class="form-control-feedback">
-                                    <i class="icon-lock2 text-muted"></i>
-                                </div>
-                            </div>
+							<div class="form-group form-group-feedback form-group-feedback-left">
+								<input type="password" name="password" class="form-control" placeholder="Password" required>
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+							</div>
 							<div class="form-group form-group-feedback form-group-feedback-left">
 								<input type="text" name="username" class="form-control" placeholder="Username" required>
 								<div class="form-control-feedback">
@@ -102,4 +110,5 @@
 	<!-- /page content -->
 
 </body>
+
 </html>
