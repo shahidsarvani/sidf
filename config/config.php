@@ -1,10 +1,11 @@
 <?php
-echo json_encode($_SERVER);
-die();
-// define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/cms');
-// define('USER_SITE_URL', 'http://localhost/PHP/sidf');
-define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/cms');
-define('USER_SITE_URL', 'https://sidf.digitalpoin8.com');
+if($_SERVER['HTTP_HOST'] == 'localhost'){
+    define('ADMIN_SITE_URL', 'http://localhost/PHP/sidf/cms');
+    define('USER_SITE_URL', 'http://localhost/PHP/sidf');
+} else {
+    define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/cms');
+    define('USER_SITE_URL', 'https://sidf.digitalpoin8.com');
+}
 
 $email_config = array(
     'email_address' => 'hamza0952454@gmail.com',
