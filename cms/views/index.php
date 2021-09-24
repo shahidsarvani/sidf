@@ -1,6 +1,6 @@
 <?php
 $page = 'Dashboard';
-require 'layout/header.php';
+require ADMIN_VIEW.'/layout/header.php';
 ?>
 <!-- Content area -->
 <div class="content">
@@ -10,7 +10,7 @@ require 'layout/header.php';
 </div>
 <!-- /content area -->
 <?php
-require 'layout/footer.php';
+require ADMIN_VIEW.'/layout/footer.php';
 ?>
 
 <script>
