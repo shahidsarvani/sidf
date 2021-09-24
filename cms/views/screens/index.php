@@ -1,5 +1,6 @@
 <?php
 $page = 'Screens';
+echo ADMIN_VIEW;
 require ADMIN_VIEW.'/layout/header.php';
 ?>
 <!-- Content area -->

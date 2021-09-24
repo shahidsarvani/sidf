@@ -7,7 +7,7 @@ if($_SERVER['HTTP_HOST'] == 'localhost'){
 } else {
     define('ADMIN_SITE_URL', 'https://sidf.digitalpoin8.com/cms');
     define('ADMIN_ASSET', 'https://sidf.digitalpoin8.com/assets/admin_assets');
-    define('ADMIN_VIEW', '/sidf.digitalpoin8.com/cms/views');
+    define('ADMIN_VIEW', '/../sidf.digitalpoin8.com/cms/views');
     define('USER_SITE_URL', 'https://sidf.digitalpoin8.com');
 }
 
