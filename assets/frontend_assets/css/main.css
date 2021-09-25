@@ -67,8 +67,40 @@ table {
 } 
 
 
-
-
+.bottom_upper_section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1230px;
+    z-index: 5;
+}
+.box_pin {
+    position: relative;
+    width: 1080px;
+    padding-top: 8px;
+}
+.box_pin.box_pin_one {
+    margin-top: 493px;
+}
+.box_pin .border_verti {
+    width: 2px;
+    height: 300px;
+    margin: 0 auto 0px auto;
+    background: #fff;
+    display: flex;
+    padding-top: 500PX0;
+}
+.box_pin h3 {
+    text-align: center;
+    color: #fff;
+    margin: 20px 0;
+    font-size: 40px;
+}
+.box_pin .text {
+    color: #92b544;
+    margin: 20px 0 0 0;
+    font-size: 30px;
+}
 
 
 
@@ -78,9 +110,9 @@ table {
 
 .pulsating-circle {
   position: absolute;
-  left: 150px;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
   width: 30px;
   height: 30px;
   z-index: 3;
