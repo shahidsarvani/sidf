@@ -52,7 +52,15 @@ table {
 .bottom_section {
     position: absolute;
     bottom: 0;
+    z-index: 2;
 }
 .bottom_section img {
   width: 100%;
 }
+
+.slider_box {
+  width: 1080px !important;
+}
+.slider_box img {
+  width: 100% !important;
+} 

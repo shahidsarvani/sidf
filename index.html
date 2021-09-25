@@ -8,21 +8,42 @@
     <!-- styles -->
     <link rel="stylesheet" href="./assets/frontend_assets/css/main.css" />
     <!-- Owl Carousel CSS-->
-    <link rel="stylesheet" href="./assets/frontend_assets/css/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="./assets/frontend_assets/css/owl-carousel/owl.theme.default.min.css">
-    <link rel="stylesheet" href="./assets/frontend_assets/css/owl-carousel/owl.theme.green.min.css">
+    <link rel="stylesheet" href="./assets/frontend_assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/frontend_assets/owlcarousel/assets/owl.theme.default.min.css">
 </head>
 
 <body>
-
+    <div class="fadeOut owl-carousel owl-theme slider_box slider_one">
+            <div class="item">
+              <img src="./assets/frontend_assets/img/1.jpg" alt="">
+            </div>
+            <div class="item">
+              <img src="./assets/frontend_assets/img/1a.jpg" alt="">
+            </div>
+            <div class="item">
+              <img src="./assets/frontend_assets/img/1b.jpg" alt="">
+            </div>
+          </div>
     <section class="bottom_section">
         <img src="./assets/frontend_assets/img/bg_new_img.png" alt="">
     </section>
-    
     <!-- javascript -->
-    <script src="./assets/frontend_assets/js/jquery-3.6.0.min.js"></script>
-    <script src="./assets/frontend_assets/js/plugins.js"></script>
+    <script src="./assets/frontend_assets/js/jquery.min.js"></script>
+    <script src="./assets/frontend_assets/owlcarousel/owl.carousel.js"></script>
     <script src="./assets/frontend_assets/js/main.js"></script>
+    <script>
+            jQuery(document).ready(function($) {
+              $('.fadeOut').owlCarousel({
+                items: 1,
+                animateOut: 'fadeOut',
+                dots:false,
+                autoplayTimeout:1000,
+                autoplay:true,
+                loop: true,
+                margin: 0,
+              });
+            });
+          </script>
 </body>
 
 </html>
