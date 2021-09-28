@@ -74,6 +74,39 @@ table {
     left: 90px;
     right: 90px;
     bottom: 300px;
+    background: #fff !important;
+    z-index: 10;
+}
+.box_content_innerrr {
+  padding: 40px;
+}
+.box_content_innerrr h3 {
+    font-size: 40px;
+    margin: 0 0 20px 0;
+}
+.modal_box .owl-nav {
+    margin: 0 !important;
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+}
+.modal_box  .owl-nav [class*="owl-"]:hover {
+    background: transparent !important;
+    color: #FFF;
+    text-decoration: none;
+}
+.modal_box .owl-nav [class*="owl-"] {
+    margin: 20px 10px !important;
+}
+.modal_box .owl-nav [class*="owl-"] img {
+    max-width: 35px;
+}
+.content_slider {
+    height: 100%;
+}
+.box_content_innerrr p {
+    font-size: 26px;
+    line-height: 1.4;
 }
 .modal_box .new_inner_img {
     height: 490px;
