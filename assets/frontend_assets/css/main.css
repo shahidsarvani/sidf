@@ -111,16 +111,16 @@ table {
     margin: 3px 0 0 -220px;
 }
 .box_pin.box_pin_ten {
-    margin-top: 245px;
+    margin: 3px 0 0 -100px;
 }
 .box_pin.box_pin_eleven {
     margin-top: 245px;
 }
 .box_pin.box_pin_twelve {
-    margin-top: 13px;
+    margin: 245px 0 0 100px;
 }
 .box_pin.box_pin_thirteen {
-    margin-top: 13px;
+    margin: 13px 0 0 690px;
 }
 .box_pin.box_pin_nine .border_verti {
     height: 700px; 
