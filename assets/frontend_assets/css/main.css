@@ -101,6 +101,12 @@ table {
 .modal_box .owl-nav [class*="owl-"] img {
     max-width: 35px;
 }
+.slider_box {
+    background-color: #000;
+}
+.slider_one .img_slid {
+    opacity: 0.3;
+}
 .content_slider {
     height: 100%;
 }
