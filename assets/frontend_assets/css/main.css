@@ -121,6 +121,9 @@ table {
 .box_pin.box_pin_thirteen {
     margin-top: 13px;
 }
+.box_pin.box_pin_six .border_verti {
+    height: 520px; 
+  }
 .box_pin.box_pin_one .border_verti, 
 .box_pin.box_pin_four .border_verti, 
 .box_pin.box_pin_seven .border_verti, 
