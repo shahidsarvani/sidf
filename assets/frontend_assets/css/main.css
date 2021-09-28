@@ -62,7 +62,7 @@ table {
   width: 1080px !important;
   float: left;
 }
-.slider_box img {
+.slider_box .img_slid {
   width: 100% !important;
 } 
 
@@ -71,17 +71,64 @@ table {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 1230px;
+    height: 1215px;
     z-index: 5;
 }
 .box_pin {
     position: relative;
-    width: 1080px;
+    width: 450px;
     padding-top: 8px;
+    padding-left: 50px;
+    padding-right: 50px;
+    float: left;
 }
 .box_pin.box_pin_one {
-    margin-top: 493px;
+    margin-top: 479px;
 }
+.box_pin.box_pin_two {
+    margin-top: 479px;
+}
+.box_pin.box_pin_three {
+    margin: 237px 110px 0 240px;
+}
+.box_pin.box_pin_four {
+    margin: 237px -30px 0 130px;
+}
+.box_pin.box_pin_five {
+    margin: 237px 0 0 -170px;
+}
+.box_pin.box_pin_six {
+    margin: 237px 0 0 -220px;
+}
+.box_pin.box_pin_seven {
+    margin-top: 237px;
+}
+.box_pin.box_pin_eight {
+    margin-top: 3px;
+}
+.box_pin.box_pin_nine {
+    margin-top: 3px;
+}
+.box_pin.box_pin_ten {
+    margin-top: 245px;
+}
+.box_pin.box_pin_eleven {
+    margin-top: 245px;
+}
+.box_pin.box_pin_twelve {
+    margin-top: 13px;
+}
+.box_pin.box_pin_thirteen {
+    margin-top: 13px;
+}
+.box_pin.box_pin_one .border_verti, 
+.box_pin.box_pin_four .border_verti, 
+.box_pin.box_pin_seven .border_verti, 
+.box_pin.box_pin_ten .border_verti,
+.box_pin.box_pin_eight .border_verti, 
+.box_pin.box_pin_thirteen .border_verti {
+    height: 130px; 
+  }
 .box_pin .border_verti {
     width: 2px;
     height: 300px;
@@ -99,7 +146,7 @@ table {
 .box_pin .text {
     color: #92b544;
     margin: 20px 0 0 0;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 
