@@ -189,7 +189,7 @@ table {
 .slider_box {
   background-color: #000;
 }
-.slider_one.active .img_slid {
+.slider_box.active .img_slid {
   opacity: 0.3;
 }
 .content_slider {
