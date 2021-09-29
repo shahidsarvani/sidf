@@ -161,10 +161,13 @@ object-fit: cover;
   z-index: 10;
   opacity: 0;
   visibility: hidden;
+  transition: all 0.3s;
+  transform: scale(0.5);
 }
 .modal_box.active {
   opacity: 1;
   visibility: visible;
+  transform: scale(1);
 }
 .box_content_innerrr {
   padding: 40px;
