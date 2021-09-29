@@ -83,8 +83,14 @@ $(document).ready(function () {
     item.addEventListener('click', function(e) {
       const id = e.currentTarget.dataset.modal_id;
       var modal = document.getElementById(id);
-      $(modal).parents('.main_box').find('.modal_box').removeClass('active');
-      modal.classList.add('active');
+      if($(modal).parents('.main_box').find('.modal_box').hasClass('active')) {
+        $(modal).parents('.main_box').find('.modal_box').removeClass('active');
+        setTimeout(function() {
+          modal.classList.add('active');
+        }, 300);
+      } else {
+        modal.classList.add('active');
+      }
       $('#'+id).parents('.main_box').find('.owl-carousel').addClass('active').trigger('stop.owl.autoplay');
     })
   })
@@ -92,8 +98,6 @@ $(document).ready(function () {
   const closeModal = document.querySelectorAll('.close-modal');
   closeModal.forEach(function(close) {
     close.addEventListener('click', function() {
-      console.log($(this))
-      console.log($(this).parents('.modal_box'))
       $(this).parents('.main_box').find('.owl-carousel').removeClass('active').trigger('play.owl.autoplay');
       $(this).parents('.modal_box').removeClass('active');
     })
