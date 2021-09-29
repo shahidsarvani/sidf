@@ -77,7 +77,7 @@ $(document).ready(function () {
     margin: 0,
   });
 
-  // const mainBox = document.querySelectorAll('.main_box');
+  // OPEN MODAL
   const pulsatingCircle = document.querySelectorAll('.pulsating-circle');
   pulsatingCircle.forEach(function(item) {
     item.addEventListener('click', function(e) {
@@ -87,4 +87,15 @@ $(document).ready(function () {
       $('#'+id).parents('.main_box').find('.owl-carousel').addClass('active');
     })
   })
-});
+  // CLOSE MODAL
+  const closeModal = document.querySelectorAll('.close-modal');
+  closeModal.forEach(function(close) {
+    close.addEventListener('click', function() {
+      console.log($(this))
+      $(this).parents('.main_box').find('.owl-carousel').removeClass('active');
+      $(this).parents('.modal_box').removeClass('active');
+    })
+  })
+
+})
+
