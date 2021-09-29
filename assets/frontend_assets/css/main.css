@@ -160,9 +160,11 @@ object-fit: cover;
   background: #fff !important;
   z-index: 10;
   opacity: 0;
+  visibility: hidden;
 }
 .modal_box.active {
   opacity: 1;
+  visibility: visible;
 }
 .box_content_innerrr {
   padding: 40px;

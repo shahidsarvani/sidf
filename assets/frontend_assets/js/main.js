@@ -92,6 +92,7 @@ $(document).ready(function () {
   closeModal.forEach(function(close) {
     close.addEventListener('click', function() {
       console.log($(this))
+      console.log($(this).parents('.modal_box'))
       $(this).parents('.main_box').find('.owl-carousel').removeClass('active');
       $(this).parents('.modal_box').removeClass('active');
     })
