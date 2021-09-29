@@ -76,6 +76,10 @@ table {
     bottom: 300px;
     background: #fff !important;
     z-index: 10;
+    display: none;
+}
+.modal_box.active {
+    display: block;
 }
 .box_content_innerrr {
   padding: 40px;
@@ -104,7 +108,7 @@ table {
 .slider_box {
     background-color: #000;
 }
-.slider_one .img_slid {
+.slider_one.active .img_slid {
     opacity: 0.3;
 }
 .content_slider {
