@@ -83,6 +83,7 @@ $(document).ready(function () {
     item.addEventListener('click', function(e) {
       const id = e.currentTarget.dataset.modal_id;
       var modal = document.getElementById(id);
+      $(modal).parents('.main_box').find('.modal_box').removeClass('active');
       modal.classList.add('active');
       $('#'+id).parents('.main_box').find('.owl-carousel').addClass('active').trigger('stop.owl.autoplay');
     })
