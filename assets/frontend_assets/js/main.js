@@ -84,7 +84,7 @@ $(document).ready(function () {
       const id = e.currentTarget.dataset.modal_id;
       var modal = document.getElementById(id);
       modal.classList.add('active');
-      $('#'+id).parents('.main_box').find('.owl-carousel').addClass('active');
+      $('#'+id).parents('.main_box').find('.owl-carousel').addClass('active').trigger('stop.owl.autoplay');
     })
   })
   // CLOSE MODAL
@@ -93,7 +93,7 @@ $(document).ready(function () {
     close.addEventListener('click', function() {
       console.log($(this))
       console.log($(this).parents('.modal_box'))
-      $(this).parents('.main_box').find('.owl-carousel').removeClass('active');
+      $(this).parents('.main_box').find('.owl-carousel').removeClass('active').trigger('play.owl.autoplay');
       $(this).parents('.modal_box').removeClass('active');
     })
   })
