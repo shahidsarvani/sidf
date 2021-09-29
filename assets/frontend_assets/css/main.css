@@ -147,6 +147,8 @@ table {
 }
 .slider_box .img_slid {
   width: 100% !important;
+  height: 1220px;
+object-fit: cover;
 }
 
 .modal_box {
