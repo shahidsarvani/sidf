@@ -267,7 +267,7 @@ object-fit: cover;
 }
 .box_pin.box_pin_nine .border_verti,
 .box_pin.box_pin_four .border_verti {
-  height: 700px;
+  height: 590px;
 }
 .box_pin.box_pin_six .border_verti {
   height: 520px;
@@ -290,7 +290,7 @@ object-fit: cover;
 .box_pin h3 {
   text-align: center;
   color: #fff;
-  margin: 20px 0;
+  margin: 35px 0 35px 0;
   font-size: 40px;
 }
 .box_pin .text {
