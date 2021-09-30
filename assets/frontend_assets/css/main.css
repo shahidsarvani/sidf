@@ -298,6 +298,9 @@ object-fit: cover;
   margin: 20px 0 0 0;
   font-size: 24px;
 }
+.arabic {
+  text-align: right;
+}
 .mx_auto {
   margin: 0 auto;
   display: block;
