@@ -277,7 +277,7 @@ object-fit: cover;
 .box_pin.box_pin_five .border_verti,
 .box_pin.box_pin_eight .border_verti,
 .box_pin.box_pin_thirteen .border_verti {
-  height: 130px;
+  height: 200px;
 }
 .box_pin .border_verti {
   width: 2px;
