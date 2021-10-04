@@ -106,10 +106,12 @@ $(document).ready(function () {
   $('.lang-eng').click(function () {
     $(this).parents('.modal_box').find('.arabic').removeClass('active');
     $(this).parents('.modal_box').find('.english').addClass('active');
+    $(this).addClass('active').parent().find('.lang-ar').removeClass('active');
   })
   $('.lang-ar').click(function () {
     $(this).parents('.modal_box').find('.english').removeClass('active');
     $(this).parents('.modal_box').find('.arabic').addClass('active');
+    $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
   })
 
 })

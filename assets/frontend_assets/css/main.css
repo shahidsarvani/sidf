@@ -406,6 +406,9 @@ table {
 .lang-toggle span {
   cursor: pointer;
 }
+.lang-toggle span.active {
+  color: #92b544;
+}
 
 @-webkit-keyframes pulse-ring {
   0% {
