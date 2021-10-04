@@ -383,6 +383,18 @@ table {
 .close-modal img {
   width: 28px;
 }
+.box_content_innerrr.english, .box_content_innerrr.arabic {
+   transition: opacity 1.5s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.box_content_innerrr.english.active, .box_content_innerrr.arabic.active {
+  opacity: 1;
+    height: auto;
+    padding: 40px;
+}
 .lang-toggle {
   position: absolute;
   bottom: 20px;
