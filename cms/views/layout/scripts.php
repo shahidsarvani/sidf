@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +15,9 @@
 	<link href="<?php echo ADMIN_ASSET ?>/css/layout.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo ADMIN_ASSET ?>/css/components.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo ADMIN_ASSET ?>/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/global_assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/global_assets/css/carousels/owl.carousel.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo ADMIN_ASSET ?>/css/custom.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -29,8 +33,16 @@
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/pickers/daterangepicker.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/validation/validate.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/media/fancybox.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/carousels/owl.carousel.js"></script>
 
 	<script src="<?php echo ADMIN_ASSET ?>/js/app.js"></script>
+	<script>
+		const user_asset = '<?php echo USER_ASSET ?>';
+	</script>
 	<script src="<?php echo ADMIN_ASSET ?>/js/custom.js"></script>
 	<!-- /theme JS files -->
 

@@ -73,22 +73,27 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item nav-item-submenu" id="navlink-screens">
+                        <a href="#" class="nav-link">
+                            <i class="icon-display"></i> <span>Screens</span>
+                        </a>
+                        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                            <li class="nav-item">
+                                <a href="<?php echo ADMIN_SITE_URL.'/controller/screens/index.php' ?>" class="nav-link" id="navlink-screens_index">All Screens</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo ADMIN_SITE_URL.'/controller/screens/add.php' ?>" class="nav-link" id="navlink-screens_add">Add Screen</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item">
                         <a href="<?php echo ADMIN_SITE_URL.'/controller/screens.php' ?>" class="nav-link" id="navlink-screens">
                             <i class="icon-display"></i>
                             <span>
                                 Screens
                             </span>
                         </a>
-                    </li>
-                    <li class="nav-item nav-item-submenu">
-                        <a href="#" class="nav-link"><i class="icon-copy"></i> <span>Layouts</span></a>
-
-                        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                            <li class="nav-item"><a href="index.html" class="nav-link active">Default layout</a></li>
-                            <li class="nav-item"><a href="../../../../layout_2/LTR/material/full/index.html" class="nav-link">Layout 2</a></li>
-                        </ul>
-                    </li>
+                    </li> -->
                     <!-- /main -->
                     <!-- /page kits -->
 

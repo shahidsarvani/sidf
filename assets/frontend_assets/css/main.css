@@ -148,7 +148,7 @@ table {
 .slider_box .img_slid {
   width: 100% !important;
   height: 1220px;
-object-fit: cover;
+  object-fit: cover;
 }
 
 .modal_box {
@@ -368,20 +368,31 @@ object-fit: cover;
 }
 
 .close-modal {
-    top: -30px;
-    right: -30px;
-    position: absolute;
-    z-index: 99;
-    background: #fff;
-    width: 70px;
-    height: 70px;
-    text-align: center;
-    line-height: 86px;
-    border-radius: 50%;
-    cursor: pointer;
+  top: -30px;
+  right: -30px;
+  position: absolute;
+  z-index: 99;
+  background: #fff;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 86px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .close-modal img {
-    width: 28px;
+  width: 28px;
+}
+.lang-toggle {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  z-index: 99;
+  font-size: 26px;
+  line-height: 1.4;
+}
+.lang-toggle span {
+  cursor: pointer;
 }
 
 @-webkit-keyframes pulse-ring {
