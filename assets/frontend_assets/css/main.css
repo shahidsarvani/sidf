@@ -368,8 +368,8 @@ object-fit: cover;
 }
 
 .close-modal {
-    top: -30px;
-    right: -30px;
+    top: 10px;
+    right: 10px;
     position: absolute;
     z-index: 99;
     background: #fff;
