@@ -267,7 +267,7 @@ table {
 }
 .box_pin.box_pin_nine .border_verti,
 .box_pin.box_pin_four .border_verti {
-  height: 700px;
+  height: 590px;
 }
 .box_pin.box_pin_six .border_verti {
   height: 520px;
@@ -290,7 +290,7 @@ table {
 .box_pin h3 {
   text-align: center;
   color: #fff;
-  margin: 20px 0;
+  margin: 35px 0 35px 0;
   font-size: 40px;
 }
 .box_pin .text {
@@ -368,17 +368,17 @@ table {
 }
 
 .close-modal {
-  top: -30px;
-  right: -30px;
-  position: absolute;
-  z-index: 99;
-  background: #fff;
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  line-height: 86px;
-  border-radius: 50%;
-  cursor: pointer;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    line-height: 86px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 .close-modal img {
   width: 28px;
