@@ -50,21 +50,14 @@ require ADMIN_VIEW . '/layout/header.php';
                             <textarea name="text_ar" class="form-control" id="text_ar" cols="30" rows="3"><?php echo $timeline['text_ar'] ?></textarea>
                         </div>
 
-                        <!-- <div class="form-group">
-                            <label>Upload Images:</label>
-                            <input type="file" name="images" class="file-input-overwrite" multiple="multiple" data-fouc>
-                        </div> -->
+                        <div class="form-group" <?php echo $timeline['image'] ? '' : 'style="display: none;"' ?>>
+                            <label>Upload Image:</label>
+                            <input type="file" name="image" class="form-input-styled" id="image" accept="image/*">
+                        </div>
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
                         </div>
-                        <?php
-                        // foreach ($screen['media'] as $media) :
-                        ?>
-                            <!-- <input type="hidden" name="file_keys[]" class="old-images" value="<?php echo USER_ASSET . '/images/' . $media['name']; ?>" data-caption="<?php echo $media['name']; ?>" data-key="<?php echo $media['file_key']; ?>" data-size="<?php echo $media['size']; ?>"> -->
-                        <?php
-                        // endforeach;
-                        ?>
                     </form>
                 </div>
             </div>
@@ -81,6 +74,15 @@ require ADMIN_VIEW . '/layout/footer.php';
         $('#navlink-timelineItems').addClass('nav-item-open');
         $('#navlink-timelineItems ul').css('display', 'block');
         $('#navlink-timelineItems_index').addClass('active');
+
+        $('#position').change(function() {
+            var value = $(this).val();
+            if (value == '9') {
+                $('#image').attr('required', 'required').parents('.form-group').fadeIn('slow');
+            } else {
+                $('#image').attr('required', '').parents('.form-group').fadeOut('slow');
+            }
+        })
 
         $('.file-input-overwrite').on(
             "filebatchuploadcomplete",
@@ -150,14 +152,40 @@ require ADMIN_VIEW . '/layout/footer.php';
                 }
             },
             rules: {
-                name: {
+                title: {
                     required: true,
                 },
+                position: {
+                    required: true,
+                },
+                text_eng: {
+                    required: true,
+                },
+                text_ar: {
+                    required: true,
+                },
+                image: {
+                    required: function () {
+                        return $('#position').val() == 9;
+                    }
+                }
             },
             messages: {
-                name: {
-                    required: "Enter screen name",
+                title: {
+                    required: "Enter title",
                 },
+                position: {
+                    required: 'Select position',
+                },
+                text_eng: {
+                    required: 'Enter English description',
+                },
+                text_ar: {
+                    required: 'Enter Arabic description',
+                },
+                image: {
+                    required: 'Select an image file'
+                }
             },
         });
     })

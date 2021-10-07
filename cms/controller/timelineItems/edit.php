@@ -20,10 +20,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	$screen = new Timeline();
     $id = $_POST['id'];
-    // echo json_encode($_POST);
-    // echo json_encode($id);
+    $data = $_POST;
+    if($_FILES['image']['tmp_name'] != '' && $data['position'] == '9') {
+        
+        $targetDir = $items_config['images_path'];
+        $images_url = $items_config['images_url'];
+        if (!file_exists($targetDir)) {
+            @mkdir($targetDir);
+        }
+        $file = $_FILES['image']['tmp_name'];
+        $fileName = time().'_'.$_FILES['image']['name']; 
+        $targetFile = $targetDir . '/' . $fileName;
+        if (move_uploaded_file($file, $targetFile)) {
+            $data['image'] = $fileName;
+        }
+    }
+    // echo json_encode($data);
+    // echo json_encode($_FILES);
     // die();
-    $res = $screen->edit_timeline_item($id, $_POST);
+    $res = $screen->edit_timeline_item($id, $data);
 
     if($res) {
         $_SESSION['success'] = 'Timeline Item Updated Successfully';

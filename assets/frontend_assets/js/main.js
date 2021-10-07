@@ -66,7 +66,7 @@ $(document).ready(function () {
     items: 1,
     animateOut: "fadeOut",
     dots: false,
-    video:true,
+    video: true,
     nav: $(".content_slider").find('.item').length > 1,
     navText: [
       "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
@@ -74,7 +74,7 @@ $(document).ready(function () {
     ],
     autoplayTimeout: 5000,
     autoplay: true,
-    loop: false,
+    loop: true,
     margin: 0,
   });
 
@@ -115,5 +115,7 @@ $(document).ready(function () {
     $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
   })
 
+  //READ TIMELINE ITEMS JSON
+  
 })
 
