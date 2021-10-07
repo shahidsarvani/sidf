@@ -88,7 +88,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 confirmButtonClass: 'btn btn-success',
                                 showLoaderOnConfirm: true,
                                 preConfirm: function(login) {
-                                    return fetch(admin_url + '/controller/timelineItems/download_json.php')
+                                    return fetch(admin_url + '/controller/download_json.php?name=timeline_items.json')
                                         .then(function(response) {
                                             console.log(response);
                                             if (!response.ok) {

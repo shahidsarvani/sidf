@@ -1,0 +1,67 @@
+{
+    "screens": [
+        {
+            "screen_name": "Screen 1",
+            "screen_slug": "screen-1",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media1.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media2.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media3.jpg"
+            ]
+        },
+        {
+            "screen_name": "Screen 2",
+            "screen_slug": "screen-2",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media1.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media2.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media3.jpg"
+            ]
+        },
+        {
+            "screen_name": "Screen 3",
+            "screen_slug": "screen-3",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media4.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media5.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media6.jpg"
+            ]
+        },
+        {
+            "screen_name": "Screen 4",
+            "screen_slug": "screen-4",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media8.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media9.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media11.jpg"
+            ]
+        },
+        {
+            "screen_name": "Screen 5",
+            "screen_slug": "screen-5",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media13.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media14.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media16.jpg"
+            ]
+        },
+        {
+            "screen_name": "Screen 6",
+            "screen_slug": "screen-6",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media17.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media18.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media19.jpg"
+            ]
+        },
+        {
+            "screen_name": "Screen 7",
+            "screen_slug": "screen-7",
+            "media": [
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media8.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media21.jpg",
+                "http:\/\/localhost\/PHP\/sidf\/assets\/frontend_assets\/images\/media10.jpg"
+            ]
+        }
+    ]
+}

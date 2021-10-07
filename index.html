@@ -19,7 +19,7 @@
 <body>
   <div class="main_box">
     <div class="fadeOut owl-carousel owl-theme slider_box slider_one">
-      <div class="item">
+      <!-- <div class="item">
         <img src="./assets/frontend_assets/img/1.jpg" alt="" class="img_slid">
       </div>
       <div class="item">
@@ -27,7 +27,7 @@
       </div>
       <div class="item">
         <img src="./assets/frontend_assets/img/1b.jpg" alt="" class="img_slid">
-      </div>
+      </div> -->
     </div>
     <div class="modal_box" id="modal1">
       <div class="owl-carousel owl-theme content_slider">
@@ -799,17 +799,40 @@
       rawFile.send(null);
     }
 
-    //usage:
+    //Timeline_items:
     readTextFile("timeline_items.json", function (text) {
       var data = JSON.parse(text);
       var timeline_items = document.querySelectorAll('.timeline_items');
-      timeline_items.forEach(function (timeline_item, i){
+      timeline_items.forEach(function (timeline_item, i) {
         $(timeline_item).find('h3').html(data.timeline_items[i].title);
         $(timeline_item).find('.arabic').html(data.timeline_items[i].text_ar);
         $(timeline_item).find('.english').html(data.timeline_items[i].text_eng);
-        if(data.timeline_items[i].image && i == 8) {
-          $(timeline_item).find('img').attr('src',data.timeline_items[i].image);
+        if (data.timeline_items[i].image && i == 8) {
+          $(timeline_item).find('img').attr('src', data.timeline_items[i].image);
         }
+      })
+    });
+
+    //Screens:
+    readTextFile("screens.json", function (text) {
+      var data = JSON.parse(text);
+      // console.log(data);
+      var screens = document.querySelectorAll('.main_box');
+      screens.forEach(function (screen, i) {
+        var html = '';
+        data.screens[i].media.forEach(function (media) {
+          html += '<div class="item"><img src="' + media + '" alt="" class="img_slid"></div>'
+        })
+        $(screen).find('.slider_box').html(html)
+        $(screen).find('.slider_box').owlCarousel({
+          items: 1,
+          animateOut: "fadeOut",
+          dots: false,
+          autoplayTimeout: 5000,
+          autoplay: true,
+          loop: true,
+          margin: 0,
+        });
       })
     });
   </script>

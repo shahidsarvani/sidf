@@ -1,67 +1,67 @@
 $(document).ready(function () {
-  $(".slider_one").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 5000,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
-  $(".slider_two").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 4500,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
-  $(".slider_three").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 4000,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
-  $(".slider_four").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 3500,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
-  $(".slider_five").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 3000,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
-  $(".slider_six").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 2500,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
-  $(".slider_seven").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    autoplayTimeout: 2000,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
+  // $(".slider_one").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 5000,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
+  // $(".slider_two").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 4500,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
+  // $(".slider_three").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 4000,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
+  // $(".slider_four").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 3500,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
+  // $(".slider_five").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 3000,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
+  // $(".slider_six").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 2500,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
+  // $(".slider_seven").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   autoplayTimeout: 2000,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
   $(".content_slider").owlCarousel({
     items: 1,
     animateOut: "fadeOut",
