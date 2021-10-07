@@ -28,6 +28,7 @@
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/notifications/sweet_alert.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/switchery.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/ui/moment/moment.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/pickers/daterangepicker.js"></script>
@@ -42,6 +43,7 @@
 	<script src="<?php echo ADMIN_ASSET ?>/js/app.js"></script>
 	<script>
 		const user_asset = '<?php echo USER_ASSET ?>';
+		const admin_url = '<?php echo ADMIN_SITE_URL ?>';
 	</script>
 	<script src="<?php echo ADMIN_ASSET ?>/js/custom.js"></script>
 	<!-- /theme JS files -->

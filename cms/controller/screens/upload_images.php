@@ -3,7 +3,7 @@
 header('Content-Type: application/json'); // set json response headers
 
 require './../../config/config.php';
-require './../../model/Media.php';
+require BASE_PATH . '/cms/model/Media.php';
 
 $targetDir = $items_config['images_path'];
 $images_url = $items_config['images_url'];

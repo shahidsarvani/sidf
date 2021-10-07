@@ -210,6 +210,10 @@ table {
   height: 490px;
   object-fit: cover;
 }
+.modal_box .video {
+  height: 100%;
+  width: 100%;
+}
 
 .bottom_upper_section {
   position: absolute;

@@ -86,14 +86,19 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="<?php echo ADMIN_SITE_URL.'/controller/screens.php' ?>" class="nav-link" id="navlink-screens">
-                            <i class="icon-display"></i>
-                            <span>
-                                Screens
-                            </span>
+                    <li class="nav-item nav-item-submenu" id="navlink-timelineItems">
+                        <a href="#" class="nav-link">
+                            <i class="icon-calendar22"></i> <span>Timeline Items</span>
                         </a>
-                    </li> -->
+                        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                            <li class="nav-item">
+                                <a href="<?php echo ADMIN_SITE_URL.'/controller/timelineItems/index.php' ?>" class="nav-link" id="navlink-timelineItems_index">All Timeline Items</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo ADMIN_SITE_URL.'/controller/timelineItems/add.php' ?>" class="nav-link" id="navlink-timelineItems_add">Add Timeline Item</a>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- /main -->
                     <!-- /page kits -->
 

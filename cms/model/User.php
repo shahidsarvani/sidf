@@ -7,7 +7,7 @@ class User
 
 	public function __construct()
 	{
-		require_once('./../config/database.php');
+		require_once(BASE_PATH . '/cms/config/database.php');
 
 		$database = new Database;
 		$this->connect = $database->connect();

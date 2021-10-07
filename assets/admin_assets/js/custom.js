@@ -39,9 +39,15 @@ var ComponentLoad = (function () {
       return;
     }
   };
-  var _componentFileUpload = function () {
+  var _componentOwlCarousel = function () {
     if (!$().owlCarousel) {
       console.warn("Warning - owl.carousel.js is not loaded.");
+      return;
+    }
+  };
+  var _componentSweetAlert = function () {
+    if (typeof swal == 'undefined') {
+      console.warn('Warning - sweet_alert.min.js is not loaded.');
       return;
     }
   };
@@ -51,6 +57,8 @@ var ComponentLoad = (function () {
       _componentUniform();
       _componentValidate();
       _componentFileUpload();
+      _componentOwlCarousel();
+      _componentSweetAlert();
     },
   };
 })();
@@ -210,9 +218,9 @@ var RegisterValidation = (function () {
     },
   };
 })();
-var FileUpload = (function () {
+var ImageAddUpload = (function () {
   // Bootstrap file upload
-  var _componentFileUpload = function () {
+  var _componentImageAddUpload = function () {
     // Modal template
     var modalTemplate =
       '<div class="modal-dialog modal-lg" role="document">\n' +
@@ -252,7 +260,7 @@ var FileUpload = (function () {
       uploadUrl: "upload_images.php", // server upload action
       enableResumableUpload: true,
       maxFileCount: 5,
-      maxFileSize: 3072,
+      maxFileSize: 15360,
       initialPreviewAsData: true,
       allowedFileTypes: ["image"],
       overwriteInitial: true,
@@ -287,7 +295,101 @@ var FileUpload = (function () {
 
   return {
     init: function () {
-      _componentFileUpload();
+      _componentImageAddUpload();
+    },
+  };
+})();
+var ImageEditUpload = (function () {
+  // Bootstrap file upload
+  var _componentImageEditUpload = function () {
+
+    var initialPreview = [];
+    var initialPreviewConfig = [];
+    var images = document.querySelectorAll('.old-images');
+    images.forEach(function (image) {
+      initialPreview.push(image.value);
+      initialPreviewConfig.push({
+        caption: image.dataset.caption,
+        key: image.dataset.key,
+        size: image.dataset.size,
+        url: '{$url}',
+      })
+    })
+
+    // Modal template
+    var modalTemplate =
+      '<div class="modal-dialog modal-lg" role="document">\n' +
+      '  <div class="modal-content">\n' +
+      '    <div class="modal-header align-items-center">\n' +
+      '      <h6 class="modal-title">{heading} <small><span class="kv-zoom-title"></span></small></h6>\n' +
+      '      <div class="kv-zoom-actions btn-group">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+      "    </div>\n" +
+      '    <div class="modal-body">\n' +
+      '      <div class="floating-buttons btn-group"></div>\n' +
+      '      <div class="kv-zoom-body file-zoom-content"></div>\n' +
+      "{prev} {next}\n" +
+      "    </div>\n" +
+      "  </div>\n" +
+      "</div>\n";
+
+    // Buttons inside zoom modal
+    var previewZoomButtonClasses = {
+      toggleheader: "btn btn-light btn-icon btn-header-toggle btn-sm",
+      fullscreen: "btn btn-light btn-icon btn-sm",
+      borderless: "btn btn-light btn-icon btn-sm",
+      close: "btn btn-light btn-icon btn-sm",
+    };
+
+    // Icons inside zoom modal classes
+    var previewZoomButtonIcons = {
+      prev: '<i class="icon-arrow-left32"></i>',
+      next: '<i class="icon-arrow-right32"></i>',
+      toggleheader: '<i class="icon-menu-open"></i>',
+      fullscreen: '<i class="icon-screen-full"></i>',
+      borderless: '<i class="icon-alignment-unalign"></i>',
+      close: '<i class="icon-cross2 font-size-base"></i>',
+    };
+
+    $('.file-input-overwrite').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_images.php", // server upload action
+      enableResumableUpload: true,
+      maxFileCount: 5,
+      maxFileSize: 15360,
+      initialPreviewAsData: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["image"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      fileActionSettings: {
+        // removeIcon: '<i class="icon-bin"></i>',
+        // removeClass: "",
+        // uploadIcon: '<i class="icon-upload"></i>',
+        // uploadClass: "",
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        zoomClass: "",
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess:
+          '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>',
+      },
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreview,
+      initialPreviewConfig: initialPreviewConfig,
+      overwriteInitial: true,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons
+    });
+  };
+
+  return {
+    init: function () {
+      _componentImageEditUpload();
     },
   };
 })();
@@ -321,6 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ComponentLoad.init();
   LoginValidation.init();
   RegisterValidation.init();
-  FileUpload.init();
+  ImageAddUpload.init();
+  ImageEditUpload.init();
   OwlCarousel.init();
 });

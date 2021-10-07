@@ -66,6 +66,7 @@ $(document).ready(function () {
     items: 1,
     animateOut: "fadeOut",
     dots: false,
+    video:true,
     nav: $(".content_slider").find('.item').length > 1,
     navText: [
       "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
@@ -73,7 +74,7 @@ $(document).ready(function () {
     ],
     autoplayTimeout: 5000,
     autoplay: true,
-    loop: true,
+    loop: false,
     margin: 0,
   });
 
