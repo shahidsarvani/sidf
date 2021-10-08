@@ -99,6 +99,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item nav-item-submenu" id="navlink-modals">
+                        <a href="#" class="nav-link">
+                            <i class="icon-gallery"></i> <span>Modals</span>
+                        </a>
+                        <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                            <li class="nav-item">
+                                <a href="<?php echo ADMIN_SITE_URL.'/controller/modals/index.php' ?>" class="nav-link" id="navlink-modals_index">All Modals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo ADMIN_SITE_URL.'/controller/modals/add.php' ?>" class="nav-link" id="navlink-modals_add">Add Modal</a>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- /main -->
                     <!-- /page kits -->
 

@@ -1,0 +1,205 @@
+<?php
+
+class Modal
+{
+
+	public $connect;
+
+	public function __construct()
+	{
+		require_once(BASE_PATH . '/cms/config/database.php');
+
+		$database = new Database;
+		$this->connect = $database->connect();
+	}
+
+	public function get_modals()
+	{
+		$query = "
+		SELECT * FROM modals ORDER BY position ASC
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result;
+		} else {
+			return [];
+		}
+	}
+
+	public function get_modal($id)
+	{
+		$query = "
+		SELECT * FROM modals WHERE id = '$id' 
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result->fetch_assoc();
+		} else {
+			return false;
+		}
+	}
+
+	public function get_modal_by_slug($slug)
+	{
+		$query = "
+		SELECT * FROM modals WHERE slug = '$slug' 
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result->fetch_assoc();
+		} else {
+			return false;
+		}
+	}
+
+	public function delete_modal($id)
+	{
+		$query = "
+		DELETE FROM modals WHERE id = '$id'
+		";
+		$result = $this->connect->query($query);
+		if (TRUE === $result) {
+			return true;
+		} else {
+			$_SESSION['error_msg'] = $this->connect->error;
+			$_SESSION['error_code'] = 500;
+			header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
+		}
+	}
+
+	public function add_modal($data)
+	{
+		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
+		$position = filter_var($data['position'], FILTER_SANITIZE_NUMBER_INT);
+		$slug = $this->slugify($name);
+		$created_on = date('Y-m-d H:i:s');
+		$updated_on = date('Y-m-d H:i:s');
+		$query = "
+		INSERT INTO modals (name, slug, position, created_on, updated_on) VALUES ('$name','$slug','$position','$created_on','$updated_on')
+		";
+		// echo $query;
+		// die(); 
+		if (TRUE === $this->connect->query($query)) {
+			return $this->connect->insert_id;
+		} else {
+			$_SESSION['error_msg'] = $this->connect->error;
+			$_SESSION['error_code'] = 500;
+			header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
+		}
+	}
+
+	public function add_modal_item($data)
+	{
+		$created_on = date('Y-m-d H:i:s');
+		$query = '';
+		foreach ($data as $key => $value) {
+			$modal_id = $value['modal_id'];
+			$title_eng = $value['title_eng'];
+			$title_ar = $value['title_ar'];
+			$text_eng = $value['text_eng'];
+			$text_ar = $value['text_ar'];
+			$image = $value['image'];
+			$query .= "
+			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, image, created_on) 
+			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$image','$created_on');
+			";
+		}
+		// echo $query;
+		// die();
+		if ($this->connect->multi_query($query) === TRUE) {
+			return true;
+		} else {
+			$_SESSION['error_msg'] = $this->connect->error;
+			$_SESSION['error_code'] = 500;
+			header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
+		}
+	}
+
+	public function get_modal_items($id)
+	{
+		$query = "
+		SELECT * 
+		FROM modal_items
+		WHERE modal_items.modal_id = '$id'
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	public function edit_modal($id, $data)
+	{
+		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
+		$position = filter_var($data['position'], FILTER_SANITIZE_NUMBER_INT);
+		$slug = $this->slugify($name);
+		$updated_on = date('Y-m-d H:i:s');
+		$query = "
+		UPDATE modals SET name='$name',slug='$slug',position='$position',updated_on='$updated_on' WHERE id='$id'
+		";
+
+		if (TRUE === $this->connect->query($query)) {
+			return true;
+		} else {
+			$_SESSION['error_msg'] = $this->connect->error;
+			$_SESSION['error_code'] = 500;
+			header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
+		}
+	}
+
+	public function remove_prev_modal_items($id)
+	{
+		$query = "
+		DELETE FROM modal_items WHERE modal_id = '$id'
+		";
+		$result = $this->connect->query($query);
+		if (TRUE === $result) {
+			return true;
+		} else {
+			$_SESSION['error_msg'] = $this->connect->error;
+			$_SESSION['error_code'] = 500;
+			header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
+		}
+	}
+
+	public function slugify($text, string $divider = '-')
+	{
+		// replace non letter or digits by divider
+		$text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+		// transliterate
+		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+		// remove unwanted characters
+		$text = preg_replace('~[^-\w]+~', '', $text);
+
+		// trim
+		$text = trim($text, $divider);
+
+		// remove duplicate divider
+		$text = preg_replace('~-+~', $divider, $text);
+
+		// lowercase
+		$text = strtolower($text);
+
+		if (empty($text)) {
+			return 'n-a';
+		}
+
+		return $text;
+	}
+}

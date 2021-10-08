@@ -31,7 +31,7 @@
     </div>
     <div class="modal_box" id="modal1">
       <div class="owl-carousel owl-theme content_slider">
-        <div class="item">
+        <!-- <div class="item">
           <img src="./assets/frontend_assets/img/5.jpg" alt="" class="new_inner_img">
           <div class="box_content_innerrr english active">
             <h3>Lorem ipsum dolor first</h3>
@@ -47,7 +47,7 @@
               التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل
               هؤلاء الأشخاص الذين لا يدركون بأن السعادة لا بد</p>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="lang-toggle">
         <span class="lang-eng active">English</span>&nbsp;/
@@ -828,6 +828,38 @@
           items: 1,
           animateOut: "fadeOut",
           dots: false,
+          autoplayTimeout: 5000,
+          autoplay: true,
+          loop: true,
+          margin: 0,
+        });
+      })
+    });
+
+    //Modals
+    readTextFile("modals.json", function (text) {
+      var data = JSON.parse(text);
+      // console.log(data);
+      var modals = document.querySelectorAll('.modal_box');
+      modals.forEach(function (modal, i) {
+        var html = '';
+        if(i < 2) {
+          data.modals[i].items.forEach(function (item) {
+            html += '<div class="item"><img src="'+item.image+'" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
+          })
+        }
+        $(modal).find('.content_slider').html(html)
+        $(modal).find('.content_slider').owlCarousel({
+          items: 1,
+          animateOut: "fadeOut",
+          dots: false,
+          video: true,
+          // nav: $(modal).find('.content_slider .item').length > 1,
+          nav: true,
+          navText: [
+            "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
+            "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
+          ],
           autoplayTimeout: 5000,
           autoplay: true,
           loop: true,

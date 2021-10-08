@@ -62,21 +62,21 @@ $(document).ready(function () {
   //   loop: true,
   //   margin: 0,
   // });
-  $(".content_slider").owlCarousel({
-    items: 1,
-    animateOut: "fadeOut",
-    dots: false,
-    video: true,
-    nav: $(".content_slider").find('.item').length > 1,
-    navText: [
-      "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
-      "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
-    ],
-    autoplayTimeout: 5000,
-    autoplay: true,
-    loop: true,
-    margin: 0,
-  });
+  // $(".content_slider").owlCarousel({
+  //   items: 1,
+  //   animateOut: "fadeOut",
+  //   dots: false,
+  //   video: true,
+  //   nav: $(".content_slider").find('.item').length > 1,
+  //   navText: [
+  //     "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
+  //     "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
+  //   ],
+  //   autoplayTimeout: 5000,
+  //   autoplay: true,
+  //   loop: true,
+  //   margin: 0,
+  // });
 
   // OPEN MODAL
   const pulsatingCircle = document.querySelectorAll('.pulsating-circle');
