@@ -23,7 +23,7 @@ foreach ($modals as $item) {
             'title_ar' => $media['title_ar'],
             'text_eng' => $media['text_eng'],
             'text_ar' => $media['text_ar'],
-            'image' => USER_ASSET.'/modal_media/'.$media['image'],
+            'media' => $items_config['modal_media_url'].$media['media'],
         ];
     }
     $temp['modal_nam'] = $item['name'];

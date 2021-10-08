@@ -15,7 +15,7 @@ $response['timeline_items'] = [];
 foreach ($timeline_items as $item) {
     // echo json_encode($item);
     if($item['image'] != null) {
-        $item['image'] = USER_ASSET.'/images/'.$item['image'];
+        $item['image'] = $items_config['images_url'].$item['image'];
     }
     array_push($response['timeline_items'], $item);
 }

@@ -67,11 +67,11 @@ require ADMIN_VIEW . '/layout/header.php';
                                             <textarea name="text_ar[]" class="form-control" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="old_image[]" value="<?php echo $item['image']; ?>">
+                                    <input type="hidden" name="old_media[]" value="<?php echo $item['media']; ?>">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Upload Image:</label>
-                                            <input type="file" name="image[]" class="form-input-styled">
+                                            <label>Upload Media:</label>
+                                            <input type="file" name="media[]" class="form-input-styled">
                                         </div>
                                     </div>
                                 </div>
@@ -151,8 +151,8 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Upload Image:</label>
-                                        <input type="file" name="image[]" class="form-input-styled">
+                                        <label>Upload Media:</label>
+                                        <input type="file" name="media[]" class="form-input-styled">
                                     </div>
                                 </div>
                             </div>`

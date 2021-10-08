@@ -17,7 +17,7 @@ foreach ($screens as $item) {
     $item_media = $screen->get_screen_media($item['id']);
     $medias = array();
     foreach ($item_media as $media) {
-        array_push($medias, USER_ASSET.'/images/'.$media['name']);
+        array_push($medias, $items_config['images_url'].$media['name']);
     }
     $temp['screen_name'] = $item['name'];
     $temp['screen_slug'] = $item['slug'];

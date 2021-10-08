@@ -843,11 +843,9 @@
       var modals = document.querySelectorAll('.modal_box');
       modals.forEach(function (modal, i) {
         var html = '';
-        // if(i < 2) {
-          data.modals[i].items.forEach(function (item) {
-            html += '<div class="item"><img src="'+item.image+'" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
-          })
-        // }
+        data.modals[i].items.forEach(function (item) {
+          html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
+        })
         $(modal).find('.content_slider').html(html)
         $(modal).find('.content_slider').owlCarousel({
           items: 1,

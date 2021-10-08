@@ -65,8 +65,8 @@ require ADMIN_VIEW . '/layout/header.php';
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Upload Image:</label>
-                                        <input type="file" name="image[]" class="form-input-styled">
+                                        <label>Upload Media:</label>
+                                        <input type="file" name="media[]" class="form-input-styled">
                                     </div>
                                 </div>
                             </div>
@@ -143,8 +143,8 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Upload Image:</label>
-                                        <input type="file" name="image[]" class="form-input-styled">
+                                        <label>Upload Media:</label>
+                                        <input type="file" name="media[]" class="form-input-styled">
                                     </div>
                                 </div>
                             </div>`

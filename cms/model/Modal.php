@@ -107,10 +107,10 @@ class Modal
 			$title_ar = $value['title_ar'];
 			$text_eng = $value['text_eng'];
 			$text_ar = $value['text_ar'];
-			$image = $value['image'];
+			$media = $value['media'];
 			$query .= "
-			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, image, created_on) 
-			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$image','$created_on');
+			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media, created_on) 
+			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media','$created_on');
 			";
 		}
 		// echo $query;

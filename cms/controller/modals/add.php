@@ -33,17 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'text_eng' => $_POST['text_eng'][$i],
                 'text_ar' => $_POST['text_ar'][$i],
             ];
-            if($_FILES['image']['tmp_name'][$i] != '') {
+            if($_FILES['media']['tmp_name'][$i] != '') {
                 $targetDir = $items_config['modal_media_path'];
-                $images_url = $items_config['modal_media_url'];
                 if (!file_exists($targetDir)) {
                     @mkdir($targetDir);
                 }
-                $file = $_FILES['image']['tmp_name'][$i];
-                $fileName = time().'_'.$_FILES['image']['name'][$i]; 
+                $file = $_FILES['media']['tmp_name'][$i];
+                $fileName = time().'_'.$_FILES['media']['name'][$i]; 
                 $targetFile = $targetDir . '/' . $fileName;
                 if (move_uploaded_file($file, $targetFile)) {
-                    $data[$i]['image'] = $fileName;
+                    $data[$i]['media'] = $fileName;
                 }
             }
         }
