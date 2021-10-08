@@ -41,8 +41,11 @@ require ADMIN_VIEW . '/layout/header.php';
                             </div>
                         </div>
                         <div id="items">
-                            <h6>Modal Carousel Items</h6>
-                            <div class="row">
+                            <!-- <h6>Modal Carousel Items</h6> -->
+                            <div class="row carousel_item">
+                                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                    <h6>Carousel Item:</h6>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Title English:</label>
@@ -120,7 +123,13 @@ require ADMIN_VIEW . '/layout/footer.php';
         );
 
         $('#add_item').click(function() {
-            const html = `<div class="row">
+            // var count = ++$('#items').find('div.row').length;
+            // console.log(count)
+            const html = `<div class="row carousel_item">
+                                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">Carousel Item:</h6>
+                                    <button type="button" class="btn btn-danger remove_item"">Remove Item<i class="icon-trash ml-2"></i></button>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Title English:</label>
@@ -150,6 +159,10 @@ require ADMIN_VIEW . '/layout/footer.php';
                             </div>`
             $('#items').append(html);
             $(".form-input-styled").uniform();
+        })
+
+        $(document).on('click', '.remove_item', function() {
+            $(this).parents('.carousel_item').remove();
         })
 
         var validator = $("#screen-form").validate({

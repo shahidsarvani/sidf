@@ -42,11 +42,22 @@ require ADMIN_VIEW . '/layout/header.php';
                             </div>
                         </div>
                         <div id="items">
-                            <h6>Modal Carousel Items</h6>
+                            <!-- <h6>Modal Carousel Items</h6> -->
                             <?php
+                            $i = 1;
                             foreach ($modal['items'] as $item) :
                             ?>
-                                <div class="row">
+                                <div class="row carousel_item">
+                                    <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                        <h6 <?php echo $i > 1 ? 'class="mb-0"' : '' ?>>Carousel Item:</h6>
+                                        <?php
+                                        if ($i > 1) :
+                                        ?>
+                                            <button type="button" class="btn btn-danger remove_item"">Remove Item<i class=" icon-trash ml-2"></i></button>
+                                        <?php
+                                        endif;
+                                        ?>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Title English:</label>
@@ -76,6 +87,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                     </div>
                                 </div>
                             <?php
+                                $i++;
                             endforeach;
                             ?>
                         </div>
@@ -128,7 +140,11 @@ require ADMIN_VIEW . '/layout/footer.php';
         );
 
         $('#add_item').click(function() {
-            const html = `<div class="row">
+            const html = `<div class="row carousel_item">
+                                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">Carousel Item:</h6>
+                                    <button type="button" class="btn btn-danger remove_item"">Remove Item<i class="icon-trash ml-2"></i></button>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Title English:</label>
@@ -155,9 +171,13 @@ require ADMIN_VIEW . '/layout/footer.php';
                                         <input type="file" name="media[]" class="form-input-styled">
                                     </div>
                                 </div>
-                            </div>`
+                            </div>`;
             $('#items').append(html);
             $(".form-input-styled").uniform();
+        })
+
+        $(document).on('click', '.remove_item', function() {
+            $(this).parents('.carousel_item').remove();
         })
 
         var validator = $("#screen-form").validate({
