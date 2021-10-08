@@ -86,7 +86,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 confirmButtonClass: 'btn btn-success',
                                 showLoaderOnConfirm: true,
                                 preConfirm: function(login) {
-                                    return fetch(admin_url + '/controller/download_json.php?name=timeline_items.json')
+                                    return fetch(admin_url + '/controller/download_json.php?name=modals.json')
                                         .then(function(response) {
                                             console.log(response);
                                             if (!response.ok) {
@@ -98,7 +98,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             const a = document.createElement('a');
                                             a.style.display = 'none';
                                             a.href = url;
-                                            a.download = 'timeline_items.json';
+                                            a.download = 'modals.json';
                                             document.body.appendChild(a);
                                             a.click();
                                             window.URL.revokeObjectURL(url);
