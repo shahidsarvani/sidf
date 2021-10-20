@@ -29,6 +29,22 @@ class Screen
 		}
 	}
 
+	public function get_screen_count()
+	{
+		$query = "
+		SELECT COUNT(*) AS count FROM screens
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result->fetch_assoc();
+		} else {
+			return false;
+		}
+	}
+
 	public function get_screen($id)
 	{
 		$query = "

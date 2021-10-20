@@ -26,15 +26,15 @@ require ADMIN_VIEW . '/layout/header.php';
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Position:</label>
-                                    <select name="position" id="position" class="form-control">
-                                        <option value="">Select Position</option>
+                                    <label>Year:</label>
+                                    <select name="timeline_item_id" id="timeline_item_id" class="form-control">
+                                        <option value="">Select Year</option>
                                         <?php
-                                        for ($i = 1; $i < 14; $i++) :
+                                        foreach ($timelines as $timeline) :
                                         ?>
-                                            <option value="<?php echo $i; ?>">Position <?php echo $i; ?></option>
+                                            <option value="<?php echo $timeline['id']; ?>"><?php echo $timeline['title']; ?></option>
                                         <?php
-                                        endfor;
+                                        endforeach;
                                         ?>
                                     </select>
                                 </div>
@@ -211,7 +211,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 name: {
                     required: true,
                 },
-                position: {
+                timeline_item_id: {
                     required: true,
                 }
             },
@@ -219,8 +219,8 @@ require ADMIN_VIEW . '/layout/footer.php';
                 name: {
                     required: "Enter name",
                 },
-                position: {
-                    required: "Select position",
+                timeline_item_id: {
+                    required: "Select year",
                 }
             },
         });

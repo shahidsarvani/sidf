@@ -65,10 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     require_once(BASE_PATH . '/cms/model/Modal.php');
+    require_once(BASE_PATH . '/cms/model/Timeline.php');
 	
 	$modal_obj = new Modal();
     $modal = $modal_obj->get_modal($_GET['id']);
     $item_media = $modal_obj->get_modal_items($_GET['id']);
+	$timeline_obj = new Timeline();
+    $timelines = $timeline_obj->get_timeline_items();
     $medias = array();
     foreach ($item_media as $media) {
         array_push($medias, $media);

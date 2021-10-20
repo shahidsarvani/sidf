@@ -46,10 +46,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 
-$title = 'Timeline Items - SIDF';
+if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-require BASE_PATH . '/cms/views/layout/scripts.php';
-require BASE_PATH . '/cms/views/layout/navbar.php';
-require BASE_PATH . '/cms/views/layout/sidebar.php';
-require BASE_PATH . '/cms/views/timelineItems/add.php';
+    require_once(BASE_PATH . '/cms/model/Timeline.php');
+    $timeline = new Timeline();
+    $count = $timeline->get_timeline_count();
+    if($count['count'] >= 13) {
+        header('Location: ' . ADMIN_SITE_URL . '/controller/timelineItems/index.php');
+    } else {
+        $title = 'Timeline Items - SIDF';
+        
+        require BASE_PATH . '/cms/views/layout/scripts.php';
+        require BASE_PATH . '/cms/views/layout/navbar.php';
+        require BASE_PATH . '/cms/views/layout/sidebar.php';
+        require BASE_PATH . '/cms/views/timelineItems/add.php';
+    }
+}
+
 ?>

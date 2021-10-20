@@ -33,6 +33,7 @@
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/ui/moment/moment.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/pickers/daterangepicker.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/validation/validate.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/editors/summernote/summernote.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/media/fancybox.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/selects/select2.min.js"></script>

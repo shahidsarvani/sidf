@@ -28,7 +28,7 @@ foreach ($modals as $item) {
     }
     $temp['modal_nam'] = $item['name'];
     $temp['modal_slug'] = $item['slug'];
-    $temp['position'] = $item['position'];
+    $temp['timeline_item_id'] = $item['timeline_item_id'];
     $temp['items'] = $medias;
     array_push($response['modals'], $temp);
 }

@@ -27,15 +27,15 @@ require ADMIN_VIEW . '/layout/header.php';
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Position:</label>
+                                    <label>Year:</label>
                                     <select name="position" id="position" class="form-control">
-                                        <option value="">Select Position</option>
+                                        <option value="">Select Year</option>
                                         <?php
-                                        for ($i = 1; $i < 14; $i++) :
+                                        foreach ($timelines as $timeline) :
                                         ?>
-                                            <option value="<?php echo $i; ?>" <?php echo $modal['position'] == $i ? 'selected' : ''; ?>>Position <?php echo $i; ?></option>
+                                            <option value="<?php echo $timeline['id']; ?>" <?php echo $modal['timeline_item_id'] == $timeline['id'] ? 'selected' : ''; ?>><?php echo $timeline['title']; ?></option>
                                         <?php
-                                        endfor;
+                                        endforeach;
                                         ?>
                                     </select>
                                 </div>
@@ -49,7 +49,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             ?>
                                 <div class="row carousel_item">
                                     <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                        <h6 <?php echo $i > 1 ? 'class="mb-0"' : '' ?>>Carousel Item:</h6>
+                                        <h6 <?php echo $i > 1 ? 'class="mb-0"' : '' ?>>Carousel Item <?php echo $i ?>:</h6>
                                         <?php
                                         if ($i > 1) :
                                         ?>
@@ -86,6 +86,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                             <?php
                                 $i++;
                             endforeach;
@@ -142,7 +143,7 @@ require ADMIN_VIEW . '/layout/footer.php';
         $('#add_item').click(function() {
             const html = `<div class="row carousel_item">
                                 <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0">Carousel Item:</h6>
+                                    <h6 class="mb-0">Carousel Item `+ (++$('.carousel_item').length) +`:</h6>
                                     <button type="button" class="btn btn-danger remove_item"">Remove Item<i class="icon-trash ml-2"></i></button>
                                 </div>
                                 <div class="col-md-6">

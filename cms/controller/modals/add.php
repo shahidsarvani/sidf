@@ -59,9 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$title = 'Modals - SIDF';
 
-require BASE_PATH . '/cms/views/layout/scripts.php';
-require BASE_PATH . '/cms/views/layout/navbar.php';
-require BASE_PATH . '/cms/views/layout/sidebar.php';
-require BASE_PATH . '/cms/views/modals/add.php';
+if($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    require_once(BASE_PATH . '/cms/model/Modal.php');
+    require_once(BASE_PATH . '/cms/model/Timeline.php');
+    $modal = new Modal();
+    $count = $modal->get_modal_count();
+	$timeline_obj = new Timeline();
+    $timelines = $timeline_obj->get_timeline_items();
+    if($count['count'] >= 13) {
+        header('Location: ' . ADMIN_SITE_URL . '/controller/modals/index.php');
+    } else {
+        $title = 'Modals - SIDF';
+        
+        require BASE_PATH . '/cms/views/layout/scripts.php';
+        require BASE_PATH . '/cms/views/layout/navbar.php';
+        require BASE_PATH . '/cms/views/layout/sidebar.php';
+        require BASE_PATH . '/cms/views/modals/add.php';
+    }
+}
+

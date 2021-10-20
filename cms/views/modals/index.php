@@ -9,7 +9,7 @@ require ADMIN_VIEW . '/layout/header.php';
     ?>
     <div class="w-100 text-right mb-3">
         <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/modals/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/modals/add.php' ?>">Add Modal<i class="icon-plus-circle2 ml-2"></i></a>
+        <!-- <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/modals/add.php' ?>">Add Modal<i class="icon-plus-circle2 ml-2"></i></a> -->
     </div>
     <div class="row">
         <div class="card w-100">
@@ -22,9 +22,9 @@ require ADMIN_VIEW . '/layout/header.php';
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>Year</th>
                                 <th>Name</th>
                                 <th>Slug</th>
-                                <th>Position</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -33,13 +33,13 @@ require ADMIN_VIEW . '/layout/header.php';
                             foreach ($modals as $item) :
                             ?>
                                 <tr>
+                                    <td><?php echo $item['timeline_item_id']; ?></td>
                                     <td><?php echo $item['name']; ?></td>
                                     <td><?php echo $item['slug']; ?></td>
-                                    <td><?php echo $item['position']; ?></td>
                                     <td>
                                         <div class="list-icons">
                                             <a href="<?php echo ADMIN_SITE_URL . '/controller/modals/edit.php?id=' . $item['id'] ?>" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
-                                            <a href="<?php echo ADMIN_SITE_URL . '/controller/modals/delete.php?id=' . $item['id'] ?>" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                            <!-- <a href="<?php echo ADMIN_SITE_URL . '/controller/modals/delete.php?id=' . $item['id'] ?>" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a> -->
                                         </div>
                                     </td>
                                 </tr>

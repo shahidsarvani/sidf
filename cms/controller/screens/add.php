@@ -37,9 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$title = 'Screens - SIDF';
 
-require BASE_PATH . '/cms/views/layout/scripts.php';
-require BASE_PATH . '/cms/views/layout/navbar.php';
-require BASE_PATH . '/cms/views/layout/sidebar.php';
-require BASE_PATH . '/cms/views/screens/add.php';
+if($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    require_once(BASE_PATH . '/cms/model/Screen.php');
+    $screen = new Screen();
+    $count = $screen->get_screen_count();
+    if($count['count'] >= 7) {
+        header('Location: ' . ADMIN_SITE_URL . '/controller/screens/index.php');
+    } else {
+        $title = 'Screens - SIDF';
+        
+        require BASE_PATH . '/cms/views/layout/scripts.php';
+        require BASE_PATH . '/cms/views/layout/navbar.php';
+        require BASE_PATH . '/cms/views/layout/sidebar.php';
+        require BASE_PATH . '/cms/views/screens/add.php';
+    }
+}

@@ -34,7 +34,7 @@ require ADMIN_VIEW . '/layout/header.php';
                         <?php
                         foreach ($screen['media'] as $media) :
                         ?>
-                            <input type="hidden" name="file_keys[]" class="old-images" value="<?php echo USER_ASSET . '/images/' . $media['name']; ?>" data-caption="<?php echo $media['name']; ?>" data-key="<?php echo $media['file_key']; ?>" data-size="<?php echo $media['size']; ?>">
+                            <input type="hidden" name="file_keys[]" class="old-images" value="<?php echo USER_ASSET . '/images/' . $media['name']; ?>" data-caption="<?php echo $media['name']; ?>" data-key="<?php echo $media['file_key']; ?>" data-size="<?php echo $media['size']; ?>" data-type="<?php echo $media['type']; ?>" data-filetype="<?php echo $media['filetype']; ?>">
                         <?php
                         endforeach;
                         ?>

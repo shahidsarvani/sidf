@@ -28,7 +28,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Position:</label>
-                                    <select name="position" id="position" class="form-control">
+                                    <select name="position" id="position" class="form-control" disabled>
                                         <option value="">Select Position</option>
                                         <?php
                                         for ($i = 1; $i < 14; $i++) :
@@ -43,11 +43,11 @@ require ADMIN_VIEW . '/layout/header.php';
                         </div>
                         <div class="form-group">
                             <label>English Description:</label>
-                            <textarea name="text_eng" class="form-control" id="text_eng" cols="30" rows="3"><?php echo $timeline['text_eng'] ?></textarea>
+                            <textarea name="text_eng" class="summernote" id="text_eng"><?php echo $timeline['text_eng'] ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Arabic Description:</label>
-                            <textarea name="text_ar" class="form-control" id="text_ar" cols="30" rows="3"><?php echo $timeline['text_ar'] ?></textarea>
+                            <textarea name="text_ar" class="summernote" id="text_ar"><?php echo $timeline['text_ar'] ?></textarea>
                         </div>
 
                         <div class="form-group" <?php echo $timeline['image'] ? '' : 'style="display: none;"' ?>>

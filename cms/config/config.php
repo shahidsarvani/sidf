@@ -8,8 +8,8 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     define('ADMIN_VIEW', BASE_PATH . '/cms/views');
     define('USER_SITE_URL', BASE_URL);
     $items_config = array(
-        'images_url' => USER_ASSET . '/images/',
-        'images_path' => BASE_PATH . '/assets/frontend_assets/images/',
+        'images_url' => USER_ASSET . '/screen_media/',
+        'images_path' => BASE_PATH . '/assets/frontend_assets/screen_media/',
         'modal_media_url' => USER_ASSET . '/modal_media/',
         'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
     );
@@ -22,8 +22,8 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     define('ADMIN_VIEW', BASE_PATH . '/cms/views');
     define('USER_SITE_URL', BASE_URL);
     $items_config = array(
-        'images_url' => USER_ASSET . '/images/',
-        'images_path' => BASE_PATH . '/assets/frontend_assets/images/',
+        'images_url' => USER_ASSET . '/screen_media/',
+        'images_path' => BASE_PATH . '/assets/frontend_assets/screen_media/',
         'modal_media_url' => USER_ASSET . '/modal_media/',
         'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
     );

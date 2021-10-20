@@ -81,9 +81,9 @@
                             <li class="nav-item">
                                 <a href="<?php echo ADMIN_SITE_URL.'/controller/screens/index.php' ?>" class="nav-link" id="navlink-screens_index">All Screens</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?php echo ADMIN_SITE_URL.'/controller/screens/add.php' ?>" class="nav-link" id="navlink-screens_add">Add Screen</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li class="nav-item nav-item-submenu" id="navlink-timelineItems">
@@ -94,9 +94,9 @@
                             <li class="nav-item">
                                 <a href="<?php echo ADMIN_SITE_URL.'/controller/timelineItems/index.php' ?>" class="nav-link" id="navlink-timelineItems_index">All Timeline Items</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?php echo ADMIN_SITE_URL.'/controller/timelineItems/add.php' ?>" class="nav-link" id="navlink-timelineItems_add">Add Timeline Item</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li class="nav-item nav-item-submenu" id="navlink-modals">
@@ -107,9 +107,9 @@
                             <li class="nav-item">
                                 <a href="<?php echo ADMIN_SITE_URL.'/controller/modals/index.php' ?>" class="nav-link" id="navlink-modals_index">All Modals</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?php echo ADMIN_SITE_URL.'/controller/modals/add.php' ?>" class="nav-link" id="navlink-modals_add">Add Modal</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <!-- /main -->

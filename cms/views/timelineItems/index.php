@@ -9,7 +9,7 @@ require ADMIN_VIEW . '/layout/header.php';
     ?>
     <div class="w-100 text-right mb-3">
         <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/add.php' ?>">Add Timeline Item<i class="icon-plus-circle2 ml-2"></i></a>
+        <!-- <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/add.php' ?>">Add Timeline Item<i class="icon-plus-circle2 ml-2"></i></a> -->
     </div>
     <div class="row">
         <div class="card w-100">
@@ -22,10 +22,10 @@ require ADMIN_VIEW . '/layout/header.php';
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Title</th>
                                 <th>Text English</th>
                                 <th>Text Arabic</th>
-                                <th>Position</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,14 +34,14 @@ require ADMIN_VIEW . '/layout/header.php';
                             foreach ($timeline_items as $item) :
                             ?>
                                 <tr>
-                                    <td><?php echo $item['title']; ?></td>
-                                    <td><?php echo $item['text_eng']; ?></td>
-                                    <td><?php echo $item['text_ar']; ?></td>
                                     <td><?php echo $item['position']; ?></td>
+                                    <td><?php echo $item['title']; ?></td>
+                                    <td><?php echo html_entity_decode($item['text_eng']); ?></td>
+                                    <td><?php echo html_entity_decode($item['text_ar']); ?></td>
                                     <td>
                                         <div class="list-icons">
                                             <a href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/edit.php?id=' . $item['id'] ?>" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
-                                            <a href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/delete.php?id=' . $item['id'] ?>" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                            <!-- <a href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/delete.php?id=' . $item['id'] ?>" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a> -->
                                         </div>
                                     </td>
                                 </tr>

@@ -51,6 +51,12 @@ var ComponentLoad = (function () {
       return;
     }
   };
+  var _componentSummernote = function () {
+    if (!$().summernote) {
+      console.warn('Warning - summernote.min.js is not loaded.');
+      return;
+    }
+  }
 
   return {
     init: function () {
@@ -59,6 +65,7 @@ var ComponentLoad = (function () {
       _componentFileUpload();
       _componentOwlCarousel();
       _componentSweetAlert();
+      _componentSummernote();
     },
   };
 })();
@@ -276,6 +283,8 @@ var ImageAddUpload = (function () {
         uploadClass: "",
         zoomIcon: '<i class="icon-zoomin3"></i>',
         zoomClass: "",
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
         indicatorNew: '<i class="icon-file-plus text-success"></i>',
         indicatorSuccess:
           '<i class="icon-checkmark3 file-icon-large text-success"></i>',
@@ -297,7 +306,7 @@ var ImageAddUpload = (function () {
       enableResumableUpload: true,
       maxFileCount: 5,
       initialPreviewAsData: true,
-      allowedFileTypes: ["image","video"],
+      allowedFileTypes: ["image", "video"],
       overwriteInitial: true,
       autoOrientImage: false,
       // initialPreview: [],
@@ -341,16 +350,19 @@ var ImageEditUpload = (function () {
     var initialPreview = [];
     var initialPreviewConfig = [];
     var images = document.querySelectorAll('.old-images');
-    images.forEach(function (image) {
+    images.forEach(function (image, index) {
       initialPreview.push(image.value);
       initialPreviewConfig.push({
         caption: image.dataset.caption,
+        size: parseInt(image.dataset.size),
         key: image.dataset.key,
-        size: image.dataset.size,
-        url: '{$url}',
+        filetype: image.dataset.filetype,
+        type: image.dataset.type,
+        // url: 'media_delete.php',
       })
     })
-
+    console.log(initialPreviewConfig)
+    // console.log(initialPreview)
     // Modal template
     var modalTemplate =
       '<div class="modal-dialog modal-lg" role="document">\n' +
@@ -389,36 +401,35 @@ var ImageEditUpload = (function () {
       browseLabel: 'Browse',
       uploadUrl: "upload_images.php", // server upload action
       enableResumableUpload: true,
-      maxFileCount: 5,
-      maxFileSize: 15360,
-      initialPreviewAsData: true,
       autoOrientImage: false,
-      allowedFileTypes: ["image"],
+      allowedFileTypes: ["image", "video"],
       browseIcon: '<i class="icon-file-plus mr-2"></i>',
       uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
       removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
-      fileActionSettings: {
-        // removeIcon: '<i class="icon-bin"></i>',
-        // removeClass: "",
-        // uploadIcon: '<i class="icon-upload"></i>',
-        // uploadClass: "",
-        zoomIcon: '<i class="icon-zoomin3"></i>',
-        zoomClass: "",
-        indicatorNew: '<i class="icon-file-plus text-success"></i>',
-        indicatorSuccess:
-          '<i class="icon-checkmark3 file-icon-large text-success"></i>',
-        indicatorError: '<i class="icon-cross2 text-danger"></i>',
-        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>',
-      },
       layoutTemplates: {
         icon: '<i class="icon-file-check"></i>',
         modal: modalTemplate
       },
       initialPreview: initialPreview,
       initialPreviewConfig: initialPreviewConfig,
-      overwriteInitial: true,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
       previewZoomButtonClasses: previewZoomButtonClasses,
-      previewZoomButtonIcons: previewZoomButtonIcons
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        // dragClass: 'p-2',
+        // dragIcon: '<i class="icon-three-bars"></i>',
+        // removeClass: '',
+        // removeErrorClass: 'text-danger',
+        // removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      // deleteUrl: "media_delete.php"
     });
   };
 
@@ -450,6 +461,28 @@ var OwlCarousel = (function () {
     },
   };
 })();
+var Summernote = function () {
+  // Summernote
+  var _componentSummernote = function () {
+    // Default initialization
+    $('.summernote').summernote({
+      toolbar: [
+        // [groupName, [list of button]]
+        ['style', ['style', 'bold', 'italic', 'clear']],
+        // ['font', ['strikethrough', 'superscript', 'subscript']],
+        // ['fontsize', ['fontsize']],
+        // ['color', ['color']],
+        ['para', [/* 'ul', 'ol',  */'paragraph']],
+        // ['height', ['height']]
+      ]
+    });
+  };
+  return {
+    init: function () {
+      _componentSummernote();
+    }
+  }
+}();
 
 // Initialize module
 // ------------------------------
@@ -461,4 +494,5 @@ document.addEventListener("DOMContentLoaded", function () {
   ImageAddUpload.init();
   ImageEditUpload.init();
   OwlCarousel.init();
+  Summernote.init();
 });

@@ -9,7 +9,7 @@ require ADMIN_VIEW . '/layout/header.php';
     ?>
     <div class="w-100 text-right mb-3">
         <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/screens/add.php' ?>">Add Screen<i class="icon-plus-circle2 ml-2"></i></a>
+        <!-- <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/screens/add.php' ?>">Add Screen<i class="icon-plus-circle2 ml-2"></i></a> -->
     </div>
     <style>
         .item {
@@ -51,9 +51,9 @@ require ADMIN_VIEW . '/layout/header.php';
                             <li class="list-inline-item">
                                 <a type="button" href="<?php echo ADMIN_SITE_URL . '/controller/screens/edit.php?id=' . $screen['id'] ?>" class="btn btn-info rounded-round">Edit<i class="icon-pencil ml-2"></i></a>
                             </li>
-                            <li class="list-inline-item">
+                            <!-- <li class="list-inline-item">
                                 <a type="button" href="<?php echo ADMIN_SITE_URL . '/controller/screens/delete.php?id=' . $screen['id'] ?>" class="btn btn-danger rounded-round">Delete<i class="icon-trash ml-2"></i></a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>

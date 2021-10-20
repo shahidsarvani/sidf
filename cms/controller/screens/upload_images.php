@@ -23,6 +23,7 @@ function upload($targetDir, $images_url, $media)
         @mkdir($targetDir);
     }
     // return $_FILES;
+    // return $_POST;
     $fileBlob = 'fileBlob';                      // the parameter name that stores the file blob
     if (isset($_FILES[$fileBlob])) {
         $file = $_FILES[$fileBlob]['tmp_name'];  // the path for the uploaded file chunk 
@@ -63,12 +64,13 @@ function upload($targetDir, $images_url, $media)
             $targetUrl = $images_url . $fileName;
             // separate link for the full blown image file
             // $zoomUrl = 'http://localhost/uploads/' . $fileName;
+            // if()
             return [
                 'chunkIndex' => $index,         // the chunk index processed
                 'initialPreview' => $targetUrl, // the thumbnail preview data (e.g. image)
                 'initialPreviewConfig' => [
                     [
-                        'type' => 'image',      // check previewTypes (set it to 'other' if you want no content preview)
+                        'type' => 'video',      // check previewTypes (set it to 'other' if you want no content preview)
                         'caption' => $fileName, // caption
                         'key' => $fileId,       // keys for deleting/reorganizing preview
                         'fileId' => $fileId,    // file identifier

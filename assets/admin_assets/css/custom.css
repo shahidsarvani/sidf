@@ -18,3 +18,7 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+h6 {
+  font-weight: bold;
+}

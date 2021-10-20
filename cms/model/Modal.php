@@ -16,7 +16,7 @@ class Modal
 	public function get_modals()
 	{
 		$query = "
-		SELECT * FROM modals ORDER BY position ASC
+		SELECT * FROM modals ORDER BY id ASC
 		";
 		$result = $this->connect->query($query);
 		if ($this->connect->error) {
@@ -26,6 +26,22 @@ class Modal
 			return $result;
 		} else {
 			return [];
+		}
+	}
+
+	public function get_modal_count()
+	{
+		$query = "
+		SELECT COUNT(*) AS count FROM modals 
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result->fetch_assoc();
+		} else {
+			return false;
 		}
 	}
 
@@ -79,12 +95,12 @@ class Modal
 	public function add_modal($data)
 	{
 		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
-		$position = filter_var($data['position'], FILTER_SANITIZE_NUMBER_INT);
+		$timeline_item_id = filter_var($data['timeline_item_id'], FILTER_SANITIZE_NUMBER_INT);
 		$slug = $this->slugify($name);
 		$created_on = date('Y-m-d H:i:s');
 		$updated_on = date('Y-m-d H:i:s');
 		$query = "
-		INSERT INTO modals (name, slug, position, created_on, updated_on) VALUES ('$name','$slug','$position','$created_on','$updated_on')
+		INSERT INTO modals (name, slug, timeline_item_id, created_on, updated_on) VALUES ('$name','$slug','$timeline_item_id','$created_on','$updated_on')
 		";
 		// echo $query;
 		// die(); 
