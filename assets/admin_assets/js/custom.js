@@ -419,8 +419,8 @@ var ImageEditUpload = (function () {
       fileActionSettings: {
         zoomClass: '',
         zoomIcon: '<i class="icon-zoomin3"></i>',
-        // dragClass: 'p-2',
-        // dragIcon: '<i class="icon-three-bars"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
         // removeClass: '',
         // removeErrorClass: 'text-danger',
         // removeIcon: '<i class="icon-bin"></i>',
