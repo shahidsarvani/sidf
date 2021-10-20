@@ -33,7 +33,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             foreach ($modals as $item) :
                             ?>
                                 <tr>
-                                    <td><?php echo $item['timeline_item_id']; ?></td>
+                                    <td><?php echo $item['title']; ?></td>
                                     <td><?php echo $item['name']; ?></td>
                                     <td><?php echo $item['slug']; ?></td>
                                     <td>

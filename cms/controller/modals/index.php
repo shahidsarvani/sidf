@@ -10,8 +10,10 @@ if(!isset($_SESSION['user_id']) && !$_SESSION['user_id']) {
 
 require_once(BASE_PATH . '/cms/model/Modal.php');
 $modal = new Modal();
-$modals = $modal->get_modals();
-// echo json_encode($modals);
+$modals = $modal->get_modals_with_year();
+// foreach ($modals as $modal) {
+//     echo json_encode($modal);
+// }
 // die();
 $title = 'Modals - SIDF';
 

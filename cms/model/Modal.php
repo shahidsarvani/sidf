@@ -13,6 +13,23 @@ class Modal
 		$this->connect = $database->connect();
 	}
 
+	public function get_modals_with_year()
+	{
+		$query = "
+		SELECT modals.*, timeline_items.title 
+		FROM modals 
+		INNER JOIN timeline_items ON modals.timeline_item_id = timeline_items.id ORDER BY modals.id ASC
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result;
+		} else {
+			return [];
+		}
+	}
 	public function get_modals()
 	{
 		$query = "
