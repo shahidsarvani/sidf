@@ -28,7 +28,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Year:</label>
-                                    <select name="position" id="position" class="form-control">
+                                    <select name="timeline_item_id" id="timeline_item_id" class="form-control" disabled>
                                         <option value="">Select Year</option>
                                         <?php
                                         foreach ($timelines as $timeline) :
@@ -227,7 +227,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 name: {
                     required: true,
                 },
-                position: {
+                timeline_item_id: {
                     required: true,
                 }
             },
@@ -235,8 +235,8 @@ require ADMIN_VIEW . '/layout/footer.php';
                 name: {
                     required: "Enter name",
                 },
-                position: {
-                    required: "Select position",
+                timeline_item_id: {
+                    required: "Select Year",
                 }
             },
         });
