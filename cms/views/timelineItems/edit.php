@@ -51,7 +51,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             <textarea name="text_ar" class="summernote" id="text_ar"><?php echo $timeline['text_ar'] ?></textarea>
                         </div>
 
-                        <div class="form-group" <?php echo $timeline['image'] ? '' : 'style="display: none;"' ?>>
+                        <div class="form-group" <?php echo $timeline['position'] == '9' ? '' : 'style="display: none;"' ?>>
                             <label>Upload Image:</label>
                             <input type="file" name="image" class="form-input-styled" id="image" accept="image/*">
                         </div>
