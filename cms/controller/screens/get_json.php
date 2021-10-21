@@ -13,14 +13,19 @@ $screen = new Screen();
 $screens = $screen->get_screens();
 $response['screens'] = [];
 $temp = array();
-foreach ($screens as $item) {
-    $item_media = $screen->get_screen_media($item['id']);
+$sliders = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'];
+foreach ($screens as $index => $value) {
+    $item_media = $screen->get_screen_media($value['id']);
     $medias = array();
     foreach ($item_media as $media) {
-        array_push($medias, $items_config['images_url'].$media['name']);
+        if($media['type'] == 'video'){
+            array_push($medias, '<div class="item"><video class="img_slid" muted controls onplay="pauseSlider(\'.slider_'.$sliders[$index].'\');" onended="playSlider(\'.slider_'.$sliders[$index].'\');"><source src="'.$items_config['images_url'] . $media['name'].'" type="'.$media['filetype'].'"></video></div>');
+        } else {
+            array_push($medias, '<div class="item"><img src="'.$items_config['images_url'].$media['name'].'" alt="" class="img_slid"></div>');
+        }
     }
-    $temp['screen_name'] = $item['name'];
-    $temp['screen_slug'] = $item['slug'];
+    // $temp['screen_name'] = $item['name'];
+    // $temp['screen_slug'] = $item['slug'];
     $temp['media'] = $medias;
     array_push($response['screens'], $temp);
 }

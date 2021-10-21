@@ -351,7 +351,7 @@ var ImageEditUpload = (function () {
     var initialPreviewConfig = [];
     var images = document.querySelectorAll('.old-images');
     images.forEach(function (image, index) {
-      initialPreview.push(image.value);
+      initialPreview.push(image.dataset.value);
       initialPreviewConfig.push({
         caption: image.dataset.caption,
         size: parseInt(image.dataset.size),
@@ -361,7 +361,7 @@ var ImageEditUpload = (function () {
         // url: 'media_delete.php',
       })
     })
-    console.log(initialPreviewConfig)
+    // console.log(initialPreviewConfig)
     // console.log(initialPreview)
     // Modal template
     var modalTemplate =
@@ -442,17 +442,42 @@ var ImageEditUpload = (function () {
 var OwlCarousel = (function () {
   // Owl Carousel
   var _componentOwlCarousel = function () {
-    $('.owl-carousel').owlCarousel({
+    var owl = $('.owl-carousel');
+
+    owl.owlCarousel({
       loop: true,
       nav: true,
       dots: false,
+      video: true,
       animateOut: 'fadeOut',
+      lazyLoad: true,
       items: 1,
       navText: [
         `<img src="${user_asset}/img/arrow_left.svg">`,
         `<img src="${user_asset}/img/arrow_right.svg">`,
-      ]
+      ],
+      onInitialized: initialized,
+      onTranslated: translated,
     })
+    function translated(e) {
+      var i = e.currentTarget;
+      // var item = $(i).find('.owl-item.active .img-fluid')
+      $(i).find('.owl-item video').each(function (index, value) {
+        this.pause();
+        this.currentTime = 0;
+      });
+      $(i).find('.owl-item.active video').each(function (index, value) {
+        this.play();
+      });
+    }
+    function initialized(e) {
+      var i = e.currentTarget;
+      var item = $(i).find('.owl-item.active .img-fluid')
+      if (item[0].nodeName == 'VIDEO') {
+          item[0].play()
+      }
+    }
+
   };
 
   return {

@@ -787,6 +787,17 @@
   <script src="./assets/frontend_assets/owlcarousel/owl.carousel.js"></script>
   <script src="./assets/frontend_assets/js/main.js"></script>
   <script>
+
+
+    function playSlider(element) {
+      console.log(element)
+      $(element).trigger('play.owl.autoplay')
+    }
+    
+    function pauseSlider(element) {
+      console.log(element)
+      $(element).trigger('stop.owl.autoplay')
+    }
     function readTextFile(file, callback) {
       var rawFile = new XMLHttpRequest();
       rawFile.overrideMimeType("application/json");
@@ -821,7 +832,8 @@
       screens.forEach(function (screen, i) {
         var html = '';
         data.screens[i].media.forEach(function (media) {
-          html += '<div class="item"><img src="' + media + '" alt="" class="img_slid"></div>'
+          // html += '<div class="item"><img src="' + media + '" alt="" class="img_slid"></div>'
+          html += media
         })
         $(screen).find('.slider_box').html(html)
         $(screen).find('.slider_box').owlCarousel({
@@ -830,41 +842,64 @@
           dots: false,
           autoplayTimeout: 5000,
           autoplay: true,
+          lazyLoad: true,
           loop: true,
           margin: 0,
+          onInitialized: initialized,
+          onTranslated: translated,
         });
       })
+
+      function translated(e) {
+        var i = e.currentTarget;
+        // var item = $(i).find('.owl-item.active .img-fluid')
+        $(i).find('.owl-item video').each(function (index, value) {
+          this.pause();
+          this.currentTime = 0;
+        });
+        $(i).find('.owl-item.active video').each(function (index, value) {
+          this.play();
+        });
+      }
+      function initialized(e) {
+        var i = e.currentTarget;
+        console.log(i);
+        var item = $(i).find('.owl-item.active .img_slid')
+        if (item[0].nodeName == 'VIDEO') {
+          item[0].play()
+        }
+      }
     });
 
     //Modals
-    readTextFile("modals.json", function (text) {
-      var data = JSON.parse(text);
-      // console.log(data);
-      var modals = document.querySelectorAll('.modal_box');
-      modals.forEach(function (modal, i) {
-        var html = '';
-        data.modals[i].items.forEach(function (item) {
-          html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
-        })
-        $(modal).find('.content_slider').html(html)
-        $(modal).find('.content_slider').owlCarousel({
-          items: 1,
-          animateOut: "fadeOut",
-          dots: false,
-          video: true,
-          // nav: $(modal).find('.content_slider .item').length > 1,
-          nav: true,
-          navText: [
-            "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
-            "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
-          ],
-          autoplayTimeout: 5000,
-          autoplay: true,
-          loop: true,
-          margin: 0,
-        });
-      })
-    });
+    // readTextFile("modals.json", function (text) {
+    //   var data = JSON.parse(text);
+    //   // console.log(data);
+    //   var modals = document.querySelectorAll('.modal_box');
+    //   modals.forEach(function (modal, i) {
+    //     var html = '';
+    //     data.modals[i].items.forEach(function (item) {
+    //       html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
+    //     })
+    //     $(modal).find('.content_slider').html(html)
+    //     $(modal).find('.content_slider').owlCarousel({
+    //       items: 1,
+    //       animateOut: "fadeOut",
+    //       dots: false,
+    //       video: true,
+    //       // nav: $(modal).find('.content_slider .item').length > 1,
+    //       nav: true,
+    //       navText: [
+    //         "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
+    //         "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
+    //       ],
+    //       autoplayTimeout: 5000,
+    //       autoplay: true,
+    //       loop: true,
+    //       margin: 0,
+    //     });
+    //   })
+    // });
   </script>
 </body>
 

@@ -98,7 +98,7 @@ class Screen
 		SELECT media.*, screen_media.screen_id as through_key 
 		FROM media 
 		INNER JOIN screen_media ON screen_media.media_id = media.file_key 
-		WHERE screen_media.screen_id = '$id'
+		WHERE screen_media.screen_id = '$id' ORDER BY screen_media.id ASC
 		";
 		$result = $this->connect->query($query);
 		if ($this->connect->error) {

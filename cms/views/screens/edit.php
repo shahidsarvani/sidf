@@ -34,7 +34,7 @@ require ADMIN_VIEW . '/layout/header.php';
                         <?php
                         foreach ($screen['media'] as $media) :
                         ?>
-                            <input type="hidden" name="file_keys[]" class="old-images" value="<?php echo USER_ASSET . '/images/' . $media['name']; ?>" data-caption="<?php echo $media['name']; ?>" data-key="<?php echo $media['file_key']; ?>" data-size="<?php echo $media['size']; ?>" data-type="<?php echo $media['type']; ?>" data-filetype="<?php echo $media['filetype']; ?>">
+                            <input type="hidden" name="file_keys[]" class="old-images" value="<?php echo $media['file_key']; ?>" data-value="<?php echo $items_config['images_url'] . $media['name']; ?>" data-caption="<?php echo $media['name']; ?>" data-key="<?php echo $media['file_key']; ?>" data-size="<?php echo $media['size']; ?>" data-type="<?php echo $media['type']; ?>" data-filetype="<?php echo $media['filetype']; ?>">
                         <?php
                         endforeach;
                         ?>
@@ -65,6 +65,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                 }, {
                     'key': 'name',
                     'value': 'file_keys[]'
+                }, {
+                    'key': 'class',
+                    'value': 'old-images'
                 }];
                 $('.old-images').remove();
                 config.forEach(function(file) {
@@ -79,6 +82,32 @@ require ADMIN_VIEW . '/layout/footer.php';
                 })
             }
         );
+        $('.file-input-overwrite').on('filesorted', function(event, params) {
+            console.log(params);
+            console.log('File sorted ', params.previewId, params.oldIndex, params.newIndex, params.stack);
+            $('.old-images').remove();
+            var stack = params.stack;
+            const atts = [{
+                'key': 'type',
+                'value': 'hidden'
+            }, {
+                'key': 'name',
+                'value': 'file_keys[]'
+            }, {
+                'key': 'class',
+                'value': 'old-images'
+            }];
+            stack.forEach(function(file) {
+                var input = document.createElement('input');
+                atts.forEach(function(value, index) {
+                    var att = document.createAttribute(value.key);
+                    att.value = value.value;
+                    input.setAttributeNode(att);
+                })
+                input.value = file.key;
+                $('#screen-form').append(input);
+            })
+        });
 
         var validator = $("#screen-form").validate({
             ignore: "input[type=hidden], .select2-search__field", // ignore hidden fields

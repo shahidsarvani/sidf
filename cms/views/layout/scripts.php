@@ -37,7 +37,7 @@
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/media/fancybox.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/selects/select2.min.js"></script>
-	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/carousels/owl.carousel.js"></script>
 

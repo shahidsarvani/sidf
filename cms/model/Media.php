@@ -17,13 +17,15 @@ class Media
 	{
 		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
 		$file_key = filter_var($data['file_key'], FILTER_SANITIZE_STRING);
+		$type = filter_var($data['type'], FILTER_SANITIZE_STRING);
+		$filetype = filter_var($data['filetype'], FILTER_SANITIZE_STRING);
 		$created_on = date('Y-m-d H:i:s');
 		$get_media = $this->get_media_by_file_key($file_key);
 		if($get_media) {
 
 		} else {
 			$query = "
-			INSERT INTO media (name, file_key, created_on) VALUES ('$name','$file_key','$created_on')
+			INSERT INTO media (name, file_key, filetype, type, created_on) VALUES ('$name','$file_key','$filetype','$type','$created_on')
 			";
 			if ($this->connect->query($query) === TRUE) {
 				return $this->connect->insert_id;

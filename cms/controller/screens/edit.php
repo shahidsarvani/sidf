@@ -61,8 +61,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         array_push($medias, $media);
     }
     $screen['media'] = $medias;
-    // echo json_encode($screen);
-    // die();
 
     // if($res) {
     //     $_SESSION['success'] = 'Screen Added Successfully';

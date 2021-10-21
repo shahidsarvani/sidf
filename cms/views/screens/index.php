@@ -23,6 +23,7 @@ require ADMIN_VIEW . '/layout/header.php';
     </style>
     <div class="row">
         <?php
+        $i = 1;
         foreach ($all_screens as $screen) :
         ?>
             <div class="col-md-4">
@@ -32,14 +33,27 @@ require ADMIN_VIEW . '/layout/header.php';
                     </div>
 
                     <div class="card-img-actions">
-                        <div class="owl-carousel owl-theme">
+                        <div class="owl-carousel owl-theme slider_<?php echo $i ?>">
                             <?php
                             foreach ($screen['media'] as $media) :
+                                // echo $media['type'];
+                                // die();
+                                if ($media['type'] == 'video') :
+
                             ?>
-                                <div class="item">
-                                    <img class="img-fluid" src="<?php echo USER_ASSET . '/images/' . $media['name'] ?>" alt="">
-                                </div>
+                                    <div class="item">
+                                        <video class="img-fluid" muted controls onplay="pauseSlider('.slider_<?php echo $i ?>');" onended="playSlider('.slider_<?php echo $i ?>');">
+                                            <source src="<?php echo $items_config['images_url'] . $media['name'] ?>" type="<?php echo $media['filetype'] ?>">
+                                        </video>
+                                    </div>
+                                <?php
+                                else :
+                                ?>
+                                    <div class="item">
+                                        <img class="img-fluid" src="<?php echo $items_config['images_url'] . $media['name'] ?>" alt="">
+                                    </div>
                             <?php
+                                endif;
                             endforeach;
                             ?>
                         </div>
@@ -59,6 +73,7 @@ require ADMIN_VIEW . '/layout/header.php';
                 </div>
             </div>
         <?php
+            $i++;
         endforeach;
         ?>
     </div>
@@ -69,10 +84,19 @@ require ADMIN_VIEW . '/layout/footer.php';
 ?>
 
 <script>
+    function playSlider(element) {
+        $(element).trigger('play.owl.autoplay')
+    }
+
+    function pauseSlider(element) {
+        $(element).trigger('stop.owl.autoplay')
+    }
     $(document).ready(function() {
         $('#navlink-screens').addClass('nav-item-open');
         $('#navlink-screens ul').css('display', 'block');
         $('#navlink-screens_index').addClass('active');
+
+
 
         var swalInit = swal.mixin({
             buttonsStyling: false,
@@ -135,6 +159,14 @@ require ADMIN_VIEW . '/layout/footer.php';
                             type: 'error'
                         })
                     }
+                },
+                error: function(result) {
+                    console.log(result.responseText);
+                    swalInit.fire({
+                        title: 'Error!',
+                        text: 'JSON file is not created.',
+                        type: 'error'
+                    })
                 }
             })
         })

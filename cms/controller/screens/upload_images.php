@@ -22,7 +22,6 @@ function upload($targetDir, $images_url, $media)
     if (!file_exists($targetDir)) {
         @mkdir($targetDir);
     }
-    // return $_FILES;
     // return $_POST;
     $fileBlob = 'fileBlob';                      // the parameter name that stores the file blob
     if (isset($_FILES[$fileBlob])) {
@@ -51,17 +50,25 @@ function upload($targetDir, $images_url, $media)
                 // combines all file chunks to one file
                 $combined = combineChunks($chunks, $outFile);
             }
-            // if you wish to generate a thumbnail image for the file
-            if($combined) {
+            $targetUrl = $images_url . $fileName;
+            $ext = pathinfo($targetUrl, PATHINFO_EXTENSION);
+            if ($ext == 'avi' || $ext == 'mp4' || $ext == 'wmv' || $ext == 'mkv' || $ext == 'webm' || $ext == 'mp4' || $ext == 'flv' || $ext == 'mp4' || $ext == 'amv' || $ext == 'm4p' || $ext == 'm4v' || $ext == 'mpg' || $ext == 'mpeg') {
+                $type = 'video';
+            } else {
+                $type = 'image';
+            }
+            if ($combined) {
                 $data = [
                     'name' => $fileName,
-                    'file_key' => $fileId
+                    'file_key' => $fileId,
+                    'type' => $type,
+                    'filetype' => $type.'/'.$ext,
                 ];
                 $media_id = insert_into_media_table($media, $data);
             }
+            // if you wish to generate a thumbnail image for the file
             // $targetUrl = getThumbnailUrl($path, $fileName);
 
-            $targetUrl = $images_url . $fileName;
             // separate link for the full blown image file
             // $zoomUrl = 'http://localhost/uploads/' . $fileName;
             // if()
@@ -70,7 +77,7 @@ function upload($targetDir, $images_url, $media)
                 'initialPreview' => $targetUrl, // the thumbnail preview data (e.g. image)
                 'initialPreviewConfig' => [
                     [
-                        'type' => 'video',      // check previewTypes (set it to 'other' if you want no content preview)
+                        'type' => $type,      // check previewTypes (set it to 'other' if you want no content preview)
                         'caption' => $fileName, // caption
                         'key' => $fileId,       // keys for deleting/reorganizing preview
                         'fileId' => $fileId,    // file identifier
