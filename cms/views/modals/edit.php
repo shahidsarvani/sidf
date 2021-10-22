@@ -41,52 +41,54 @@ require ADMIN_VIEW . '/layout/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div id="items">
+                        <hr>
+                        <h4>Carousel Items</h4>
+                        <div class="row sortable-card" id="items">
                             <!-- <h6>Modal Carousel Items</h6> -->
                             <?php
                             $i = 1;
                             foreach ($modal['items'] as $item) :
                             ?>
-                                <div class="row carousel_item">
-                                    <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                        <h6 <?php echo $i > 1 ? 'class="mb-0"' : '' ?>>Carousel Item <?php echo $i ?>:</h6>
-                                        <?php
-                                        if ($i > 1) :
-                                        ?>
-                                            <button type="button" class="btn btn-danger remove_item"">Remove Item<i class=" icon-trash ml-2"></i></button>
-                                        <?php
-                                        endif;
-                                        ?>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Title English:</label>
-                                            <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
+                                <div class="col-md-12 carousel_item">
+                                    <div class="card item_<?php echo $i ?>">
+                                        <div class="card-header header-elements-inline">
+                                            <h6 class="card-title">Item <?php echo $i ?>:</h6>
+                                            <div class="header-elements">
+                                                <div class="list-icons">
+                                                    <a class="list-icons-item" data-action="collapse"></a>
+                                                    <a class="list-icons-item" data-action="move"></a>
+                                                    <a class="list-icons-item" data-action="remove"></a>
+                                                </div>
+                                                <!-- <button type="button" class="btn btn-danger remove_item"">Remove Item<i class=" icon-trash ml-2"></i></button> -->
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>English Description:</label>
-                                            <textarea name="text_eng[]" class="form-control" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Title Arabic:</label>
-                                            <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Arabic Description:</label>
-                                            <textarea name="text_ar[]" class="form-control" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="old_media[]" value="<?php echo $item['media']; ?>">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Upload Media:</label>
-                                            <input type="file" name="media[]" class="form-input-styled">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>Title English:</label>
+                                                <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>English Description:</label>
+                                                <textarea name="text_eng[]" class="form-control" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Title Arabic:</label>
+                                                <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Arabic Description:</label>
+                                                <textarea name="text_ar[]" class="form-control" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
+                                            </div>
+                                            <input type="hidden" name="old_media[]" value="<?php echo $item['media']; ?>">
+                                            <input type="hidden" name="old_type[]" value="<?php echo $item['type']; ?>">
+                                            <input type="hidden" name="old_filetype[]" value="<?php echo $item['filetype']; ?>">
+                                            <div class="form-group">
+                                                <label>Upload Media:</label>
+                                                <input type="file" name="media[]" class="form-input-styled">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
                             <?php
                                 $i++;
                             endforeach;
@@ -141,38 +143,77 @@ require ADMIN_VIEW . '/layout/footer.php';
         );
 
         $('#add_item').click(function() {
-            const html = `<div class="row carousel_item">
-                                <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0">Carousel Item `+ (++$('.carousel_item').length) +`:</h6>
-                                    <button type="button" class="btn btn-danger remove_item"">Remove Item<i class="icon-trash ml-2"></i></button>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title English:</label>
-                                        <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+            // const html = `<div class="row carousel_item">
+            //                     <div class="col-md-12 d-flex justify-content-between align-items-center">
+            //                         <h6 class="mb-0">Carousel Item ` + (++$('.carousel_item').length) + `:</h6>
+            //                         <button type="button" class="btn btn-danger remove_item"">Remove Item<i class="icon-trash ml-2"></i></button>
+            //                     </div>
+            //                     <div class="col-md-6">
+            //                         <div class="form-group">
+            //                             <label>Title English:</label>
+            //                             <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+            //                         </div>
+            //                         <div class="form-group">
+            //                             <label>English Description:</label>
+            //                             <textarea name="text_eng[]" class="form-control" cols="30" rows="3"></textarea>
+            //                         </div>
+            //                     </div>
+            //                     <div class="col-md-6">
+            //                         <div class="form-group">
+            //                             <label>Title Arabic:</label>
+            //                             <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
+            //                         </div>
+            //                         <div class="form-group">
+            //                             <label>Arabic Description:</label>
+            //                             <textarea name="text_ar[]" class="form-control" cols="30" rows="3"></textarea>
+            //                         </div>
+            //                     </div>
+            //                     <div class="col-md-12">
+            //                         <div class="form-group">
+            //                             <label>Upload Media:</label>
+            //                             <input type="file" name="media[]" class="form-input-styled">
+            //                         </div>
+            //                     </div>
+            //                 </div>
+            //                 <hr>`;
+            var length = ++$('.carousel_item').length;
+            const html = `<div class="col-md-12 carousel_item">
+                                    <div class="card item_${length}">
+                                        <div class="card-header header-elements-inline">
+                                            <h6 class="card-title">Item ${length}:</h6>
+                                            <div class="header-elements">
+                                                <div class="list-icons">
+                                                    <a class="list-icons-item" data-action="collapse"></a>
+                                                    <a class="list-icons-item" data-action="move"></a>
+                                                    <a class="list-icons-item" data-action="remove"></a>
+                                                </div>
+                                                <!-- <button type="button" class="btn btn-danger remove_item"">Remove Item<i class=" icon-trash ml-2"></i></button> -->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>Title English:</label>
+                                                <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>English Description:</label>
+                                                <textarea name="text_eng[]" class="form-control" cols="30" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Title Arabic:</label>
+                                                <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Arabic Description:</label>
+                                                <textarea name="text_ar[]" class="form-control" cols="30" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Upload Media:</label>
+                                                <input type="file" name="media[]" class="form-input-styled">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>English Description:</label>
-                                        <textarea name="text_eng[]" class="form-control" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title Arabic:</label>
-                                        <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Arabic Description:</label>
-                                        <textarea name="text_ar[]" class="form-control" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Upload Media:</label>
-                                        <input type="file" name="media[]" class="form-input-styled">
-                                    </div>
-                                </div>
-                            </div>`;
+                                </div>`;
             $('#items').append(html);
             $(".form-input-styled").uniform();
         })

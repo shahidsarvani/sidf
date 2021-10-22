@@ -128,6 +128,14 @@ require ADMIN_VIEW . '/layout/footer.php';
                             type: 'error'
                         })
                     }
+                },
+                error: function(result) {
+                    console.log(result.responseText);
+                    swalInit.fire({
+                        title: 'Error!',
+                        text: 'JSON file is not created.',
+                        type: 'error'
+                    })
                 }
             })
         })

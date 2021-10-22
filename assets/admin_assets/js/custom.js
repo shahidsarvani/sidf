@@ -57,6 +57,12 @@ var ComponentLoad = (function () {
       return;
     }
   }
+  var _componentSortable = function () {
+    if (!$().sortable) {
+      console.warn('Warning - jquery_ui.js components are not loaded.');
+      return;
+    }
+  };
 
   return {
     init: function () {
@@ -66,12 +72,12 @@ var ComponentLoad = (function () {
       _componentOwlCarousel();
       _componentSweetAlert();
       _componentSummernote();
+      _componentSortable();
     },
   };
 })();
 
 var LoginValidation = (function () {
-  // Validation config
   var _componentValidation = function () {
     // Initialize
     var validator = $("#login-form").validate({
@@ -85,13 +91,9 @@ var LoginValidation = (function () {
       unhighlight: function (element, errorClass) {
         $(element).removeClass(errorClass);
       },
-      // success: function(label) {
-      //     label.addClass('validation-valid-label').text('Success.'); // remove to hide Success message
-      // },
       submitHandler: function () {
         document.forms["login-form"].submit();
       },
-      // Different components require proper error label placement
       errorPlacement: function (error, element) {
         // Unstyled checkboxes, radios
         if (element.parents().hasClass("form-check")) {
@@ -147,9 +149,7 @@ var LoginValidation = (function () {
   };
 })();
 var RegisterValidation = (function () {
-  // Validation config
   var _componentValidation = function () {
-    // Initialize
     var validator = $("#signup-form").validate({
       ignore: "input[type=hidden], .select2-search__field", // ignore hidden fields
       errorClass: "validation-invalid-label",
@@ -161,9 +161,6 @@ var RegisterValidation = (function () {
       unhighlight: function (element, errorClass) {
         $(element).removeClass(errorClass);
       },
-      // success: function(label) {
-      //     label.addClass('validation-valid-label').text('Success.'); // remove to hide Success message
-      // },
       submitHandler: function () {
         document.forms["signup-form"].submit();
       },
@@ -226,9 +223,7 @@ var RegisterValidation = (function () {
   };
 })();
 var ImageAddUpload = (function () {
-  // Bootstrap file upload
   var _componentImageAddUpload = function () {
-    // Modal template
     var modalTemplate =
       '<div class="modal-dialog modal-lg" role="document">\n' +
       '  <div class="modal-content">\n' +
@@ -244,7 +239,6 @@ var ImageAddUpload = (function () {
       "  </div>\n" +
       "</div>\n";
 
-    // Buttons inside zoom modal
     var previewZoomButtonClasses = {
       toggleheader: "btn btn-light btn-icon btn-header-toggle btn-sm",
       fullscreen: "btn btn-light btn-icon btn-sm",
@@ -252,7 +246,6 @@ var ImageAddUpload = (function () {
       close: "btn btn-light btn-icon btn-sm",
     };
 
-    // Icons inside zoom modal classes
     var previewZoomButtonIcons = {
       prev: '<i class="icon-arrow-left32"></i>',
       next: '<i class="icon-arrow-right32"></i>',
@@ -344,7 +337,6 @@ var ImageAddUpload = (function () {
   };
 })();
 var ImageEditUpload = (function () {
-  // Bootstrap file upload
   var _componentImageEditUpload = function () {
 
     var initialPreview = [];
@@ -440,7 +432,6 @@ var ImageEditUpload = (function () {
   };
 })();
 var OwlCarousel = (function () {
-  // Owl Carousel
   var _componentOwlCarousel = function () {
     var owl = $('.owl-carousel');
 
@@ -474,7 +465,7 @@ var OwlCarousel = (function () {
       var i = e.currentTarget;
       var item = $(i).find('.owl-item.active .img-fluid')
       if (item[0].nodeName == 'VIDEO') {
-          item[0].play()
+        item[0].play()
       }
     }
 
@@ -483,28 +474,49 @@ var OwlCarousel = (function () {
   return {
     init: function () {
       _componentOwlCarousel();
-    },
+    }
   };
 })();
 var Summernote = function () {
-  // Summernote
   var _componentSummernote = function () {
-    // Default initialization
     $('.summernote').summernote({
       toolbar: [
-        // [groupName, [list of button]]
         ['style', ['style', 'bold', 'italic', 'clear']],
-        // ['font', ['strikethrough', 'superscript', 'subscript']],
-        // ['fontsize', ['fontsize']],
-        // ['color', ['color']],
-        ['para', [/* 'ul', 'ol',  */'paragraph']],
-        // ['height', ['height']]
+        ['para', ['paragraph']]
       ]
     });
   };
   return {
     init: function () {
       _componentSummernote();
+    }
+  }
+}();
+var CardsDraggable = function () {
+  var _componentSortable = function () {
+    $('.sortable-card').sortable({
+      connectWith: '.card-sortable',
+      items: '.card',
+      helper: 'original',
+      cursor: 'move',
+      revert: 100,
+      containment: '.content-wrapper',
+      forceHelperSize: true,
+      placeholder: 'sortable-placeholder',
+      forcePlaceholderSize: true,
+      tolerance: 'pointer',
+      start: function (e, ui) {
+        ui.placeholder.height(ui.item.outerHeight());
+      },
+      update: function (e, ui) {
+        console.log(ui);
+      }
+    });
+  };
+
+  return {
+    init: function () {
+      _componentSortable();
     }
   }
 }();
@@ -520,4 +532,5 @@ document.addEventListener("DOMContentLoaded", function () {
   ImageEditUpload.init();
   OwlCarousel.init();
   Summernote.init();
+  CardsDraggable.init();
 });

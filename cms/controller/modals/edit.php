@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $modal = new Modal();
     $id = $_POST['id'];
     // echo json_encode($_FILES);
-    // echo json_encode($id);
+    // echo json_encode($_POST);
     // die();
     $res = $modal->edit_modal($id, $_POST);
     $data = array();
@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ];
             if($_FILES['media']['tmp_name'][$i] == '' && $_POST['old_media'][$i] != '') {
                 $data[$i]['media'] = $_POST['old_media'][$i];
+                $data[$i]['type'] = $_POST['old_type'][$i];
+                $data[$i]['filetype'] = $_POST['old_filetype'][$i];
             } else if ($_FILES['media']['tmp_name'][$i] != '') {
                 $targetDir = $items_config['modal_media_path'];
                 if (!file_exists($targetDir)) {
@@ -46,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $targetFile = $targetDir . '/' . $fileName;
                 if (move_uploaded_file($file, $targetFile)) {
                     $data[$i]['media'] = $fileName;
+                    $data[$i]['type'] = explode('/',$_FILES['media']['type'][$i])[0];
+                    $data[$i]['filetype'] = $_FILES['media']['type'][$i];
                 }
             }
         }

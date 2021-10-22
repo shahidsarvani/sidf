@@ -413,6 +413,9 @@ table {
 .lang-toggle span.active {
   color: #92b544;
 }
+.modal_box .content_slider video {
+  width: 100%;
+}
 
 @-webkit-keyframes pulse-ring {
   0% {

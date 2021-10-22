@@ -141,9 +141,11 @@ class Modal
 			$text_eng = $value['text_eng'];
 			$text_ar = $value['text_ar'];
 			$media = $value['media'];
+			$type = $value['type'];
+			$filetype = $value['filetype'];
 			$query .= "
-			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media, created_on) 
-			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media','$created_on');
+			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media, type, filetype, created_on) 
+			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media','$type','$filetype','$created_on');
 			";
 		}
 		// echo $query;

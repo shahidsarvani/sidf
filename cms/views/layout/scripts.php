@@ -40,6 +40,8 @@
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
 	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/carousels/owl.carousel.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
+	<script src="<?php echo ADMIN_ASSET ?>/global_assets/js/plugins/extensions/jquery_ui/touch.min.js"></script>
 
 	<script src="<?php echo ADMIN_ASSET ?>/js/app.js"></script>
 	<script>
