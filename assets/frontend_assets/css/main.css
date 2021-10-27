@@ -251,6 +251,12 @@ table {
 .box_pin.box_pin_seven {
     margin: 237px 0 0px -30px;
 }
+#modal1,#modal2 {
+    top: 235px;
+    bottom: 55px;
+  }
+
+
 .box_pin.box_pin_eight {
   margin: 60px 0 0 -260px;
 }
