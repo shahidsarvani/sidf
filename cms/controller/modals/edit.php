@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $modal = new Modal();
     $id = $_POST['id'];
-    // echo json_encode($_FILES);
-    // echo json_encode($_POST);
-    // die();
+    echo json_encode($_FILES);
+    echo json_encode($_POST);
+    die();
     $res = $modal->edit_modal($id, $_POST);
     $data = array();
     for($i = 0; $i < count($_POST['title_eng']); $i++) {

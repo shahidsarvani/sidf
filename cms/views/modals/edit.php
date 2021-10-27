@@ -59,7 +59,6 @@ require ADMIN_VIEW . '/layout/header.php';
                                                     <a class="list-icons-item" data-action="move"></a>
                                                     <a class="list-icons-item" data-action="remove"></a>
                                                 </div>
-                                                <!-- <button type="button" class="btn btn-danger remove_item"">Remove Item<i class=" icon-trash ml-2"></i></button> -->
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -187,7 +186,6 @@ require ADMIN_VIEW . '/layout/footer.php';
                                                     <a class="list-icons-item" data-action="move"></a>
                                                     <a class="list-icons-item" data-action="remove"></a>
                                                 </div>
-                                                <!-- <button type="button" class="btn btn-danger remove_item"">Remove Item<i class=" icon-trash ml-2"></i></button> -->
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -219,6 +217,9 @@ require ADMIN_VIEW . '/layout/footer.php';
         })
 
         $(document).on('click', '.remove_item', function() {
+            $(this).parents('.carousel_item').remove();
+        })
+        $(document).on('click', '.list-icons-item', function() {
             $(this).parents('.carousel_item').remove();
         })
 
