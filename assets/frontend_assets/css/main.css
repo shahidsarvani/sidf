@@ -372,8 +372,8 @@ table {
 }
 
 .close-modal {
-    bottom: -30px;
-    left: -30px;
+    top: 10px;
+    right: 10px;
     position: absolute;
     z-index: 99;
     background: #fff;
