@@ -25,11 +25,11 @@ require ADMIN_VIEW . '/layout/header.php';
 
                         <div class="form-group">
                             <label>Upload Images:</label>
-                            <input type="file" name="images" id="file-input-overwrite" class="file-input-overwrite" multiple="multiple" data-fouc>
+                            <input type="file" name="images" class="file-input-overwrite" multiple="multiple" data-fouc>
                         </div>
 
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
                         </div>
                         <?php
                         foreach ($screen['media'] as $media) :
@@ -61,6 +61,10 @@ require ADMIN_VIEW . '/layout/footer.php';
             cancelButtonClass: 'btn btn-light'
         });
 
+        $('.fileinput-upload').click(function() {
+            $('#submitBtn').attr('disabled', 'disabled');
+        })
+
         $('.file-input-overwrite')
             .on("filebatchuploadcomplete", function(event, preview, config, tags, extraData) {
                 console.log(config);
@@ -85,6 +89,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     input.value = file.key;
                     $('#screen-form').append(input);
                 })
+                $('#submitBtn').removeAttr('disabled');
             })
             .on('filesorted', function(event, params) {
                 console.log(params);
@@ -130,7 +135,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 resolve();
                                 var old_images = document.querySelectorAll('.old-images')
                                 old_images.forEach(function(image) {
-                                    if(image.dataset.key == previewId) {
+                                    if (image.dataset.key == previewId) {
                                         image.remove();
                                         // console.log(image)
                                     }
