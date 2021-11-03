@@ -144,7 +144,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     swalInit.fire({
                         title: 'File deleted successfuly!',
                     });
-                }, 900);
+                }, 200);
             });;
 
         var validator = $("#screen-form").validate({
