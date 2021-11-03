@@ -49,16 +49,18 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $screen = $screen_obj->get_screen($_GET['id']);
     $item_media = $screen_obj->get_screen_media($_GET['id']);
     $medias = array();
-    foreach ($item_media as $media) {
-        $media['size'] = explode('_', $media['file_key'])[0];
-        if(explode('.', $media['file_key'])[1] == 'mp4') {
-            $media['filetype'] = 'video/'.explode('.', $media['file_key'])[1];
-            $media['type'] = 'video';
-        } else {
-            $media['filetype'] = 'image/'.explode('.', $media['file_key'])[1];
-            $media['type'] = 'image';
+    if($item_media) {
+        foreach ($item_media as $media) {
+            $media['size'] = explode('_', $media['file_key'])[0];
+            if(explode('.', $media['file_key'])[1] == 'mp4') {
+                $media['filetype'] = 'video/'.explode('.', $media['file_key'])[1];
+                $media['type'] = 'video';
+            } else {
+                $media['filetype'] = 'image/'.explode('.', $media['file_key'])[1];
+                $media['type'] = 'image';
+            }
+            array_push($medias, $media);
         }
-        array_push($medias, $media);
     }
     $screen['media'] = $medias;
 

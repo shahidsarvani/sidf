@@ -25,7 +25,7 @@ require ADMIN_VIEW . '/layout/header.php';
 
                         <div class="form-group">
                             <label>Upload Images:</label>
-                            <input type="file" name="images" class="file-input-overwrite" multiple="multiple" data-fouc>
+                            <input type="file" name="images" id="file-input-overwrite" class="file-input-overwrite" multiple="multiple" data-fouc>
                         </div>
 
                         <div class="text-right">
@@ -55,9 +55,14 @@ require ADMIN_VIEW . '/layout/footer.php';
         $('#navlink-screens ul').css('display', 'block');
         $('#navlink-screens_index').addClass('active');
 
-        $('.file-input-overwrite').on(
-            "filebatchuploadcomplete",
-            function(event, preview, config, tags, extraData) {
+        var swalInit = swal.mixin({
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-primary',
+            cancelButtonClass: 'btn btn-light'
+        });
+
+        $('.file-input-overwrite')
+            .on("filebatchuploadcomplete", function(event, preview, config, tags, extraData) {
                 console.log(config);
                 const atts = [{
                     'key': 'type',
@@ -80,34 +85,67 @@ require ADMIN_VIEW . '/layout/footer.php';
                     input.value = file.key;
                     $('#screen-form').append(input);
                 })
-            }
-        );
-        $('.file-input-overwrite').on('filesorted', function(event, params) {
-            console.log(params);
-            console.log('File sorted ', params.previewId, params.oldIndex, params.newIndex, params.stack);
-            $('.old-images').remove();
-            var stack = params.stack;
-            const atts = [{
-                'key': 'type',
-                'value': 'hidden'
-            }, {
-                'key': 'name',
-                'value': 'file_keys[]'
-            }, {
-                'key': 'class',
-                'value': 'old-images'
-            }];
-            stack.forEach(function(file) {
-                var input = document.createElement('input');
-                atts.forEach(function(value, index) {
-                    var att = document.createAttribute(value.key);
-                    att.value = value.value;
-                    input.setAttributeNode(att);
-                })
-                input.value = file.key;
-                $('#screen-form').append(input);
             })
-        });
+            .on('filesorted', function(event, params) {
+                console.log(params);
+                console.log('File sorted ', params.previewId, params.oldIndex, params.newIndex, params.stack);
+                $('.old-images').remove();
+                var stack = params.stack;
+                const atts = [{
+                    'key': 'type',
+                    'value': 'hidden'
+                }, {
+                    'key': 'name',
+                    'value': 'file_keys[]'
+                }, {
+                    'key': 'class',
+                    'value': 'old-images'
+                }];
+                stack.forEach(function(file) {
+                    var input = document.createElement('input');
+                    atts.forEach(function(value, index) {
+                        var att = document.createAttribute(value.key);
+                        att.value = value.value;
+                        input.setAttributeNode(att);
+                    })
+                    input.value = file.key;
+                    $('#screen-form').append(input);
+                })
+            })
+            .on('filebeforedelete', function(event, previewId) {
+                console.log(previewId);
+                return new Promise(function(resolve, reject) {
+                    swalInit.fire({
+                            type: 'warning',
+                            title: 'Confirmation!',
+                            text: 'Are you sure you want to delete this file?',
+                            showCancelButton: true,
+                            confirmButtonText: '<i class="icon-trash mr-2"></i> Yes',
+                            confirmButtonClass: 'btn btn-danger',
+                            showLoaderOnConfirm: true,
+                        })
+                        .then(function(result) {
+                            console.log(result);
+                            if (result.value) {
+                                resolve();
+                                var old_images = document.querySelectorAll('.old-images')
+                                old_images.forEach(function(image) {
+                                    if(image.dataset.key == previewId) {
+                                        image.remove();
+                                        // console.log(image)
+                                    }
+                                })
+                            }
+                        });
+                });
+            })
+            .on('filedeleted', function(event, preview, config, tags, extraData) {
+                setTimeout(function() {
+                    swalInit.fire({
+                        title: 'File deleted successfuly!',
+                    });
+                }, 900);
+            });;
 
         var validator = $("#screen-form").validate({
             ignore: "input[type=hidden], .select2-search__field", // ignore hidden fields

@@ -350,7 +350,7 @@ var ImageEditUpload = (function () {
         key: image.dataset.key,
         filetype: image.dataset.filetype,
         type: image.dataset.type,
-        // url: 'media_delete.php',
+        url: 'media_delete.php',
       })
     })
     // console.log(initialPreviewConfig)
@@ -413,15 +413,15 @@ var ImageEditUpload = (function () {
         zoomIcon: '<i class="icon-zoomin3"></i>',
         dragClass: 'p-2',
         dragIcon: '<i class="icon-three-bars"></i>',
-        // removeClass: '',
-        // removeErrorClass: 'text-danger',
-        // removeIcon: '<i class="icon-bin"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
         indicatorNew: '<i class="icon-file-plus text-success"></i>',
         indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
         indicatorError: '<i class="icon-cross2 text-danger"></i>',
         indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
       },
-      // deleteUrl: "media_delete.php"
+      deleteUrl: "media_delete.php"
     });
   };
 

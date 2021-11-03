@@ -21,8 +21,10 @@ if($screens !== false) {
 for($i = 0; $i < count($all_screens); $i++){
     $item_media = $screen->get_screen_media($all_screens[$i]['id']);
     $medias = array();
-    foreach ($item_media as $media) {
-        array_push($medias, $media);
+    if($item_media) {
+        foreach ($item_media as $media) {
+            array_push($medias, $media);
+        }
     }
     $all_screens[$i]['media'] = $medias;
 }
