@@ -180,11 +180,10 @@ class Modal
 	public function edit_modal($id, $data)
 	{
 		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
-		$position = filter_var($data['position'], FILTER_SANITIZE_NUMBER_INT);
 		$slug = $this->slugify($name);
 		$updated_on = date('Y-m-d H:i:s');
 		$query = "
-		UPDATE modals SET name='$name',slug='$slug',position='$position',updated_on='$updated_on' WHERE id='$id'
+		UPDATE modals SET name='$name',slug='$slug',updated_on='$updated_on' WHERE id='$id'
 		";
 
 		if (TRUE === $this->connect->query($query)) {
