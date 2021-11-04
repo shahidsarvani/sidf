@@ -20,6 +20,7 @@ require ADMIN_VIEW . '/layout/header.php';
             height: 100%;
             object-fit: cover;
         }
+
         video.img-fluid {
             height: 100%;
             object-fit: contain;
@@ -40,26 +41,26 @@ require ADMIN_VIEW . '/layout/header.php';
                         <div class="owl-carousel owl-theme slider_<?php echo $i ?>">
                             <?php
                             // if (count($screen['media']) > 0) :
-                                foreach ($screen['media'] as $media) :
-                                    // echo $media['type'];
-                                    // die();
-                                    if ($media['type'] == 'video') :
+                            foreach ($screen['media'] as $media) :
+                                // echo $media['type'];
+                                // die();
+                                if ($media['type'] == 'video') :
 
                             ?>
-                                        <div class="item">
-                                            <video class="img-fluid" muted controls onplay="pauseSlider('.slider_<?php echo $i ?>');" onended="playSlider('.slider_<?php echo $i ?>');">
-                                                <source src="<?php echo $items_config['images_url'] . $media['name'] ?>" type="<?php echo $media['filetype'] ?>">
-                                            </video>
-                                        </div>
-                                    <?php
-                                    else :
-                                    ?>
-                                        <div class="item">
-                                            <img class="img-fluid" src="<?php echo $items_config['images_url'] . $media['name'] ?>" alt="">
-                                        </div>
+                                    <div class="item">
+                                        <video class="img-fluid" muted controls onplay="pauseSlider('.slider_<?php echo $i ?>');" onended="playSlider('.slider_<?php echo $i ?>');" <?php echo count($screen['media']) < 2 ? 'loop' : '' ?>>
+                                            <source src="<?php echo $items_config['images_url'] . $media['name'] ?>" type="<?php echo $media['filetype'] ?>">
+                                        </video>
+                                    </div>
+                                <?php
+                                else :
+                                ?>
+                                    <div class="item">
+                                        <img class="img-fluid" src="<?php echo $items_config['images_url'] . $media['name'] ?>" alt="">
+                                    </div>
                             <?php
-                                    endif;
-                                endforeach;
+                                endif;
+                            endforeach;
                             // endif;
                             ?>
                         </div>

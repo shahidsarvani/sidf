@@ -299,7 +299,7 @@
   </div>
   <div class="main_box">
     <div class="fadeOut owl-carousel owl-theme slider_box slider_four">
-      <div class="item">
+      <!-- <div class="item">
         <img src="./assets/frontend_assets/img/4.jpg" alt="" class="img_slid">
       </div>
       <div class="item">
@@ -307,7 +307,7 @@
       </div>
       <div class="item">
         <img src="./assets/frontend_assets/img/2.jpg" alt="" class="img_slid">
-      </div>
+      </div> -->
     </div>
     <div class="modal_box" id="modal7">
       <div class="owl-carousel owl-theme content_slider">
@@ -787,8 +787,6 @@
   <script src="./assets/frontend_assets/owlcarousel/owl.carousel.js"></script>
   <script src="./assets/frontend_assets/js/main.js"></script>
   <script>
-
-
     function playSlider(element) {
       $(element).trigger('play.owl.autoplay')
     }
@@ -877,21 +875,21 @@
     });
 
     //Modals
-    readTextFile("modals.json", function (text) {
-      var data = JSON.parse(text);
-      // console.log(data);
-      var modals = document.querySelectorAll('.modal_box');
-      modals.forEach(function (modal, i) {
-        var html = '';
-        // if (i < 3) {
-          data.modals[i].items.forEach(function (item) {
-            // html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
-            html += item
-          })
-          $(modal).find('.content_slider').html(html)
-        // }
-      })
-    });
+    // readTextFile("modals.json", function (text) {
+    //   var data = JSON.parse(text);
+    //   // console.log(data);
+    //   var modals = document.querySelectorAll('.modal_box');
+    //   modals.forEach(function (modal, i) {
+    //     var html = '';
+    //     // if (i < 3) {
+    //       data.modals[i].items.forEach(function (item) {
+    //         // html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
+    //         html += item
+    //       })
+    //       $(modal).find('.content_slider').html(html)
+    //     // }
+    //   })
+    // });
   </script>
 </body>
 
