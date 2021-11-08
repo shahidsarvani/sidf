@@ -37,21 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ];
                 if($_POST['modal_media'][$i] == '' && $_POST['old_media_id'][$i] != '') {
                     $data[$i]['media_id'] = $_POST['old_media_id'][$i];
-                    // $data[$i]['type'] = $_POST['old_type'][$i];
-                    // $data[$i]['filetype'] = $_POST['old_filetype'][$i];
                 } else if ($_POST['modal_media'][$i] != '') {
-                    // $targetDir = $items_config['modal_media_path'];
-                    // if (!file_exists($targetDir)) {
-                    //     @mkdir($targetDir);
-                    // }
-                    // $fileName = $_POST['modal_media'][$i];
-                    // // $fileName = time().'_'.$_FILES['media']['name'][$i]; 
-                    // $targetFile = $targetDir . '/' . $fileName;
-                    // if (move_uploaded_file($file, $targetFile)) {
-                    //     $data[$i]['media'] = $fileName;
-                    //     $data[$i]['type'] = explode('/',$_FILES['media']['type'][$i])[0];
-                    //     $data[$i]['filetype'] = $_FILES['media']['type'][$i];
-                    // }
                     $data[$i]['media_id'] = $_POST['modal_media'][$i];
                 }
             }

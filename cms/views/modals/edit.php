@@ -55,7 +55,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                             <h6 class="card-title">Item <?php echo $i ?>:</h6>
                                             <div class="header-elements">
                                                 <div class="list-icons">
-                                                    <a class="list-icons-item" data-action="collapse"></a>
+                                                    <!-- <a class="list-icons-item" data-action="collapse"></a> -->
                                                     <a class="list-icons-item" data-action="move"></a>
                                                     <a class="list-icons-item" data-action="remove"></a>
                                                 </div>
@@ -113,7 +113,9 @@ require ADMIN_VIEW . '/layout/footer.php';
     function fileUploaded(event, previewId, index, fileId) {
         console.log('File uploaded', previewId, index, fileId);
         var hiddenInput = '<input type="hidden" name="modal_media[]" value="'+fileId+'" class="modal_media" >';
-        $(this).parents('.form-group').append(hiddenInput);
+        console.log($(this))
+        console.log(event.currentTarget);
+        $('#'+event.currentTarget.id).parents('.form-group').append(hiddenInput);
     }
     $(document).ready(function() {
         $('#navlink-modals').addClass('nav-item-open');
@@ -130,7 +132,6 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             <h6 class="card-title">Item ${length}:</h6>
                                             <div class="header-elements">
                                                 <div class="list-icons">
-                                                    <a class="list-icons-item" data-action="collapse"></a>
                                                     <a class="list-icons-item" data-action="move"></a>
                                                     <a class="list-icons-item" data-action="remove"></a>
                                                 </div>
