@@ -79,9 +79,6 @@ require ADMIN_VIEW . '/layout/header.php';
                                                 <textarea name="text_ar[]" class="form-control" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
                                             </div>
                                             <input type="hidden" name="old_media_id[]" value="<?php echo $item['media_id']; ?>">
-                                            <input type="hidden" name="old_media[]" value="<?php echo $item['media']; ?>">
-                                            <input type="hidden" name="old_type[]" value="<?php echo $item['type']; ?>">
-                                            <input type="hidden" name="old_filetype[]" value="<?php echo $item['filetype']; ?>">
                                             <div class="form-group">
                                                 <label>Upload Media:</label>
                                                 <input type="file" name="media[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>

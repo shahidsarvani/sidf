@@ -147,7 +147,11 @@ require ADMIN_VIEW . '/layout/footer.php';
             .on('filedeleted', function(event, preview, config, tags, extraData) {
                 setTimeout(function() {
                     swalInit.fire({
-                        title: 'File deleted successfuly!',
+                        text: 'File deleted successfuly!',
+                        type: 'success',
+                        toast: true,
+                        showConfirmButton: false,
+                        position: 'top-right'
                     });
                 }, 200);
             });;
