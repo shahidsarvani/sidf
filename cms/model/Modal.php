@@ -140,12 +140,17 @@ class Modal
 			$title_ar = $value['title_ar'];
 			$text_eng = $value['text_eng'];
 			$text_ar = $value['text_ar'];
-			$media = $value['media'];
-			$type = $value['type'];
-			$filetype = $value['filetype'];
+			$media_id = $value['media_id'];
+			// $media = $value['media'];
+			// $type = $value['type'];
+			// $filetype = $value['filetype'];
+			// $query .= "
+			// INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media, type, filetype, created_on) 
+			// VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media','$type','$filetype','$created_on');
+			// ";
 			$query .= "
-			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media, type, filetype, created_on) 
-			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media','$type','$filetype','$created_on');
+			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media_id, created_on) 
+			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media_id','$created_on');
 			";
 		}
 		// echo $query;
@@ -172,6 +177,23 @@ class Modal
 		}
 		if ($result->num_rows > 0) {
 			return $result;
+		} else {
+			return false;
+		}
+	}
+	public function get_media($id)
+	{
+		$query = "
+		SELECT * 
+		FROM media
+		WHERE media.file_key = '$id'
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result->fetch_assoc();
 		} else {
 			return false;
 		}

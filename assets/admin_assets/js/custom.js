@@ -353,8 +353,8 @@ var ImageEditUpload = (function () {
         url: 'media_delete.php',
       })
     })
-    // console.log(initialPreviewConfig)
-    // console.log(initialPreview)
+    console.log(initialPreviewConfig)
+    console.log(initialPreview)
     // Modal template
     var modalTemplate =
       '<div class="modal-dialog modal-lg" role="document">\n' +
