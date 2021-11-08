@@ -436,8 +436,8 @@ var ImageEditUpload = (function () {
         icon: '<i class="icon-file-check"></i>',
         modal: modalTemplate
       },
-      initialPreview: initialPreview,
-      initialPreviewConfig: initialPreviewConfig,
+      // initialPreview: initialPreview,
+      // initialPreviewConfig: initialPreviewConfig,
       initialPreviewAsData: true,
       overwriteInitial: false,
       previewZoomButtonClasses: previewZoomButtonClasses,
