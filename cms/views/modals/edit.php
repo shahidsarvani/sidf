@@ -84,7 +84,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                             <input type="hidden" name="old_filetype[]" value="<?php echo $item['filetype']; ?>">
                                             <div class="form-group">
                                                 <label>Upload Media:</label>
-                                                <input type="file" name="media[]" class="file-input-overwrite" data-show-preview="false" data-fouc>
+                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@ require ADMIN_VIEW . '/layout/footer.php';
         $('#navlink-modals ul').css('display', 'block');
         $('#navlink-modals_index').addClass('active');
 
-        $('.file-input-overwrite').on('fileuploaded', fileUploaded);
+        $('.file-input-overwrite-modal').on('fileuploaded', fileUploaded);
 
         $('#add_item').click(function() {
             var length = ++$('.carousel_item').length;
@@ -158,7 +158,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             </div>
                                             <div class="form-group">
                                                 <label>Upload Media:</label>
-                                                <input type="file" name="media[]" class="file-input-overwrite" data-show-preview="false" data-fouc>
+                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +235,7 @@ require ADMIN_VIEW . '/layout/footer.php';
         });
 
         function init_fileinput() {
-            var fileInputElem = $("#items .carousel_item").last().find('.file-input-overwrite');
+            var fileInputElem = $("#items .carousel_item").last().find('.file-input-overwrite-modal');
             console.log(fileInputElem)
             var modalTemplate =
                 '<div class="modal-dialog modal-lg" role="document">\n' +
@@ -305,7 +305,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 deleteUrl: "media_delete.php"
             });
 
-            $('.file-input-overwrite').on('fileuploaded', fileUploaded);
+            $('.file-input-overwrite-modal').on('fileuploaded', fileUploaded);
         }
     })
 </script>

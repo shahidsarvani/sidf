@@ -423,6 +423,40 @@ var ImageEditUpload = (function () {
       },
       deleteUrl: "media_delete.php"
     });
+    $('.file-input-overwrite-modal').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["image", "video"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreview,
+      initialPreviewConfig: initialPreviewConfig,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
   };
 
   return {
