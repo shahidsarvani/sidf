@@ -193,7 +193,7 @@ class Modal
 			die("Connection failed: " . $this->connect->error);
 		}
 		if ($result->num_rows > 0) {
-			return $result->fetch_assoc();
+			return $result;
 		} else {
 			return false;
 		}

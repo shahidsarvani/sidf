@@ -886,7 +886,14 @@
             // html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
             html += item
           })
-          $(modal).find('.content_slider').html(html)
+          if(data.modals[i].items.length == 0) {
+            console.log('if');
+            // $(modal).find('.content_slider').html('')
+            $(modal).empty();
+          } else {
+            console.log('else');
+            $(modal).find('.content_slider').html(html)
+          }
         // }
       })
     });

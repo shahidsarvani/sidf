@@ -21,10 +21,12 @@ foreach ($modals as $index => $item) {
         foreach ($item_media as $value) {
             if($value['media_id'] != '' && $value['media_id'] != 0){
                 $media = $modal->get_media($value['media_id']);
+                $loop = $item_media->num_rows < 2 ? 'loop' : '';
                 // echo json_encode($media);
+                $media = $media->fetch_assoc();
                 if($media['type'] == 'video'){
                     array_push($medias, '<div class="item">
-                                            <video class="new_inner_img" muted controls onplay="pauseModalSlider(\'#modal'.$i.'\');" onended="playModalSlider(\'#modal'.$i.'\');">
+                                            <video class="new_inner_img" muted controls onplay="pauseModalSlider(\'#modal'.$i.'\');" onended="playModalSlider(\'#modal'.$i.'\');" '.$loop.'>
                                                 <source src="'.$items_config["modal_media_url"] . $media["name"].'" type="'.$media["filetype"].'">
                                             </video>
                                             <div class="box_content_innerrr english active">
