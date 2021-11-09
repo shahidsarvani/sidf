@@ -1,84 +1,5 @@
 $(document).ready(function () {
-  // $(".slider_one").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 5000,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".slider_two").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 4500,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".slider_three").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 4000,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".slider_four").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 3500,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".slider_five").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 3000,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".slider_six").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 2500,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".slider_seven").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   autoplayTimeout: 2000,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
-  // $(".content_slider").owlCarousel({
-  //   items: 1,
-  //   animateOut: "fadeOut",
-  //   dots: false,
-  //   video: true,
-  //   nav: $(".content_slider").find('.item').length > 1,
-  //   navText: [
-  //     "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
-  //     "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
-  //   ],
-  //   autoplayTimeout: 5000,
-  //   autoplay: true,
-  //   loop: true,
-  //   margin: 0,
-  // });
 
-  
   // OPEN MODAL
   const pulsatingCircle = document.querySelectorAll('.pulsating-circle');
   pulsatingCircle.forEach(function (item) {
@@ -104,41 +25,44 @@ $(document).ready(function () {
         modal.classList.add('active');
       }
       $('#' + id).find('.content_slider').addClass('active');
-      $('#' + id).find('.content_slider').owlCarousel({
-        items: 1,
-        animateOut: "fadeOut",
-        dots: false,
-        video: true,
-        lazyLoad: true,
-        nav: true,
-        navText: [
-          "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
-          "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
-        ],
-        autoplayTimeout: 5000,
-        autoplay: true,
-        loop: true,
-        margin: 0,
-        onInitialized: modalInitialized,
-        onTranslated: modalTranslated,
-      });
-
-      function modalTranslated(e) {
-        var i = e.currentTarget;
-        $(i).find('.owl-item video').each(function (index, value) {
-          this.pause();
-          this.currentTime = 0;
+      console.log($('#' + id).find('.content_slider .item').length);
+      if($('#' + id).find('.content_slider .item').length != 0) {
+        $('#' + id).find('.content_slider').owlCarousel({
+          items: 1,
+          animateOut: "fadeOut",
+          dots: false,
+          video: true,
+          lazyLoad: true,
+          nav: true,
+          navText: [
+            "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
+            "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
+          ],
+          autoplayTimeout: 5000,
+          autoplay: true,
+          loop: true,
+          margin: 0,
+          onInitialized: modalInitialized,
+          onTranslated: modalTranslated,
         });
-        $(i).find('.owl-item.active video').each(function (index, value) {
-          this.play();
-        });
-      }
-      function modalInitialized(e) {
-        var i = e.currentTarget;
-        // console.log(i);
-        var owlItem = $(i).find('.owl-item.active .new_inner_img')
-        if (owlItem[0].nodeName == 'VIDEO') {
-          owlItem[0].play()
+  
+        function modalTranslated(e) {
+          var i = e.currentTarget;
+          $(i).find('.owl-item video').each(function (index, value) {
+            this.pause();
+            this.currentTime = 0;
+          });
+          $(i).find('.owl-item.active video').each(function (index, value) {
+            this.play();
+          });
+        }
+        function modalInitialized(e) {
+          var i = e.currentTarget;
+          // console.log(i);
+          var owlItem = $(i).find('.owl-item.active .new_inner_img')
+          if (owlItem[0].nodeName == 'VIDEO') {
+            owlItem[0].play()
+          }
         }
       }
     })

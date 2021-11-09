@@ -888,8 +888,9 @@
           })
           if(data.modals[i].items.length == 0) {
             console.log('if');
-            // $(modal).find('.content_slider').html('')
-            $(modal).empty();
+            $(modal).find('.content_slider').html('')
+            $(modal).find('.lang-toggle').html('')
+            // $(modal).empty();
           } else {
             console.log('else');
             $(modal).find('.content_slider').html(html)
