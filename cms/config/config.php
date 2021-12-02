@@ -1,14 +1,14 @@
 <?php
-$mine = 1;
+$mine = 0;
 if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
-	$con_file_path = __FILE__;
-	$con_file_path = str_replace('\cms\config\config.php' , '',  $con_file_path);
-	$con_file_path = str_replace('/cms/config/config.php' , '',  $con_file_path);
- 	define('BASE_PATH', $con_file_path);
-	//\cms\config\config.php
+    $con_file_path = __FILE__;
+    $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
+    $con_file_path = str_replace('/cms/config/config.php', '',  $con_file_path);
+    define('BASE_PATH', $con_file_path);
+    //\cms\config\config.php
 
-   // define('BASE_PATH', '/Applications/XAMPP/xamppfiles/htdocs/PHP/sidf');
-    define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/custom3/sidf');
+    // define('BASE_PATH', '/Applications/XAMPP/xamppfiles/htdocs/PHP/sidf');
+    define('BASE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/custom3/sidf');
     define('ADMIN_SITE_URL', BASE_URL . '/cms');
     define('ADMIN_ASSET', BASE_URL . '/assets/admin_assets');
     define('USER_ASSET', BASE_URL . '/assets/frontend_assets');
@@ -20,11 +20,17 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
         'modal_media_url' => USER_ASSET . '/modal_media/',
         'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
     );
-
-}else if ($_SERVER['HTTP_HOST'] == 'localhost') { 
-
-	 define('BASE_PATH', '/Applications/XAMPP/xamppfiles/htdocs/PHP/sidf');
-    define('BASE_URL', 'http://localhost/PHP/sidf');
+} else if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 0) {
+    $con_file_path = __FILE__;
+    $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
+    $con_file_path = str_replace('/cms/config/config.php', '',  $con_file_path);
+    define('BASE_PATH', $con_file_path);
+    $con_file_url = $_SERVER['HTTP_REFERER'];
+    $con_file_url = substr($con_file_url, 0, strpos($con_file_url,'sidf')+4);
+    // echo $_SERVER['HTTP_REFERER'].'<br>';
+    // echo strpos($con_file_url,'sidf');
+    // die();
+    define('BASE_URL', $con_file_url);
     define('ADMIN_SITE_URL', BASE_URL . '/cms');
     define('ADMIN_ASSET', BASE_URL . '/assets/admin_assets');
     define('USER_ASSET', BASE_URL . '/assets/frontend_assets');
@@ -36,8 +42,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
         'modal_media_url' => USER_ASSET . '/modal_media/',
         'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
     );
-
-}else{
+} else {
     define('BASE_PATH', '/var/www/vhosts/digitalpoin8.com//sidf.digitalpoin8.com');
     define('BASE_URL', 'https://sidf.digitalpoin8.com');
     define('ADMIN_SITE_URL', BASE_URL . '/cms');
