@@ -27,9 +27,9 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
     echo $con_file_path.'<br>';
     define('BASE_PATH', $con_file_path);
     $con_file_url = $_SERVER['HTTP_REFERER'];
-    $con_file_url = substr($con_file_url, 0, strpos($con_file_url,'sidf')+4);
-    echo $_SERVER['HTTP_REFERER'].'<br>';
+    echo $con_file_url.'<br>';
     echo strpos($con_file_url,'sidf');
+    $con_file_url = substr($con_file_url, 0, strpos($con_file_url,'sidf')+4);
     die();
     define('BASE_URL', $con_file_url);
     define('ADMIN_SITE_URL', BASE_URL . '/cms');
