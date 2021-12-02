@@ -63,3 +63,23 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
 //     'smtp_port' => '2525',
 //     'smtp_encrypt' => 'tls'
 // );
+
+
+/* start of the file uploading function */
+function fileExists($file, $dir) { 		
+	$i=1; 
+	$probeer=$file;
+	while(file_exists($dir.$probeer)) {
+		$punt=strrpos($file,".");
+		if(substr($file,($punt-3),1)!==("[") && substr($file,($punt-1),1)!==("]")) {
+			$probeer=substr($file,0,$punt)."[".$i."]".
+			substr($file,($punt),strlen($file)-$punt);
+		   } else {
+			   $probeer=substr($file,0,($punt-3))."[".$i."]".
+			   substr($file,($punt),strlen($file)-$punt);
+			  }
+			$i++;
+	  }
+	  return $probeer;
+}
+/* end of the file uploading function */

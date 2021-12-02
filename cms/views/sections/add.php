@@ -53,7 +53,7 @@ $max_sort_order = $max_sort_order + 1; ?>
 						 <div class="form-group">
                             <label for="bg_video">Bg Video:</label> <!-- class="file-input-ajax" data-fouc  -->
                             <input type="file" name="bg_video" id="bg_video" class="file-input-ajax" data-fouc />
-                        </div>
+                        </div> 
 						
 						<div class="form-group">
 							<label for="status"> Status: </label> 
@@ -86,7 +86,7 @@ $max_sort_order = $max_sort_order + 1; ?>
 								<label for="tab_icon0">Tab Icon:</label>
 								<input type="file" name="tab_icon[]" id="tab_icon0" class="" data-fouc />
 							  </div>
-							  <div class="form-group">
+							  <div class="form-group"> 
 								<label for="tab_bg_video0">Bg Video:</label>
 								<input type="file" name="tab_bg_video[]" id="tab_bg_video0" class="file-input-ajax" data-fouc />
 							  </div>
