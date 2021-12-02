@@ -27,6 +27,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
     echo $con_file_path.'<br>';
     define('BASE_PATH', $con_file_path);
     $con_file_url = $_SERVER['HTTP_REFERER'];
+    echo json_encode($_SERVER);
     echo $con_file_url.'<br>';
     echo strpos($con_file_url,'sidf');
     $con_file_url = substr($con_file_url, 0, strpos($con_file_url,'sidf')+4);
