@@ -25,79 +25,126 @@ $max_sort_order = $max_sort_order + 1; ?>
 						en_title_val = en_title_val.replace(/ /g, '-');
 						en_title_val = en_title_val.replace(/"/g, '');
 						en_title_val = en_title_val.replace(/'/g, '');
-						document.getElementById(paras2).value = en_title_val;
+						document.getElementById(paras2).value = en_title_val.toLowerCase();
 					}
 				</script>
 
                 <div class="card-body">
                     <form name="datas_form" id="datas_form" method="post" action="<?php echo ADMIN_SITE_URL . '/controller/sections/add.php' ?>" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="en_title"> Title (En):</label>
-                            <input type="text" name="en_title" id="en_title" class="form-control" placeholder="Title in English" onkeyup="operate_slug('en_title', 'slug');" required />
+						
+						<div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+									<label for="en_title"> Title (En):</label>
+									<input type="text" name="en_title" id="en_title" class="form-control" placeholder="Title in English" onkeyup="operate_slug('en_title', 'slug');" required />
+								</div>
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group">
+									<label for="ar_title">Title (Ar):</label>
+									<input type="text" name="ar_title" id="ar_title" class="form-control" placeholder="Title in Arabic" required />
+								</div>  
+                            </div>
                         </div>
 						
-						<div class="form-group">
-                            <label for="ar_title">Title (Ar):</label>
-                            <input type="text" name="ar_title" id="ar_title" class="form-control" placeholder="Title in Arabic" required />
+						<div class="row">
+                            <div class="col-md-6">
+                               <div class="form-group">
+									<label for="slug"> Slug: </label>
+									<input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" required />
+								</div> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+									<label for="sort_order"> Sort Order: </label>
+									<input type="text" name="sort_order" id="sort_order" class="form-control" placeholder="Sort Order" value="<?php echo $max_sort_order; ?>" required />
+								</div> 
+                            </div> 							
                         </div>
 						
-						<div class="form-group">
-                            <label for="slug"> Slug: </label>
-                            <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" required />
-                        </div>
+						<div class="row">
+                            <div class="col-md-6">
+                                 <div class="form-group">
+									<label for="status"> Status: </label> 
+									<select name="status" id="status" class="form-control ">
+										<option value=""> Select Status </option>
+										<option value="1"> Active </option>
+										<option value="0"> Inactive </option> 
+									</select>
+								</div>
+                            </div>
+                            <div class="col-md-6">
+                                 <div class="form-group">
+									<label for="bg_video">Bg Video:</label> <!-- class="file-input-ajax" data-fouc  -->
+									<input type="file" name="bg_video" id="bg_video" class="file-input-ajax" data-fouc />
+								</div> 
+                            </div>
+                        </div>                        
 						
-						<div class="form-group">
-                            <label for="sort_order"> Sort Order: </label>
-                            <input type="text" name="sort_order" id="sort_order" class="form-control" placeholder="Sort Order" value="<?php echo $max_sort_order; ?>" required />
-                        </div>
-						 <div class="form-group">
-                            <label for="bg_video">Bg Video:</label> <!-- class="file-input-ajax" data-fouc  -->
-                            <input type="file" name="bg_video" id="bg_video" class="file-input-ajax" data-fouc />
-                        </div> 
-						
-						<div class="form-group">
-							<label for="status"> Status: </label> 
-							<select name="status" id="status" class="form-control ">
-								<option value=""> Select Status </option>
-								<option value="1"> Active </option>
-								<option value="0"> Inactive </option> 
-							</select>
+						<div class="row">
+                            <div class="col-md-12"> <h3 style="text-decoration:underline">Section Tabs</h3> </div>
 						</div>  
 						
 						<div id="fetch_section_tabs_container"> 
 							<div id="fetch_section_tab_item0">
-							  <div class="form-group">
+							
+							  <div class="col-md-12"> <hr /> </div>
+							  
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
 								<label for="tab_en_title0"> Tab Title (En):</label>
 								<input type="text" name="tab_en_title[]" id="tab_en_title0" class="form-control" placeholder="Tab Title in English" onKeyUp="operate_slug('tab_en_title0', 'tab_slug0');" required />
-							  </div>
-							  <div class="form-group">
+							  </div> 
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
 								<label for="tab_ar_title">Tab Title (Ar):</label>
 								<input type="text" name="tab_ar_title[]" id="tab_ar_title0" class="form-control" placeholder="Tab Title in Arabic" required />
 							  </div>
-							  <div class="form-group">
-								<label for="tab_slug0"> Tab Slug: </label>
-								<input type="text" name="tab_slug[]" id="tab_slug0" class="form-control" placeholder="Tab Slug" required />
-							  </div>
-							  <div class="form-group">
-								<label for="sort_order"> Tab Sort Order: </label>
-								<input type="text" name="tab_sort_order[]" id="tab_sort_order0" class="form-control" placeholder="Tab Sort Order" value="0" required />
-							  </div>
-							  <div class="form-group">
-								<label for="tab_icon0">Tab Icon:</label>
-								<input type="file" name="tab_icon[]" id="tab_icon0" class="" data-fouc />
-							  </div>
-							  <div class="form-group"> 
-								<label for="tab_bg_video0">Bg Video:</label>
-								<input type="file" name="tab_bg_video[]" id="tab_bg_video0" class="file-input-ajax" data-fouc />
-							  </div>
-							  <div class="form-group">
-								<label for="tab_status0"> Status: </label>
-								<select name="tab_status[]" id="tab_status0" class="form-control">
-								  <option value=""> Select Tab Status </option>
-								  <option value="1"> Active </option>
-								  <option value="0"> Inactive </option>
-								</select>
-							  </div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="tab_slug0"> Tab Slug: </label>
+											<input type="text" name="tab_slug[]" id="tab_slug0" class="form-control" placeholder="Tab Slug" required />
+										  </div> 
+									</div>
+									<div class="col-md-4"> 
+									  <div class="form-group">
+										<label for="sort_order"> Tab Sort Order: </label>
+										<input type="text" name="tab_sort_order[]" id="tab_sort_order0" class="form-control" placeholder="Tab Sort Order" value="0" required />
+									  </div>
+									</div> 
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="tab_status0"> Status: </label>
+											<select name="tab_status[]" id="tab_status0" class="form-control">
+											  <option value=""> Select Tab Status </option>
+											  <option value="1"> Active </option>
+											  <option value="0"> Inactive </option>
+											</select>
+										  </div>
+									</div>
+								</div>
+								
+								
+								<div class="row">
+									<div class="col-md-6">
+									  <div class="form-group">
+										<label for="tab_icon0">Tab Icon:</label>
+										<input type="file" name="tab_icon[]" id="tab_icon0" class="file-input-ajax" data-fouc />
+									  </div> 
+									</div>
+									<div class="col-md-6"> 
+									  <div class="form-group"> 
+										<label for="tab_bg_video0">Bg Video:</label>
+										<input type="file" name="tab_bg_video[]" id="tab_bg_video0" class="file-input-ajax" data-fouc />
+									  </div>
+									</div>
+								</div>  
 							</div>
 							 
 							 
@@ -117,7 +164,7 @@ $max_sort_order = $max_sort_order + 1; ?>
 				  </script>
 						
                         <div class="text-right">
-                            <button name="adds" type="submit" class="btn btn-primary"> Add <i class="icon-plus-circle2 ml-2"></i></button>
+                            <button name="adds" type="submit" class="btn btn-primary"> Add <i class="icon-plus-circle2 ml-2"></i></button>  <button name="cancels" type="button" class="btn btn-default" onclick="window.location='<?php echo ADMIN_SITE_URL . '/controller/sections/index.php'; ?>'"> Cancel </button>
                         </div>
                     </form>
                 </div>

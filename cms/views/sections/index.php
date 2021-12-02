@@ -6,7 +6,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 <?php require ADMIN_VIEW . '/layout/alert.php'; ?>
     <div class="w-100 text-right mb-3">
         <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/sections/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/sections/add.php' ?>">Add Section <i class="icon-plus-circle2 ml-2"></i></a>
+        <!--<a type="button" class="btn bg-green" href="<?php //echo ADMIN_SITE_URL . '/controller/sections/add.php' ?>">Add Section <i class="icon-plus-circle2 ml-2"></i></a>-->
     </div>
     <div class="row">
         <div class="card w-100">
@@ -18,10 +18,10 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
                     <table class="table table-striped">
                         <thead>
                             <tr> 
-                                <th width="7%"> # </th>
-                                <th width="10%"> Slug </th>
+                                <th width="7%"> # </th> 
 								<th width="13%"> Title (En) </th>
 								<th width="13%"> Title (Ar) </th>
+								<th width="10%"> Slug </th>
 								<th width="8%"> Order </th>
 								<th width="12%"> Bg Video </th>
                                 <th width="9%"> Status </th>
@@ -35,10 +35,10 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 						if(isset($rows)){
                             foreach($rows as $row){ ?>
 							 	<tr>
-									<td> <?php echo $sr_no; ?> </td>
-                                    <td> <?php echo $row['slug']; ?> </td>
+									<td> <?php echo $sr_no; ?> </td> 
 									<td> <?php echo $row['en_title']; ?> </td>
                                     <td> <?php echo $row['ar_title']; ?> </td>
+									<td> <?php echo $row['slug']; ?> </td>
                                     <td> <?php echo $row['sort_order']; ?> </td>
                                     <td> <?php echo $row['bg_video']; ?> </td>
 									<td> <?php echo ($row['status'] == 1) ? 'Active' : 'Inactive'; ?> </td>

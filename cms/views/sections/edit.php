@@ -21,98 +21,181 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 						en_title_val = en_title_val.replace(/ /g, '-');
 						en_title_val = en_title_val.replace(/"/g, '');
 						en_title_val = en_title_val.replace(/'/g, '');
-						document.getElementById(paras2).value = en_title_val;
+						document.getElementById(paras2).value = en_title_val.toLowerCase();
 					}
-				</script>
-
+				</script>  
+				<style>
+					a.fileinput-upload-button {
+						display: none !important;
+					}
+				</style>
                 <div class="card-body">
-                    <form name="datas_form" id="datas_form" method="post" action="<?php echo ADMIN_SITE_URL . '/controller/sections/edit.php?id=' ?>" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="en_title"> Title (En):</label>
-                            <input type="text" name="en_title" id="en_title" value="<?php echo $row['en_title']; ?>" class="form-control" placeholder="Title in English" onkeyup="operate_slug('en_title', 'slug');" required />
-                        </div>
-						
-						<div class="form-group">
-                            <label for="ar_title">Title (Ar):</label>
-                            <input type="text" name="ar_title" id="ar_title" value="<?php echo $row['ar_title']; ?>" class="form-control" placeholder="Title in Arabic" required />
-                        </div>
-						
-						<div class="form-group">
-                            <label for="slug"> Slug: </label>
-                            <input type="text" name="slug" id="slug" value="<?php echo $row['slug']; ?>" class="form-control" placeholder="Slug" required />
-                        </div>
-						
-						<div class="form-group">
-                            <label for="sort_order"> Sort Order: </label>
-                            <input type="text" name="sort_order" id="sort_order" value="<?php echo $row['sort_order']; ?>" class="form-control" placeholder="Sort Order" required />
-                        </div>
-						 <div class="form-group">
-                            <label for="bg_video">Bg Video:</label> <!-- class="file-input-ajax" data-fouc  -->
-                            <input type="file" name="bg_video" id="bg_video" class="file-input-ajax" data-fouc />
-                        </div>
-						
-						<div class="form-group">
-							<label for="status"> Status: </label> 
-							<select name="status" id="status" class="form-control ">
-								<option value=""> Select Status </option>
-								<option value="1" <?php echo ($row['sort_order'] == 1) ? 'selected="selected"' : ''; ?>> Active </option>
-								<option value="0" <?php echo ($row['sort_order'] == 0) ? 'selected="selected"' : ''; ?>> Inactive </option> 
-							</select>
-						</div> 
+                    <form name="datas_form" id="datas_form" method="post" action="<?php echo ADMIN_SITE_URL . '/controller/sections/edit.php?id='.$row['id']; ?>" enctype="multipart/form-data">
 						<input type="hidden" id="section_id" name="section_id" value="<?php echo $row['id']; ?>" /> 
+						<div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">   
+								<label for="en_title"> Title (En):</label>
+								<input type="text" name="en_title" id="en_title" value="<?php echo $row['en_title']; ?>" class="form-control" placeholder="Title in English" onkeyup="operate_slug('en_title', 'slug');" required />
+								</div>   
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group">
+									<label for="ar_title">Title (Ar):</label>
+									<input type="text" name="ar_title" id="ar_title" value="<?php echo $row['ar_title']; ?>" class="form-control" placeholder="Title in Arabic" required />
+								</div>  
+                            </div>
+                        </div> 
+						
+						<div class="row">
+                            <div class="col-md-6"> 
+								<div class="form-group">
+									<label for="status"> Status: </label> 
+									<select name="status" id="status" class="form-control ">
+										<option value=""> Select Status </option>
+										<option value="1" <?php echo ($row['status'] == 1) ? 'selected="selected"' : ''; ?>> Active </option>
+										<option value="0" <?php echo ($row['status'] == 0) ? 'selected="selected"' : ''; ?>> Inactive </option> 
+									</select>
+								</div> 
+							</div> 
+							
+							<div class="col-md-6">
+                                <div class="form-group">
+									<label for="sort_order"> Sort Order: </label>
+									<input type="text" name="sort_order" id="sort_order" value="<?php echo $row['sort_order']; ?>" class="form-control" placeholder="Sort Order" required />
+								</div> 
+                            </div> 
+						</div>
+						
+						<div class="row">
+                            <div class="col-md-6">
+                                 <div class="form-group">
+									<label for="slug"> Slug: </label>
+									<input type="text" name="slug" id="slug" value="<?php echo $row['slug']; ?>" class="form-control" placeholder="Slug" required />
+								</div>
+                            </div>
+                            
+							<div class="col-md-6"> 
+								  <div class="form-group">
+									<label for="bg_video">Bg Video:</label> <!-- class="file-input-overwrite" data-fouc  -->
+									<input type="file" name="bg_video" id="bg_video" class="file-input-overwrite" data-fouc />
+									<input type="hidden" name="old_bg_video" id="old_bg_video" value="<?php echo $row['bg_video']; ?>" />
+									<?php echo ($row['bg_video'] != '') ? '( '.$row['bg_video']. ' )' : ''; ?> 
+								</div>
+							</div> 
+                        </div>
 						 
-						<div id="fetch_section_tabs_container"> 
-							<div id="fetch_section_tab_item0">
-								
-						<?php 
-							/*$p=1;
-							if(isset($record) && stripslashes($record->phone_no)>0){
-								$phone_no_arrs = explode(',',$record->phone_no);
-								if(isset($phone_no_arrs)){  
-									foreach($phone_no_arrs as $phone_no_arr){
-										
-										if($p==1){
-											$p++;
-											continue;
-										} ?>
-										
-							<div id="owner_phone_item_<?php echo $p; ?>" class="col-md-6 col-md-offset-2"><br>
-								<input name="phone_no[]" id="phone_no_<?php echo $p; ?>" class="form-control mini_txt_box" value="<?php echo $phone_no_arr; ?>" type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')" onChange="this.value=this.value.replace(/\D/g,'')"> 
-							  <span class="col-md-1" style="float:right;" align="right"> <a href="javascript:void(0);" onClick="remove_phone_item('<?php echo $p; ?>');" title="Remove" id="remove_phone_item_btn" name="remove_phone_item_btn"><i class="icon-trash"></i></a> </span></div>
-										
-										<?php 
-									$p++;
-									}
-								}
-							}*/  ?>
+						<div class="row">
+                            <div class="col-md-12"> <h3 style="text-decoration:underline">Section Tabs</h3> </div>
+						</div>
+						 
+						
+						 
+				<div id="fetch_section_tabs_container">  
+				<?php 
+					$p=0;
+					if($records){  
+						foreach($records as $record){ 
+							if($p >0){ 
+								break;
+							} ?>  
+							<div id="fetch_section_tab_item<?php echo $p; ?>">
 							
-							
-							
-							
+								<div class="row">
+									<div class="col-md-12"> <hr /> </div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tab_en_title<?php echo $p; ?>"> Tab Title (En):</label>
+											<input type="text" name="tab_en_title[]" id="tab_en_title<?php echo $p; ?>" class="form-control" placeholder="Tab Title in English" value="<?php echo $record['en_title']; ?>" onKeyUp="operate_slug('tab_en_title<?php echo $p; ?>', 'tab_slug<?php echo $p; ?>');" required />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tab_ar_title<?php echo $p; ?>">Tab Title (Ar):</label>
+											<input type="text" name="tab_ar_title[]" id="tab_ar_title<?php echo $p; ?>" class="form-control" placeholder="Tab Title in Arabic" value="<?php echo $record['ar_title']; ?>" required />
+										</div>
+									</div>
+								</div>
+							  
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+										<label for="tab_slug<?php echo $p; ?>"> Tab Slug: </label>
+										<input type="text" name="tab_slug[]" id="tab_slug<?php echo $p; ?>" class="form-control" placeholder="Tab Slug" value="<?php echo $record['slug']; ?>" required />
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+										<label for="tab_sort_order<?php echo $p; ?>"> Tab Sort Order: </label>
+										<input type="text" name="tab_sort_order[]" id="tab_sort_order<?php echo $p; ?>" class="form-control" placeholder="Tab Sort Order" value="<?php echo $record['sort_order']; ?>" required />
+										</div>
+									</div>
+									
+									<div class="col-md-4">
+										<div class="form-group">
+										<label for="tab_status<?php echo $p; ?>"> Status: </label>
+										<select name="tab_status[]" id="tab_status<?php echo $p; ?>" class="form-control">
+										  <option value=""> Select Tab Status </option>
+										  <option value="1" <?php echo ($record['status'] ==1) ? 'selected="selected"' : ''; ?>> Active </option>
+										  <option value="0" <?php echo ($record['status'] ==0) ? 'selected="selected"' : ''; ?>> Inactive </option>
+										</select>
+									  </div>
+									</div> 
+								</div>
+						  
+							  <div class="row"> 
+								<div class="col-md-6">
+								  <div class="form-group">  <!-- class="file-input-overwrite" -->
+									<label for="tab_icon<?php echo $p; ?>">Tab Icon:</label>
+									<input type="file" name="tab_icon[]" id="tab_icon<?php echo $p; ?>" data-fouc />
+									<input type="hidden" name="old_tab_icon[]" id="old_tab_icon<?php echo $p; ?>" value="<?php echo $record['tab_icon']; ?>" /> <?php echo ($record['tab_icon'] != '') ? '( '.$record['tab_icon']. ' )' : ''; ?> 
+								  </div>
+								 </div> 
+								 <div class="col-md-6"> 
+								  <div class="form-group"> <!-- class="file-input-overwrite" -->
+									<label for="tab_bg_video<?php echo $p; ?>">Bg Video:</label>
+									<input type="file" name="tab_bg_video[]" id="tab_bg_video<?php echo $p; ?>"  data-fouc />
+									<input type="hidden" name="old_tab_bg_video[]" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video']; ?>" /> <?php echo ($record['bg_video'] != '') ? '( '.$record['bg_video']. ' )' : ''; ?> 
+								  </div>  
+								 </div> 
+							   </div>  
+						 
+						 	</div> 	
+							<?php 
+						$p++;
+						} 
+						
+					}else{  ?> 
+					<div id="fetch_section_tab_item0"> 
+						 <div class="row">
+							<div class="col-md-12"> <hr /> </div>
+							<div class="col-md-6">
+								<div class="form-group">
+							<label for="tab_en_title0"> Tab Title (En):</label>
+							<input type="text" name="tab_en_title[]" id="tab_en_title0" class="form-control" placeholder="Tab Title in English" onKeyUp="operate_slug('tab_en_title0', 'tab_slug0');" required />
+						  </div> 
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+							<label for="tab_ar_title0">Tab Title (Ar):</label>
+							<input type="text" name="tab_ar_title[]" id="tab_ar_title0" class="form-control" placeholder="Tab Title in Arabic" required />
+						  </div>
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+							<label for="tab_slug0"> Tab Slug: </label>
+							<input type="text" name="tab_slug[]" id="tab_slug0" class="form-control" placeholder="Tab Slug" required />
+						  </div> 
+							</div>
+							<div class="col-md-4"> 
 							  <div class="form-group">
-								<label for="tab_en_title0"> Tab Title (En):</label>
-								<input type="text" name="tab_en_title[]" id="tab_en_title0" class="form-control" placeholder="Tab Title in English" onKeyUp="operate_slug('tab_en_title0', 'tab_slug0');" required />
-							  </div>
-							  <div class="form-group">
-								<label for="tab_ar_title">Tab Title (Ar):</label>
-								<input type="text" name="tab_ar_title[]" id="tab_ar_title0" class="form-control" placeholder="Tab Title in Arabic" required />
-							  </div>
-							  <div class="form-group">
-								<label for="tab_slug0"> Tab Slug: </label>
-								<input type="text" name="tab_slug[]" id="tab_slug0" class="form-control" placeholder="Tab Slug" required />
-							  </div>
-							  <div class="form-group">
-								<label for="sort_order"> Tab Sort Order: </label>
+								<label for="tab_sort_order0"> Tab Sort Order: </label>
 								<input type="text" name="tab_sort_order[]" id="tab_sort_order0" class="form-control" placeholder="Tab Sort Order" value="0" required />
-							  </div>
-							  <div class="form-group">
-								<label for="tab_icon0">Tab Icon:</label>
-								<input type="file" name="tab_icon[]" id="tab_icon0" class="" data-fouc />
-							  </div>
-							  <div class="form-group">
-								<label for="tab_bg_video0">Bg Video:</label>
-								<input type="file" name="tab_bg_video[]" id="tab_bg_video0" class="file-input-ajax" data-fouc />
-							  </div>
+							  </div> 
+							</div>
+							<div class="col-md-4">
 							  <div class="form-group">
 								<label for="tab_status0"> Status: </label>
 								<select name="tab_status[]" id="tab_status0" class="form-control">
@@ -122,27 +205,111 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 								</select>
 							  </div>
 							</div>
-							 
-							 
-							 <div id="fetch_section_tabs_list">
-							 
-							 </div>
-							 
-							 <div>
-							 
-							 <a class="btn" href="javascript:void();" name="add_section_tabs_btns" id="add_section_tabs_btns">Add Section Tab</a>
-							</div>
-						 
 						</div> 
-					<script>
-					
-					 
-				  </script>
+						<div class="row">
+							<div class="col-md-6">
+							  <div class="form-group"> <!-- class="file-input-overwrite" -->
+								<label for="tab_icon0">Tab Icon:</label>
+								<input type="file" name="tab_icon[]" id="tab_icon0" data-fouc />
+							  </div> 
+							</div>
+							<div class="col-md-6">
+								<div class="form-group"> <!-- class="file-input-overwrite"  -->
+									<label for="tab_bg_video0">Bg Video:</label>
+									<input type="file" name="tab_bg_video[]" id="tab_bg_video0" data-fouc />
+								  </div> 
+							</div>
+						</div> 
+				   </div>	 
+				<?php } ?> 
+							 
+					<div id="fetch_section_tabs_list">
+					<?php 
+						$p=0;
+						if($records){  
+							foreach($records as $record){ 
+								if($p >0){ ?>  
+									<div id="fetch_section_tab_item<?php echo $p; ?>"> 
+									
+									<div class="row">
+										<div class="col-md-12"> <hr /> </div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label for="tab_en_title<?php echo $p; ?>"> Tab Title (En):</label>
+										<input type="text" name="tab_en_title[]" id="tab_en_title<?php echo $p; ?>" class="form-control" placeholder="Tab Title in English" value="<?php echo $record['en_title']; ?>" onKeyUp="operate_slug('tab_en_title<?php echo $p; ?>', 'tab_slug<?php echo $p; ?>');" required />
+									  </div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label for="tab_ar_title<?php echo $p; ?>">Tab Title (Ar):</label>
+										<input type="text" name="tab_ar_title[]" id="tab_ar_title<?php echo $p; ?>" class="form-control" placeholder="Tab Title in Arabic" value="<?php echo $record['ar_title']; ?>" required />
+									  </div> 
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="tab_slug<?php echo $p; ?>"> Tab Slug: </label>
+												<input type="text" name="tab_slug[]" id="tab_slug<?php echo $p; ?>" class="form-control" placeholder="Tab Slug" value="<?php echo $record['slug']; ?>" required />
+										  </div> 
+										</div>
+										<div class="col-md-4"> 
+										  <div class="form-group">
+											<label for="tab_sort_order<?php echo $p; ?>"> Tab Sort Order: </label>
+											<input type="text" name="tab_sort_order[]" id="tab_sort_order<?php echo $p; ?>" class="form-control" placeholder="Tab Sort Order" value="<?php echo $record['sort_order']; ?>" required />
+										  </div> 
+										</div> 
+										<div class="col-md-4"> 
+										  <div class="form-group">
+											<label for="tab_status<?php echo $p; ?>"> Status: </label>
+											<select name="tab_status[]" id="tab_status<?php echo $p; ?>" class="form-control">
+											  <option value=""> Select Tab Status </option>
+											  <option value="1" <?php echo ($record['status'] ==1) ? 'selected="selected"' : ''; ?>> Active </option>
+											  <option value="0" <?php echo ($record['status'] ==0) ? 'selected="selected"' : ''; ?>> Inactive </option>
+											</select>
+										  </div> 
+										</div>
+									</div> 
+									
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group"> <!--  class="file-input-overwrite"  -->
+										<label for="tab_icon<?php echo $p; ?>">Tab Icon:</label> 
+										<input type="file" name="tab_icon[]" id="tab_icon<?php echo $p; ?>" data-fouc />
+										<input type="hidden" name="old_tab_icon[]" id="old_tab_icon<?php echo $p; ?>" value="<?php echo $record['tab_icon']; ?>" /> <?php echo ($record['tab_icon'] != '') ? '( '.$record['tab_icon']. ' )' : ''; ?> 
+									  </div> 
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">  <!-- class="file-input-overwrite" -->
+										<label for="tab_bg_video<?php echo $p; ?>">Bg Video:</label>
+										<input type="file" name="tab_bg_video[]" id="tab_bg_video<?php echo $p; ?>"  data-fouc />
+										<input type="hidden" name="old_tab_bg_video[]" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video']; ?>" /> <?php echo ($record['bg_video'] != '') ? '( '.$record['bg_video']. ' )' : ''; ?> 
+									  </div>   
+										</div>
+									</div> 
+									  
+									  <span class="col-md-1" style="float:right;" align="right"> <a href="javascript:void(0);" onclick="remove_section_tab_item('<?php echo $p; ?>');" title="Remove" name="remove_section_tab_item_btn"><i class="icon-trash"> </i></a> </span>
+									</div>  
+								<?php
+								}
+							  $p++;
+							}  
+						} ?> 
+					 </div>		 
+					<div>
+							 
+					 <a class="btn bg-blue-300" href="javascript:void(0);" name="add_section_tabs_btns" id="add_section_tabs_btns">Add Section Tab</a>
+					</div> 
+				</div>  
 						
-                        <div class="text-right">
-                            <button name="updates" type="submit" class="btn btn-primary"> Update <i class="icon-plus-circle2 ml-2"></i></button>
-                        </div>
-                    </form>
+				<div class="text-right">
+					<input type="hidden" name="id" id="id" value="<?php echo $row['id']; ?>" />
+					<button name="updates" type="submit" class="btn btn-primary"> Update <i class="icon-plus-circle2 ml-2"></i></button>
+					<button name="cancels" type="button" class="btn btn-default" onclick="window.location='<?php echo ADMIN_SITE_URL . '/controller/sections/index.php'; ?>'"> Cancel </button>
+				</div>	
+			</form> 
+			
                 </div>
             </div>
         </div>
@@ -152,9 +319,10 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 <?php
 require ADMIN_VIEW . '/layout/footer.php';
 ?>
-
-<script>
-    $(document).ready(function() {
+  
+<script>   
+    $(document).ready(function() { 
+	
         $('#navlink-sections').addClass('nav-item-open');
         $('#navlink-sections ul').css('display', 'block');
         $('#navlink-sections_add').addClass('active');
@@ -238,7 +406,7 @@ require ADMIN_VIEW . '/layout/footer.php';
 			
 		 });   
 
-        /*$('.file-input-ajax').on(
+        /*$('.file-input-overwrite').on(
             "filebatchuploadcomplete",
             function(event, preview, config, tags, extraData) {
                 console.log(config);
@@ -314,8 +482,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                     required: "Enter screen name",
                 },
             },
-        }); */
-    });
+        }); */  
+
+     });
 	
 	function remove_section_tab_item(val){
 		var conf = confirm('Do you want to delete this?');
