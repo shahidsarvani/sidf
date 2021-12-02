@@ -1,5 +1,5 @@
 <?php
-$mine = 0;
+$mine = 1;
 if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
     $con_file_path = __FILE__;
     $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
