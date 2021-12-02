@@ -146,22 +146,68 @@ class Sections {
 	}
 	
 	//slug  en_title  ar_title  sort_order  bg_video  status  updated_on
-	public function add_section($data)
-	{
+	public function add_section($data){ 
 		$slug = filter_var($data['slug'], FILTER_SANITIZE_STRING);
 		$en_title = filter_var($data['en_title'], FILTER_SANITIZE_STRING);
 		$ar_title = filter_var($data['ar_title'], FILTER_SANITIZE_STRING);
 		$sort_order = filter_var($data['sort_order'], FILTER_SANITIZE_STRING);
-		$bg_video = filter_var($data['bg_video'], FILTER_SANITIZE_STRING);
-		$status = filter_var($data['status'], FILTER_SANITIZE_STRING); 		
-		
+		//$bg_video = filter_var($data['bg_video'], FILTER_SANITIZE_STRING);
+		$status = filter_var($data['status'], FILTER_SANITIZE_STRING); 		 
 		$slug = $this->slugify($slug); 
-		$updated_on = date('Y-m-d H:i:s');
+		$updated_on = date('Y-m-d H:i:s'); 
 		
-		$query = "INSERT INTO sections (slug, en_title, ar_title, sort_order, bg_video, status, updated_on) VALUES ('".$slug."', '".$en_title."', '".$ar_title."', '".$sort_order."', '".$bg_video."', '".$status."', '".$updated_on."')";
+		//bg_video  tab_icon  tab_bg_video 
+		$bg_video_name = '';
+		if(isset($_FILES["bg_video"]["tmp_name"]) && strlen($_FILES["bg_video"]["tmp_name"])>0){
+			$ext = pathinfo($_FILES["bg_video"]["name"], PATHINFO_EXTENSION);
+			$bg_video_name = md5(uniqid(rand(), true)). '.'. $ext; 
+			$path_with_video = "../../../assets/frontend_assets/sections/".$bg_video_name;  
+			@move_uploaded_file($_FILES["bg_video"]["tmp_name"], $path_with_video); 
+		}
 		
-		if (TRUE === $this->connect->query($query)) {
-			return $this->connect->insert_id;
+		$query1 = "INSERT INTO sections (slug, en_title, ar_title, sort_order, bg_video, status, updated_on) VALUES ('".$slug."', '".$en_title."', '".$ar_title."', '".$sort_order."', '".$bg_video_name."', '".$status."', '".$updated_on."')";
+		
+		if (TRUE === $this->connect->query($query1)) {
+			$last_section_id = $this->connect->insert_id;
+			$n = 0;
+			// section_id 	slug 	en_title 	ar_title 	sort_order 	tab_icon 	bg_video 	status 	updated_on 	
+			// tab_en_title  tab_ar_title  tab_slug   tab_sort_order  tab_icon tab_bg_video tab_status
+			if(isset($data['tab_en_title'])){
+				foreach($data['tab_en_title'] as $tab_entitle){
+					
+					$tab_ar_title = filter_var($data['tab_ar_title']["$n"], FILTER_SANITIZE_STRING);
+					$tab_slug = filter_var($data['tab_slug']["$n"], FILTER_SANITIZE_STRING);
+					$tab_sort_order = filter_var($data['tab_sort_order']["$n"], FILTER_SANITIZE_STRING);
+					//$tab_icon = filter_var($data["$n"]['tab_icon'], FILTER_SANITIZE_STRING);
+					//$tab_bg_video = filter_var($data["$n"]['tab_bg_video'], FILTER_SANITIZE_STRING);
+					$tab_status = filter_var($data['tab_status']["$n"], FILTER_SANITIZE_STRING); 
+					$tab_slug = $this->slugify($tab_slug);
+					
+					$tab_icon_name = '';  
+					if(isset($_FILES["tab_icon"]["tmp_name"]["$n"]) && strlen($_FILES["tab_icon"]["tmp_name"]["$n"])>0){ 
+						$ext = pathinfo($_FILES["tab_icon"]["name"]["$n"], PATHINFO_EXTENSION);
+						$tab_icon_name = md5(uniqid(rand(), true)).'.'. $ext;  
+						$path_with_tab_icon = "../../../assets/frontend_assets/section_tabs/".$tab_icon_name;  
+						@move_uploaded_file($_FILES["tab_icon"]["tmp_name"]["$n"], $path_with_tab_icon); 
+					}
+					
+					$tab_bg_video_name = ''; 
+					if(isset($_FILES["tab_bg_video"]["tmp_name"]["$n"]) && strlen($_FILES["tab_bg_video"]["tmp_name"]["$n"])>0){
+						$ext = pathinfo($_FILES["tab_bg_video"]["name"]["$n"], PATHINFO_EXTENSION);
+						$tab_bg_video_name = md5(uniqid(rand(), true)).'.'. $ext;  
+						$path_with_tab_video = "../../../assets/frontend_assets/tab_bg_videos/".$tab_bg_video_name;  
+						@move_uploaded_file($_FILES["tab_bg_video"]["tmp_name"]["$n"], $path_with_tab_video); 
+					}
+					
+					$query2 = "INSERT INTO section_tabs (section_id, slug, en_title, ar_title, sort_order, tab_icon, bg_video, 	status, updated_on) VALUES ('".$last_section_id."', '".$tab_slug."', '".$tab_entitle."', '".$tab_ar_title."', '".$tab_sort_order."', '".$tab_icon_name."', '".$tab_bg_video_name."', '".$tab_status."', '".$updated_on."')"; 
+					$this->connect->query($query2);
+					
+					$n++;
+				} 
+			}
+			
+			return $last_section_id;
+			
 		} else {
 			$_SESSION['error_msg'] = $this->connect->error;
 			$_SESSION['error_code'] = 500;
@@ -169,22 +215,77 @@ class Sections {
 		}
 	}
 
-	public function edit_section($id, $data)
-	{
-		//$name = filter_var($data['name'], FILTER_SANITIZE_STRING);		
-		//slug  en_title  ar_title  sort_order  bg_video  status  updated_on
+	public function edit_section($id, $data){
 		$slug = filter_var($data['slug'], FILTER_SANITIZE_STRING);
 		$en_title = filter_var($data['en_title'], FILTER_SANITIZE_STRING);
 		$ar_title = filter_var($data['ar_title'], FILTER_SANITIZE_STRING);
 		$sort_order = filter_var($data['sort_order'], FILTER_SANITIZE_STRING);
-		$bg_video = filter_var($data['bg_video'], FILTER_SANITIZE_STRING);
-		$status = filter_var($data['status'], FILTER_SANITIZE_STRING); 		
+		//$bg_video = filter_var($data['bg_video'], FILTER_SANITIZE_STRING);
+		$status = filter_var($data['status'], FILTER_SANITIZE_STRING); 		 
+		$slug = $this->slugify($slug); 
+		$updated_on = date('Y-m-d H:i:s'); 
 		
-		$slug = $this->slugify($name);
-		$updated_on = date('Y-m-d H:i:s');
+		$bg_video_name = (isset($data["$n"]['old_bg_video']) && $data["$n"]['old_bg_video'] != '') ? $data["$n"]['old_bg_video'] : '';
+		if(isset($_FILES["bg_video"]["tmp_name"]) && strlen($_FILES["bg_video"]["tmp_name"])>0){
+			if($bg_video_name != ''){
+				@unlink("../../../assets/frontend_assets/sections/{$bg_video_name}");
+			}
+			 
+			$ext = pathinfo($_FILES["bg_video"]["name"], PATHINFO_EXTENSION);
+			$bg_video_name = md5(uniqid(rand(), true)). '.'. $ext; 
+			$path_with_video = "../../../assets/frontend_assets/sections/".$bg_video_name;  
+			@move_uploaded_file($_FILES["bg_video"]["tmp_name"], $path_with_video); 
+		}
 		
-		$query = "UPDATE sections SET slug='".$slug."', en_title='".$en_title."', ar_title='".$ar_title."', sort_order='".$sort_order."', bg_video='".$bg_video."', status='".$status."', updated_on='".$updated_on."' WHERE id='".$id."'";
-		if (TRUE === $this->connect->query($query)) {
+		$query1 = "UPDATE sections SET slug='".$slug."', en_title='".$en_title."', ar_title='".$ar_title."', sort_order='".$sort_order."', bg_video='".$bg_video_name."', status='".$status."', updated_on='".$updated_on."' WHERE id='".$id."'";
+		if (TRUE === $this->connect->query($query1)) { 
+			$n = 0;
+			//	section_id 	slug 	en_title 	ar_title 	sort_order 	tab_icon 	bg_video 	status 	updated_on 	
+			// tab_en_title  tab_ar_title  tab_slug   tab_sort_order  tab_icon tab_bg_video tab_status
+			if(isset($data['tab_en_title'])){
+				$query0 = "DELETE FROM section_tabs WHERE section_id='".$id."' ";
+				$this->connect->query($query0);
+				
+				foreach($data['tab_en_title'] as $tab_entitle){
+					$tab_ar_title = filter_var($data['tab_ar_title']["$n"], FILTER_SANITIZE_STRING);
+					$tab_slug = filter_var($data['tab_slug']["$n"], FILTER_SANITIZE_STRING);
+					$tab_sort_order = filter_var($data['tab_sort_order']["$n"], FILTER_SANITIZE_STRING);
+					//$tab_icon = filter_var($data['tab_icon']["$n"], FILTER_SANITIZE_STRING);
+					//$tab_bg_video = filter_var($data["$n"]['tab_bg_video']["$n"], FILTER_SANITIZE_STRING);
+					$tab_status = filter_var($data['tab_status']["$n"], FILTER_SANITIZE_STRING); 
+					$tab_slug = $this->slugify($tab_slug); 
+					
+					$tab_icon_name = (isset($data['old_tab_icon']["$n"]) && $data['old_tab_icon']["$n"] != '') ? $data['old_tab_icon']["$n"] : ''; 
+					
+					if(isset($_FILES["tab_icon"]["tmp_name"]["$n"]) && strlen($_FILES["tab_icon"]["tmp_name"]["$n"])>0){
+						if($tab_icon_name != ''){
+							@unlink("../../../assets/frontend_assets/section_tabs/{$tab_icon_name}");
+						}
+						
+						$ext = pathinfo($_FILES["tab_icon"]["name"]["$n"], PATHINFO_EXTENSION);
+						$tab_icon_name = md5(uniqid(rand(), true)).'.'. $ext;  
+						$path_with_tab_icon = "../../../assets/frontend_assets/section_tabs/".$tab_icon_name;  
+						@move_uploaded_file($_FILES["tab_icon"]["tmp_name"]["$n"], $path_with_tab_icon); 
+					}
+					
+					$tab_bg_video_name = (isset($data['old_tab_bg_video']["$n"]) && $data['old_tab_bg_video']["$n"] != '') ? $data['old_tab_bg_video']["$n"] : ''; 
+					if(isset($_FILES["tab_bg_video"]["tmp_name"]["$n"]) && strlen($_FILES["tab_bg_video"]["tmp_name"]["$n"])>0){ 
+						if($tab_bg_video_name != ''){
+							@unlink("../../../assets/frontend_assets/tab_bg_videos/{$tab_bg_video_name}");
+						}
+						$ext = pathinfo($_FILES["tab_bg_video"]["name"]["$n"], PATHINFO_EXTENSION);
+						$tab_bg_video_name = md5(uniqid(rand(), true)).'.'. $ext;  
+						$path_with_tab_video = "../../../assets/frontend_assets/tab_bg_videos/".$tab_bg_video_name;  
+						@move_uploaded_file($_FILES["tab_bg_video"]["tmp_name"]["$n"], $path_with_tab_video); 
+					}
+					
+					$query2 = "INSERT INTO section_tabs (section_id, slug, en_title, ar_title, sort_order, tab_icon, bg_video, 	status, updated_on) VALUES ('".$id."', '".$tab_slug."', '".$tab_entitle."', '".$tab_ar_title."', '".$tab_sort_order."', '".$tab_icon_name."', '".$tab_bg_video_name."', '".$tab_status."', '".$updated_on."')"; 
+					$this->connect->query($query2);
+					
+					$n++;
+				} 
+			}
+		
 			return true;
 		} else {
 			$_SESSION['error_msg'] = $this->connect->error;
