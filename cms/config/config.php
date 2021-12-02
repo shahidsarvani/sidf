@@ -24,6 +24,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' && $mine == 1) {
     $con_file_path = __FILE__;
     $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
     $con_file_path = str_replace('/cms/config/config.php', '',  $con_file_path);
+    echo $con_file_path.'<br>';
     define('BASE_PATH', $con_file_path);
     $con_file_url = $_SERVER['HTTP_REFERER'];
     $con_file_url = substr($con_file_url, 0, strpos($con_file_url,'sidf')+4);
