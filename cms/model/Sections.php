@@ -132,7 +132,9 @@ class Sections {
 		$query = "SELECT s.id as sec_id,
 		s.slug as sec_slug,
 		s.en_title as sec_en_title,
-		s.ar_title as sec_ar_title,
+		s.ar_title as sec_ar_title, 
+		s.en_sub_title as sec_en_sub_title,
+		s.ar_sub_title as sec_ar_sub_title, 
 		s.sort_order as sec_sort_order,
 		s.bg_video as sec_bg_video ,
 		s.status as sec_status,
@@ -164,7 +166,9 @@ class Sections {
 	public function add_section($data){ 
 		$slug = filter_var($data['slug'], FILTER_SANITIZE_STRING);
 		$en_title = filter_var($data['en_title'], FILTER_SANITIZE_STRING);
-		$ar_title = filter_var($data['ar_title'], FILTER_SANITIZE_STRING);
+		$ar_title = filter_var($data['ar_title'], FILTER_SANITIZE_STRING); 
+		$en_sub_title = filter_var($data['en_sub_title'], FILTER_SANITIZE_STRING);
+		$ar_sub_title = filter_var($data['ar_sub_title'], FILTER_SANITIZE_STRING); 
 		$sort_order = filter_var($data['sort_order'], FILTER_SANITIZE_STRING); 
 		$status = filter_var($data['status'], FILTER_SANITIZE_STRING); 		 
 		$slug = $this->slugify($slug); 
@@ -178,7 +182,7 @@ class Sections {
 			@move_uploaded_file($_FILES["bg_video"]["tmp_name"], $path_with_video); 
 		} 
 		
-		$query1 = "INSERT INTO sections (slug, en_title, ar_title, sort_order, bg_video, status, updated_on) VALUES ('".$slug."', '".$en_title."', '".$ar_title."', '".$sort_order."', '".$bg_video_name."', '".$status."', '".$updated_on."')";
+		$query1 = "INSERT INTO sections (slug, en_title, ar_title, en_sub_title, ar_sub_title, sort_order, bg_video, status, updated_on) VALUES ('".$slug."', '".$en_title."', '".$ar_title."', '".$en_sub_title."', '".$ar_sub_title."', '".$sort_order."', '".$bg_video_name."', '".$status."', '".$updated_on."')"; 
 		
 		if (TRUE === $this->connect->query($query1)) {
 			$last_section_id = $this->connect->insert_id;
@@ -228,6 +232,8 @@ class Sections {
 		$slug = filter_var($data['slug'], FILTER_SANITIZE_STRING);
 		$en_title = filter_var($data['en_title'], FILTER_SANITIZE_STRING);
 		$ar_title = filter_var($data['ar_title'], FILTER_SANITIZE_STRING);
+		$en_sub_title = filter_var($data['en_sub_title'], FILTER_SANITIZE_STRING);
+		$ar_sub_title = filter_var($data['ar_sub_title'], FILTER_SANITIZE_STRING); 
 		$sort_order = filter_var($data['sort_order'], FILTER_SANITIZE_STRING);
 		$status = filter_var($data['status'], FILTER_SANITIZE_STRING); 		 
 		$slug = $this->slugify($slug); 
@@ -243,9 +249,9 @@ class Sections {
 			$bg_video_name = md5(uniqid(rand(), true)). '.'. $ext; 
 			$path_with_video = "../../../assets/frontend_assets/sections/".$bg_video_name;  
 			@move_uploaded_file($_FILES["bg_video"]["tmp_name"], $path_with_video); 
-		}
+		} 
 		
-		$query1 = "UPDATE sections SET slug='".$slug."', en_title='".$en_title."', ar_title='".$ar_title."', sort_order='".$sort_order."', bg_video='".$bg_video_name."', status='".$status."', updated_on='".$updated_on."' WHERE id='".$id."'";
+		$query1 = "UPDATE sections SET slug='".$slug."', en_title='".$en_title."', ar_title='".$ar_title."', en_sub_title='".$en_sub_title."', ar_sub_title='".$ar_sub_title."', sort_order='".$sort_order."', bg_video='".$bg_video_name."', status='".$status."', updated_on='".$updated_on."' WHERE id='".$id."'";
 		if (TRUE === $this->connect->query($query1)) { 
 			$n = 0; 
 			if(isset($data['tab_en_title'])){ 

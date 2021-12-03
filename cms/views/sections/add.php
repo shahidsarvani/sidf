@@ -49,6 +49,21 @@ $max_sort_order = $max_sort_order + 1; ?>
 						
 						<div class="row">
                             <div class="col-md-6">
+                              <div class="form-group">   
+								<label for="en_sub_title"> Sub Title (En):</label>
+								<input type="text" name="en_sub_title" id="en_sub_title" value="" class="form-control" placeholder="Sub Title in English" required />
+								</div>   
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group">
+									<label for="ar_sub_title">Sub Title (Ar):</label>
+									<input type="text" name="ar_sub_title" id="ar_sub_title" value="" class="form-control" placeholder="Sub Title in Arabic" required />
+								</div>  
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-md-6">
                                <div class="form-group">
 									<label for="slug"> Slug: </label>
 									<input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" required />
