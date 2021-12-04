@@ -28,11 +28,16 @@ require ADMIN_VIEW . '/layout/header.php';
                             <input type="file" name="logo" class="file-input-overwrite-rfid-img" accept="image/*" data-show-preview="false" data-fouc>
                         </div>
                         <div class="form-group" id="video_error">
-                            <label>Upload Video:</label>
+                            <label>Upload Token Video:</label>
                             <input type="file" name="video" class="file-input-overwrite-rfid-vid" accept="video/*" data-fouc>
+                        </div>
+                        <div class="form-group" id="video_error">
+                            <label>Upload Preloader Video:</label>
+                            <input type="file" name="video" class="file-input-overwrite-rfid-loadervid" accept="video/*" data-fouc>
                         </div>
                         <input type="hidden" name="logo_key" id="logo_key" class="modal_media old-logo" data-error="#logo_error" value="<?php echo $logo['file_key']; ?>" data-value="<?php echo $items_config['rfid_media_url'] . $logo['name']; ?>" data-caption="<?php echo $logo['name']; ?>" data-key="<?php echo $logo['file_key']; ?>" data-size="<?php echo $logo['size']; ?>" data-type="<?php echo $logo['type']; ?>" data-filetype="<?php echo $logo['filetype']; ?>">
                         <input type="hidden" name="video_key" id="video_key" class="modal_media old-video" data-error="#video_error" value="<?php echo $video['file_key']; ?>" data-value="<?php echo $items_config['rfid_media_url'] . $video['name']; ?>" data-caption="<?php echo $video['name']; ?>" data-key="<?php echo $video['file_key']; ?>" data-size="<?php echo $video['size']; ?>" data-type="<?php echo $video['type']; ?>" data-filetype="<?php echo $video['filetype']; ?>">
+                        <input type="hidden" name="loader_video_key" id="loader_video_key" class="modal_media old-loader-video" data-error="#loader_video_error" value="<?php echo $loader_video['file_key']; ?>" data-value="<?php echo $items_config['rfid_media_url'] . $loader_video['name']; ?>" data-caption="<?php echo $loader_video['name']; ?>" data-key="<?php echo $loader_video['file_key']; ?>" data-size="<?php echo $loader_video['size']; ?>" data-type="<?php echo $loader_video['type']; ?>" data-filetype="<?php echo $loader_video['filetype']; ?>">
 
                         <div class="text-right">
                             <button type="submit" id="submitBtn" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
@@ -65,9 +70,15 @@ require ADMIN_VIEW . '/layout/footer.php';
             $('#video_key').val(fileId)
             $('#video_key-error').css('display','none');
         }
+        function loadervideoUploaded(event, previewId, index, fileId) {
+            console.log('File uploaded', previewId, index, fileId);
+            $('#loader_video_key').val(fileId)
+            $('#loader_video_key-error').css('display','none');
+        }
 
         $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded);
         $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded);
+        $('.file-input-overwrite-rfid-loadervid').on('fileuploaded', loadervideoUploaded);
 
         var validator = $("#token-form").validate({
             ignore: ".select2-search__field", // ignore hidden fields
@@ -127,6 +138,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                 video_key: {
                     required: true,
                 },
+                loader_video_key: {
+                    required: true,
+                },
             },
             messages: {
                 name: {
@@ -136,7 +150,10 @@ require ADMIN_VIEW . '/layout/footer.php';
                     required: "Add logo",
                 },
                 video_key: {
-                    required: "Add video",
+                    required: "Add token video",
+                },
+                loader_video_key: {
+                    required: "Add preloader video",
                 },
             },
         });

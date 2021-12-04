@@ -27,11 +27,16 @@ require ADMIN_VIEW . '/layout/header.php';
                             <input type="file" name="logo" class="file-input-overwrite-rfid-img" accept="image/*" data-show-preview="false" data-fouc>
                         </div>
                         <div class="form-group" id="video_error">
-                            <label>Upload Video:</label>
+                            <label>Upload Token Video:</label>
                             <input type="file" name="video" class="file-input-overwrite-rfid-vid" accept="video/*" data-fouc>
+                        </div>
+                        <div class="form-group" id="loader_video_error">
+                            <label>Upload Preloader Video:</label>
+                            <input type="file" name="loader_video" class="file-input-overwrite-rfid-loadervid" accept="video/*" data-fouc>
                         </div>
                         <input type="hidden" name="logo_key" id="logo_key" class="modal_media" data-error="#logo_error">
                         <input type="hidden" name="video_key" id="video_key" class="modal_media" data-error="#video_error">
+                        <input type="hidden" name="loader_video_key" id="loader_video_key" class="modal_media" data-error="#loader_video_error">
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Add <i class="icon-plus-circle2 ml-2"></i></button>
@@ -64,9 +69,15 @@ require ADMIN_VIEW . '/layout/footer.php';
             $('#video_key').val(fileId)
             $('#video_key-error').css('display','none');
         }
+        function loadervideoUploaded(event, previewId, index, fileId) {
+            console.log('File uploaded', previewId, index, fileId);
+            $('#loader_video_key').val(fileId)
+            $('#loader_video_key-error').css('display','none');
+        }
 
         $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded);
         $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded);
+        $('.file-input-overwrite-rfid-loadervid').on('fileuploaded', loadervideoUploaded);
 
         var validator = $("#token-form").validate({
             ignore: ".select2-search__field", // ignore hidden fields
@@ -126,6 +137,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                 video_key: {
                     required: true,
                 },
+                loader_video_key: {
+                    required: true,
+                },
             },
             messages: {
                 name: {
@@ -135,7 +149,10 @@ require ADMIN_VIEW . '/layout/footer.php';
                     required: "Add logo",
                 },
                 video_key: {
-                    required: "Add video",
+                    required: "Add token video",
+                },
+                loader_video_key: {
+                    required: "Add preloader video",
                 },
             },
         });

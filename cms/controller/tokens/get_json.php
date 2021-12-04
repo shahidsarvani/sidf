@@ -18,19 +18,21 @@ foreach ($tokens as $index => $value) {
     $logo = $logo->fetch_assoc();
     $video = $token->get_media($value['video_key']);
     $video = $video->fetch_assoc();
+    $loader_video = $token->get_media($value['loader_video_key']);
+    $loader_video = $loader_video->fetch_assoc();
     // if($logo) {
     //     $value['logo'] = $logo['name'];
     // }
     // if($video) {
     //     $value['video'] = $video['name'];
     // }
-    $temp .= '<div class="col-6 d-flex align-items-center justify-content-center flex-column">
+    $temp .= '<div class="col-6 d-flex align-items-center justify-content-center flex-column next_tab" data-slug="' . $value['slug'] . '" data-loader_name="' . $items_config['rfid_media_url'] . $loader_video['name'] . '" data-loader_type="' . $loader_video['filetype'] . '">
                 <div class="categoriesvideo_wrapper">
                     <video id="vid" class="categories_video_inner" autoplay loop muted>
                         <source src="' . $items_config['rfid_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">
                     </video>
                 </div>
-                <div class="video-logo" data-slug="' . $value['slug'] . '" data-loader_name="' . $items_config['rfid_media_url'] . $video['name'] . '" data-loader_type="' . $video['filetype'] . '">
+                <div class="video-logo">
                     <img class="" src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
                 </div>
             </div>';
