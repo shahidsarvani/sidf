@@ -472,8 +472,11 @@ var ImageUploadToken = (function () {
     var initialPreviewConfigLogo = [];
     var initialPreviewVideo = [];
     var initialPreviewConfigVideo = [];
+    var initialPreviewLoaderVideo = [];
+    var initialPreviewConfigLoaderVideo = [];
     var logo = document.querySelector('.old-logo');
     var video = document.querySelector('.old-video');
+    var loader_video = document.querySelector('.old-loader-video');
     if(logo) {
       initialPreviewLogo.push(logo.dataset.value);
       initialPreviewConfigLogo.push({
@@ -496,10 +499,23 @@ var ImageUploadToken = (function () {
           url: 'media_delete.php',
         })
     }
+    if(loader_video) {
+        initialPreviewLoaderVideo.push(loader_video.dataset.value);
+        initialPreviewConfigLoaderVideo.push({
+          caption: loader_video.dataset.caption,
+          size: parseInt(loader_video.dataset.size),
+          key: loader_video.dataset.key,
+          filetype: loader_video.dataset.filetype,
+          type: loader_video.dataset.type,
+          url: 'media_delete.php',
+        })
+    }
     console.log(initialPreviewConfigLogo)
     console.log(initialPreviewLogo)
     console.log(initialPreviewConfigVideo)
     console.log(initialPreviewVideo)
+    console.log(initialPreviewConfigLoaderVideo)
+    console.log(initialPreviewLoaderVideo)
     // Modal template
     var modalTemplate =
       '<div class="modal-dialog modal-lg" role="document">\n' +
@@ -583,6 +599,40 @@ var ImageUploadToken = (function () {
       },
       initialPreview: initialPreviewVideo,
       initialPreviewConfig: initialPreviewConfigVideo,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
+    $('.file-input-overwrite-rfid-loadervid').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["video"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreviewLoaderVideo,
+      initialPreviewConfig: initialPreviewConfigLoaderVideo,
       initialPreviewAsData: true,
       overwriteInitial: false,
       previewZoomButtonClasses: previewZoomButtonClasses,

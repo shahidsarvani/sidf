@@ -44,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $video = $token_obj->get_media($token['video_key']);
     $video = $video->fetch_assoc();
     $video['size'] = explode('_', $video['file_key'])[0];
+    $loader_video = $token_obj->get_media($token['loader_video_key']);
+    $loader_video = $loader_video->fetch_assoc();
+    $loader_video['size'] = explode('_', $loader_video['file_key'])[0];
 }
 
 $title = 'Tokens - SIDF';

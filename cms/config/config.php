@@ -1,5 +1,5 @@
 <?php
-$mine = 1;
+$mine = 0;
 $host = $_SERVER['HTTP_HOST'];
 $con_file_path = __FILE__;
 $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
@@ -9,6 +9,8 @@ if ($host == 'localhost' && $mine == 1) {
     define('BASE_URL', 'http://' . $host . '/sidf');
 } else if ($host == 'localhost' && $mine == 0) {
     define('BASE_URL', 'http://' . $host . '/PHP/sidf');
+} else if ($host == 'localhost' && $mine == 2) {
+    define('BASE_URL', 'http://' . $host . '/sidf');
 } else {
     define('BASE_URL', 'https://sidf.digitalpoin8.com');
 }
@@ -24,6 +26,8 @@ $items_config = array(
     'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
     'rfid_media_url' => USER_ASSET . '/rfid_media/',
     'rfid_media_path' => BASE_PATH . '/assets/frontend_assets/rfid_media/',
+    'rfid_loadermedia_url' => USER_ASSET . '/rfid_media/loader/',
+    'rfid_loadermedia_path' => BASE_PATH . '/assets/frontend_assets/rfid_media/loader/',
 );
 
 // $email_config = array(
