@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     require_once(BASE_PATH . '/cms/model/Token.php');
     $token = new Token();
     $count = $token->get_token_count();
-    if($count['count'] >= 5) {
+    if($count['count'] >= 4) {
         header('Location: ' . ADMIN_SITE_URL . '/controller/tokens/index.php');
     } else {
         $title = 'Tokens - SIDF';
