@@ -4,7 +4,8 @@ require './../config/config.php';
 
 if(isset($_GET['name']) && $_GET['name'] != '') {
     // Process download
-    $filepath = BASE_PATH . '/'.$_GET['name'];
+	
+    $filepath = ($_GET['name'] == "sections.json") ? BASE_PATH . '/process/'.$_GET['name'] : BASE_PATH . '/'.$_GET['name'];
     if (file_exists($filepath)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');

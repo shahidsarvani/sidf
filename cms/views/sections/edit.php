@@ -28,6 +28,9 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 					a.fileinput-upload-button {
 						display: none !important;
 					}
+					#fetch_section_tabs_container input[type="file"][data-fouc] {
+						opacity: 1 !important;
+					}
 				</style>
                 <div class="card-body">
                     <form name="datas_form" id="datas_form" method="post" action="<?php echo ADMIN_SITE_URL . '/controller/sections/edit.php?id='.$row['id']; ?>" enctype="multipart/form-data">
