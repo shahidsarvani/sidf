@@ -16,9 +16,9 @@ if (!isset($_SESSION['user_id']) && !$_SESSION['user_id']) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     require_once(BASE_PATH . '/cms/model/Sections.php');
-
+	
     $section_obj = new Sections();
-    $id = $_POST['id'];
+    $id = $_POST['id'];  
     // echo json_encode($_POST);
     // echo json_encode($id);
     // die();
@@ -50,7 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require_once(BASE_PATH . '/cms/model/Sections.php');
 
     $section_obj = new Sections();
-    $row = $section_obj->get_section($_GET['id']);
+    //$row = $section_obj->get_section($_GET['id']);
+	$row = $section_obj->get_section($_GET['id']);
+	$records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
+	
+	
     /*$item_media = $section_obj->get_screen_media($_GET['id']);
     $medias = array();
     if ($item_media) {

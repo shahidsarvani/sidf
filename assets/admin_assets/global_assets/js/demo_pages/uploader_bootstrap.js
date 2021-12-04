@@ -246,6 +246,7 @@ var FileUpload = function() {
             uploadUrl: "http://localhost", // server upload action
             uploadAsync: true,
             maxFileCount: 5,
+            allowedFileExtensions: ["jpg", "jpeg", "gif", "png", ".mp3", ".mp4"],
             initialPreview: [],
             browseIcon: '<i class="icon-file-plus mr-2"></i>',
             uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',

@@ -19,15 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once(BASE_PATH . '/cms/model/Sections.php');
 
     $sections = new Sections();
-    $screen_id = $sections->add_section($_POST);
-    $data = array();
+    $res = $sections->add_section($_POST);
+   /* $data = array();
     foreach ($_POST['file_keys'] as $key) {
         $data[] = [
             'section_id' => $screen_id,
             'media_id' => $key,
         ];
     }
-    $res = $sections->add_section($data);
+    $res = $sections->add_section($data);*/
 
     if ($res) {
         $_SESSION['success'] = 'Section Added Successfully';
