@@ -195,7 +195,9 @@
                 alert('Company info not added')
             } else {
                 var html = data.companies[slug];
+                $('#index_1').empty();
                 $('#index_1').append(html)
+                $('#index_1').append('<footer><img src="./assets/rfid_assets/images/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
                 $('.text_wrapper_outter_1').addClass("d-none");
                 setTimeout(function() {
                     $('#preloader').fadeIn('slow').delay(6000).fadeOut('slow', function () {
@@ -205,6 +207,11 @@
                 }, 1000)
             }
         });
+    })
+    $(document).on("click", ".footer_logo", function (event) {
+        $('#index_1').fadeOut('slow', function() {
+            $('.text_wrapper_outter_1').removeClass('d-none')
+        })
     })
 </script>
 
