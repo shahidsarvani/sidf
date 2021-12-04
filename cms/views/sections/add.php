@@ -28,7 +28,11 @@ $max_sort_order = $max_sort_order + 1; ?>
 						document.getElementById(paras2).value = en_title_val.toLowerCase();
 					}
 				</script>
-
+				<style>
+					#fetch_section_tabs_container input[type="file"][data-fouc] {
+						opacity: 1 !important;
+					}
+				</style>
                 <div class="card-body">
                     <form name="datas_form" id="datas_form" method="post" action="<?php echo ADMIN_SITE_URL . '/controller/sections/add.php' ?>" enctype="multipart/form-data">
 						
@@ -150,13 +154,13 @@ $max_sort_order = $max_sort_order + 1; ?>
 									<div class="col-md-6">
 									  <div class="form-group">
 										<label for="tab_icon0">Tab Icon:</label>
-										<input type="file" name="tab_icon[]" id="tab_icon0" class="file-input-ajax" data-fouc />
+										<input type="file" name="tab_icon[]" id="tab_icon0" class="file-input-ajax111" data-fouc />
 									  </div> 
 									</div>
 									<div class="col-md-6"> 
 									  <div class="form-group"> 
 										<label for="tab_bg_video0">Bg Video:</label>
-										<input type="file" name="tab_bg_video[]" id="tab_bg_video0" class="file-input-ajax" data-fouc />
+										<input type="file" name="tab_bg_video[]" id="tab_bg_video0" class="file-input-ajax111" data-fouc />
 									  </div>
 									</div>
 								</div>  
@@ -169,7 +173,7 @@ $max_sort_order = $max_sort_order + 1; ?>
 							 
 							 <div>
 							 
-							 <a class="btn" href="javascript:void();" name="add_section_tabs_btns" id="add_section_tabs_btns">Add Section Tab</a>
+							 <a class="btn bg-blue-300" href="javascript:void();" name="add_section_tabs_btns" id="add_section_tabs_btns">Add Section Tab</a>
 							</div>
 						 
 						</div> 
