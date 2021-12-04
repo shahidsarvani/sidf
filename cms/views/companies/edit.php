@@ -75,47 +75,49 @@ require ADMIN_VIEW . '/layout/header.php';
                         <div class="row sortable-card" id="items">
 
                             <?php
-                            $i = 1;
-                            foreach ($icons as $icon) :
+                            if ($icons) :
+                                $i = 1;
+                                foreach ($icons as $icon) :
                             ?>
-                                <div class="col-md-12 menu_item">
-                                    <div class="card item_<?php echo $i ?>">
-                                        <div class="card-header header-elements-inline">
-                                            <h6 class="card-title">Icon <?php echo $i ?>:</h6>
-                                            <div class="header-elements">
-                                                <div class="list-icons">
-                                                    <a class="list-icons-item" data-action="move"></a>
-                                                    <a class="list-icons-item" data-action="remove"></a>
+                                    <div class="col-md-12 menu_item">
+                                        <div class="card item_<?php echo $i ?>">
+                                            <div class="card-header header-elements-inline">
+                                                <h6 class="card-title">Icon <?php echo $i ?>:</h6>
+                                                <div class="header-elements">
+                                                    <div class="list-icons">
+                                                        <a class="list-icons-item" data-action="move"></a>
+                                                        <a class="list-icons-item" data-action="remove"></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Title (English):</label>
-                                                        <input type="text" name="title_eng[]" value="<?php echo $icon['title_eng'] ?>" class="form-control" placeholder="Title">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Title (English):</label>
+                                                            <input type="text" name="title_eng[]" value="<?php echo $icon['title_eng'] ?>" class="form-control" placeholder="Title">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Title (Arabic):</label>
-                                                        <input type="text" name="title_ar[]" value="<?php echo $icon['title_ar'] ?>" class="form-control" placeholder="العنوان">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Title (Arabic):</label>
+                                                            <input type="text" name="title_ar[]" value="<?php echo $icon['title_ar'] ?>" class="form-control" placeholder="العنوان">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Icon Class:</label>
-                                                        <input type="text" name="icon[]" value="<?php echo $icon['icon'] ?>" class="form-control" placeholder="fa fa-car">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Icon Class:</label>
+                                                            <input type="text" name="icon[]" value="<?php echo $icon['icon'] ?>" class="form-control" placeholder="fa fa-car">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             <?php
-                                $i++;
-                            endforeach;
+                                    $i++;
+                                endforeach;
+                            endif;
                             ?>
                         </div>
                         <div class="col-md-3">
