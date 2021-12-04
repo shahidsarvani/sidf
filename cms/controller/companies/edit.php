@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // echo json_encode($data);
     // die();
-    $company->remove_prev_menu_icons($id);
+    $company->remove_prev_menu_icons($_POST['company_token_id']);
     if($data) {
         $res = $company->add_menu_icons($data);
     }
