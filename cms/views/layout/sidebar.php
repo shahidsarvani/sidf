@@ -39,7 +39,7 @@
           <!-- SIDF Timeline -->
           <li class="nav-item-header">
             <div class="text-uppercase font-size-xs line-height-xs">SIDF Timeline</div>
-            <i class="icon-menu" title="Main"></i>
+            <i class="icon-menu" title="SIDF Timeline"></i>
           </li>
           <li class="nav-item nav-item-submenu" id="navlink-screens"> <a href="#" class="nav-link"> <i class="icon-display"></i> <span>Screens</span> </a>
             <ul class="nav nav-group-sub" data-submenu-title="Layouts">
@@ -68,11 +68,21 @@
           <!-- Process Interactive Screens -->
           <li class="nav-item-header">
             <div class="text-uppercase font-size-xs line-height-xs">Process Interactive Screens</div>
-            <i class="icon-menu" title="Main"></i>
+            <i class="icon-menu" title="Process Interactive Screens"></i>
           </li>
           <li class="nav-item nav-item-submenu" id="navlink-sections"> <a href="#" class="nav-link"> <i class="icon-grid"></i> <span> Sections </span></a>
             <ul class="nav nav-group-sub" data-submenu-title="Sections">
               <li class="nav-item"> <a href="<?php echo ADMIN_SITE_URL . '/controller/sections/index.php' ?>" class="nav-link" id="navlink-sectionItems_index">All Sections</a> </li>
+            </ul>
+          </li>
+          <li class="nav-item-header">
+            <div class="text-uppercase font-size-xs line-height-xs">RFID</div>
+            <i class="icon-menu" title="RFID"></i>
+          </li>
+          <li class="nav-item nav-item-submenu" id="navlink-tokens"> <a href="#" class="nav-link"> <i class="icon-grid6"></i> <span> Tokens </span></a>
+            <ul class="nav nav-group-sub" data-submenu-title="Tokens">
+              <li class="nav-item"> <a href="<?php echo ADMIN_SITE_URL . '/controller/tokens/index.php' ?>" class="nav-link" id="navlink-tokens_index">All Tokens</a> </li>
+              <li class="nav-item"> <a href="<?php echo ADMIN_SITE_URL . '/controller/companies/index.php' ?>" class="nav-link" id="navlink-companies_index">Company Information</a> </li>
             </ul>
           </li>
           <!-- /main -->

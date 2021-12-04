@@ -22,3 +22,11 @@
 h6 {
   font-weight: bold;
 }
+
+.table-video {
+  height: 125px;
+  border: 1px solid #ccc;
+}
+.table-img {
+  height: 50px;
+}

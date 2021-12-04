@@ -465,6 +465,151 @@ var ImageEditUpload = (function () {
     },
   };
 })();
+var ImageUploadToken = (function () {
+  var _componentImageUploadToken = function () {
+
+    var initialPreviewLogo = [];
+    var initialPreviewConfigLogo = [];
+    var initialPreviewVideo = [];
+    var initialPreviewConfigVideo = [];
+    var logo = document.querySelector('.old-logo');
+    var video = document.querySelector('.old-video');
+    if(logo) {
+      initialPreviewLogo.push(logo.dataset.value);
+      initialPreviewConfigLogo.push({
+        caption: logo.dataset.caption,
+        size: parseInt(logo.dataset.size),
+        key: logo.dataset.key,
+        filetype: logo.dataset.filetype,
+        type: logo.dataset.type,
+        url: 'media_delete.php',
+      })
+    }
+    if(video) {
+        initialPreviewVideo.push(video.dataset.value);
+        initialPreviewConfigVideo.push({
+          caption: video.dataset.caption,
+          size: parseInt(video.dataset.size),
+          key: video.dataset.key,
+          filetype: video.dataset.filetype,
+          type: video.dataset.type,
+          url: 'media_delete.php',
+        })
+    }
+    console.log(initialPreviewConfigLogo)
+    console.log(initialPreviewLogo)
+    console.log(initialPreviewConfigVideo)
+    console.log(initialPreviewVideo)
+    // Modal template
+    var modalTemplate =
+      '<div class="modal-dialog modal-lg" role="document">\n' +
+      '  <div class="modal-content">\n' +
+      '    <div class="modal-header align-items-center">\n' +
+      '      <h6 class="modal-title">{heading} <small><span class="kv-zoom-title"></span></small></h6>\n' +
+      '      <div class="kv-zoom-actions btn-group">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+      "    </div>\n" +
+      '    <div class="modal-body">\n' +
+      '      <div class="floating-buttons btn-group"></div>\n' +
+      '      <div class="kv-zoom-body file-zoom-content"></div>\n' +
+      "{prev} {next}\n" +
+      "    </div>\n" +
+      "  </div>\n" +
+      "</div>\n";
+
+    // Buttons inside zoom modal
+    var previewZoomButtonClasses = {
+      toggleheader: "btn btn-light btn-icon btn-header-toggle btn-sm",
+      fullscreen: "btn btn-light btn-icon btn-sm",
+      borderless: "btn btn-light btn-icon btn-sm",
+      close: "btn btn-light btn-icon btn-sm",
+    };
+
+    // Icons inside zoom modal classes
+    var previewZoomButtonIcons = {
+      prev: '<i class="icon-arrow-left32"></i>',
+      next: '<i class="icon-arrow-right32"></i>',
+      toggleheader: '<i class="icon-menu-open"></i>',
+      fullscreen: '<i class="icon-screen-full"></i>',
+      borderless: '<i class="icon-alignment-unalign"></i>',
+      close: '<i class="icon-cross2 font-size-base"></i>',
+    };
+
+    $('.file-input-overwrite-rfid-img').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["image"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreviewLogo,
+      initialPreviewConfig: initialPreviewConfigLogo,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
+    $('.file-input-overwrite-rfid-vid').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["video"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreviewVideo,
+      initialPreviewConfig: initialPreviewConfigVideo,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
+  };
+
+  return {
+    init: function () {
+      _componentImageUploadToken();
+    },
+  };
+})();
 var OwlCarousel = (function () {
   var _componentOwlCarousel = function () {
     var owl = $('.owl-carousel');
@@ -564,6 +709,7 @@ document.addEventListener("DOMContentLoaded", function () {
   RegisterValidation.init();
   ImageAddUpload.init();
   ImageEditUpload.init();
+  ImageUploadToken.init();
   OwlCarousel.init();
   Summernote.init();
   CardsDraggable.init();

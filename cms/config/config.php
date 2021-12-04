@@ -22,6 +22,8 @@ $items_config = array(
     'images_path' => BASE_PATH . '/assets/frontend_assets/screen_media/',
     'modal_media_url' => USER_ASSET . '/modal_media/',
     'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
+    'rfid_media_url' => USER_ASSET . '/rfid_media/',
+    'rfid_media_path' => BASE_PATH . '/assets/frontend_assets/rfid_media/',
 );
 
 // $email_config = array(

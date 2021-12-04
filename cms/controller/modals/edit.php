@@ -71,11 +71,16 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $medias = array();
     if($item_media) {
         foreach ($item_media as $media) {
+            $media_details = $modal_obj->get_media($media['media_id']);
+            $media['detail'] = $media_details->fetch_assoc();
+            $media['detail']['size'] = explode('_', $media['detail']['file_key'])[0];
             array_push($medias, $media);
         }
     }
     $modal['items'] = $medias;
 }
+
+// echo json_encode($modal['items']);die();
 
 $title = 'Modals - SIDF';
 

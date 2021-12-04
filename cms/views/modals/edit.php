@@ -78,7 +78,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                                 <label>Arabic Description:</label>
                                                 <textarea name="text_ar[]" class="form-control" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
                                             </div>
-                                            <input type="hidden" class="old-images" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo $items_config['images_url'] . $media['name']; ?>" data-caption="<?php echo $media['name']; ?>" data-key="<?php echo $media['file_key']; ?>" data-size="<?php echo $media['size']; ?>" data-type="<?php echo $media['type']; ?>" data-filetype="<?php echo $media['filetype']; ?>">
+                                            <input type="hidden" class="old-images" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo $items_config['images_url'] . $item['detail']['name']; ?>" data-caption="<?php echo $item['detail']['name']; ?>" data-key="<?php echo $item['detail']['file_key']; ?>" data-size="<?php echo $item['detail']['size']; ?>" data-type="<?php echo $item['detail']['type']; ?>" data-filetype="<?php echo $item['detail']['filetype']; ?>">
                                             <div class="form-group">
                                                 <label>Upload Media:</label>
                                                 <input type="file" name="media[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>
