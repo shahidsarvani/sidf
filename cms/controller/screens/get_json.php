@@ -11,11 +11,11 @@ if (!isset($_SESSION['user_id']) && !$_SESSION['user_id']) {
 require_once(BASE_PATH . '/cms/model/Screen.php');
 $screen = new Screen();
 $screens = $screen->get_screens();
-$response['screens'] = [];
-$temp = array();
+$data['screens'] = [];
 $sliders = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'];
 foreach ($screens as $index => $value) {
     $item_media = $screen->get_screen_media($value['id']);
+    // $temp = array();
     $medias = array();
     $loop = $item_media->num_rows < 2 ? 'loop' : '';
     foreach ($item_media as $media) {
@@ -28,11 +28,11 @@ foreach ($screens as $index => $value) {
     // $temp['screen_name'] = $item['name'];
     // $temp['screen_slug'] = $item['slug'];
     $temp['media'] = $medias;
-    array_push($response['screens'], $temp);
+    array_push($data['screens'], $temp);
 }
 $filename = BASE_PATH . '/screens.json';
 $fp = fopen($filename, 'w');
-$written = fwrite($fp, json_encode($response, JSON_PRETTY_PRINT));
+$written = fwrite($fp, json_encode($data, JSON_PRETTY_PRINT));
 $close = fclose($fp);
 if ($close) {
     $response = [
