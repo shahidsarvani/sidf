@@ -20,12 +20,14 @@ if($sec_rows){
 			foreach($sec_tabs_rows as $sec_tabs_row){
 				$tab_icon_name = '';
 				if(strlen($sec_tabs_row['tab_icon'])>0){
-					$tab_icon_name = BASE_URL.'/assets/frontend_assets/section_tabs/'.$sec_tabs_row['tab_icon'];
+					//$tab_icon_name = BASE_URL.'/assets/frontend_assets/section_tabs/'.$sec_tabs_row['tab_icon'];
+					$tab_icon_name = './frontend_assets/section_tabs/'.$sec_tabs_row['tab_icon'];
 				}
 				
 				$bg_video_name = '';
 				if(strlen($sec_tabs_row['bg_video'])>0){
-					$bg_video_name = BASE_URL.'/assets/frontend_assets/tab_bg_videos/'.$sec_tabs_row['bg_video'];
+					//$bg_video_name = BASE_URL.'/assets/frontend_assets/tab_bg_videos/'.$sec_tabs_row['bg_video'];
+					$bg_video_name = './frontend_assets/tab_bg_videos/'.$sec_tabs_row['bg_video'];
 				} 
 								
 				$section_tabs_data[] = array(
@@ -44,7 +46,8 @@ if($sec_rows){
 				
 		$bg_video_name = '';
 		if(strlen($sec_row['bg_video'])>0){
-			$bg_video_name = BASE_URL.'/assets/frontend_assets/sections/'.$sec_row['bg_video'];
+			//$bg_video_name = BASE_URL.'/assets/frontend_assets/sections/'.$sec_row['bg_video'];
+			$bg_video_name = './frontend_assets/sections/'.$sec_row['bg_video'];
 		}
 		
 		$json_data[] = array("sec_id" => $sec_row['id'],
@@ -61,7 +64,7 @@ if($sec_rows){
 	}
 }
  
-$filename = BASE_PATH . '/sections.json';
+$filename = BASE_PATH . '/process/sections.json';
 $fp = fopen($filename, 'w');
 fwrite($fp, json_encode($json_data, JSON_PRETTY_PRINT));
 $close = fclose($fp); 

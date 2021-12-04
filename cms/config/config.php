@@ -6,7 +6,7 @@ $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
 $con_file_path = str_replace('/cms/config/config.php', '',  $con_file_path);
 define('BASE_PATH', $con_file_path);
 if ($host == 'localhost' && $mine == 1) {
-    define('BASE_URL', 'http://' . $host . '/custom3/sidf');
+    define('BASE_URL', 'http://' . $host . '/sidf');
 } else if ($host == 'localhost' && $mine == 0) {
     define('BASE_URL', 'http://' . $host . '/PHP/sidf');
 } else {

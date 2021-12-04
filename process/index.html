@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Home</title>
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="./css/bootstrap.min.css"> 
+<!--  stylesheet-->
+<link rel="stylesheet" href="./css/main.css">
+<!--  Fonts-->
+<link rel="stylesheet" href="./fonts/stylesheet.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="./images/favicon.ico" />
+<!-- Animate Css-->
+<link rel="stylesheet" href="./css/animate.min.css"/>
+<script src="./js/jquery-3.6.0.min.js" language="javascript"></script>
+<script>
+	function operate_steps(paras1='0'){
+		$(document).ready(function(){
+			var sl_lang = $("#sl_lang").val();  
+			$("#sl_current_step").val( paras1 );
+			
+			if(sl_lang == 'ar' && paras1 <=10){
+				$("html").attr("lang", "ar");
+				$("html").attr("dir", "rtl");
+				$('head').append('<link rel="stylesheet" href="./css/bootstrap.rtl.min.css" type="text/css" />'); 
+				//$(".eng-language").removeClass("active"); 
+				//$(".ar-language").addClass("active");
+			}else{
+				$("html").attr("lang", "en");
+				$("html").attr("dir", "ltr");
+				$('link[rel=stylesheet][href~="./css/bootstrap.rtl.min.css"]').remove();
+				//$(".ar-language").addClass("active");
+				//$(".eng-language").removeClass("active");  
+			}
+			   
+		  	//var sl_lang = $("body").attr("data-lang"); 
+			var random_number = Math.floor(Math.random() * 100);
+			readTextFile("./sections.json?rm="+random_number, function(txts){ 							 
+				var datas = JSON.parse(txts);
+				if(paras1 == 0){
+					var step1_txt = '';
+					$("#fetch_ar_thankyou_content").css("display", "none");
+					$("#fetch_en_thankyou_content").css("display", "none");
+					$("#fetch_tab_detail_content").css("display", "none"); 
+					$("#fetch_home_content").css("display", "");   
+					
+					for (var i=0; i< datas.length; i++) {
+						var sec_id = datas[i]["sec_id"];
+						var sec_slug = datas[i]["sec_slug"];
+						var sec_title = (sl_lang == 'ar') ? datas[i]["sec_ar_title"] : datas[i]["sec_en_title"];
+						var sec_sort_order = datas[i]["sec_sort_order"];
+						var sec_bg_video = datas[i]["sec_bg_video"];
+						var sec_status = datas[i]["sec_status"];
+						var sec_updated_on = datas[i]["sec_updated_on"];
+						var section_tabs_datas = datas[i]["section_tabs"];
+						
+						step1_txt += '<div class="col-3 p-0"> <a href="javascript:void(0)" onclick="operate_steps(\''+ sec_id +'\');"> <div class="min-vh-100 position-relative main-section"> <video autoplay muted loop class="myVideo-home"> <source src="'+sec_bg_video+'" type="video/mp4"> Your browser does not support HTML5 video.</video> <div class="overlay min-vh-100"> <h2 class="animate__animated animate__fadeInLeft"> '+sec_title+' </h2> </div> </div> </a> </div>'; 
+						
+					}
+					
+					if(step1_txt != ''){
+						$("#fetch_home_videos_content").html( step1_txt );   
+					} 
+				}else if(paras1 > 0 && paras1 <=10){
+					$("#fetch_ar_thankyou_content").css("display", "none");
+					$("#fetch_en_thankyou_content").css("display", "none");
+					$("#fetch_home_content").css("display", "none");
+					$("#fetch_tab_detail_content").css("display", "");
+					
+					var step2_txt = '';
+					var step2_tab_txt = '';  
+					for (var i=0; i< datas.length; i++) {
+						var sec_id = datas[i]["sec_id"]; 
+						
+						if(sec_id == paras1){
+							var sec_slug = datas[i]["sec_slug"];
+							var sec_title = (sl_lang == 'ar') ? datas[i]["sec_ar_title"] : datas[i]["sec_en_title"];
+							var sec_sub_title = (sl_lang == 'ar') ? datas[i]["sec_ar_sub_title"] : datas[i]["sec_en_sub_title"];
+							var sec_sort_order = datas[i]["sec_sort_order"];
+							var sec_bg_video = datas[i]["sec_bg_video"];
+							var sec_status = datas[i]["sec_status"];
+							var sec_updated_on = datas[i]["sec_updated_on"];
+							var section_tabs_datas = datas[i]["section_tabs"]; 
+							 
+							$("h2#fetch_tab_detail_heading").html( sec_title );
+							$("h2#fetch_tab_detail_sub_heading").html( sec_sub_title );
+							 
+							if(sec_bg_video != ''){
+								$('video#fetch_tab_detail_video').get(0).pause();
+								$("video#fetch_tab_detail_video source").attr("src", sec_bg_video); 
+								 
+								$('video#fetch_tab_detail_video').get(0).load(); 
+								$('video#fetch_tab_detail_video').get(0).play(); 
+							}
+							
+							step2_tab_txt = '';
+							for (var j=0; j< section_tabs_datas.length; j++) {
+								var sec_tab_id 			= section_tabs_datas[j]["sec_tab_id"];
+								var sec_tab_section_id 	= section_tabs_datas[j]["sec_tab_section_id"];	
+								var sec_tab_slug 		= section_tabs_datas[j]["sec_tab_slug"];
+								var sec_tab_title = (sl_lang == 'ar') ? section_tabs_datas[j]["sec_tab_ar_title"] : section_tabs_datas[j]["sec_tab_en_title"]; 
+								var sec_tab_sort_order 	= section_tabs_datas[j]["sec_tab_sort_order"];
+								var sec_tab_icon 		= section_tabs_datas[j]["sec_tab_icon"];	
+								var sec_tab_bg_video 	= section_tabs_datas[j]["sec_tab_bg_video"];	  
+								
+								step2_tab_txt += '<li data-src="'+sec_tab_bg_video+'" data-type="video/mp4"> <a href="#!"> <img src="'+sec_tab_icon+'" data> <h2>'+sec_tab_title+'</h2> </a> </li>';
+		 
+							}
+						}
+					} 
+					
+					if(step2_tab_txt != ''){	
+						$("#fetch_tab_detail_ul_list").html( step2_tab_txt ); 
+						video_switcher();
+					}
+				
+				}else if(paras1 >10){
+					$("#fetch_home_content").css("display", "none");
+					$("#fetch_tab_detail_content").css("display", "none");
+					
+					if(sl_lang == "ar"){
+						$("#fetch_en_thankyou_content").css("display", "none");
+						$("#fetch_ar_thankyou_content").css("display", "");
+					}else{
+						$("#fetch_ar_thankyou_content").css("display", "none");
+						$("#fetch_en_thankyou_content").css("display", "");
+					}
+				} 
+			});  
+		});
+	} 
+						
+						
+	function readTextFile(file, callback) {
+		var rawFile = new XMLHttpRequest();
+		rawFile.overrideMimeType("application/json");
+		rawFile.open("GET", file, true);
+		rawFile.onreadystatechange = function() {
+			if (rawFile.readyState === 4 && rawFile.status == "200") {
+				callback(rawFile.responseText);
+			}
+		}
+		rawFile.send(null);
+	} 
+	
+	
+	function operate_lang(lang_val){
+		$(document).ready(function(){
+			$("#sl_lang").val(lang_val);
+			var step_val = $("#sl_current_step").val();
+			operate_steps(step_val);
+		});
+	} 
+	
+</script>
+</head>
+<body onLoad="operate_steps('0');"> 
+<input type="hidden" name="sl_lang" id="sl_lang" value="en" /> 
+<input type="hidden" name="sl_current_step" id="sl_current_step" value="0" /> 
+<input type="hidden" name="sl_detail_step_tab" id="sl_detail_step_tab" value="0" /> 
+
+<div id="fetch_home_content">
+	<header class="animate__animated animate__fadeInLeft">
+	  <p><a class="eng-language app_language_cls active" data-lang="en" href="javascript:void(0)" onClick="operate_lang('en');">English</a> / <a class="ar-language app_language_cls" data-lang="ar" href="javascript:void(0)" onClick="operate_lang('ar');">العربية</a></p>
+	</header>
+	<div class="row m-0" id="fetch_home_videos_content"> Loading... </div> 
+</div>
+
+<div id="fetch_tab_detail_content" style="display:none">
+  <video id="fetch_tab_detail_video" autoplay muted loop class="myVideo-home-inner"> <source src="" type="video/mp4"> Your browser does not support HTML5 video. </video>
+  <div class="row min-vh-100 video-row position-relative px-5 py-4 m-0">
+    <div class="video-container"></div>
+    <div class="col-6 px-5 py-4">
+      <h2 class="process-title animate__animated animate__fadeInLeft" id="fetch_tab_detail_sub_heading"> </h2>
+    </div>
+    <div class="col-6 px-5 py-4">
+      <div class="icon-section for-juice"> 
+        <ul id="fetch_tab_detail_ul_list" class="animate__animated animate__fadeInRight d-flex flex-wrap justify-content-start align-items-center process-list"> Loading... </ul>
+      </div>
+    </div>
+  </div>
+  <footer> <a class="back-to-main-new animate__animated animate__fadeInLeft" href="javascript:void(0)" onClick="operate_steps('0');"> <img src="./images/thankyou-logo.svg"> </a>
+    <div class="detail-language-switcher animate__animated animate__fadeInUp">
+      <p><a class="eng-language app_language_cls" data-lang="en" href="javascript:void(0)" onClick="operate_lang('en');">English</a> / <a class="ar-language app_language_cls" data-lang="ar" href="javascript:void(0)" onClick="operate_lang('ar');">العربية</a></p> </div>
+    <a class="back-to-main animate__animated animate__fadeInRight" href="javascript:void(0)" onClick="operate_steps('0');"><h2 id="fetch_tab_detail_heading"> </h2></a>  </footer>
+</div> 
+
+<div id="fetch_en_thankyou_content" style="display:none">
+	<div class="thank-you min-vh-100">
+		<div class="row min-vh-100 d-flex justify-content-end align-items-end text-center">
+			<div class="col-4">
+				<div class="thanyou-box">
+					<h2>Thank You</h2>
+					<a href="javascript:void(0)" onClick="operate_steps('0');">Main Page</a>
+					<div class="thankyou-logo">
+						<a href="javascript:void(0)" onClick="operate_steps('0');"><img src="./images/thankyou-logo.svg" alt="logo" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+<div id="fetch_ar_thankyou_content" style="display:none">
+	<div class="thank-you min-vh-100">
+		<div class="row min-vh-100 d-flex justify-content-end align-items-end text-center">
+			<div class="col-4">
+				<div class="thanyou-box">
+					<h2>اشكرك</h2>
+					<a href="javascript:void(0)" onClick="operate_steps('0');">الصفحة الرئيسية</a>
+					<div class="thankyou-logo">
+						<a href="javascript:void(0)" onClick="operate_steps('0');"><img src="./images/thankyou-logo.svg" alt="logo" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./js/main.js"></script>
+</body>
+</html>

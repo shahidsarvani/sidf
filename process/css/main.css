@@ -1,0 +1,327 @@
+body,
+html {
+  overflow: hidden !important;
+}
+.sec-1 {
+  background: url("../images/smothie-one.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sec-2 {
+  background: url("../images/smothie-two.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sec-3 {
+  background: url("../images/smothie-three.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sec-4 {
+  background: url("../images/smothie-four.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main-section h2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 80px;
+  color: #fff;
+  font-size: 100px;
+  font-family: "Neo Sans Arabic";
+  font-weight: normal;
+}
+
+.main-section .overlay {
+  min-height: 100vh !important;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 212, 255, 0) 100%
+  );
+}
+
+.process-title {
+  font-size: 64px;
+  color: #606060;
+  text-transform: uppercase;
+  font-family: "Neo Sans Arabic";
+}
+.main-section {
+  overflow: hidden;
+}
+
+.myVideo-home {
+  position: absolute;
+  right: -150%;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  height: 100%;
+}
+
+.myVideo-home-inner {
+  position: absolute;
+  right: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  height: 100%;
+}
+
+.myVideo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+.icon-section {
+  padding: 60px 30px 0px 30px;
+}
+.icon-box {
+  text-align: center;
+}
+
+.icon-section ul li h2 {
+  color: #606060;
+  text-decoration: none;
+  margin: 30px 0 0 0;
+  font-size: 32px;
+  text-transform: uppercase;
+  font-family: "Neo Sans Arabic";
+  font-weight: normal;
+}
+
+.icon-section ul li a {
+  text-decoration: none;
+}
+
+.icon-section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.icon-section ul li {
+  text-align: center;
+  display: inline-block;
+  width: 33.33%;
+  margin-bottom: 60px;
+}
+
+.for-tiles ul li {
+  width: 33.33%;
+}
+
+.for-pills ul li {
+  width: 33.33%;
+}
+
+.for-gold ul li {
+  width: 34%;
+}
+
+.for-ship ul li {
+  width: 33.33%;
+}
+
+.icon-section ul li img {
+  width: 140px;
+  height: 100px;
+}
+
+.for-juice ul li {
+  width: 25%;
+}
+
+.icon-section.for-juice ul li h2 {
+  font-size: 25px;
+}
+
+.icon-section.for-pills ul li h2 {
+  font-size: 25px;
+}
+
+.icon-section.for-juice ul li img {
+  width: 90px;
+  height: 80px;
+}
+
+.video-row::after {
+  content: "";
+  min-height: 100vh !important;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  z-index: -1;
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+header {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  z-index: 9999;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header a, header p {
+    color: #fff;
+    font-size: 41px;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: "Neo Sans Arabic";
+    font-weight: normal;
+}
+.eng-language {
+    font-size: 36px;
+}
+.ar-language {
+  font-size: 50px;
+}
+
+footer {
+  position: relative;
+}
+
+footer .back-to-main-new {
+  position: absolute;
+  bottom: 50px;
+  left: 90px;
+  z-index: 99;
+}
+
+footer .back-to-main {
+  position: absolute;
+  bottom: 60px;
+  right: 130px;
+}
+
+footer a {
+  text-decoration: none;
+}
+.back-to-main-new img {
+  width: 250px;
+}
+
+footer h2 {
+    text-decoration: none;
+    font-size: 60px;
+    color: #606060;
+    text-transform: uppercase;
+    font-family: "Neo Sans Arabic";
+    font-weight: normal;
+    display: none;
+}
+.video-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.icon-section ul li.current {
+  filter: invert(55%) sepia(23%) saturate(1076%) hue-rotate(63deg) brightness(103%) contrast(88%);
+}
+.icon-section ul li.animated {
+  filter: invert(66%) sepia(9%) saturate(52%) hue-rotate(182deg) brightness(90%) contrast(93%);
+  animation: pulse 1s infinite ease-in-out alternate;
+}
+ .icon-section ul li.next {
+  filter: invert(53%) sepia(90%) saturate(436%) hue-rotate(339deg) brightness(88%) contrast(108%);
+  animation: pulse 1s infinite ease-in-out alternate;
+}
+@keyframes pulse {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+.thank-you h2 {
+  font-family: "Neo Sans Arabic";
+  text-transform: uppercase;
+  font-size: 70px;
+  color: #606060;
+}
+.thankyou-logo img {
+  width: 340px;
+}
+.thankyou-logo {
+  margin-top: 100px;
+}
+.thanyou-box {
+  margin-bottom: 140px;
+}
+.thanyou-box h2 {
+  margin-bottom: 50px;
+}
+.thank-you a {
+  font-family: "Neo Sans Arabic";
+  text-transform: uppercase;
+  font-size: 50px;
+  color: #606060;
+  text-decoration: none;
+}
+
+.thank-you {
+  background: url("../images/thankyou-bg.png");
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.detail-language-switcher {
+    position: absolute;
+    bottom: 60px;
+    right: 130px;
+}
+.detail-language-switcher p {
+    text-decoration: none;
+    font-size: 40px;
+    color: #606060;
+    text-transform: uppercase;
+    font-family: "Neo Sans Arabic";
+    font-weight: normal;
+    margin: 0;
+}
+.detail-language-switcher p a {
+  color: #606060;
+  text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+}
+
+/* @keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+} */

@@ -178,7 +178,7 @@ class Sections {
 		if(isset($_FILES["bg_video"]["tmp_name"]) && strlen($_FILES["bg_video"]["tmp_name"])>0){
 			$ext = pathinfo($_FILES["bg_video"]["name"], PATHINFO_EXTENSION);
 			$bg_video_name = md5(uniqid(rand(), true)). '.'. $ext; 
-			$path_with_video = "../../../assets/frontend_assets/sections/".$bg_video_name;  
+			$path_with_video = "../../../process/frontend_assets/sections/".$bg_video_name;  
 			@move_uploaded_file($_FILES["bg_video"]["tmp_name"], $path_with_video); 
 		} 
 		
@@ -200,7 +200,7 @@ class Sections {
 					if(isset($_FILES["tab_icon"]["tmp_name"]["$n"]) && strlen($_FILES["tab_icon"]["tmp_name"]["$n"])>0){ 
 						$ext = pathinfo($_FILES["tab_icon"]["name"]["$n"], PATHINFO_EXTENSION);
 						$tab_icon_name = md5(uniqid(rand(), true)).'.'. $ext;  
-						$path_with_tab_icon = "../../../assets/frontend_assets/section_tabs/".$tab_icon_name;  
+						$path_with_tab_icon = "../../../process/frontend_assets/section_tabs/".$tab_icon_name;  
 						@move_uploaded_file($_FILES["tab_icon"]["tmp_name"]["$n"], $path_with_tab_icon); 
 					} 
 					
@@ -208,7 +208,7 @@ class Sections {
 					if(isset($_FILES["tab_bg_video"]["tmp_name"]["$n"]) && strlen($_FILES["tab_bg_video"]["tmp_name"]["$n"])>0){
 						$ext = pathinfo($_FILES["tab_bg_video"]["name"]["$n"], PATHINFO_EXTENSION);
 						$tab_bg_video_name = md5(uniqid(rand(), true)).'.'. $ext;  
-						$path_with_tab_video = "../../../assets/frontend_assets/tab_bg_videos/".$tab_bg_video_name;  
+						$path_with_tab_video = "../../../process/frontend_assets/tab_bg_videos/".$tab_bg_video_name;  
 						@move_uploaded_file($_FILES["tab_bg_video"]["tmp_name"]["$n"], $path_with_tab_video); 
 					}
 					 
@@ -242,12 +242,12 @@ class Sections {
 		$bg_video_name = (isset($data['old_bg_video']) && $data['old_bg_video'] != '') ? $data['old_bg_video'] : '';
 		if(isset($_FILES["bg_video"]["tmp_name"]) && strlen($_FILES["bg_video"]["tmp_name"])>0){
 			if($bg_video_name != ''){
-				@unlink("../../../assets/frontend_assets/sections/{$bg_video_name}");
+				@unlink("../../../process/frontend_assets/sections/{$bg_video_name}");
 			}
 			 
 			$ext = pathinfo($_FILES["bg_video"]["name"], PATHINFO_EXTENSION);
 			$bg_video_name = md5(uniqid(rand(), true)). '.'. $ext; 
-			$path_with_video = "../../../assets/frontend_assets/sections/".$bg_video_name;  
+			$path_with_video = "../../../process/frontend_assets/sections/".$bg_video_name;  
 			@move_uploaded_file($_FILES["bg_video"]["tmp_name"], $path_with_video); 
 		} 
 		
@@ -268,23 +268,23 @@ class Sections {
 					
 					if(isset($_FILES["tab_icon"]["tmp_name"]["$n"]) && strlen($_FILES["tab_icon"]["tmp_name"]["$n"])>0){
 						if($tab_icon_name != ''){
-							@unlink("../../../assets/frontend_assets/section_tabs/{$tab_icon_name}");
+							@unlink("../../../process/frontend_assets/section_tabs/{$tab_icon_name}");
 						}
 						
 						$ext = pathinfo($_FILES["tab_icon"]["name"]["$n"], PATHINFO_EXTENSION);
 						$tab_icon_name = md5(uniqid(rand(), true)).'.'. $ext;  
-						$path_with_tab_icon = "../../../assets/frontend_assets/section_tabs/".$tab_icon_name;  
+						$path_with_tab_icon = "../../../process/frontend_assets/section_tabs/".$tab_icon_name;  
 						@move_uploaded_file($_FILES["tab_icon"]["tmp_name"]["$n"], $path_with_tab_icon); 
 					}
 					
 					$tab_bg_video_name = (isset($data['old_tab_bg_video']["$n"]) && $data['old_tab_bg_video']["$n"] != '') ? $data['old_tab_bg_video']["$n"] : ''; 
 					if(isset($_FILES["tab_bg_video"]["tmp_name"]["$n"]) && strlen($_FILES["tab_bg_video"]["tmp_name"]["$n"])>0){ 
 						if($tab_bg_video_name != ''){
-							@unlink("../../../assets/frontend_assets/tab_bg_videos/{$tab_bg_video_name}");
+							@unlink("../../../process/frontend_assets/tab_bg_videos/{$tab_bg_video_name}");
 						}
 						$ext = pathinfo($_FILES["tab_bg_video"]["name"]["$n"], PATHINFO_EXTENSION);
 						$tab_bg_video_name = md5(uniqid(rand(), true)).'.'. $ext;  
-						$path_with_tab_video = "../../../assets/frontend_assets/tab_bg_videos/".$tab_bg_video_name;  
+						$path_with_tab_video = "../../../process/frontend_assets/tab_bg_videos/".$tab_bg_video_name;  
 						@move_uploaded_file($_FILES["tab_bg_video"]["tmp_name"]["$n"], $path_with_tab_video); 
 					}
 					
