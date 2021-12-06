@@ -171,3 +171,8 @@ img.footer_logo {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.icon_single_inner .icon_img {
+  width: 60px;
+  margin-bottom: 20px;
+}

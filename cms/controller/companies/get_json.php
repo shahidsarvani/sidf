@@ -32,9 +32,9 @@ foreach ($companies as $index => $value) {
         foreach ($icons as $icon) {
             $title_ar = $icon["title_ar"];
             $title_eng = $icon["title_eng"];
-            // $icon_img = $company->get_media($icon["icon"]);
-            // $icon_img = $icon_img->fetch_assoc();
-            $icon_img['name'] = '';
+            $icon_img = $company->get_media($icon["icon"]);
+            $icon_img = $icon_img->fetch_assoc();
+            // $icon_img['name'] = '';
             $icon_html .= '<div class="icon_single_inner d-flex flex-column align-items-center">
                             <img class="icon_img" src="' . $items_config['rfid_media_url'] . $icon_img['name'] . '" alt="logo" />
                             <h2 class="text-uppercase">' . $title_eng . '</h2>
