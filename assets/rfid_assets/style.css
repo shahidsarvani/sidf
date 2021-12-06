@@ -48,7 +48,7 @@ p {
   margin-bottom: 35px;
 }
 .icon_single_inner h2 {
-  font-size: 25px;
+  font-size: 24px;
   text-align: center;
   font-family: NeoSansAr;
 }
@@ -167,7 +167,7 @@ img.footer_logo {
 }
 
 .scroll-bar {
-  height: 600px;
+  height: 800px;
   overflow-y: auto;
   overflow-x: hidden;
 }
