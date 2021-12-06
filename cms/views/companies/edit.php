@@ -92,22 +92,23 @@ require ADMIN_VIEW . '/layout/header.php';
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Title (English):</label>
                                                             <input type="text" name="title_eng[]" value="<?php echo $icon['title_eng'] ?>" class="form-control" placeholder="Title">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Title (Arabic):</label>
                                                             <input type="text" name="title_ar[]" value="<?php echo $icon['title_ar'] ?>" class="form-control" placeholder="العنوان">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label>Icon Class:</label>
-                                                            <input type="text" name="icon[]" value="<?php echo $icon['icon'] ?>" class="form-control" placeholder="fa fa-car">
+                                                            <label>Icon:</label>
+                                                            <input type="file" name="icon[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>
+                                                            <input type="hidden" class="old-icons" name="icon_key[]" value="<?php echo $icon['media_id']; ?>" data-value="<?php echo $items_config['images_url'] . $icon['detail']['name']; ?>" data-caption="<?php echo $icon['detail']['name']; ?>" data-key="<?php echo $icon['detail']['file_key']; ?>" data-size="<?php echo $icon['detail']['size']; ?>" data-type="<?php echo $icon['detail']['type']; ?>" data-filetype="<?php echo $icon['detail']['filetype']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>

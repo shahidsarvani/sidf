@@ -100,7 +100,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Icon:</label>
-                                                    <input type="file" name="icon" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
+                                                    <input type="file" name="icon[]" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
                                                 </div>
                                             </div>
                                         </div>
@@ -258,7 +258,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Icon:</label>
-                                                    <input type="file" name="icon" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
+                                                    <input type="file" name="icon[]" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
                                                 </div>
                                             </div>
                                         </div>

@@ -479,6 +479,7 @@ var ImageUploadToken = (function () {
     var logo = document.querySelector('.old-logo');
     var video = document.querySelector('.old-video');
     var loader_video = document.querySelector('.old-loader-video');
+    var loader_video = document.querySelectorAll('.old-icons');
     if(logo) {
       initialPreviewLogo.push(logo.dataset.value);
       initialPreviewConfigLogo.push({

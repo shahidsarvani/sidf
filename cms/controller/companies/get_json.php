@@ -32,8 +32,9 @@ foreach ($companies as $index => $value) {
         foreach ($icons as $icon) {
             $title_ar = $icon["title_ar"];
             $title_eng = $icon["title_eng"];
-            $icon_img = $company->get_media($icon["icon"]);
-            $icon_img = $icon_img->fetch_assoc();
+            // $icon_img = $company->get_media($icon["icon"]);
+            // $icon_img = $icon_img->fetch_assoc();
+            $icon_img['name'] = '';
             $icon_html .= '<div class="icon_single_inner d-flex flex-column align-items-center">
                             <img class="icon_img" src="' . $items_config['rfid_media_url'] . $icon_img['name'] . '" alt="logo" />
                             <h2 class="text-uppercase">' . $title_eng . '</h2>
@@ -46,10 +47,9 @@ foreach ($companies as $index => $value) {
                     <source src="' . $items_config['rfid_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">
                 </video>
             </div>
-            <div class="text_wrapper_outter">
+            <div class="text_wrapper_outter w-100">
                 <div class="container-fluid h-100">
                     <div class="row h-100">
-
                         <div class="col-6 h-100 d-flex align-items-center justify-content-center left-column">
                             <div class="images_single_outter">
                                 <div class="images_wrapper_inner d-flex justify-content-center pb-4">
@@ -60,15 +60,17 @@ foreach ($companies as $index => $value) {
                                 </div>
                             </div>
                         </div>
-
+                    
                         <div class="col-6 h-100 d-flex align-items-center justify-content-center flex-column right-column">
-                            <div class="text_wrapper_op p-4">
-                                <h1 class="text-uppercase heading_main">' . $value['name_eng'] . '</h1>
-                                <p>' . $value['info_eng'] . '</p>
-                            </div>
-                            <div class="text_wrapper_op p-4 direction_rtl mt-4 arabic-content">
-                                <h1 class="text-uppercase heading_main">' . $value['name_ar'] . '</h1>
-                                <p>' . $value['info_ar'] . '</p>
+                            <div class="scroll-bar">
+                                <div class="text_wrapper_op p-4">
+                                    <h1 class="text-uppercase heading_main">' . $value['name_eng'] . '</h1>
+                                    <p>' . $value['info_eng'] . '</p>
+                                </div>
+                                <div class="text_wrapper_op p-4 direction_rtl mt-4 arabic-content">
+                                    <h1 class="text-uppercase heading_main">' . $value['name_ar'] . '</h1>
+                                    <p>' . $value['info_ar'] . '</p>
+                                </div>
                             </div>
                         </div>
                     </div>
