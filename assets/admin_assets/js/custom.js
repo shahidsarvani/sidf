@@ -479,8 +479,10 @@ var ImageUploadToken = (function () {
     var logo = document.querySelector('.old-logo');
     var video = document.querySelector('.old-video');
     var loader_video = document.querySelector('.old-loader-video');
-    var loader_video = document.querySelectorAll('.old-icons');
-    if(logo) {
+    var icons = document.querySelectorAll('.old-icons');
+    console.log(initialPreviewConfig)
+    console.log(initialPreview)
+    if (logo) {
       initialPreviewLogo.push(logo.dataset.value);
       initialPreviewConfigLogo.push({
         caption: logo.dataset.caption,
@@ -491,27 +493,40 @@ var ImageUploadToken = (function () {
         url: 'media_delete.php',
       })
     }
-    if(video) {
-        initialPreviewVideo.push(video.dataset.value);
-        initialPreviewConfigVideo.push({
-          caption: video.dataset.caption,
-          size: parseInt(video.dataset.size),
-          key: video.dataset.key,
-          filetype: video.dataset.filetype,
-          type: video.dataset.type,
-          url: 'media_delete.php',
-        })
+    if (video) {
+      initialPreviewVideo.push(video.dataset.value);
+      initialPreviewConfigVideo.push({
+        caption: video.dataset.caption,
+        size: parseInt(video.dataset.size),
+        key: video.dataset.key,
+        filetype: video.dataset.filetype,
+        type: video.dataset.type,
+        url: 'media_delete.php',
+      })
     }
-    if(loader_video) {
-        initialPreviewLoaderVideo.push(loader_video.dataset.value);
-        initialPreviewConfigLoaderVideo.push({
-          caption: loader_video.dataset.caption,
-          size: parseInt(loader_video.dataset.size),
-          key: loader_video.dataset.key,
-          filetype: loader_video.dataset.filetype,
-          type: loader_video.dataset.type,
+    if (loader_video) {
+      initialPreviewLoaderVideo.push(loader_video.dataset.value);
+      initialPreviewConfigLoaderVideo.push({
+        caption: loader_video.dataset.caption,
+        size: parseInt(loader_video.dataset.size),
+        key: loader_video.dataset.key,
+        filetype: loader_video.dataset.filetype,
+        type: loader_video.dataset.type,
+        url: 'media_delete.php',
+      })
+    }
+    if (icons) {
+      icons.forEach(function (icon, index) {
+        initialPreview.push(icon.dataset.value);
+        initialPreviewConfig.push({
+          caption: icon.dataset.caption,
+          size: parseInt(icon.dataset.size),
+          key: icon.dataset.key,
+          filetype: icon.dataset.filetype,
+          type: icon.dataset.type,
           url: 'media_delete.php',
         })
+      })
     }
     console.log(initialPreviewConfigLogo)
     console.log(initialPreviewLogo)

@@ -47,11 +47,11 @@ foreach ($companies as $index => $value) {
                     <source src="' . $items_config['rfid_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">
                 </video>
             </div>
-            <div class="text_wrapper_outter w-100">
+            <div class="text_wrapper_outter">
                 <div class="container-fluid h-100">
                     <div class="row h-100">
                         <div class="col-6 h-100 d-flex align-items-center justify-content-center left-column">
-                            <div class="images_single_outter">
+                            <div class="images_single_outter w-100">
                                 <div class="images_wrapper_inner d-flex justify-content-center pb-4">
                                     <img class="w-75" src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
                                 </div>
