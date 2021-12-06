@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $company = new Company();
     $id = $_POST['id'];
-    echo json_encode($_POST);
-    echo json_encode($id);
-    die();
+    // echo json_encode($_POST);
+    // echo json_encode($id);
+    // die();
     $res = $company->edit_company($id, $_POST);
     $data = array();
     if(array_key_exists('title_eng', $_POST)) {
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'company_token_id' => $_POST['company_token_id'],
                     'title_eng' => $_POST['title_eng'][$i],
                     'title_ar' => $_POST['title_ar'][$i],
-                    'icon' => $_POST['icon'][$i],
+                    'icon' => $_POST['icon_key'][$i],
                 ];
             }
         }
