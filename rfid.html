@@ -19,7 +19,7 @@
         <video id="vid" class="categories_video_inner" autoplay loop muted>
             <source src="./assets/rfid_assets/videos/loader/sabic.mp4" type="video/mp4">
         </video>
-    </div> 
+    </div>
 
     <div class="text_wrapper_outter_1">
         <div class="container-fluid min-vh-100">
@@ -187,10 +187,17 @@
         var slug = $(this).attr("data-slug");
         var loader_name = $(this).attr("data-loader_name");
         var loader_type = $(this).attr("data-loader_type");
-        $('#preloader').empty().html('<video id="vid" class="categories_video_inner" autoplay muted loop><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+        $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + slug + '\')" autoplay muted loop><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+    })
+    $(document).on("click", ".footer_logo", function (event) {
+        $('#index_1').fadeOut('slow', function () {
+            $('.text_wrapper_outter_1').fadeIn('slow')
+        })
+    })
+    function preLoaderAdded(slug) {
+        var video_duration = document.getElementById('vid').duration * 1000
         readTextFile("companies.json", function (text) {
             var data = JSON.parse(text);
-            console.log(data.companies);
             if (data.companies[slug] === undefined) {
                 alert('Company info not added')
             } else {
@@ -198,21 +205,14 @@
                 $('#index_1').empty();
                 $('#index_1').append(html)
                 $('#index_1').append('<footer><img src="./assets/rfid_assets/images/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
-                $('.text_wrapper_outter_1').addClass("d-none");
-                setTimeout(function() {
-                    $('#preloader').fadeIn('slow').delay(6000).fadeOut('slow', function () {
-                        $('#index_1').fadeIn("slow");
-                    }); // will fade out the white DIV that covers the website. 
-                    $('body').delay(6000).css({ 'overflow': 'visible' });
-                }, 1000)
+                $('.text_wrapper_outter_1').fadeOut();
+                $('#preloader').fadeIn('slow').delay(video_duration).fadeOut('slow', function () {
+                    $('#index_1').fadeIn("slow");
+                }); // will fade out the white DIV that covers the website. 
+                $('body').delay(video_duration).css({ 'overflow': 'visible' });
             }
         });
-    })
-    $(document).on("click", ".footer_logo", function (event) {
-        $('#index_1').fadeOut('slow', function() {
-            $('.text_wrapper_outter_1').removeClass('d-none')
-        })
-    })
+    }
 </script>
 
 </html>

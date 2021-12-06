@@ -1,5 +1,5 @@
 <?php
-$mine = 2;
+$mine = 0;
 $host = $_SERVER['HTTP_HOST'];
 $con_file_path = __FILE__;
 $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
