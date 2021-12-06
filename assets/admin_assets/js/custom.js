@@ -620,7 +620,7 @@ var ImageUploadToken = (function () {
     });
     $('.file-input-overwrite-rfid-loadervid').fileinput({
       browseLabel: 'Browse',
-      uploadUrl: "upload_media.php", // server upload action
+      uploadUrl: "upload_media_loader.php", // server upload action
       enableResumableUpload: true,
       autoOrientImage: false,
       allowedFileTypes: ["video"],
