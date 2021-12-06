@@ -1,5 +1,5 @@
 <?php
-$mine = 2;
+$mine = 0;
 $host = $_SERVER['HTTP_HOST'];
 $con_file_path = __FILE__;
 $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
@@ -29,18 +29,6 @@ $items_config = array(
     'rfid_loadermedia_url' => USER_ASSET . '/rfid_media/loader/',
     'rfid_loadermedia_path' => BASE_PATH . '/assets/frontend_assets/rfid_media/loader/',
 );
-
-// $email_config = array(
-//     'email_address' => 'hamza0952454@gmail.com',
-//     'email_name' => 'Hamza Bhatti',
-//     'email_password' => '2777a16b9398ac',
-//     'email_subject' => 'Password Reset Code',
-//     'email_username' => '28f97a1a718e43',
-//     'smtp_host' => 'smtp.mailtrap.io',
-//     'smtp_port' => '2525',
-//     'smtp_encrypt' => 'tls'
-// );
-
 
 /* start of the file uploading function */
 function fileExists($file, $dir)

@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $company = new Company();
     $id = $_POST['id'];
-    // echo json_encode($_POST);
-    // echo json_encode($id);
-    // die();
+    echo json_encode($_POST);
+    echo json_encode($id);
+    die();
     $res = $company->edit_company($id, $_POST);
     $data = array();
     if(array_key_exists('title_eng', $_POST)) {
@@ -60,13 +60,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $tokens = $token->get_tokens();
     $company_obj = new Company();
     $company = $company_obj->get_company($_GET['id']);
-    $icons = $company_obj->get_company_icons($company['company_token_id']);
     $logo = $company_obj->get_media($company['logo_key']);
     $logo = $logo->fetch_assoc();
     $logo['size'] = explode('_', $logo['file_key'])[0];
     $video = $company_obj->get_media($company['video_key']);
     $video = $video->fetch_assoc();
     $video['size'] = explode('_', $video['file_key'])[0];
+    $icon_array = array();
+    $icons = $company_obj->get_company_icons($company['company_token_id']);
+    if($icons) {
+        foreach ($icons as $icon) {
+            $temp = array();
+            $icon_media = $company_obj->get_media($icon['icon']);
+            $temp['title_eng'] = $icon['title_eng'];
+            $temp['title_ar'] = $icon['title_ar'];
+            $temp['icon'] = $icon['icon'];
+            $temp['icon_detail'] = $icon_media->fetch_assoc();
+            $temp['icon_detail']['size'] = explode('_', $temp['icon_detail']['file_key'])[0];
+            array_push($icon_array, $temp);
+        }
+    }
+    // echo json_encode($icon_array);
+    // die();
 }
 
 $title = 'Company Information - SIDF';
