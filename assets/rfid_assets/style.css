@@ -40,7 +40,7 @@ p {
 }
 .text_wrapper_op p {
   font-size: 20px;
-  font-family: NeoSansRegular;
+  font-family: 'NeoSansArabicRegular';
 }
 .direction_rtl {
   direction: rtl;
@@ -54,6 +54,7 @@ p {
 }
 .icon_single_inner h2 {
   font-size: 25px;
+  text-align: center;
 }
 .icon_single_inner {
   width: 33%;
@@ -137,9 +138,11 @@ p {
   width: 100%;
   object-fit: contain;
 }
+
 .page-title h2 {
   font-size: 70px;
   color: #5a595a;
+  font-family: NeoSansAr;
 }
 .video-logo {
   min-height: 200px;
@@ -153,7 +156,7 @@ p {
   width: 140px;
 }
 footer {
-  padding: 2rem;
+  padding: 0;
   display: flex;
   justify-content: right;
 }
@@ -161,4 +164,8 @@ img.footer_logo {
     position: absolute;
     bottom: 70px;
     left: 40px;
+}
+
+.page-title-arabic{
+  font-family: NeoSansArabicRegular !important;
 }
