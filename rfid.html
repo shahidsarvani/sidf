@@ -85,8 +85,9 @@
                 $('#index_1').empty();
                 $('#index_1').append(html)
                 $('#index_1').append('<footer><img src="./assets/rfid_assets/images/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
-                $('.text_wrapper_outter_1').fadeOut('slow');
-                $('#preloader').fadeIn('slow')
+                $('.text_wrapper_outter_1').fadeOut('slow', function() {
+                    $('#preloader').fadeIn('slow')
+                });
             }
         });
     }
