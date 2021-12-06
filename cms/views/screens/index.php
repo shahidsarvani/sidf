@@ -162,7 +162,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     } else {
                         swalInit.fire({
                             title: 'Error!',
-                            text: 'JSON file is not created.',
+                            text: 'JSON file is not created 123.',
                             type: 'error'
                         })
                     }
@@ -171,7 +171,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     console.log(result.responseText);
                     swalInit.fire({
                         title: 'Error!',
-                        text: 'JSON file is not created.',
+                        text: 'JSON file is not created. 456',
                         type: 'error'
                     })
                 }
