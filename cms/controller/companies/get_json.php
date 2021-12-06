@@ -32,9 +32,10 @@ foreach ($companies as $index => $value) {
         foreach ($icons as $icon) {
             $title_ar = $icon["title_ar"];
             $title_eng = $icon["title_eng"];
-            $icon = $icon["icon"];
+            $icon_img = $company->get_media($icon["icon"]);
+            $icon_img = $icon_img->fetch_assoc();
             $icon_html .= '<div class="icon_single_inner d-flex flex-column align-items-center">
-                            <i class="' . $icon . '"></i>
+                            <img class="icon_img" src="' . $items_config['rfid_media_url'] . $icon_img['name'] . '" alt="logo" />
                             <h2 class="text-uppercase">' . $title_eng . '</h2>
                             <h2 class="text-uppercase arabic-content">' . $title_ar . '</h2>
                         </div>';
@@ -49,7 +50,7 @@ foreach ($companies as $index => $value) {
                 <div class="container-fluid h-100">
                     <div class="row h-100">
 
-                        <div class="col-6 h-100 d-flex align-items-center justify-content-center">
+                        <div class="col-6 h-100 d-flex align-items-center justify-content-center left-column">
                             <div class="images_single_outter">
                                 <div class="images_wrapper_inner d-flex justify-content-center pb-4">
                                     <img class="w-75" src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
@@ -60,7 +61,7 @@ foreach ($companies as $index => $value) {
                             </div>
                         </div>
 
-                        <div class="col-6 h-100 d-flex align-items-center justify-content-center flex-column">
+                        <div class="col-6 h-100 d-flex align-items-center justify-content-center flex-column right-column">
                             <div class="text_wrapper_op p-4">
                                 <h1 class="text-uppercase heading_main">' . $value['name_eng'] . '</h1>
                                 <p>' . $value['info_eng'] . '</p>

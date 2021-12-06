@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'company_token_id' => $_POST['company_token_id'],
                     'title_eng' => $_POST['title_eng'][$i],
                     'title_ar' => $_POST['title_ar'][$i],
-                    'icon' => $_POST['icon'][$i],
+                    'icon' => $_POST['icon_key'][$i],
                 ];
             }
         }

@@ -100,13 +100,11 @@ require ADMIN_VIEW . '/layout/header.php';
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Icon:</label>
-                                                    <input type="hidden" name="icon_key" id="icon_key" class="modal_media">
                                                     <input type="file" name="icon" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -146,8 +144,17 @@ require ADMIN_VIEW . '/layout/footer.php';
             $('#video_key-error').css('display', 'none');
         }
 
+        function iconUploaded(event, previewId, index, fileId) {
+            console.log('File uploaded', previewId, index, fileId);
+            var hiddenInput = '<input type="hidden" name="icon_key[]" value="' + fileId + '" class="icon_media" >';
+            console.log($(this))
+            console.log(event.currentTarget);
+            $('#' + event.currentTarget.id).parents('.form-group').append(hiddenInput);
+        }
+
         $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded);
         $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded);
+        $('.file-input-overwrite-rfid-icon').on('fileuploaded', iconUploaded);
 
         var validator = $("#company-form").validate({
             ignore: ".select2-search__field", // ignore hidden fields
@@ -236,22 +243,22 @@ require ADMIN_VIEW . '/layout/footer.php';
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Title (English):</label>
                                                     <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Title (Arabic):</label>
                                                     <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Icon Class:</label>
-                                                    <input type="text" name="icon[]" class="form-control" placeholder="fa fa-car">
+                                                    <label>Icon:</label>
+                                                    <input type="file" name="icon" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
                                                 </div>
                                             </div>
                                         </div>
@@ -259,7 +266,82 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 </div>
                             </div>`;
             $('#items').append(html);
+            init_fileinput();
         })
+
+        function init_fileinput() {
+            var fileInputElem = $("#items .menu_item").last().find('.file-input-overwrite-rfid-icon');
+            console.log(fileInputElem)
+            var modalTemplate =
+                '<div class="modal-dialog modal-lg" role="document">\n' +
+                '  <div class="modal-content">\n' +
+                '    <div class="modal-header align-items-center">\n' +
+                '      <h6 class="modal-title">{heading} <small><span class="kv-zoom-title"></span></small></h6>\n' +
+                '      <div class="kv-zoom-actions btn-group">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+                "    </div>\n" +
+                '    <div class="modal-body">\n' +
+                '      <div class="floating-buttons btn-group"></div>\n' +
+                '      <div class="kv-zoom-body file-zoom-content"></div>\n' +
+                "{prev} {next}\n" +
+                "    </div>\n" +
+                "  </div>\n" +
+                "</div>\n";
+
+            // Buttons inside zoom modal
+            var previewZoomButtonClasses = {
+                toggleheader: "btn btn-light btn-icon btn-header-toggle btn-sm",
+                fullscreen: "btn btn-light btn-icon btn-sm",
+                borderless: "btn btn-light btn-icon btn-sm",
+                close: "btn btn-light btn-icon btn-sm",
+            };
+
+            // Icons inside zoom modal classes
+            var previewZoomButtonIcons = {
+                prev: '<i class="icon-arrow-left32"></i>',
+                next: '<i class="icon-arrow-right32"></i>',
+                toggleheader: '<i class="icon-menu-open"></i>',
+                fullscreen: '<i class="icon-screen-full"></i>',
+                borderless: '<i class="icon-alignment-unalign"></i>',
+                close: '<i class="icon-cross2 font-size-base"></i>',
+            };
+
+            fileInputElem.fileinput({
+                browseLabel: 'Browse',
+                uploadUrl: "upload_media.php", // server upload action
+                enableResumableUpload: true,
+                autoOrientImage: false,
+                allowedFileTypes: ["image", "video"],
+                browseIcon: '<i class="icon-file-plus mr-2"></i>',
+                uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+                removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+                layoutTemplates: {
+                    icon: '<i class="icon-file-check"></i>',
+                    modal: modalTemplate
+                },
+                // initialPreview: initialPreview,
+                // initialPreviewConfig: initialPreviewConfig,
+                initialPreviewAsData: true,
+                overwriteInitial: false,
+                previewZoomButtonClasses: previewZoomButtonClasses,
+                previewZoomButtonIcons: previewZoomButtonIcons,
+                fileActionSettings: {
+                    zoomClass: '',
+                    zoomIcon: '<i class="icon-zoomin3"></i>',
+                    dragClass: 'p-2',
+                    dragIcon: '<i class="icon-three-bars"></i>',
+                    removeClass: '',
+                    removeErrorClass: 'text-danger',
+                    removeIcon: '<i class="icon-bin"></i>',
+                    indicatorNew: '<i class="icon-file-plus text-success"></i>',
+                    indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+                    indicatorError: '<i class="icon-cross2 text-danger"></i>',
+                    indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+                },
+                deleteUrl: "media_delete.php"
+            });
+
+            $('.file-input-overwrite-rfid-icon').on('fileuploaded', iconUploaded);
+        }
 
         // $(document).on('click', '.remove_item', function() {
         //     $(this).parents('.carousel_item').remove();
