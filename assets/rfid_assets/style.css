@@ -167,7 +167,7 @@ img.footer_logo {
 }
 
 .scroll-bar {
-  height: 800px;
+  max-height: 1000px;
   overflow-y: auto;
   overflow-x: hidden;
 }
