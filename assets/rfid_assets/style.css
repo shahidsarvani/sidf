@@ -2,7 +2,7 @@
   font-family: NeoSansAr !important;
 }
 h2.arabic-content {
-  font-family: NeoSansAr !important;
+    font-family: NeoSansArabicRegular !important;
 }
 .arabic-content p {
   font-family: NeoSansArabicRegular !important;
@@ -24,12 +24,7 @@ p {
   height: 32vh;
 }
 .text_wrapper_op {
-  background: rgb(225, 224, 226);
-  background: linear-gradient(
-    180deg,
-    rgba(225, 224, 226, 1) 0%,
-    rgba(225, 224, 226, 1) 45%,
-    rgba(255, 255, 255, 1) 100%
+  background:#e1e0e2;
   );
 }
 .text_wrapper_outter {
@@ -55,6 +50,7 @@ p {
 .icon_single_inner h2 {
   font-size: 25px;
   text-align: center;
+  font-family: NeoSansAr;
 }
 .icon_single_inner {
   width: 33%;
@@ -168,4 +164,10 @@ img.footer_logo {
 
 .page-title-arabic{
   font-family: NeoSansArabicRegular !important;
+}
+
+.scroll-bar {
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
