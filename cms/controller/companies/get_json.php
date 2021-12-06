@@ -49,7 +49,7 @@ foreach ($companies as $index => $value) {
                 <div class="container-fluid h-100">
                     <div class="row h-100">
 
-                        <div class="col-6 h-100 d-flex align-items-center">
+                        <div class="col-6 h-100 d-flex align-items-center justify-content-center">
                             <div class="images_single_outter">
                                 <div class="images_wrapper_inner d-flex justify-content-center pb-4">
                                     <img class="w-75" src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />

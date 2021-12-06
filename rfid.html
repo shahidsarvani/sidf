@@ -75,8 +75,6 @@
         })
     })
     function preLoaderAdded(slug) {
-        // var video_duration = document.getElementById('vid').duration * 1000
-        // console.log(video_duration)
         readTextFile("companies.json", function (text) {
             var data = JSON.parse(text);
             if (data.companies[slug] === undefined) {
@@ -86,11 +84,8 @@
                 $('#index_1').empty();
                 $('#index_1').append(html)
                 $('#index_1').append('<footer><img src="./assets/rfid_assets/images/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
-                $('.text_wrapper_outter_1').fadeOut();
-                $('#preloader').fadeIn('slow')/* .delay(video_duration).fadeOut('slow', function () {
-                    $('#index_1').fadeIn("slow");
-                }); // will fade out the white DIV that covers the website. 
-                $('body').delay(video_duration).css({ 'overflow': 'visible' }); */
+                $('.text_wrapper_outter_1').fadeOut('slow');
+                $('#preloader').fadeIn('slow')
             }
         });
     }
@@ -99,7 +94,6 @@
         $('#preloader').fadeOut('slow', function () {
             $('#index_1').fadeIn("slow");
         }); // will fade out the white DIV that covers the website. 
-        $('body').css({ 'overflow': 'visible' });
     }
 </script>
 

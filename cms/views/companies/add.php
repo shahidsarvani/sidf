@@ -85,22 +85,23 @@ require ADMIN_VIEW . '/layout/header.php';
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Title (English):</label>
                                                     <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Title (Arabic):</label>
                                                     <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Icon Class:</label>
-                                                    <input type="text" name="icon[]" class="form-control" placeholder="fa fa-car">
+                                                    <label>Icon:</label>
+                                                    <input type="hidden" name="icon_key" id="icon_key" class="modal_media">
+                                                    <input type="file" name="icon" class="file-input-overwrite-rfid-icon" accept="image/*" data-show-preview="false" data-fouc>
                                                 </div>
                                             </div>
                                         </div>
