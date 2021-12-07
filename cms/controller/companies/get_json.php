@@ -63,13 +63,13 @@ foreach ($companies as $index => $value) {
                     
                         <div class="col-6 h-100 d-flex align-items-center justify-content-center flex-column right-column">
                             <div class="scroll-bar">
+                                <div class="text_wrapper_op p-4 direction_rtl mb-4 arabic-content">
+                                    <h1 class="text-uppercase heading_main">' . $value['name_ar'] . '</h1>
+                                    <p>' . $value['info_ar'] . '</p>
+                                </div>
                                 <div class="text_wrapper_op p-4">
                                     <h1 class="text-uppercase heading_main">' . $value['name_eng'] . '</h1>
                                     <p>' . $value['info_eng'] . '</p>
-                                </div>
-                                <div class="text_wrapper_op p-4 direction_rtl mt-4 arabic-content">
-                                    <h1 class="text-uppercase heading_main">' . $value['name_ar'] . '</h1>
-                                    <p>' . $value['info_ar'] . '</p>
                                 </div>
                             </div>
                         </div>

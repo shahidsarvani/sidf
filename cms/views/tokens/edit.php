@@ -22,6 +22,10 @@ require ADMIN_VIEW . '/layout/header.php';
                             <label>Token Name:</label>
                             <input type="text" name="name" class="form-control" placeholder="Sabic" value="<?php echo $token['name'] ?>" required>
                         </div>
+                        <div class="form-group">
+                            <label>Card ID:</label>
+                            <input type="text" name="name" class="form-control" placeholder="Sabic" value="<?php echo $token['name'] ?>" required>
+                        </div>
 
                         <div class="form-group" id="logo_error">
                             <label>Upload Logo:</label>
