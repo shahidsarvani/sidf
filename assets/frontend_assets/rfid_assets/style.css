@@ -166,15 +166,10 @@ img.footer_logo {
   font-family: NeoSansArabicRegular !important;
 }
 
-.scroll-bar {
-  max-height: 1000px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .icon_single_inner .icon_img {
 	width: auto;
 	margin-bottom: 20px;
+	min-height: 90px;
 }
 
 .images_wrapper_inner img {
