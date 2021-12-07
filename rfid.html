@@ -180,6 +180,8 @@
         }
     })
     $(document).on("click", ".footer_logo", function (event) {
+        var vid = document.querySelector('.video_inner')
+        vid.pause();
         $('#index_1').fadeOut('slow', function () {
             $('.text_wrapper_outter_1').fadeIn('slow')
         })
