@@ -1,5 +1,5 @@
 <?php
-$mine = 2;
+$mine = 0;
 $host = $_SERVER['HTTP_HOST'];
 $con_file_path = __FILE__;
 $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
@@ -24,10 +24,10 @@ $items_config = array(
     'images_path' => BASE_PATH . '/assets/frontend_assets/screen_media/',
     'modal_media_url' => USER_ASSET . '/modal_media/',
     'modal_media_path' => BASE_PATH . '/assets/frontend_assets/modal_media/',
-    'rfid_media_url' => USER_ASSET . '/rfid_media/',
-    'rfid_media_path' => BASE_PATH . '/assets/frontend_assets/rfid_media/',
-    'rfid_loadermedia_url' => USER_ASSET . '/rfid_media/loader/',
-    'rfid_loadermedia_path' => BASE_PATH . '/assets/frontend_assets/rfid_media/loader/',
+    'rfid_media_url' => USER_ASSET . '/rfid_assets/media/',
+    'rfid_media_path' => BASE_PATH . '/assets/frontend_assets/rfid_assets/media/',
+    'rfid_loadermedia_url' => USER_ASSET . '/rfid_assets/media/loader/',
+    'rfid_loadermedia_path' => BASE_PATH . '/assets/frontend_assets/rfid_assets/media/loader/',
 );
 
 /* start of the file uploading function */
