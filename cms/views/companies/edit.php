@@ -108,7 +108,8 @@ require ADMIN_VIEW . '/layout/header.php';
                                                         <div class="form-group">
                                                             <label>Icon:</label>
                                                             <input type="file" name="icon[]" class="file-input-overwrite-rfid-icon" data-show-preview="false" data-fouc>
-                                                            <input type="hidden" class="old-icons" name="icon_key[]" value="<?php echo $icon['icon']; ?>" data-value="<?php echo $items_config['rfid_media_url'] . $icon['icon_detail']['name']; ?>" data-caption="<?php echo $icon['icon_detail']['name']; ?>" data-key="<?php echo $icon['icon_detail']['file_key']; ?>" data-size="<?php echo $icon['icon_detail']['size']; ?>" data-type="<?php echo $icon['icon_detail']['type']; ?>" data-filetype="<?php echo $icon['icon_detail']['filetype']; ?>">
+                                                            <input type="hidden" class="old-icons" name="icon_key[]" value="<?php echo $icon['icon']; ?>">
+                                                            <span class="icon_name"><?php echo $icon['icon_detail']['name'] != '' ? '(' . $icon['icon_detail']['name'] . ')' : '' ?></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -156,12 +157,16 @@ require ADMIN_VIEW . '/layout/footer.php';
             $('#video_key').val(fileId)
             $('#video_key-error').css('display', 'none');
         }
+
         function iconUploaded(event, previewId, index, fileId) {
             console.log('File uploaded', previewId, index, fileId);
-            var hiddenInput = '<input type="hidden" name="icon_key[]" value="' + fileId + '" class="icon_media" >';
+            console.log(event);
+            var hiddenInput = '<input type="hidden" name="icon_key[]" value="' + fileId + '" class="old-icons" >';
             console.log($(this))
             console.log(event.currentTarget);
+            $('#' + event.currentTarget.id).parents('.form-group').find('.old-icons').remove();
             $('#' + event.currentTarget.id).parents('.form-group').append(hiddenInput);
+            $('#' + event.currentTarget.id).parents('.form-group').find('.icon_name').remove();
         }
 
         $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded);

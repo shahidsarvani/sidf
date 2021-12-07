@@ -75,8 +75,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $temp['title_eng'] = $icon['title_eng'];
             $temp['title_ar'] = $icon['title_ar'];
             $temp['icon'] = $icon['icon'];
-            $temp['icon_detail'] = $icon_media->fetch_assoc();
-            $temp['icon_detail']['size'] = explode('_', $temp['icon_detail']['file_key'])[0];
+            if($icon_media){
+                $temp['icon_detail'] = $icon_media->fetch_assoc();
+                $temp['icon_detail']['size'] = explode('_', $temp['icon_detail']['file_key'])[0];
+            } else {
+                $temp['icon_detail']['name'] = '';
+                $temp['icon_detail']['file_key'] = '';
+                $temp['icon_detail']['type'] = '';
+                $temp['icon_detail']['filetype'] = '';
+                $temp['icon_detail']['size'] = 0;
+            }
             array_push($icon_array, $temp);
         }
     }

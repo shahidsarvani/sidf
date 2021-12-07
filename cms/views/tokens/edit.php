@@ -28,7 +28,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Card ID:</label>
-                                    <input type="text" name="rfid_card_id" class="form-control" placeholder="65009e7c5a" value="<?php echo $token['rfid_card_id'] ?>" required>
+                                    <input type="text" name="rfid_card_id" class="form-control" placeholder="Card ID" value="<?php echo $token['rfid_card_id'] ?>" required>
                                 </div>
                             </div>
                         </div>

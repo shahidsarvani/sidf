@@ -470,8 +470,8 @@ var ImageUploadToken = (function () {
 
     var initialPreviewLogo = [];
     var initialPreviewConfigLogo = [];
-    var initialPreviewIcon = [];
-    var initialPreviewConfigIcon = [];
+    // var initialPreviewIcon = [];
+    // var initialPreviewConfigIcon = [];
     var initialPreviewVideo = [];
     var initialPreviewConfigVideo = [];
     var initialPreviewLoaderVideo = [];
@@ -479,7 +479,7 @@ var ImageUploadToken = (function () {
     var logo = document.querySelector('.old-logo');
     var video = document.querySelector('.old-video');
     var loader_video = document.querySelector('.old-loader-video');
-    var icons = document.querySelectorAll('.old-icons');
+    // var icons = document.querySelectorAll('.old-icons');
     if (logo) {
       initialPreviewLogo.push(logo.dataset.value);
       initialPreviewConfigLogo.push({
@@ -582,18 +582,20 @@ var ImageUploadToken = (function () {
       deleteUrl: "media_delete.php"
     });
 
-    if (icons) {
-      icons.forEach(function (icon, index) {
-        initialPreviewIcon.push(icon.dataset.value);
-        initialPreviewConfigIcon.push({
-          caption: icon.dataset.caption,
-          size: parseInt(icon.dataset.size),
-          key: icon.dataset.key,
-          filetype: icon.dataset.filetype,
-          type: icon.dataset.type,
-          url: 'media_delete.php',
-        })
-
+    // if (icons) {
+      // icons.forEach(function (icon, index) {
+        // console.log(icon.dataset.size)
+        // if (parseInt(icon.dataset.size)) {
+        //   initialPreviewIcon.push(icon.dataset.value);
+        //   initialPreviewConfigIcon.push({
+        //     caption: icon.dataset.caption,
+        //     size: parseInt(icon.dataset.size),
+        //     key: icon.dataset.key,
+        //     filetype: icon.dataset.filetype,
+        //     type: icon.dataset.type,
+        //     url: 'media_delete.php',
+        //   })
+        // }
         $('.file-input-overwrite-rfid-icon').fileinput({
           browseLabel: 'Browse',
           uploadUrl: "upload_media.php", // server upload action
@@ -607,8 +609,8 @@ var ImageUploadToken = (function () {
             icon: '<i class="icon-file-check"></i>',
             modal: modalTemplate
           },
-          initialPreview: initialPreviewIcon,
-          initialPreviewConfig: initialPreviewConfigIcon,
+          // initialPreview: initialPreviewIcon,
+          // initialPreviewConfig: initialPreviewConfigIcon,
           initialPreviewAsData: true,
           overwriteInitial: false,
           previewZoomButtonClasses: previewZoomButtonClasses,
@@ -628,8 +630,8 @@ var ImageUploadToken = (function () {
           },
           deleteUrl: "media_delete.php"
         });
-      })
-    }
+      // })
+    // }
     $('.file-input-overwrite-rfid-vid').fileinput({
       browseLabel: 'Browse',
       uploadUrl: "upload_media.php", // server upload action
