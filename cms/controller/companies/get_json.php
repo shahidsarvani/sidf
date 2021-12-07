@@ -37,8 +37,8 @@ foreach ($companies as $index => $value) {
             // $icon_img['name'] = '';
             $icon_html .= '<div class="icon_single_inner d-flex flex-column align-items-center">
                             <img class="icon_img" src="' . $items_config['rfid_media_url'] . $icon_img['name'] . '" alt="logo" />
-                            <h2 class="text-uppercase">' . $title_eng . '</h2>
                             <h2 class="text-uppercase arabic-content">' . $title_ar . '</h2>
+                            <h2 class="text-uppercase">' . $title_eng . '</h2>
                         </div>';
         }
     }
