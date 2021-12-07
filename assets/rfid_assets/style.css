@@ -48,7 +48,7 @@ p {
   margin-bottom: 35px;
 }
 .icon_single_inner h2 {
-  font-size: 24px;
+  font-size: 16px;
   text-align: center;
   font-family: NeoSansArabicRegular;
 }
@@ -175,4 +175,15 @@ img.footer_logo {
 .icon_single_inner .icon_img {
 	width: auto;
 	margin-bottom: 20px;
+}
+
+.images_wrapper_inner img {
+  width:180px;
+}
+
+.logo_2 img {
+  width: 280px;
+}
+.logo_4 img {
+  max-height: 180px;
 }
