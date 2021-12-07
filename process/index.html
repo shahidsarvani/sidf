@@ -41,8 +41,8 @@
 				var datas = JSON.parse(txts);
 				if(paras1 == 0){
 					var step1_txt = '';
-					$("#fetch_ar_thankyou_content").css("display", "none");
-					$("#fetch_en_thankyou_content").css("display", "none");
+					// $("#fetch_ar_thankyou_content").css("display", "none");
+					// $("#fetch_en_thankyou_content").css("display", "none");
 					$("#fetch_tab_detail_content").css("display", "none"); 
 					$("#fetch_home_content").css("display", "");   
 					
@@ -64,8 +64,8 @@
 						$("#fetch_home_videos_content").html( step1_txt );   
 					} 
 				}else if(paras1 > 0 && paras1 <=10){
-					$("#fetch_ar_thankyou_content").css("display", "none");
-					$("#fetch_en_thankyou_content").css("display", "none");
+					// $("#fetch_ar_thankyou_content").css("display", "none");
+					// $("#fetch_en_thankyou_content").css("display", "none");
 					$("#fetch_home_content").css("display", "none");
 					$("#fetch_tab_detail_content").css("display", "");
 					
@@ -161,7 +161,7 @@
 <input type="hidden" name="sl_current_step" id="sl_current_step" value="0" /> 
 <input type="hidden" name="sl_detail_step_tab" id="sl_detail_step_tab" value="0" /> 
 
-<div id="fetch_home_content">
+<div style="display: none;" id="fetch_home_content">
 	<header class="animate__animated animate__fadeInLeft">
 	  <p><a class="eng-language app_language_cls active" data-lang="en" href="javascript:void(0)" onClick="operate_lang('en');">English</a> / <a class="ar-language app_language_cls" data-lang="ar" href="javascript:void(0)" onClick="operate_lang('ar');">العربية</a></p>
 	</header>
