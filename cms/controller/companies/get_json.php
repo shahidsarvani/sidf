@@ -14,6 +14,7 @@ $company = new Company();
 $token_obj = new Token();
 $companies = $company->get_companies();
 $response['companies'] = [];
+$i = 1;
 foreach ($companies as $index => $value) {
     $logo = $company->get_media($value['logo_key']);
     $logo = $logo->fetch_assoc();
@@ -33,7 +34,7 @@ foreach ($companies as $index => $value) {
             $title_ar = $icon["title_ar"];
             $title_eng = $icon["title_eng"];
             $icon_img = $company->get_media($icon["icon"]);
-            if($icon_img) {
+            if ($icon_img) {
                 $icon_img = $icon_img->fetch_assoc();
             } else {
                 $icon_img['name'] = '';
@@ -56,7 +57,7 @@ foreach ($companies as $index => $value) {
                         <div class="row h-100">
                             <div class="col-6 h-100 d-flex align-items-center justify-content-center left-column">
                                 <div class="images_single_outter w-100">
-                                    <div class="images_wrapper_inner d-flex justify-content-center pb-4">
+                                    <div class="images_wrapper_inner d-flex justify-content-center pb-4 logo_' . $i . '">
                                         <img src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
                                     </div>
                                     <div class="icons_outter d-flex justify-content-start flex-wrap mt-5">
@@ -81,6 +82,7 @@ foreach ($companies as $index => $value) {
                     </div>
                 </div>';
     }
+    $i++;
 }
 // echo json_encode($response);
 // die();
