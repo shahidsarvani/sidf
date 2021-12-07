@@ -125,7 +125,10 @@
                 console.log(tag)
                 var loader_name = tab.dataset.loader_name;
                 var loader_type = tab.dataset.loader_type;
-                $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+                $('#index_1').fadeOut('slow', function () {
+                    $('#preloader').empty()
+                        .html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+                });
             }
         })
 
