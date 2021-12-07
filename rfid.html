@@ -43,7 +43,109 @@
 </body>
 
 <script src="./assets/rfid_assets/jquery-3.6.0.min.js"></script>
+<script src="./assets/rfid_assets/sha256.min.js"></script>
+<script src="./assets/rfid_assets/phidget22.min.js"></script>
 <script>
+    $(document).ready(function () {
+        var conn = new phidget22.Connection(8989, 'localhost');
+        var ch = new phidget22.RFID();
+
+        ch.onError = onError;
+        ch.onPropertyChange = propChange;
+        ch.onAttach = onAttach;
+
+        ch.onDetach = function (ch) {
+            alert('No Phidget Device Attached')
+        }
+
+        conn.connect().then(function () {
+            console.log('connected');
+            ch.open().then(function (ch) {
+                console.log('channel open');
+            }).catch(function (err) {
+                console.log('failed to open the channel:' + err);
+            });
+        }).catch(function (err) {
+            alert('failed to connect to server:' + err);
+        })
+    })
+
+
+    function onError(arg0, arg1) {
+
+        var d = new Date();
+        alert(arg1);
+        $('#errorTable').append('<tr><td> ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '.' + d.getMilliseconds() + '</td><td> 0x' + arg0.toString(16) + '</td><td>' + arg1 + '</td>');
+        $("#errorField").show();
+    }
+
+
+    function propChange(prop) {
+        console.log(prop)
+        if (prop === 'AntennaEnabled') {
+            if (this.getAntennaEnabled()) {
+            }
+            else {
+            }
+        }
+
+    }
+
+
+    function onAttach(ch) {
+        console.log(ch + ' attached');
+        phid = ch;
+        console.log('Attached', ch.getDeviceClassName() + ' - ' + ch.getChannelClassName() + ' (Channel ' + ch.getChannel() + ')')
+        console.log('Version', ch.getDeviceSKU() + ' ver.' + ch.getDeviceVersion())
+        console.log('Serial', ch.getDeviceSerialNumber())
+
+        if (ch.getDeviceClass() == phidget22.DeviceClass.VINT)
+            console.log('hubPortLabel', ch.getHubPort())
+        else
+            console.log('hubPortLabel', 'N/A')
+
+        if (ch.getDeviceID() == phidget22.DeviceID.PN_1023)
+            $('#writeField').hide();
+
+        phid.onTag = tagEvent;
+        phid.onTagLost = tagLostEvent;
+        phid.onError = onError;
+        phid.onPropertyChange = propChange;
+
+        phid.setAntennaEnabled(1);
+    }
+
+    function tagEvent(tag, protocol) {
+
+
+
+        var tabs = document.querySelectorAll('.next_tab')
+        tabs.forEach(function (tab) {
+            if (tab.dataset.card_id == tag) {
+                console.log(tag)
+                var loader_name = tab.dataset.loader_name;
+                var loader_type = tab.dataset.loader_type;
+                $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+            }
+        })
+
+        switch (protocol) {
+            case 1:
+                $('#TAGPROT').val("EM4100");
+                break;
+            case 2:
+                $('#TAGPROT').val("ISO11785 FDX-B");
+                break;
+            case 3:
+                $('#TAGPROT').val("PhidgetTAG ASCII");
+                break;
+        }
+
+    }
+
+    function tagLostEvent(tag, protocol) {
+        console.log('tag lost')
+    }
     readTextFile("tokens.json", function (text) {
         var data = JSON.parse(text);
         // console.log(data);
@@ -65,27 +167,27 @@
     }
 
     $(document).on("click", ".next_tab", function (event) {
-        var slug = $(this).attr("data-slug");
+        var tag = $(this).attr("data-card_id");
         var loader_name = $(this).attr("data-loader_name");
         var loader_type = $(this).attr("data-loader_type");
-        $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + slug + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+        $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
     })
     $(document).on("click", ".footer_logo", function (event) {
         $('#index_1').fadeOut('slow', function () {
             $('.text_wrapper_outter_1').fadeIn('slow')
         })
     })
-    function preLoaderAdded(slug) {
+    function preLoaderAdded(tag) {
         readTextFile("companies.json", function (text) {
             var data = JSON.parse(text);
-            if (data.companies[slug] === undefined) {
+            if (data.companies[tag] === undefined) {
                 alert('Company info not added')
             } else {
-                var html = data.companies[slug];
+                var html = data.companies[tag];
                 $('#index_1').empty();
                 $('#index_1').append(html)
                 $('#index_1').append('<footer><img src="./assets/rfid_assets/images/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
-                $('.text_wrapper_outter_1').fadeOut('slow', function() {
+                $('.text_wrapper_outter_1').fadeOut('slow', function () {
                     $('#preloader').fadeIn('slow')
                 });
             }

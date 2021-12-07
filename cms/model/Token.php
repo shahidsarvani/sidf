@@ -96,12 +96,13 @@ class Token
 	public function add_token($data)
 	{
 		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
+		$rfid_card_id = filter_var($data['rfid_card_id'], FILTER_SANITIZE_STRING);
 		$logo_key = filter_var($data['logo_key'], FILTER_SANITIZE_STRING);
 		$video_key = filter_var($data['video_key'], FILTER_SANITIZE_STRING);
 		$loader_video_key = filter_var($data['loader_video_key'], FILTER_SANITIZE_STRING);
 		$slug = $this->slugify($name);
 		$query = "
-		INSERT INTO company_tokens (name, slug, logo_key, video_key, loader_video_key) VALUES ('$name','$slug','$logo_key','$video_key','$loader_video_key')
+		INSERT INTO company_tokens (name, rfid_card_id, slug, logo_key, video_key, loader_video_key) VALUES ('$name','$rfid_card_id','$slug','$logo_key','$video_key','$loader_video_key')
 		";
 		if (TRUE === $this->connect->query($query)) {
 			return $this->connect->insert_id;
@@ -115,12 +116,13 @@ class Token
 	public function edit_token($id, $data)
 	{
 		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
+		$rfid_card_id = filter_var($data['rfid_card_id'], FILTER_SANITIZE_STRING);
 		$logo_key = filter_var($data['logo_key'], FILTER_SANITIZE_STRING);
 		$video_key = filter_var($data['video_key'], FILTER_SANITIZE_STRING);
 		$loader_video_key = filter_var($data['loader_video_key'], FILTER_SANITIZE_STRING);
 		$slug = $this->slugify($name);
 		$query = "
-		UPDATE company_tokens SET name='$name',slug='$slug',logo_key='$logo_key',video_key='$video_key',loader_video_key='$loader_video_key' WHERE id='$id'
+		UPDATE company_tokens SET name='$name',rfid_card_id='$rfid_card_id',slug='$slug',logo_key='$logo_key',video_key='$video_key',loader_video_key='$loader_video_key' WHERE id='$id'
 		";
 		if (TRUE === $this->connect->query($query)) {
 			return true;

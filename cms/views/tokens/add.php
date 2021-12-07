@@ -17,11 +17,20 @@ require ADMIN_VIEW . '/layout/header.php';
 
                 <div class="card-body">
                     <form action="<?php echo ADMIN_SITE_URL . '/controller/tokens/add.php' ?>" method="post" enctype="multipart/form-data" id="token-form">
-                        <div class="form-group">
-                            <label>Token Name:</label>
-                            <input type="text" name="name" class="form-control" placeholder="Sabic" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Token Name:</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Sabic" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Card ID:</label>
+                                    <input type="text" name="rfid_card_id" class="form-control" placeholder="65009e7c5a" required>
+                                </div>
+                            </div>
                         </div>
-
                         <div class="form-group" id="logo_error">
                             <label>Upload Logo:</label>
                             <input type="file" name="logo" class="file-input-overwrite-rfid-img" accept="image/*" data-show-preview="false" data-fouc>
@@ -61,18 +70,19 @@ require ADMIN_VIEW . '/layout/footer.php';
         function logoUploaded(event, previewId, index, fileId) {
             console.log('File uploaded', previewId, index, fileId);
             $('#logo_key').val(fileId)
-            $('#logo_key-error').css('display','none');
+            $('#logo_key-error').css('display', 'none');
         }
 
         function videoUploaded(event, previewId, index, fileId) {
             console.log('File uploaded', previewId, index, fileId);
             $('#video_key').val(fileId)
-            $('#video_key-error').css('display','none');
+            $('#video_key-error').css('display', 'none');
         }
+
         function loadervideoUploaded(event, previewId, index, fileId) {
             console.log('File uploaded', previewId, index, fileId);
             $('#loader_video_key').val(fileId)
-            $('#loader_video_key-error').css('display','none');
+            $('#loader_video_key-error').css('display', 'none');
         }
 
         $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded);
@@ -131,6 +141,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                 name: {
                     required: true,
                 },
+                rfid_card_id: {
+                    required: true,
+                },
                 logo_key: {
                     required: true,
                 },
@@ -144,6 +157,9 @@ require ADMIN_VIEW . '/layout/footer.php';
             messages: {
                 name: {
                     required: "Enter token name",
+                },
+                rfid_card_id: {
+                    required: "Enter Card ID",
                 },
                 logo_key: {
                     required: "Add logo",
