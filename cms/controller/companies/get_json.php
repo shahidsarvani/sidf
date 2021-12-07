@@ -47,7 +47,7 @@ foreach ($companies as $index => $value) {
     }
     if ($token['rfid_card_id']) {
         $response['companies'][$token['rfid_card_id']] = '<div class="video_wrapper">
-                    <video id="vid" class="w-100 video_inner" autoplay loop muted>
+                    <video id="vid" class="w-100 video_inner" autoplay loop>
                         <source src="' . $items_config['rfid_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">
                     </video>
                 </div>
