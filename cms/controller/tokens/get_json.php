@@ -12,8 +12,8 @@ require_once(BASE_PATH . '/cms/model/Token.php');
 $token = new Token();
 $tokens = $token->get_tokens();
 $response['tokens'] = [];
+$i = 1;
 foreach ($tokens as $index => $value) {
-    $i = 1;
     $temp = '';
     $logo = $token->get_media($value['logo_key']);
     $logo = $logo->fetch_assoc();
