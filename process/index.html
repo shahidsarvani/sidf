@@ -41,10 +41,10 @@
 				var datas = JSON.parse(txts);
 				if(paras1 == 0){
 					var step1_txt = '';
-					// $("#fetch_ar_thankyou_content").css("display", "none");
-					// $("#fetch_en_thankyou_content").css("display", "none");
 					$("#fetch_tab_detail_content").css("display", "none"); 
-					$("#fetch_home_content").css("display", "");   
+					$("#fetch_home_content").css("display", "");
+					$("#fetch_en_thankyou_content").css("display", "none");
+					$("#fetch_ar_thankyou_content").css("display", "none");   
 					
 					for (var i=0; i< datas.length; i++) {
 						var sec_id = datas[i]["sec_id"];
@@ -64,10 +64,10 @@
 						$("#fetch_home_videos_content").html( step1_txt );   
 					} 
 				}else if(paras1 > 0 && paras1 <=10){
-					// $("#fetch_ar_thankyou_content").css("display", "none");
-					// $("#fetch_en_thankyou_content").css("display", "none");
 					$("#fetch_home_content").css("display", "none");
 					$("#fetch_tab_detail_content").css("display", "");
+					$("#fetch_en_thankyou_content").css("display", "none");
+					$("#fetch_ar_thankyou_content").css("display", "none");
 					
 					var step2_txt = '';
 					var step2_tab_txt = '';  
