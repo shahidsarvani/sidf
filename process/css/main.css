@@ -75,11 +75,11 @@ html {
 .myVideo-home-inner {
   position: absolute;
   right: 0;
-  top: 0;
-  min-width: 100%;
+  top: 0px;
+  width: 100%;
   min-height: 100%;
   z-index: -1;
-  height: 100%;
+  height: auto;
 }
 
 .myVideo {
@@ -190,18 +190,18 @@ header a {
 }
 
 header a, header p {
-    color: #fff;
-    font-size: 41px;
-    text-transform: uppercase;
-    margin: 0;
-    font-family: "Neo Sans Arabic";
-    font-weight: normal;
+  color: #fff;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin: 0;
+  font-family: "Neo Sans Arabic";
+  font-weight: normal;
 }
 .eng-language {
-    font-size: 36px;
+    font-size: 30px;
 }
 .ar-language {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 footer {
@@ -310,6 +310,10 @@ footer h2 {
 .detail-language-switcher p a {
   color: #606060;
   text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
+}
+
+header a:hover{
+  color: #ffffff;
 }
 
 /* @keyframes blink {

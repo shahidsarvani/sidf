@@ -32,10 +32,10 @@
     font-size: 40px;
 }
 [dir='rtl'] .eng-language {
-    font-size: 36px;
+    font-size: 30px !important;
 }
 [dir='rtl'] .ar-language {
-    font-size: 50px;
+    font-size: 30px !important;
 }
 [dir='rtl'] .detail-language-switcher {
     bottom: 60px;
