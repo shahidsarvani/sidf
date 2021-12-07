@@ -178,7 +178,7 @@ img.footer_logo {
 }
 
 .images_wrapper_inner img {
-  width:180px;
+  width: 300px;
 }
 
 .logo_2 img {
@@ -186,4 +186,8 @@ img.footer_logo {
 }
 .logo_4 img {
   max-height: 180px;
+}
+
+.logo_maaden img {
+	width: 180px;
 }
