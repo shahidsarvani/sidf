@@ -173,6 +173,6 @@ img.footer_logo {
 }
 
 .icon_single_inner .icon_img {
-  width: 60px;
-  margin-bottom: 20px;
+	width: auto;
+	margin-bottom: 20px;
 }
