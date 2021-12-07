@@ -59,7 +59,7 @@ foreach ($companies as $index => $value) {
                                     <div class="images_wrapper_inner d-flex justify-content-center pb-4">
                                         <img src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
                                     </div>
-                                    <div class="icons_outter d-flex justify-content-around flex-wrap mt-5">
+                                    <div class="icons_outter d-flex justify-content-start flex-wrap mt-5">
                                         ' . $icon_html . '
                                     </div>
                                 </div>
