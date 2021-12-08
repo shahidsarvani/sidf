@@ -7,6 +7,9 @@ h2.arabic-content {
 .arabic-content p {
   font-family: NeoSansArabicRegular !important;
 }
+body {
+	background-color: #fff !important;
+}
 
 h1,
 h2,
@@ -27,7 +30,7 @@ p {
 }
 .text_wrapper_op {
   background:#e1e0e2;
-  );
+  )
 }
 .text_wrapper_outter {
   height: 68vh;
