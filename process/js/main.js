@@ -15,6 +15,9 @@ function video_switcher() {
 
 	items.forEach(function (item, index) {
 		item.addEventListener('click', function (e) {
+			if($('video#fetch_tab_detail_video').get(0)){
+				$('video#fetch_tab_detail_video').addClass('d-none')
+			}
 			var currentItem = document.querySelector('.current');
 			var nextItem = document.querySelector('.next');
 			var animatedItems = document.querySelectorAll('.animated');
