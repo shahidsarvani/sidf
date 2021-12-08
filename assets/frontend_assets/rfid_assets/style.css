@@ -33,7 +33,7 @@ p {
   height: 68vh;
 }
 .heading_main {
-  font-size: 50px;
+  font-size: 30px;
 }
 .text_wrapper_op p {
   font-size: 20px;
@@ -138,7 +138,7 @@ p {
 }
 
 .page-title h2 {
-  font-size: 70px;
+  font-size: 51px;
   color: #5a595a;
   font-family: NeoSansAr;
 }
@@ -164,8 +164,9 @@ img.footer_logo {
     left: 40px;
 }
 
-.page-title-arabic{
-  font-family: NeoSansArabicRegular !important;
+.page-title-arabic {
+	font-family: NeoSansArabicRegular !important;
+	font-size: 90px !important;
 }
 
 .icon_single_inner .icon_img {
