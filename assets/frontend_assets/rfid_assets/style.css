@@ -7,6 +7,9 @@ h2.arabic-content {
 .arabic-content p {
   font-family: NeoSansArabicRegular !important;
 }
+body {
+	background-color: #fff !important;
+}
 
 h1,
 h2,
@@ -27,7 +30,6 @@ p {
 }
 .text_wrapper_op {
   background:#e1e0e2;
-  );
 }
 .text_wrapper_outter {
   height: 68vh;
@@ -208,4 +210,31 @@ img.footer_logo {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, .5);
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.video_wrapper_sabic {
+	overflow: inherit !important;
+	background: transparent !important;
+}
+
+.video_wrapper_sabic video {
+	max-height: inherit !important;
+}
+
+.video_wrapper_zamil {
+	overflow: inherit !important;
+	background: transparent !important;
+}
+
+.video_wrapper_zamil video {
+	max-height: inherit !important;
+}
+
+.video_wrapper_maaden {
+	overflow: inherit !important;
+	background: transparent !important;
+}
+
+.video_wrapper_maaden video {
+	max-height: inherit !important;
 }
