@@ -172,7 +172,7 @@ img.footer_logo {
 .icon_single_inner .icon_img {
 	width: auto;
 	margin-bottom: 20px;
-	min-height: 90px;
+	height: 60px;
 }
 
 .images_wrapper_inner img {
