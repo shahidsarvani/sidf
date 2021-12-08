@@ -21,13 +21,18 @@ if($sec_rows){
 				$tab_icon_name = '';
 				if(strlen($sec_tabs_row['tab_icon'])>0){
 					//$tab_icon_name = BASE_URL.'/assets/frontend_assets/section_tabs/'.$sec_tabs_row['tab_icon'];
-					$tab_icon_name = './frontend_assets/section_tabs/'.$sec_tabs_row['tab_icon'];
+					$tab_icon_name = $items_config['section_tabicon_media_url'].$sec_tabs_row['tab_icon'];
 				}
 				
 				$bg_video_name = '';
 				if(strlen($sec_tabs_row['bg_video'])>0){
+					$media = $section_obj->get_media($sec_tabs_row['bg_video']);
+					$tabbg_video['name'] = '';
+					if($media != false) {
+						$tabbg_video = $media->fetch_assoc();
+					}
 					//$bg_video_name = BASE_URL.'/assets/frontend_assets/tab_bg_videos/'.$sec_tabs_row['bg_video'];
-					$bg_video_name = './frontend_assets/tab_bg_videos/'.$sec_tabs_row['bg_video'];
+					$bg_video_name = $items_config['section_tabbgvid_media_url'].$tabbg_video['name'];
 				} 
 								
 				$section_tabs_data[] = array(
@@ -46,8 +51,13 @@ if($sec_rows){
 				
 		$bg_video_name = '';
 		if(strlen($sec_row['bg_video'])>0){
+			$media2 = $section_obj->get_media($sec_tabs_row['bg_video']);
+			$bg_video['name'] = '';
+			if($media2 != false) {
+				$bg_video = $media2->fetch_assoc();
+			}
 			//$bg_video_name = BASE_URL.'/assets/frontend_assets/sections/'.$sec_row['bg_video'];
-			$bg_video_name = './frontend_assets/sections/'.$sec_row['bg_video'];
+			$bg_video_name = $items_config['section_bgvid_media_url'].$bg_video['name'];
 		}
 		
 		$json_data[] = array("sec_id" => $sec_row['id'],
