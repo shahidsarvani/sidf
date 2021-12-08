@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="./css/animate.min.css"/>
 <script src="./js/jquery-3.6.0.min.js" language="javascript"></script>
 <script>
+	function backToMain() {
+		$('.video-container').empty();
+		operate_steps('0')
+	}
 	function operate_steps(paras1='0'){
 		$(document).ready(function(){
 			var sl_lang = $("#sl_lang").val();  
@@ -61,7 +65,8 @@
 					}
 					
 					if(step1_txt != ''){
-						$("#fetch_home_videos_content").html( step1_txt );   
+						$("#fetch_home_videos_content").html( step1_txt );
+						document.getElementById("sl_detail_step_tab").value = 0;   
 					} 
 				}else if(paras1 > 0 && paras1 <=10){
 					$("#fetch_home_content").css("display", "none");
@@ -114,11 +119,19 @@
 					if(step2_tab_txt != ''){	
 						$("#fetch_tab_detail_ul_list").html( step2_tab_txt ); 
 						video_switcher();
+						
+						
+						var detail_tb_indx = document.getElementById("sl_detail_step_tab").value;
+						if(detail_tb_indx >0){
+							detail_tb_indx = detail_tb_indx - 1;
+							document.querySelectorAll('.process-list li')[detail_tb_indx].click(); 
+						} 
 					}
 				
 				}else if(paras1 >10){
 					$("#fetch_home_content").css("display", "none");
 					$("#fetch_tab_detail_content").css("display", "none");
+					document.getElementById("sl_detail_step_tab").value = 0;
 					
 					if(sl_lang == "ar"){
 						$("#fetch_en_thankyou_content").css("display", "none");
@@ -181,7 +194,7 @@
       </div>
     </div>
   </div>
-  <footer> <a class="back-to-main-new animate__animated animate__fadeInLeft" href="javascript:void(0)" onClick="operate_steps('0');"> <img src="./images/thankyou-logo.svg"> </a>
+  <footer> <a class="back-to-main-new animate__animated animate__fadeInLeft" href="javascript:void(0)" onClick="backToMain();"> <img src="./images/thankyou-logo.svg"> </a>
     <div class="detail-language-switcher animate__animated animate__fadeInUp">
       <p><a class="eng-language app_language_cls" data-lang="en" href="javascript:void(0)" onClick="operate_lang('en');">English</a> / <a class="ar-language app_language_cls" data-lang="ar" href="javascript:void(0)" onClick="operate_lang('ar');">العربية</a></p> </div>
   <a class="back-to-main animate__animated animate__fadeInRight" href="javascript:void(0)" onClick="operate_steps('0');"><h2 id="fetch_tab_detail_heading"> </h2></a>  </footer>
