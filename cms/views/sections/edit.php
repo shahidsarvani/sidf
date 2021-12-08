@@ -86,8 +86,8 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 						<div id="fetch_section_tabs_container">
 							<?php
 							$p = 0;
-							if ($records) {
-								foreach ($records as $record) {
+							if ($temp) {
+								foreach ($temp as $record) {
 									if ($p > 0) {
 										break;
 									} ?>
@@ -222,8 +222,8 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 							<div id="fetch_section_tabs_list">
 								<?php
 								$p = 0;
-								if ($records) {
-									foreach ($records as $record) {
+								if ($temp) {
+									foreach ($temp as $record) {
 										if ($p > 0) { ?>
 											<div id="fetch_section_tab_item<?php echo $p; ?>">
 

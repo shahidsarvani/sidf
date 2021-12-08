@@ -46,19 +46,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $row['bg_video_name'] = '';
     }
     $records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
-    if ($records) {
-        foreach ($records as $record) {
-            $bg_video = $section_obj->get_media($row['bg_video']);
 
-            if ($bg_video) {
-                $bg_video = $bg_video->fetch_assoc();
-                $record['bg_video_name'] = $bg_video['name'];
-            } else {
-                $record['bg_video_name'] = '';
+    $all_records = array();
+    if ($records !== false) {
+        foreach ($records as $item) {
+            array_push($all_records, $item);
+        }
+    }
+    $temp = array();
+    if ($all_records) {
+        foreach ($records as $index => $value) {
+            // echo json_encode($record);
+            $tabbg_video = $section_obj->get_media($value['bg_video']);
+            
+            $value['bg_video_name'] = '';
+            if ($tabbg_video !== false) {
+                $tabbg_video = $tabbg_video->fetch_assoc();
+                $value['bg_video_name'] = $tabbg_video['name'];
             }
+
+            array_push($temp, $value);
         }
     }
 }
+// echo json_encode($temp);
+// // echo json_encode($row);
+// die();
 
 $title = 'Sections - SIDF';
 
