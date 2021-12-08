@@ -51,7 +51,7 @@ if($sec_rows){
 				
 		$bg_video_name = '';
 		if(strlen($sec_row['bg_video'])>0){
-			$media2 = $section_obj->get_media($sec_tabs_row['bg_video']);
+			$media2 = $section_obj->get_media($sec_row['bg_video']);
 			$bg_video['name'] = '';
 			if($media2 != false) {
 				$bg_video = $media2->fetch_assoc();
