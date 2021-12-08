@@ -28,6 +28,12 @@ $items_config = array(
     'rfid_media_path' => BASE_PATH . '/assets/frontend_assets/rfid_assets/media/',
     'rfid_loadermedia_url' => USER_ASSET . '/rfid_assets/media/loader/',
     'rfid_loadermedia_path' => BASE_PATH . '/assets/frontend_assets/rfid_assets/media/loader/',
+    'section_bgvid_media_url' => BASE_URL . '/process/frontend_assets/sections/',
+    'section_bgvid_media_path' => BASE_PATH . '/process/frontend_assets/sections/',
+    'section_tabbgvid_media_url' => BASE_URL . '/process/frontend_assets/tab_bg_videos/',
+    'section_tabbgvid_media_path' => BASE_PATH . '/process/frontend_assets/tab_bg_videos/',
+    'section_tabicon_media_url' => BASE_URL . '/process/frontend_assets/section_tabs/',
+    'section_tabicon_media_path' => BASE_PATH . '/process/frontend_assets/section_tabs/',
 );
 
 /* start of the file uploading function */

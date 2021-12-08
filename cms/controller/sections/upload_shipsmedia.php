@@ -5,8 +5,8 @@ header('Content-Type: application/json'); // set json response headers
 require './../../config/config.php';
 require BASE_PATH . '/cms/model/Media.php';
 
-$targetDir = $items_config['images_path'];
-$images_url = $items_config['images_url'];
+$targetDir = $items_config['section_shipsvid_media_path'];
+$images_url = $items_config['section_shipsvid_media_url'];
 $media = new Media();
 
 $outData = upload($targetDir, $images_url, $media); // a function to upload the bootstrap-fileinput files

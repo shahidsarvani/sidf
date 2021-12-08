@@ -16,26 +16,13 @@ if (!isset($_SESSION['user_id']) && !$_SESSION['user_id']) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     require_once(BASE_PATH . '/cms/model/Sections.php');
-	
+
     $section_obj = new Sections();
-    $id = $_POST['id'];  
+    $id = $_POST['id'];
     // echo json_encode($_POST);
     // echo json_encode($id);
     // die();
-    $rows = $res = $section_obj->edit_section($id, $_POST);
-/*    $data = array();
-    if (array_key_exists('file_keys', $_POST)) {
-        foreach ($_POST['file_keys'] as $key) {
-            $data[] = [
-                'screen_id' => $id,
-                'media_id' => $key,
-            ];
-        }
-    }
-    $screen->remove_prev_screen_media($id);
-    if ($data) {
-        $res = $screen->add_media($data);
-    }*/
+    $rows = $res = $section_obj->edit_section($id, $_POST, $items_config);
 
     if ($res) {
         $_SESSION['success'] = 'Section Updated Successfully';
@@ -50,34 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require_once(BASE_PATH . '/cms/model/Sections.php');
 
     $section_obj = new Sections();
-    //$row = $section_obj->get_section($_GET['id']);
-	$row = $section_obj->get_section($_GET['id']);
-	$records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
-	
-	
-    /*$item_media = $section_obj->get_screen_media($_GET['id']);
-    $medias = array();
-    if ($item_media) {
-        foreach ($item_media as $media) {
-            $media['size'] = explode('_', $media['file_key'])[0];
-            if (explode('.', $media['file_key'])[1] == 'mp4') {
-                $media['filetype'] = 'video/' . explode('.', $media['file_key'])[1];
-                $media['type'] = 'video';
-            } else {
-                $media['filetype'] = 'image/' . explode('.', $media['file_key'])[1];
-                $media['type'] = 'image';
-            }
-            array_push($medias, $media);
+    $row = $section_obj->get_section($_GET['id']);
+    $bg_video = $section_obj->get_media($row['bg_video']);
+    $bg_video = $bg_video->fetch_assoc();
+    $row['bg_video_name'] = $bg_video['name'];
+    $records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
+    if ($records) {
+        foreach ($records as $record) {
+            $bg_video = $section_obj->get_media($row['bg_video']);
+            $bg_video = $bg_video->fetch_assoc();
+            $record['bg_video_name'] = $bg_video['name'];
         }
     }
-    $screen['media'] = $medias;*/
-
-    // if($res) {
-    //     $_SESSION['success'] = 'Screen Added Successfully';
-    //     header('Location: ' . ADMIN_SITE_URL . '/controller/screens/index.php');
-    // } else {
-    // 	$_SESSION['errors'] = 'Error! Screen not Added';
-    // }
 }
 
 $title = 'Sections - SIDF';

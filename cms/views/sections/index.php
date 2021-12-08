@@ -23,7 +23,6 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 								<th width="13%"> Title (Ar) </th>
 								<th width="10%"> Slug </th>
 								<th width="8%"> Order </th>
-								<th width="12%"> Bg Video </th>
                                 <th width="9%"> Status </th>
                                 <th width="13%"> Updated On </th>
                                 <th width="8%"> Actions </th>
@@ -40,7 +39,6 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
                                     <td> <?php echo $row['ar_title']; ?> </td>
 									<td> <?php echo $row['slug']; ?> </td>
                                     <td> <?php echo $row['sort_order']; ?> </td>
-                                    <td> <?php echo $row['bg_video']; ?> </td>
 									<td> <?php echo ($row['status'] == 1) ? 'Active' : 'Inactive'; ?> </td>
                                     <td> <?php echo date('d-M-Y H:i:s', strtotime($row['updated_on'])); ?> </td>
                                     <td>

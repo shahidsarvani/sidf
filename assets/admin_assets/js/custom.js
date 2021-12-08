@@ -582,59 +582,109 @@ var ImageUploadToken = (function () {
       deleteUrl: "media_delete.php"
     });
 
-    // if (icons) {
-      // icons.forEach(function (icon, index) {
-        // console.log(icon.dataset.size)
-        // if (parseInt(icon.dataset.size)) {
-        //   initialPreviewIcon.push(icon.dataset.value);
-        //   initialPreviewConfigIcon.push({
-        //     caption: icon.dataset.caption,
-        //     size: parseInt(icon.dataset.size),
-        //     key: icon.dataset.key,
-        //     filetype: icon.dataset.filetype,
-        //     type: icon.dataset.type,
-        //     url: 'media_delete.php',
-        //   })
-        // }
-        $('.file-input-overwrite-rfid-icon').fileinput({
-          browseLabel: 'Browse',
-          uploadUrl: "upload_media.php", // server upload action
-          enableResumableUpload: true,
-          autoOrientImage: false,
-          allowedFileTypes: ["image"],
-          browseIcon: '<i class="icon-file-plus mr-2"></i>',
-          uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
-          removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
-          layoutTemplates: {
-            icon: '<i class="icon-file-check"></i>',
-            modal: modalTemplate
-          },
-          // initialPreview: initialPreviewIcon,
-          // initialPreviewConfig: initialPreviewConfigIcon,
-          initialPreviewAsData: true,
-          overwriteInitial: false,
-          previewZoomButtonClasses: previewZoomButtonClasses,
-          previewZoomButtonIcons: previewZoomButtonIcons,
-          fileActionSettings: {
-            zoomClass: '',
-            zoomIcon: '<i class="icon-zoomin3"></i>',
-            dragClass: 'p-2',
-            dragIcon: '<i class="icon-three-bars"></i>',
-            removeClass: '',
-            removeErrorClass: 'text-danger',
-            removeIcon: '<i class="icon-bin"></i>',
-            indicatorNew: '<i class="icon-file-plus text-success"></i>',
-            indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
-            indicatorError: '<i class="icon-cross2 text-danger"></i>',
-            indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
-          },
-          deleteUrl: "media_delete.php"
-        });
-      // })
-    // }
+    $('.file-input-overwrite-rfid-icon').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["image"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
     $('.file-input-overwrite-rfid-vid').fileinput({
       browseLabel: 'Browse',
       uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["video"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreviewVideo,
+      initialPreviewConfig: initialPreviewConfigVideo,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
+    $('.bgfile-input-overwrite-section').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_bgmedia.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["video"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreviewVideo,
+      initialPreviewConfig: initialPreviewConfigVideo,
+      initialPreviewAsData: true,
+      overwriteInitial: false,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
+    });
+    $('.tabbgfile-input-overwrite-section').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_tabbgmedia.php", // server upload action
       enableResumableUpload: true,
       autoOrientImage: false,
       allowedFileTypes: ["video"],
