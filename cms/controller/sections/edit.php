@@ -39,8 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $section_obj = new Sections();
     $row = $section_obj->get_section($_GET['id']);
     $bg_video = $section_obj->get_media($row['bg_video']);
-    $bg_video = $bg_video->fetch_assoc();
-    $row['bg_video_name'] = $bg_video['name'];
+    if($bg_video) {
+        $bg_video = $bg_video->fetch_assoc();
+        $row['bg_video_name'] = $bg_video['name'];
+    } else {
+        $row['bg_video_name'] = '';
+    }
     $records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
     if ($records) {
         foreach ($records as $record) {
