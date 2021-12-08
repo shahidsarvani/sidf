@@ -476,7 +476,9 @@ table {
   background-color: rgba(0, 0, 0, .5);
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
-
+.box_content_innerrr.arabic {
+  direction: rtl;
+}
 #modal1 .box_content_innerrr {
   max-height: 270px;
   overflow: auto !important;
