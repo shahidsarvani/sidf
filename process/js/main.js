@@ -4,6 +4,7 @@ function nextItem() {
 	if (nextItem) {
 		// nextItem.dispatchEvent(new Event('click'));
 	} else {
+		document.getElementById("sl_detail_step_tab").value = '0';
 		operate_steps('11'); /* diverting to thank you page */
 	}
 }
@@ -43,8 +44,11 @@ function video_switcher() {
 			var type = item.dataset.type;
 			var loop = ''
 			if (index !== items.length - 1) {
-				loop = 'loop'
+				loop = 'loop'; 
 			}
+			
+			document.getElementById("sl_detail_step_tab").value = index + 1;
+			
 			videoContainer.innerHTML = '<video autoplay ' + loop + ' class="myVideo" onended="nextItem();"><source src="' + src + '" type="' + type + '">Your browser does not support HTML5 video.</video>';
 		});
 	});

@@ -61,7 +61,8 @@
 					}
 					
 					if(step1_txt != ''){
-						$("#fetch_home_videos_content").html( step1_txt );   
+						$("#fetch_home_videos_content").html( step1_txt );
+						document.getElementById("sl_detail_step_tab").value = 0;   
 					} 
 				}else if(paras1 > 0 && paras1 <=10){
 					$("#fetch_home_content").css("display", "none");
@@ -114,11 +115,19 @@
 					if(step2_tab_txt != ''){	
 						$("#fetch_tab_detail_ul_list").html( step2_tab_txt ); 
 						video_switcher();
+						
+						
+						var detail_tb_indx = document.getElementById("sl_detail_step_tab").value;
+						if(detail_tb_indx >0){
+							detail_tb_indx = detail_tb_indx - 1;
+							document.querySelectorAll('.process-list li')[detail_tb_indx].click(); 
+						} 
 					}
 				
 				}else if(paras1 >10){
 					$("#fetch_home_content").css("display", "none");
 					$("#fetch_tab_detail_content").css("display", "none");
+					document.getElementById("sl_detail_step_tab").value = 0;
 					
 					if(sl_lang == "ar"){
 						$("#fetch_en_thankyou_content").css("display", "none");
