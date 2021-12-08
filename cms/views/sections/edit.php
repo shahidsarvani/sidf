@@ -78,7 +78,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 						<div class="form-group">
 							<label for="bg_video">Background Video:</label>
 							<input type="file" name="bg_video" id="bg_video" class="bgfile-input-overwrite-section" accept="video/*" data-fouc />
-							<input type="hidden" name="old_bg_video" class="icon_video" id="video_key" value="<?php echo $row['bg_video_name']; ?>" />
+							<input type="hidden" name="old_bg_video" class="icon_video" id="video_key" value="<?php echo $row['bg_video_key']; ?>" />
 							<span class="bgvideo_name"><?php echo ($row['bg_video_name'] != '') ? '( ' . $row['bg_video_name'] . ' )' : ''; ?></span>
 						</div>
 						<h3 style="text-decoration:underline">Section Tabs</h3>
@@ -149,7 +149,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 												<div class="form-group">
 													<label for="tab_bg_video<?php echo $p; ?>">Bg Video:</label>
 													<input type="file" name="tab_bg_video[]" id="tab_bg_video<?php echo $p; ?>" class="tabbgfile-input-overwrite-section" data-fouc />
-													<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_name']; ?>" />
+													<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_key']; ?>" />
 													<span class="bgvideo_name"><?php echo ($record['bg_video_name'] != '') ? '( ' . $record['bg_video_name'] . ' )' : ''; ?></span>
 												</div>
 											</div>
@@ -282,7 +282,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 														<div class="form-group">
 															<label for="tab_bg_video<?php echo $p; ?>">Bg Video:</label>
 															<input type="file" name="tab_bg_video[]" id="tab_bg_video<?php echo $p; ?>" class="tabbgfile-input-overwrite-section" data-fouc />
-															<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_name']; ?>" /> 
+															<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_key']; ?>" /> 
 															<span class="bgvideo_name"><?php echo ($record['bg_video_name'] != '') ? '( ' . $record['bg_video_name'] . ' )' : ''; ?></span>
 														</div>
 													</div>

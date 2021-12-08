@@ -42,8 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($bg_video) {
         $bg_video = $bg_video->fetch_assoc();
         $row['bg_video_name'] = $bg_video['name'];
+        $row['bg_video_key'] = $bg_video['file_key'];
     } else {
         $row['bg_video_name'] = '';
+        $row['bg_video_key'] = '';
     }
     $records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
 
@@ -60,9 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $tabbg_video = $section_obj->get_media($value['bg_video']);
             
             $value['bg_video_name'] = '';
+            $value['bg_video_key'] = '';
             if ($tabbg_video !== false) {
                 $tabbg_video = $tabbg_video->fetch_assoc();
                 $value['bg_video_name'] = $tabbg_video['name'];
+                $value['bg_video_key'] = $tabbg_video['file_key'];
             }
 
             array_push($temp, $value);
