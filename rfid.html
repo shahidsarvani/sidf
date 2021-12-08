@@ -171,7 +171,7 @@
 
     $(document).on("click", ".next_tab", function (event) {
         var tag = $(this).attr("data-card_id");
-        if(tag) {
+        if (tag) {
             var loader_name = $(this).attr("data-loader_name");
             var loader_type = $(this).attr("data-loader_type");
             $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
@@ -196,6 +196,9 @@
                 var html = data.companies[tag];
                 $('#index_1').empty();
                 $('#index_1').append(html)
+                var vid = document.querySelector('.video_inner')
+                vid.pause();
+                vid.duration = 0
                 $('#index_1').append('<footer><img src="./assets/frontend_assets/rfid_assets/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
                 $('.text_wrapper_outter_1').fadeOut('slow', function () {
                     $('#preloader').fadeIn('slow')
@@ -206,6 +209,8 @@
     function preLoaderEnded() {
         console.log('video ended')
         $('#preloader').fadeOut('slow', function () {
+            var vid = document.querySelector('.video_inner')
+            vid.play();
             $('#index_1').fadeIn("slow");
         }); // will fade out the white DIV that covers the website. 
     }
