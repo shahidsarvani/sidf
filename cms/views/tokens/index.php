@@ -8,7 +8,7 @@ require ADMIN_VIEW . '/layout/header.php';
     require ADMIN_VIEW . '/layout/alert.php';
     ?>
     <div class="w-100 text-right mb-3">
-        <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/tokens/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/tokens/get_json.php?' . time() ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
         <?php
         if (count($all_tokens) < 4) :
         ?>
