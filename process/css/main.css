@@ -40,7 +40,9 @@ html {
   font-size: 100px;
   font-family: "Neo Sans Arabic";
   font-weight: normal;
+  text-transform: uppercase;
 }
+
 
 .main-section .overlay {
   min-height: 100vh !important;
