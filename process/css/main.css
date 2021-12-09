@@ -326,7 +326,10 @@ header a:hover{
   color: #ffffff;
 }
 
-/* @keyframes blink {
+.back-to-main-new img {
+  animation: blinker 2s linear infinite;
+}
+@keyframes blinker {
   0% {
     opacity: 0;
   }
@@ -338,4 +341,4 @@ header a:hover{
   100% {
     opacity: 1;
   }
-} */
+}
