@@ -207,10 +207,7 @@
                 vid.duration = 0
                 $('#index_1').append('<footer><img src="./assets/frontend_assets/rfid_assets/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
                 $('.text_wrapper_outter_1').fadeOut('slow', function () {
-                    console.log('tokens faded out')
-                    $('#preloader').fadeIn('slow', function() {
-                        console.log('preloader added')
-                    })
+                    $('#preloader').fadeIn('slow')
                 });
             }
         });
@@ -219,7 +216,6 @@
         console.log('video ended')
         $('#preloader').fadeOut('slow', function () {
             var vid = document.querySelector('.video_inner')
-            vid.mu
             vid.play();
             $('#index_1').fadeIn("slow");
         }); // will fade out the white DIV that covers the website. 
