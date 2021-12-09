@@ -150,10 +150,8 @@
         vid.pause();
         $('#preloader').empty().css('display', 'none')
         $('#index_1').fadeOut('slow', function () {
-            console.log('info token removed')
-            $('.text_wrapper_outter_1').fadeIn('slow', function (){
-                console.log('tokens added')
-            })
+            $('#index_1').empty()
+            $('.text_wrapper_outter_1').fadeIn('slow')
         })
     }
 
