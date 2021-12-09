@@ -16,9 +16,9 @@
 <body style="background-color: #edeeea;">
 
     <div id="preloader" style="display: none">
-        <video id="vid" class="categories_video_inner">
+        <!-- <video id="vid" class="categories_video_inner">
             <source src="" type="video/mp4">
-        </video>
+        </video> -->
     </div>
 
     <div class="text_wrapper_outter_1">
@@ -148,9 +148,12 @@
 
         var vid = document.querySelector('.video_inner')
         vid.pause();
-        $('#preloader').empty()
+        $('#preloader').empty().css('display', 'none')
         $('#index_1').fadeOut('slow', function () {
-            $('.text_wrapper_outter_1').fadeIn('slow')
+            console.log('info token removed')
+            $('.text_wrapper_outter_1').fadeIn('slow', function (){
+                console.log('tokens added')
+            })
         })
     }
 
