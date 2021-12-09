@@ -214,7 +214,7 @@
     }
 
     /* direct setting if not move in xx seconds script starts */
-    var max_time = 180;
+    var max_time = 30;
     function noMovement() {
         var isInfoDisplayed = document.getElementById('index_1').style.display
         if(isInfoDisplayed != 'none') {
@@ -229,7 +229,7 @@
     }
 
     function resetGlobal() {
-        max_time = 180;
+        max_time = 30;
     }
 
     setInterval(function () { noMovement() }, 1000);
