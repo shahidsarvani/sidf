@@ -195,7 +195,7 @@
     function preLoaderAdded(tag) {
         readTextFile("companies.json", function (text) {
             var data = JSON.parse(text);
-            console.log(data.companies[tag])
+            // console.log(data.companies[tag])
             if (data.companies[tag] === undefined) {
                 alert('Company info not added')
             } else {
