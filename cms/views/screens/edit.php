@@ -154,7 +154,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                         position: 'top-right'
                     });
                 }, 200);
-            });;
+            });
 
         var validator = $("#screen-form").validate({
             ignore: "input[type=hidden], .select2-search__field", // ignore hidden fields

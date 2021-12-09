@@ -21,8 +21,7 @@ class Media
 		$filetype = filter_var($data['filetype'], FILTER_SANITIZE_STRING);
 		$created_on = date('Y-m-d H:i:s');
 		$get_media = $this->get_media_by_file_key($file_key);
-		if($get_media) {
-
+		if ($get_media) {
 		} else {
 			$query = "
 			INSERT INTO media (name, file_key, filetype, type, created_on) VALUES ('$name','$file_key','$filetype','$type','$created_on')
@@ -34,6 +33,19 @@ class Media
 				$_SESSION['error_code'] = 500;
 				header('Location: ' . ADMIN_SITE_URL . '/controller/error.php');
 			}
+		}
+	}
+
+	public function delete_media($id)
+	{
+		$query = "
+		DELETE FROM media WHERE id = '$id'
+		";
+		$result = $this->connect->query($query);
+		if (TRUE === $result) {
+			return true;
+		} else {
+			return $this->connect->error;
 		}
 	}
 

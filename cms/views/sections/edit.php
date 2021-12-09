@@ -78,8 +78,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 						<div class="form-group">
 							<label for="bg_video">Background Video:</label>
 							<input type="file" name="bg_video" id="bg_video" class="bgfile-input-overwrite-section" accept="video/*" data-fouc />
-							<input type="hidden" name="old_bg_video" class="icon_video" id="video_key" value="<?php echo $row['bg_video_key']; ?>" />
-							<span class="bgvideo_name"><?php echo ($row['bg_video_name'] != '') ? '( ' . $row['bg_video_name'] . ' )' : ''; ?></span>
+							<input type="hidden" name="old_bg_video" class="icon_video" id="video_key" value="<?php echo $row['bg_video_details']['file_key'] ?? '' ?>" data-value="<?php echo isset($row['bg_video_details']['name']) ? $items_config['section_bgvid_media_url'] . $row['bg_video_details']['name'] : '' ?>" data-caption="<?php echo $row['bg_video_details']['name'] ?? '' ?>" data-key="<?php echo $row['bg_video_details']['file_key'] ?? '' ?>" data-size="<?php echo $row['bg_video_details']['size'] ?? '' ?>" data-type="<?php echo $row['bg_video_details']['type'] ?? '' ?>" data-filetype="<?php echo $row['bg_video_details']['filetype'] ?? '' ?>" />
 						</div>
 						<h3 style="text-decoration:underline">Section Tabs</h3>
 
@@ -149,8 +148,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 												<div class="form-group">
 													<label for="tab_bg_video<?php echo $p; ?>">Bg Video:</label>
 													<input type="file" name="tab_bg_video[]" id="tab_bg_video<?php echo $p; ?>" class="tabbgfile-input-overwrite-section" data-fouc />
-													<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_key']; ?>" />
-													<span class="bgvideo_name"><?php echo ($record['bg_video_name'] != '') ? '( ' . $record['bg_video_name'] . ' )' : ''; ?></span>
+													<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_details']['file_key'] ?? '' ?>" data-value="<?php echo isset($record['bg_video_details']['name']) ? $items_config['section_tabbgvid_media_url'] . $record['bg_video_details']['name'] : '' ?>" data-caption="<?php echo $record['bg_video_details']['name'] ?? '' ?>" data-key="<?php echo $record['bg_video_details']['file_key'] ?? '' ?>" data-size="<?php echo $record['bg_video_details']['size'] ?? '' ?>" data-type="<?php echo $record['bg_video_details']['type'] ?? '' ?>" data-filetype="<?php echo $record['bg_video_details']['filetype'] ?? '' ?>" />
 												</div>
 											</div>
 										</div>
@@ -282,8 +280,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 														<div class="form-group">
 															<label for="tab_bg_video<?php echo $p; ?>">Bg Video:</label>
 															<input type="file" name="tab_bg_video[]" id="tab_bg_video<?php echo $p; ?>" class="tabbgfile-input-overwrite-section" data-fouc />
-															<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_key']; ?>" /> 
-															<span class="bgvideo_name"><?php echo ($record['bg_video_name'] != '') ? '( ' . $record['bg_video_name'] . ' )' : ''; ?></span>
+															<input type="hidden" name="old_tab_bg_video[]" class="icon_video" id="old_tab_bg_video<?php echo $p; ?>" value="<?php echo $record['bg_video_details']['file_key'] ?? '' ?>" data-value="<?php echo isset($record['bg_video_details']['name']) ? $items_config['section_tabbgvid_media_url'] . $record['bg_video_details']['name'] : '' ?>" data-caption="<?php echo $record['bg_video_details']['name'] ?? '' ?>" data-key="<?php echo $record['bg_video_details']['file_key'] ?? '' ?>" data-size="<?php echo $record['bg_video_details']['size'] ?? '' ?>" data-type="<?php echo $record['bg_video_details']['type'] ?? '' ?>" data-filetype="<?php echo $record['bg_video_details']['filetype'] ?? '' ?>" />
 														</div>
 													</div>
 												</div>
@@ -325,6 +322,12 @@ require ADMIN_VIEW . '/layout/footer.php';
 		$('#navlink-sections').addClass('nav-item-open');
 		$('#navlink-sections ul').css('display', 'block');
 		$('#navlink-sections_add').addClass('active');
+
+		var swalInit = swal.mixin({
+			buttonsStyling: false,
+			confirmButtonClass: 'btn btn-primary',
+			cancelButtonClass: 'btn btn-light'
+		});
 
 
 		var validator = $('#datas_form').validate({
@@ -413,7 +416,19 @@ require ADMIN_VIEW . '/layout/footer.php';
 			$('#' + event.currentTarget.id).parents('.form-group').find('.bgvideo_name').remove();
 		}
 
-		$('.bgfile-input-overwrite-section').on("fileuploaded", fileUploaded)
+		function fileDeleted(event, preview, config, tags, extraData) {
+			// setTimeout(function() {
+			swalInit.fire({
+				text: 'File deleted successfuly!',
+				type: 'success',
+				toast: true,
+				showConfirmButton: false,
+				position: 'top-right'
+			});
+			// }, 200);
+		}
+
+		$('.bgfile-input-overwrite-section').on("fileuploaded", fileUploaded).on('filedeleted', fileDeleted);
 		$('.tabbgfile-input-overwrite-section').on("fileuploaded", fileUploaded)
 
 	});

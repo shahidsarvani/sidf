@@ -39,13 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $section_obj = new Sections();
     $row = $section_obj->get_section($_GET['id']);
     $bg_video = $section_obj->get_media($row['bg_video']);
-    if ($bg_video) {
+    $row['bg_video_details'] = array();
+    if ($bg_video !== false) {
         $bg_video = $bg_video->fetch_assoc();
-        $row['bg_video_name'] = $bg_video['name'];
-        $row['bg_video_key'] = $bg_video['file_key'];
-    } else {
-        $row['bg_video_name'] = '';
-        $row['bg_video_key'] = '';
+        $row['bg_video_details'] = $bg_video;
+        $row['bg_video_details']['size'] = explode('_', $row['bg_video_details']['file_key'])[0];
     }
     $records = $section_obj->get_section_tabs_by_section_id($_GET['id']);
 
@@ -61,12 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             // echo json_encode($record);
             $tabbg_video = $section_obj->get_media($value['bg_video']);
             
-            $value['bg_video_name'] = '';
-            $value['bg_video_key'] = '';
+            $value['bg_video_details'] = array();
             if ($tabbg_video !== false) {
                 $tabbg_video = $tabbg_video->fetch_assoc();
-                $value['bg_video_name'] = $tabbg_video['name'];
-                $value['bg_video_key'] = $tabbg_video['file_key'];
+                $value['bg_video_details'] = $tabbg_video;
+                $value['bg_video_details']['size'] = explode('_', $value['bg_video_details']['file_key'])[0];
             }
 
             array_push($temp, $value);
@@ -74,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 }
 // echo json_encode($temp);
-// // echo json_encode($row);
+// echo json_encode($row);
 // die();
 
 $title = 'Sections - SIDF';

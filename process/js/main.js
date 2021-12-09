@@ -15,9 +15,9 @@ function video_switcher() {
 
 	items.forEach(function (item, index) {
 		item.addEventListener('click', function (e) {
-			// if($('video#fetch_tab_detail_video').get(0)){
-			// 	$('video#fetch_tab_detail_video').addClass('d-none')
-			// }
+			if($('video#fetch_tab_detail_video').get(0)){
+				$('video#fetch_tab_detail_video').addClass('d-none')
+			}
 			var currentItem = document.querySelector('.current');
 			var nextItem = document.querySelector('.next');
 			var animatedItems = document.querySelectorAll('.animated');
@@ -52,11 +52,11 @@ function video_switcher() {
 			
 			document.getElementById("sl_detail_step_tab").value = index + 1;
 			
-			// $(videoContainer).fadeOut('slow', function() {
-			// 	console.log('here')
+			$(videoContainer).fadeOut('slow', function() {
+				console.log('here')
 				videoContainer.innerHTML = '<video autoplay ' + loop + ' class="myVideo" onended="nextItem();"><source src="' + src + '" type="' + type + '">Your browser does not support HTML5 video.</video>';
-			// 	$(videoContainer).fadeIn();
-			// })
+				$(videoContainer).fadeIn();
+			})
 		});
 	});
 }

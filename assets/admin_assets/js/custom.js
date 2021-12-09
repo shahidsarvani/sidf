@@ -470,14 +470,15 @@ var ImageUploadToken = (function () {
 
     var initialPreviewLogo = [];
     var initialPreviewConfigLogo = [];
-    // var initialPreviewIcon = [];
-    // var initialPreviewConfigIcon = [];
+    var initialPreviewSectionBg = [];
+    var initialPreviewConfigSectionBg = [];
     var initialPreviewVideo = [];
     var initialPreviewConfigVideo = [];
     var initialPreviewLoaderVideo = [];
     var initialPreviewConfigLoaderVideo = [];
     var logo = document.querySelector('.old-logo');
     var video = document.querySelector('.old-video');
+    var section_bgvideo = document.querySelector('.icon_video');
     var loader_video = document.querySelector('.old-loader-video');
     // var icons = document.querySelectorAll('.old-icons');
     if (logo) {
@@ -488,6 +489,17 @@ var ImageUploadToken = (function () {
         key: logo.dataset.key,
         filetype: logo.dataset.filetype,
         type: logo.dataset.type,
+        url: 'media_delete.php',
+      })
+    }
+    if (section_bgvideo && section_bgvideo.dataset.value) {
+      initialPreviewSectionBg.push(section_bgvideo.dataset.value);
+      initialPreviewConfigSectionBg.push({
+        caption: section_bgvideo.dataset.caption,
+        size: parseInt(section_bgvideo.dataset.size),
+        key: section_bgvideo.dataset.key,
+        filetype: section_bgvideo.dataset.filetype,
+        type: section_bgvideo.dataset.type,
         url: 'media_delete.php',
       })
     }
@@ -661,8 +673,8 @@ var ImageUploadToken = (function () {
         icon: '<i class="icon-file-check"></i>',
         modal: modalTemplate
       },
-      initialPreview: initialPreviewVideo,
-      initialPreviewConfig: initialPreviewConfigVideo,
+      initialPreview: initialPreviewSectionBg,
+      initialPreviewConfig: initialPreviewConfigSectionBg,
       initialPreviewAsData: true,
       overwriteInitial: false,
       previewZoomButtonClasses: previewZoomButtonClasses,
@@ -682,40 +694,60 @@ var ImageUploadToken = (function () {
       },
       deleteUrl: "media_delete.php"
     });
-    $('.tabbgfile-input-overwrite-section').fileinput({
-      browseLabel: 'Browse',
-      uploadUrl: "upload_tabbgmedia.php", // server upload action
-      enableResumableUpload: true,
-      autoOrientImage: false,
-      allowedFileTypes: ["video"],
-      browseIcon: '<i class="icon-file-plus mr-2"></i>',
-      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
-      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
-      layoutTemplates: {
-        icon: '<i class="icon-file-check"></i>',
-        modal: modalTemplate
-      },
-      initialPreview: initialPreviewVideo,
-      initialPreviewConfig: initialPreviewConfigVideo,
-      initialPreviewAsData: true,
-      overwriteInitial: false,
-      previewZoomButtonClasses: previewZoomButtonClasses,
-      previewZoomButtonIcons: previewZoomButtonIcons,
-      fileActionSettings: {
-        zoomClass: '',
-        zoomIcon: '<i class="icon-zoomin3"></i>',
-        dragClass: 'p-2',
-        dragIcon: '<i class="icon-three-bars"></i>',
-        removeClass: '',
-        removeErrorClass: 'text-danger',
-        removeIcon: '<i class="icon-bin"></i>',
-        indicatorNew: '<i class="icon-file-plus text-success"></i>',
-        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
-        indicatorError: '<i class="icon-cross2 text-danger"></i>',
-        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
-      },
-      deleteUrl: "media_delete.php"
-    });
+    var tabbgfileInput = document.querySelectorAll('.tabbgfile-input-overwrite-section');
+    tabbgfileInput.forEach(function (tabbgfile) {
+      var initialPreviewTabBgVideo = [];
+      var initialPreviewConfigTabBgVideo = [];
+      var tabBgVideo = $(tabbgfile).parents('.form-group').find('.icon_video');
+      if (tabBgVideo.get(0) && tabBgVideo.attr('data-value')) {
+        initialPreviewTabBgVideo.push(tabBgVideo.attr('data-value'));
+        initialPreviewConfigTabBgVideo.push({
+          caption: tabBgVideo.attr('data-caption'),
+          size: parseInt(tabBgVideo.attr('data-size')),
+          key: tabBgVideo.attr('data-key'),
+          filetype: tabBgVideo.attr('data-filetype'),
+          type: tabBgVideo.attr('data-type'),
+          url: 'tabbgmedia_delete.php',
+        })
+      }
+      $(tabbgfile).fileinput({
+        browseLabel: 'Browse',
+        uploadUrl: "upload_tabbgmedia.php", // server upload action
+        enableResumableUpload: true,
+        autoOrientImage: false,
+        allowedFileTypes: ["video"],
+        browseIcon: '<i class="icon-file-plus mr-2"></i>',
+        uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+        removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+        layoutTemplates: {
+          icon: '<i class="icon-file-check"></i>',
+          modal: modalTemplate
+        },
+        initialPreview: initialPreviewTabBgVideo,
+        initialPreviewConfig: initialPreviewConfigTabBgVideo,
+        initialPreviewAsData: true,
+        overwriteInitial: false,
+        previewZoomButtonClasses: previewZoomButtonClasses,
+        previewZoomButtonIcons: previewZoomButtonIcons,
+        fileActionSettings: {
+          zoomClass: '',
+          zoomIcon: '<i class="icon-zoomin3"></i>',
+          dragClass: 'p-2',
+          dragIcon: '<i class="icon-three-bars"></i>',
+          removeClass: '',
+          removeErrorClass: 'text-danger',
+          removeIcon: '<i class="icon-bin"></i>',
+          indicatorNew: '<i class="icon-file-plus text-success"></i>',
+          indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+          indicatorError: '<i class="icon-cross2 text-danger"></i>',
+          indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+        },
+        deleteUrl: "tabbgmedia_delete.php"
+      });
+      // var video = $(tabbgfile).parents('.form-group').find('.icon_video').val();
+      // console.log(video);
+    })
+    // $('.tabbgfile-input-overwrite-section')
     $('.file-input-overwrite-rfid-loadervid').fileinput({
       browseLabel: 'Browse',
       uploadUrl: "upload_media_loader.php", // server upload action
