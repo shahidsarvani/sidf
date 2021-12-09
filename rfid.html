@@ -147,7 +147,9 @@
         console.log('tag lost')
 
         var vid = document.querySelector('.video_inner')
-        vid.pause();
+        if(vid) {
+            vid.pause();
+        }
         $('#preloader').empty().css('display', 'none')
         $('#index_1').fadeOut('slow', function () {
             $('#index_1').empty()
@@ -187,7 +189,10 @@
     })
     $(document).on("click", ".footer_logo", function (event) {
         var vid = document.querySelector('.video_inner')
-        vid.pause();
+        console.log(vid)
+        if (vid) {
+            vid.pause();
+        }
         $('#index_1').fadeOut('slow', function () {
             $('.text_wrapper_outter_1').fadeIn('slow')
         })
@@ -203,8 +208,11 @@
                 $('#index_1').empty();
                 $('#index_1').append(html)
                 var vid = document.querySelector('.video_inner')
-                vid.pause();
-                vid.duration = 0
+                console.log(vid)
+                if (vid) {
+                    vid.pause();
+                    vid.duration = 0
+                }
                 $('#index_1').append('<footer><img src="./assets/frontend_assets/rfid_assets/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
                 $('.text_wrapper_outter_1').fadeOut('slow', function () {
                     $('#preloader').fadeIn('slow')
@@ -216,39 +224,42 @@
         console.log('video ended')
         $('#preloader').fadeOut('slow', function () {
             var vid = document.querySelector('.video_inner')
-            vid.play();
+            console.log(vid)
+            if (vid) {
+                vid.play();
+            }
             $('#index_1').fadeIn("slow");
         }); // will fade out the white DIV that covers the website. 
     }
 
     /* direct setting if not move in xx seconds script starts */
-    var max_time = 30;
-    function noMovement() {
-        var isInfoDisplayed = document.getElementById('index_1').style.display
-        if(isInfoDisplayed != 'none') {
-            if (max_time < 0) {
-                window.location = "./rfid.html";
-                resetGlobal();
-            } else {
-                console.log(max_time)
-                max_time--;
-            }
-        }
-    }
+    // var max_time = 30;
+    // function noMovement() {
+    //     var isInfoDisplayed = document.getElementById('index_1').style.display
+    //     if(isInfoDisplayed != 'none') {
+    //         if (max_time < 0) {
+    //             window.location = "./rfid.html";
+    //             resetGlobal();
+    //         } else {
+    //             console.log(max_time)
+    //             max_time--;
+    //         }
+    //     }
+    // }
 
-    function resetGlobal() {
-        max_time = 30;
-    }
+    // function resetGlobal() {
+    //     max_time = 30;
+    // }
 
-    setInterval(function () { noMovement() }, 1000);
-    $('html').mousemove(function (event) {
-        resetGlobal();
-    });
+    // setInterval(function () { noMovement() }, 1000);
+    // $('html').mousemove(function (event) {
+    //     resetGlobal();
+    // });
 
-    $('html').click(function (event) {
-        resetGlobal();
-    });
-/* direct setting if not move in xx seconds script starts */
+    // $('html').click(function (event) {
+    //     resetGlobal();
+    // });
+    /* direct setting if not move in xx seconds script starts */
 </script>
 
 </html>
