@@ -195,7 +195,7 @@
     function preLoaderAdded(tag) {
         readTextFile("companies.json", function (text) {
             var data = JSON.parse(text);
-            console.log(data.companies[tag])
+            // console.log(data.companies[tag])
             if (data.companies[tag] === undefined) {
                 alert('Company info not added')
             } else {
@@ -216,7 +216,6 @@
         console.log('video ended')
         $('#preloader').fadeOut('slow', function () {
             var vid = document.querySelector('.video_inner')
-            vid.mu
             vid.play();
             $('#index_1').fadeIn("slow");
         }); // will fade out the white DIV that covers the website. 
