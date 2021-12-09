@@ -207,7 +207,10 @@
                 vid.duration = 0
                 $('#index_1').append('<footer><img src="./assets/frontend_assets/rfid_assets/sidf_logo.svg" alt="sidf_logo" class="footer_logo"></footer>')
                 $('.text_wrapper_outter_1').fadeOut('slow', function () {
-                    $('#preloader').fadeIn('slow')
+                    console.log('tokens faded out')
+                    $('#preloader').fadeIn('slow', function() {
+                        console.log('preloader added')
+                    })
                 });
             }
         });
