@@ -116,9 +116,6 @@
     }
 
     function tagEvent(tag, protocol) {
-
-
-
         var tabs = document.querySelectorAll('.next_tab')
         tabs.forEach(function (tab) {
             if (tab.dataset.card_id == tag) {
@@ -149,6 +146,7 @@
     function tagLostEvent(tag, protocol) {
         console.log('tag lost')
     }
+
     readTextFile("tokens.json", function (text) {
         var data = JSON.parse(text);
         // console.log(data);
@@ -214,6 +212,35 @@
             $('#index_1').fadeIn("slow");
         }); // will fade out the white DIV that covers the website. 
     }
+
+    /* direct setting if not move in xx seconds script starts */
+    var max_time = 180;
+    function noMovement() {
+        var isInfoDisplayed = document.getElementById('index_1').style.display
+        if(isInfoDisplayed != 'none') {
+            if (max_time < 0) {
+                window.location = "./rfid.html";
+                resetGlobal();
+            } else {
+                console.log(max_time)
+                max_time--;
+            }
+        }
+    }
+
+    function resetGlobal() {
+        max_time = 180;
+    }
+
+    setInterval(function () { noMovement() }, 1000);
+    $('html').mousemove(function (event) {
+        resetGlobal();
+    });
+
+    $('html').click(function (event) {
+        resetGlobal();
+    });
+/* direct setting if not move in xx seconds script starts */
 </script>
 
 </html>
