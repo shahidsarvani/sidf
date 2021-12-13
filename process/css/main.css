@@ -294,12 +294,20 @@ footer h2 {
     transform: scale(1.5);
   }
 }
+[dir='rtl'] .thank-you h2 {
+  font-size: 35px;
+}
+
+[dir='rtl'] .thank-you a {
+  font-size: 35px;
+}
+
 .thank-you h2 {
   font-family: "Neo Sans Arabic";
   text-transform: uppercase;
   font-size: 30px;
   color: #606060;
-  width: 500px;
+  width: 550px;
   margin: 0 auto; 
 }
 .thankyou-logo img {
@@ -322,6 +330,9 @@ footer h2 {
   text-decoration: none;
 }
 
+.thank-you a:hover {
+  color: #5baf47;
+}
 .thank-you {
   background: url("../images/thankyouscreen.svg");
   background-position: left;
