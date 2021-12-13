@@ -144,9 +144,15 @@
 						$("#fetch_tab_detail_content").css("display", "none");
 						document.getElementById("sl_detail_step_tab").value = 0;
 						if (sl_lang == "ar") {
+							$("html").attr("lang", "ar");
+							$("html").attr("dir", "rtl");
+							$('head').append('<link rel="stylesheet" href="./css/bootstrap.rtl.min.css" type="text/css" />');
 							$("#fetch_en_thankyou_content").css("display", "none");
 							$("#fetch_ar_thankyou_content").css("display", "");
 						} else {
+							$("html").attr("lang", "en");
+							$("html").attr("dir", "ltr");
+							$('link[rel=stylesheet][href~="./css/bootstrap.rtl.min.css"]').remove();
 							$("#fetch_ar_thankyou_content").css("display", "none");
 							$("#fetch_en_thankyou_content").css("display", "");
 						}
