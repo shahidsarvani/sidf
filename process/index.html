@@ -27,7 +27,9 @@
 		// }
 
 		function operate_steps(paras1 = '0') {
+			console.log('operating steps')
 			$(document).ready(function () {
+				$('.video-container').removeClass('active')
 				var sl_lang = $("#sl_lang").val();
 				$("#sl_current_step").val(paras1);
 
@@ -197,7 +199,7 @@
 		<video id="fetch_tab_detail_video" autoplay loop class="myVideo-home-inner">
 			<source src="" type="video/mp4"> Your browser does not support HTML5 video.
 		</video>
-		<div class="video-container myVideo-home-inner"></div>
+		<div class="video-container"></div>
 		<div class="row min-vh-100 video-row position-relative px-5 py-4 m-0">
 			<div class="col-6 px-5 py-4">
 				<h2 class="process-title animate__animated animate__fadeInLeft" id="fetch_tab_detail_sub_heading"> </h2>

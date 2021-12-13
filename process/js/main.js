@@ -53,9 +53,9 @@ function video_switcher() {
 			document.getElementById("sl_detail_step_tab").value = index + 1;
 			
 			$(videoContainer).fadeOut('slow', function() {
-				console.log('here')
 				videoContainer.innerHTML = '<video autoplay ' + loop + ' class="myVideo" onended="nextItem();"><source src="' + src + '" type="' + type + '">Your browser does not support HTML5 video.</video>';
 				$(videoContainer).fadeIn();
+				$(videoContainer).addClass('active');
 			})
 		});
 	});
