@@ -1,63 +1,38 @@
 {
     "screens": [
         {
-            "screen_name": "Screen 1",
-            "screen_slug": "screen-1",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media1.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media2.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media3.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_one');\" onended=\"playSlider('.slider_one');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/video 1 Establishment of Royal Commission.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         },
         {
-            "screen_name": "Screen 2",
-            "screen_slug": "screen-2",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media4.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media5.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media6.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_two');\" onended=\"playSlider('.slider_two');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/video 2 Made in Saudi.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         },
         {
-            "screen_name": "Screen 3",
-            "screen_slug": "screen-3",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media7.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media8.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media9.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_three');\" onended=\"playSlider('.slider_three');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/video 3 Ministry of electricity.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         },
         {
-            "screen_name": "Screen 4",
-            "screen_slug": "screen-4",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media11.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media12.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media10.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_four');\" onended=\"playSlider('.slider_four');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/Video 4 Sabic Process.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         },
         {
-            "screen_name": "Screen 5",
-            "screen_slug": "screen-5",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media13.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media15.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_five');\" onended=\"playSlider('.slider_five');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/Video 5 Sabic_1990.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         },
         {
-            "screen_name": "Screen 6",
-            "screen_slug": "screen-6",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media16.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media17.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_six');\" onended=\"playSlider('.slider_six');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/Video 6 Sabic.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         },
         {
-            "screen_name": "Screen 7",
-            "screen_slug": "screen-7",
             "media": [
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media20.jpg",
-                "https:\/\/sidf.digitalpoin8.com\/assets\/frontend_assets\/images\/media21.jpg"
+                "<div class=\"item\"><video class=\"img_slid\" muted controls onplay=\"pauseSlider('.slider_seven');\" onended=\"playSlider('.slider_seven');\" loop><source src=\"http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/Video 7 SIDF annual 1989.mp4\" type=\"video\/mp4\"><\/video><\/div>"
             ]
         }
     ]
