@@ -168,7 +168,7 @@ html {
   content: "";
   min-height: 100vh !important;
   background: rgb(255, 255, 255);
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0.701) 0%, rgba(255, 255, 255, 0.704) 20%, rgba(0,212,255,0) 100%);
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.701) 0%, rgba(255, 255, 255, 0.704) 0%, rgba(0,212,255,0) 100%);
   z-index: -1;
   min-width: 100%;
   position: absolute;
@@ -180,7 +180,7 @@ html {
   content: "";
   min-height: 100vh !important;
   background: rgb(255, 255, 255);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.701) 0%, rgba(255, 255, 255, 0.704) 20%, rgba(0,212,255,0) 100%) !important;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.701) 0%, rgba(255, 255, 255, 0.704) 0%, rgba(0,212,255,0) 100%) !important;
   z-index: -1;
   min-width: 100%;
   position: absolute;
@@ -208,7 +208,7 @@ header a, header p {
   font-weight: normal;
 }
 .eng-language {
-    font-size: 26px;
+    font-size: 24px;
 }
 .ar-language {
   font-size: 30px;
