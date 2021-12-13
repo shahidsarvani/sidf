@@ -279,8 +279,10 @@ footer h2 {
 .thank-you h2 {
   font-family: "Neo Sans Arabic";
   text-transform: uppercase;
-  font-size: 70px;
+  font-size: 30px;
   color: #606060;
+  width: 500px;
+  margin: 0 auto; 
 }
 .thankyou-logo img {
   width: 340px;
@@ -297,7 +299,7 @@ footer h2 {
 .thank-you a {
   font-family: "Neo Sans Arabic";
   text-transform: uppercase;
-  font-size: 50px;
+  font-size: 30px;
   color: #606060;
   text-decoration: none;
 }
