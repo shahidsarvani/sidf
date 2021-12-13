@@ -186,7 +186,9 @@ img.footer_logo {
 .logo_4 img {
 	max-height: 180px;
 }
-
+.logo_3 img {
+	width: 250px;
+}
 .logo_maaden img {
   width: 200px;
 }
