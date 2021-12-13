@@ -130,6 +130,20 @@ class Sections
 		}
 	}
 
+	public function get_active_section_tabs_by_section_id($section_id)
+	{
+		$query = "SELECT * FROM section_tabs WHERE section_id = '" . $section_id . "' AND status = 1";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
 	public function get_section_tabs($id)
 	{
 

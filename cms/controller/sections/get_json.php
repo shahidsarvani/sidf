@@ -15,7 +15,7 @@ if($sec_rows){
 	foreach($sec_rows as $sec_row){
 		
 		$section_tabs_data = array();
-		$sec_tabs_rows = $section_obj->get_section_tabs_by_section_id($sec_row['id']); 
+		$sec_tabs_rows = $section_obj->get_active_section_tabs_by_section_id($sec_row['id']); 
 		if($sec_tabs_rows){
 			foreach($sec_tabs_rows as $sec_tabs_row){
 				$tab_icon_name = '';

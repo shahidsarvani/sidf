@@ -694,6 +694,7 @@ var ImageUploadToken = (function () {
       },
       deleteUrl: "media_delete.php"
     });
+    
     var tabbgfileInput = document.querySelectorAll('.tabbgfile-input-overwrite-section');
     tabbgfileInput.forEach(function (tabbgfile) {
       var initialPreviewTabBgVideo = [];
@@ -744,10 +745,8 @@ var ImageUploadToken = (function () {
         },
         deleteUrl: "tabbgmedia_delete.php"
       });
-      // var video = $(tabbgfile).parents('.form-group').find('.icon_video').val();
-      // console.log(video);
     })
-    // $('.tabbgfile-input-overwrite-section')
+    
     $('.file-input-overwrite-rfid-loadervid').fileinput({
       browseLabel: 'Browse',
       uploadUrl: "upload_media_loader.php", // server upload action
