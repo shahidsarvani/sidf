@@ -22,39 +22,9 @@
 			operate_steps('0')
 		}
 
-		function set_thankyou_page_text(sec_thankyou_text) {
-			// var sl_lang = $("#sl_lang").val();
-			$('.thanyou-box h2').html(sec_thankyou_text)
-			// if (sl_lang == "ar") {
-			// 	if (slug == 'juice') {
-			// 		//juice
-			// 		$('.thanyou-box h2').html('اشكرك Juice')
-			// 	} else if (slug == 'gold') {
-			// 		//gold
-			// 		$('.thanyou-box h2').html('اشكرك gold')
-			// 	} else if (slug == 'pills') {
-			// 		//pharma
-			// 		$('.thanyou-box h2').html('اشكرك pharma')
-			// 	} else if (slug == 'ships') {
-			// 		//ships
-			// 		$('.thanyou-box h2').html('اشكرك ships')
-			// 	}
-			// } else {
-			// 	if (slug == 'juice') {
-			// 		//juice
-			// 		$('.thanyou-box h2').html('Thank you Juice')
-			// 	} else if (slug == 'gold') {
-			// 		//gold
-			// 		$('.thanyou-box h2').html('Thank you gold')
-			// 	} else if (slug == 'pills') {
-			// 		//pharma
-			// 		$('.thanyou-box h2').html('Thank you pharma')
-			// 	} else if (slug == 'ships') {
-			// 		//ships
-			// 		$('.thanyou-box h2').html('Thank you ships')
-			// 	}
-			// }
-		}
+		// function set_thankyou_page_text(sec_thankyou_text) {
+		// 	$('.thanyou-box h2').html(sec_thankyou_text)
+		// }
 
 		function operate_steps(paras1 = '0') {
 			$(document).ready(function () {
@@ -90,14 +60,13 @@
 							var sec_id = datas[i]["sec_id"];
 							var sec_slug = datas[i]["sec_slug"];
 							var sec_title = (sl_lang == 'ar') ? datas[i]["sec_ar_title"] : datas[i]["sec_en_title"];
-							var sec_thankyou_text = (sl_lang == 'ar') ? datas[i]["sec_ar_thankyou"] : datas[i]["sec_en_thankyou"];
 							var sec_sort_order = datas[i]["sec_sort_order"];
 							var sec_bg_video = datas[i]["sec_bg_video"];
 							var sec_status = datas[i]["sec_status"];
 							var sec_updated_on = datas[i]["sec_updated_on"];
 							var section_tabs_datas = datas[i]["section_tabs"];
 
-							step1_txt += '<div class="col-3 p-0"> <a href="javascript:void(0)" onclick="operate_steps(\'' + sec_id + '\'); set_thankyou_page_text(\'' + sec_thankyou_text + '\');"> <div class="min-vh-100 position-relative main-section"> <video autoplay muted loop class="myVideo-home"> <source src="' + sec_bg_video + '" type="video/mp4"> Your browser does not support HTML5 video.</video> <div class="overlay min-vh-100"> <h2 class="animate__animated animate__fadeInLeft"> ' + sec_title + ' </h2> </div> </div> </a> </div>';
+							step1_txt += '<div class="col-3 p-0"> <a href="javascript:void(0)" onclick="operate_steps(\'' + sec_id + '\');"> <div class="min-vh-100 position-relative main-section"> <video autoplay muted loop class="myVideo-home"> <source src="' + sec_bg_video + '" type="video/mp4"> Your browser does not support HTML5 video.</video> <div class="overlay min-vh-100"> <h2 class="animate__animated animate__fadeInLeft"> ' + sec_title + ' </h2> </div> </div> </a> </div>';
 
 						}
 
@@ -120,6 +89,7 @@
 								var sec_slug = datas[i]["sec_slug"];
 								var sec_title = (sl_lang == 'ar') ? datas[i]["sec_ar_title"] : datas[i]["sec_en_title"];
 								var sec_sub_title = (sl_lang == 'ar') ? datas[i]["sec_ar_sub_title"] : datas[i]["sec_en_sub_title"];
+								var sec_thankyou_text = (sl_lang == 'ar') ? datas[i]["sec_ar_thankyou"] : datas[i]["sec_en_thankyou"];
 								var sec_sort_order = datas[i]["sec_sort_order"];
 								var sec_bg_video = datas[i]["sec_bg_video"];
 								var sec_status = datas[i]["sec_status"];
@@ -128,6 +98,7 @@
 
 								$("h2#fetch_tab_detail_heading").html(sec_title);
 								$("h2#fetch_tab_detail_sub_heading").html(sec_sub_title);
+								$('.thanyou-box h2').html(sec_thankyou_text)
 
 								if (sec_bg_video != '') {
 									$('video#fetch_tab_detail_video').removeClass('d-none')
