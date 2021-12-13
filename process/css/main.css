@@ -203,6 +203,10 @@ html {
   transform: rotateY(180deg);
 }
 
+[dir='rtl'] .thank-you {
+  direction: ltr !important;
+}
+
 header {
   position: absolute;
   top: 60px;
