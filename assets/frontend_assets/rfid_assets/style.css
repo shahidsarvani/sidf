@@ -182,6 +182,10 @@ img.footer_logo {
 
 .logo_2 img {
   width: 200px;
+  margin-top: 20px;
+}
+.logo_2 video {
+  max-height: 220px;
 }
 .logo_4 img {
 	max-height: 180px;
