@@ -152,7 +152,8 @@ html {
 }
 
 .icon-section.for-juice ul li h2 {
-  font-size: 25px;
+	font-size: 25px;
+	min-height: 70px;
 }
 
 .icon-section.for-pills ul li h2 {
