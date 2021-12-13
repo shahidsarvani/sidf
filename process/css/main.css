@@ -188,6 +188,10 @@ html {
   left: 0;
 }
 
+[dir='rtl'] .icon-section ul li img {
+  transform: rotateY(180deg);
+}
+
 header {
   position: absolute;
   top: 60px;
