@@ -152,7 +152,8 @@ html {
 }
 
 .icon-section.for-juice ul li h2 {
-  font-size: 25px;
+	font-size: 25px;
+	min-height: 60px;
 }
 
 .icon-section.for-pills ul li h2 {
@@ -186,6 +187,10 @@ html {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+[dir='rtl'] .icon-section ul li img {
+  transform: rotateY(180deg);
 }
 
 header {

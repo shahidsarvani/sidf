@@ -149,7 +149,7 @@ p {
 }
 .video-logo img {
   max-height: 140px;
-  width: 170px;
+  width: 200px;
 }
 .footer_logo {
   width: 140px;
@@ -181,12 +181,14 @@ img.footer_logo {
 }
 
 .logo_2 img {
-  width: 250px;
+  width: 200px;
 }
 .logo_4 img {
-  max-height: 150px;
+	max-height: 180px;
 }
-
+.logo_3 img {
+	width: 250px;
+}
 .logo_maaden img {
   width: 200px;
 }
