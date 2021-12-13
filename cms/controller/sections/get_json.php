@@ -66,6 +66,8 @@ if($sec_rows){
 			"sec_ar_title" => $sec_row['ar_title'],
 			"sec_en_sub_title" => $sec_row['en_sub_title'],
 			"sec_ar_sub_title" => $sec_row['ar_sub_title'],			
+			"sec_en_thankyou" => $sec_row['thankyou_en'],
+			"sec_ar_thankyou" => $sec_row['thankyou_ar'],			
 			"sec_sort_order" => $sec_row['sort_order'],
 			"sec_bg_video" => $bg_video_name,
 			"sec_status" => $sec_row['status'],
