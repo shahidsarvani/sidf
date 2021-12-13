@@ -271,6 +271,8 @@ class Sections
 		$ar_title = filter_var($data['ar_title'], FILTER_SANITIZE_STRING);
 		$en_sub_title = filter_var($data['en_sub_title'], FILTER_SANITIZE_STRING);
 		$ar_sub_title = filter_var($data['ar_sub_title'], FILTER_SANITIZE_STRING);
+		$thankyou_en = filter_var($data['thankyou_en'], FILTER_SANITIZE_STRING);
+		$thankyou_ar = filter_var($data['thankyou_ar'], FILTER_SANITIZE_STRING);
 		$sort_order = filter_var($data['sort_order'], FILTER_SANITIZE_STRING);
 		$status = filter_var($data['status'], FILTER_SANITIZE_STRING);
 		$bg_video_name = (isset($data['old_bg_video']) && $data['old_bg_video'] != '') ? $data['old_bg_video'] : '';
@@ -283,6 +285,8 @@ class Sections
 				ar_title='" . $ar_title . "', 
 				en_sub_title='" . $en_sub_title . "', 
 				ar_sub_title='" . $ar_sub_title . "', 
+				thankyou_en='" . $thankyou_en . "', 
+				thankyou_ar='" . $thankyou_ar . "', 
 				sort_order='" . $sort_order . "', 
 				bg_video='" . $bg_video_name . "', 
 				status='" . $status . "', 

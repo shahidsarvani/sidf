@@ -52,6 +52,18 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 									<input type="text" name="ar_sub_title" id="ar_sub_title" value="<?php echo $row['ar_sub_title']; ?>" class="form-control" placeholder="Sub Title in Arabic" required />
 								</div>
 							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="thankyou_en"> Thank you Page text (En):</label>
+									<input type="text" name="thankyou_en" id="thankyou_en" value="<?php echo $row['thankyou_en']; ?>" class="form-control" placeholder="Thank you Page text in English" required />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="thankyou_ar">Thank you Page text (Ar):</label>
+									<input type="text" name="thankyou_ar" id="thankyou_ar" value="<?php echo $row['thankyou_ar']; ?>" class="form-control" placeholder="Thank you Page text in Arabic" required />
+								</div>
+							</div>
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="slug"> Slug: </label>
