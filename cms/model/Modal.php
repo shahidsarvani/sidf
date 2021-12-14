@@ -136,18 +136,12 @@ class Modal
 		$query = '';
 		foreach ($data as $key => $value) {
 			$modal_id = $value['modal_id'];
-			$title_eng = $value['title_eng'];
-			$title_ar = $value['title_ar'];
-			$text_eng = $value['text_eng'];
-			$text_ar = $value['text_ar'];
+			$title_eng = mysqli_real_escape_string($this->connect, $value['title_eng']);
+			$title_ar = mysqli_real_escape_string($this->connect, $value['title_ar']);
+			$text_eng = mysqli_real_escape_string($this->connect, $value['text_eng']);
+			$text_ar = mysqli_real_escape_string($this->connect, $value['text_ar']);
 			$media_id = $value['media_id'];
-			// $media = $value['media'];
-			// $type = $value['type'];
-			// $filetype = $value['filetype'];
-			// $query .= "
-			// INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media, type, filetype, created_on) 
-			// VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media','$type','$filetype','$created_on');
-			// ";
+
 			$query .= "
 			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media_id, created_on) 
 			VALUES ('$modal_id','$title_eng','$title_ar','$text_eng','$text_ar','$media_id','$created_on');
