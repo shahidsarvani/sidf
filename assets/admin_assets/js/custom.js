@@ -863,6 +863,8 @@ var CardsDraggable = function () {
       helper: 'original',
       cursor: 'move',
       revert: 100,
+      handle: "a[data-action=move]",
+      axis: 'y',
       containment: '.content-wrapper',
       forceHelperSize: true,
       placeholder: 'sortable-placeholder',

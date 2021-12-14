@@ -50,7 +50,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             foreach ($modal['items'] as $item) :
                             ?>
                                 <div class="col-md-12 carousel_item pre_added">
-                                    <div class="card item_<?php echo $i ?>">
+                                    <div class="card sortablecard item_<?php echo $i ?>">
                                         <div class="card-header header-elements-inline">
                                             <h6 class="card-title">Item <?php echo $i ?>:</h6>
                                             <div class="header-elements">
@@ -62,32 +62,32 @@ require ADMIN_VIEW . '/layout/header.php';
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                            <!-- <div class="row">
+                                                <div class="col-md-6"> -->
                                                     <div class="form-group">
                                                         <label>Title English:</label>
                                                         <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <!-- </div>
+                                                <div class="col-md-6"> -->
                                                     <div class="form-group">
                                                         <label>Title Arabic:</label>
                                                         <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <!-- </div>
+                                                <div class="col-md-6"> -->
                                                     <div class="form-group">
                                                         <label>English Description:</label>
                                                         <textarea name="text_eng[]" class="summernote" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <!-- </div>
+                                                <div class="col-md-6"> -->
                                                     <div class="form-group">
                                                         <label>Arabic Description:</label>
                                                         <textarea name="text_ar[]" class="summernote" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                <!-- </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <input type="hidden" class="old-images-modal" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo isset($item['detail']['name']) ? $items_config['modal_media_url'] . $item['detail']['name'] : '' ?>" data-caption="<?php echo $item['detail']['name'] ?? ''; ?>" data-key="<?php echo $item['detail']['file_key'] ?? ''; ?>" data-size="<?php echo $item['detail']['size'] ?? ''; ?>" data-type="<?php echo $item['detail']['type'] ?? ''; ?>" data-filetype="<?php echo $item['detail']['filetype'] ?? ''; ?>">
                                                 <label>Upload Media:</label>
@@ -137,7 +137,7 @@ require ADMIN_VIEW . '/layout/footer.php';
         $('#add_item').click(function() {
             var length = ++$('.carousel_item').length;
             const html = `<div class="col-md-12 carousel_item">
-                                    <div class="card item_${length}">
+                                    <div class="card sortablecard item_${length}">
                                         <div class="card-header header-elements-inline">
                                             <h6 class="card-title">Item ${length}:</h6>
                                             <div class="header-elements">
