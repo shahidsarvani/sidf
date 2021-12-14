@@ -9,7 +9,7 @@
             "text_ar": "\u0625\u0646\u0634\u0627\u0621 \u0635\u0646\u062f\u0648\u0642 \u0627\u0644\u062a\u0646\u0645\u064a\u0629 \u0627\u0644\u0635\u0646\u0627\u0639\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629 (\u0627\u0644\u0635\u0646\u062f\u0648\u0642 \u0627\u0644\u0635\u0646\u0627\u0639\u064a)",
             "image": null,
             "created_on": "2021-10-07 14:41:27",
-            "updated_on": "2021-10-27 11:02:25"
+            "updated_on": "2021-11-09 06:46:09"
         },
         {
             "id": "2",
@@ -95,9 +95,9 @@
             "position": "9",
             "text_eng": "Release",
             "text_ar": "\u0625\u0637\u0644\u0627\u0642",
-            "image": "http:\/\/localhost\/custom3\/sidf\/assets\/frontend_assets\/screen_media\/1634916515_Logo.svg",
+            "image": "http:\/\/localhost\/sidf\/assets\/frontend_assets\/screen_media\/1639481312_Logo.svg",
             "created_on": "2021-10-07 14:45:04",
-            "updated_on": "2021-10-22 15:28:35"
+            "updated_on": "2021-12-14 12:28:32"
         },
         {
             "id": "10",
