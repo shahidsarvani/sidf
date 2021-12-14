@@ -64,26 +64,26 @@ require ADMIN_VIEW . '/layout/header.php';
                                         <div class="card-body">
                                             <!-- <div class="row">
                                                 <div class="col-md-6"> -->
-                                                    <div class="form-group">
-                                                        <label>Title English:</label>
-                                                        <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
-                                                    </div>
-                                                <!-- </div>
+                                            <div class="form-group">
+                                                <label>Title English:</label>
+                                                <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
+                                            </div>
+                                            <!-- </div>
                                                 <div class="col-md-6"> -->
-                                                    <div class="form-group">
-                                                        <label>Title Arabic:</label>
-                                                        <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
-                                                    </div>
-                                                <!-- </div>
+                                            <div class="form-group">
+                                                <label>Title Arabic:</label>
+                                                <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
+                                            </div>
+                                            <!-- </div>
                                                 <div class="col-md-6"> -->
-                                                    <div class="form-group">
-                                                        <label>English Description:</label>
-                                                        <textarea name="text_eng[]" class="summernote" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Arabic Description:</label>
-                                                        <textarea name="text_ar[]" class="summernote" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label>English Description:</label>
+                                                <textarea name="text_eng[]" class="summernote" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Arabic Description:</label>
+                                                <textarea name="text_ar[]" class="summernote" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
+                                            </div>
                                             <div class="form-group">
                                                 <input type="hidden" class="old-images-modal" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo isset($item['detail']['name']) ? $items_config['modal_media_url'] . $item['detail']['name'] : '' ?>" data-caption="<?php echo $item['detail']['name'] ?? ''; ?>" data-key="<?php echo $item['detail']['file_key'] ?? ''; ?>" data-size="<?php echo $item['detail']['size'] ?? ''; ?>" data-type="<?php echo $item['detail']['type'] ?? ''; ?>" data-filetype="<?php echo $item['detail']['filetype'] ?? ''; ?>">
                                                 <label>Upload Media:</label>
@@ -327,7 +327,8 @@ require ADMIN_VIEW . '/layout/footer.php';
             summernoteElem.summernote({
                 toolbar: [
                     ['style', ['style', 'bold', 'italic', 'clear']],
-                    ['para', ['ul', 'ol', 'paragraph']]
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['view', ['codeview']]
                 ]
             });
         }

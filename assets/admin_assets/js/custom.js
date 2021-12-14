@@ -845,7 +845,18 @@ var Summernote = function () {
     $('.summernote').summernote({
       toolbar: [
         ['style', ['style', 'bold', 'italic', 'clear']],
-        ['para', ['ul', 'ol', 'paragraph']]
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['view', ['codeview']]
+        // ['style', ['style']],
+        // ['font', ['bold', 'italic', 'underline', 'clear']],
+        // ['fontname', ['fontname']],
+        // ['color', ['color']],
+        // ['para', ['ul', 'ol', 'paragraph']],
+        // ['height', ['height']],
+        // ['table', ['table']],
+        // ['insert', ['link', 'picture', 'hr']],
+        // ['view', ['fullscreen', 'codeview']],
+        // ['help', ['help']]
       ]
     });
   };
