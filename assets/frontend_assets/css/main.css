@@ -203,14 +203,27 @@ table {
   height: 100%;
 }
 .box_content_innerrr p {
-  font-size: 26px;
-  line-height: 1.4;
+  font-size: 26px !important;
+  line-height: 1.4 !important;
 }
 
 .box_content_innerrr li {
-  font-size: 26px;
-  line-height: 1.4;
+    font-size: 26px !important;
+    line-height: 1.4 !important;
 }
+
+.box_content_innerrr ul {
+    list-style: circle;
+}
+
+.box_content_innerrr.arabic ul {
+    margin-right: 50px;
+}
+
+.box_content_innerrr.english ul {
+    margin-left: 50px;
+}
+
 .modal_box .new_inner_img {
   height: 490px;
   object-fit: cover;
