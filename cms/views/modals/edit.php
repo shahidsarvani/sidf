@@ -49,39 +49,45 @@ require ADMIN_VIEW . '/layout/header.php';
                             $i = 1;
                             foreach ($modal['items'] as $item) :
                             ?>
-                                <div class="col-md-12 carousel_item">
-                                    <div class="card item_<?php echo $i ?>">
+                                <div class="col-md-12 carousel_item pre_added">
+                                    <div class="card sortablecard item_<?php echo $i ?>">
                                         <div class="card-header header-elements-inline">
                                             <h6 class="card-title">Item <?php echo $i ?>:</h6>
                                             <div class="header-elements">
                                                 <div class="list-icons">
-                                                    <!-- <a class="list-icons-item" data-action="collapse"></a> -->
+                                                    <a class="list-icons-item" data-action="collapse"></a>
                                                     <a class="list-icons-item" data-action="move"></a>
                                                     <a class="list-icons-item" data-action="remove"></a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
+                                            <!-- <div class="row">
+                                                <div class="col-md-6"> -->
+                                                    <div class="form-group">
+                                                        <label>Title English:</label>
+                                                        <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
+                                                    </div>
+                                                <!-- </div>
+                                                <div class="col-md-6"> -->
+                                                    <div class="form-group">
+                                                        <label>Title Arabic:</label>
+                                                        <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
+                                                    </div>
+                                                <!-- </div>
+                                                <div class="col-md-6"> -->
+                                                    <div class="form-group">
+                                                        <label>English Description:</label>
+                                                        <textarea name="text_eng[]" class="summernote" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Arabic Description:</label>
+                                                        <textarea name="text_ar[]" class="summernote" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
+                                                    </div>
                                             <div class="form-group">
-                                                <label>Title English:</label>
-                                                <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>English Description:</label>
-                                                <textarea name="text_eng[]" class="form-control" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Title Arabic:</label>
-                                                <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Arabic Description:</label>
-                                                <textarea name="text_ar[]" class="form-control" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
-                                            </div>
-                                            <input type="hidden" class="old-images" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo $items_config['images_url'] . $item['detail']['name']; ?>" data-caption="<?php echo $item['detail']['name']; ?>" data-key="<?php echo $item['detail']['file_key']; ?>" data-size="<?php echo $item['detail']['size']; ?>" data-type="<?php echo $item['detail']['type']; ?>" data-filetype="<?php echo $item['detail']['filetype']; ?>">
-                                            <div class="form-group">
+                                                <input type="hidden" class="old-images-modal" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo isset($item['detail']['name']) ? $items_config['modal_media_url'] . $item['detail']['name'] : '' ?>" data-caption="<?php echo $item['detail']['name'] ?? ''; ?>" data-key="<?php echo $item['detail']['file_key'] ?? ''; ?>" data-size="<?php echo $item['detail']['size'] ?? ''; ?>" data-type="<?php echo $item['detail']['type'] ?? ''; ?>" data-filetype="<?php echo $item['detail']['filetype'] ?? ''; ?>">
                                                 <label>Upload Media:</label>
-                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>
+                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
                                             </div>
                                         </div>
                                     </div>
@@ -112,10 +118,10 @@ require ADMIN_VIEW . '/layout/footer.php';
 <script>
     function fileUploaded(event, previewId, index, fileId) {
         console.log('File uploaded', previewId, index, fileId);
-        var hiddenInput = '<input type="hidden" name="modal_media[]" value="'+fileId+'" class="modal_media" >';
+        // var hiddenInput = '<input type="hidden" name="old_media_id[]" value="' + fileId + '" class="modal_media" >';
         console.log($(this))
         console.log(event.currentTarget);
-        $('#'+event.currentTarget.id).parents('.form-group').append(hiddenInput);
+        $('#' + event.currentTarget.id).parents('.form-group').find('.modal_media').val(fileId);
     }
     $(document).ready(function() {
         $('#navlink-modals').addClass('nav-item-open');
@@ -127,49 +133,59 @@ require ADMIN_VIEW . '/layout/footer.php';
         $('#add_item').click(function() {
             var length = ++$('.carousel_item').length;
             const html = `<div class="col-md-12 carousel_item">
-                                    <div class="card item_${length}">
+                                    <div class="card sortablecard item_${length}">
                                         <div class="card-header header-elements-inline">
                                             <h6 class="card-title">Item ${length}:</h6>
                                             <div class="header-elements">
                                                 <div class="list-icons">
+                                                    <a class="list-icons-item" data-action="collapse"></a>
                                                     <a class="list-icons-item" data-action="move"></a>
                                                     <a class="list-icons-item" data-action="remove"></a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label>Title English:</label>
+                                                        <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Title Arabic:</label>
+                                                        <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>English Description:</label>
+                                                        <textarea name="text_eng[]" class="summernote" cols="30" rows="3"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Arabic Description:</label>
+                                                        <textarea name="text_ar[]" class="summernote" cols="30" rows="3"></textarea>
+                                                    </div>
                                             <div class="form-group">
-                                                <label>Title English:</label>
-                                                <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>English Description:</label>
-                                                <textarea name="text_eng[]" class="form-control" cols="30" rows="3"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Title Arabic:</label>
-                                                <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Arabic Description:</label>
-                                                <textarea name="text_ar[]" class="form-control" cols="30" rows="3"></textarea>
-                                            </div>
-                                            <div class="form-group">
+                                                <input type="hidden" name="old_media_id[]" class="modal_media" >
                                                 <label>Upload Media:</label>
-                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-show-preview="false" data-fouc>
+                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
                                             </div>
                                         </div>
                                     </div>
                                 </div>`;
             $('#items').append(html);
             init_fileinput();
+            init_summernote();
         })
 
-        $(document).on('click', '.remove_item', function() {
+        $(document).on('click', '.card [data-action=remove]', function() {
             $(this).parents('.carousel_item').remove();
         })
-        $(document).on('click', '.list-icons-item', function() {
-            $(this).parents('.carousel_item').remove();
+        $(document).on('click', '.card [data-action=collapse]:not(.disabled)', function(e) {
+            var $target = $(this),
+                slidingSpeed = 150;
+            if ($target.parents('.pre_added').get(0) === undefined) {
+                e.preventDefault();
+                $target.parents('.card').toggleClass('card-collapsed');
+                $target.toggleClass('rotate-180');
+                $target.closest('.card').children('.card-header').nextAll().slideToggle(slidingSpeed);
+            }
         })
 
         var validator = $("#screen-form").validate({
@@ -234,7 +250,6 @@ require ADMIN_VIEW . '/layout/footer.php';
 
         function init_fileinput() {
             var fileInputElem = $("#items .carousel_item").last().find('.file-input-overwrite-modal');
-            console.log(fileInputElem)
             var modalTemplate =
                 '<div class="modal-dialog modal-lg" role="document">\n' +
                 '  <div class="modal-content">\n' +
@@ -304,6 +319,17 @@ require ADMIN_VIEW . '/layout/footer.php';
             });
 
             $('.file-input-overwrite-modal').on('fileuploaded', fileUploaded);
+        }
+
+        function init_summernote() {
+            var summernoteElem = $("#items .carousel_item").last().find('.summernote');
+
+            summernoteElem.summernote({
+                toolbar: [
+                    ['style', ['style', 'bold', 'italic', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']]
+                ]
+            });
         }
     })
 </script>
