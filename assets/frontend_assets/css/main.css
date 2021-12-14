@@ -206,6 +206,11 @@ table {
   font-size: 26px;
   line-height: 1.4;
 }
+
+.box_content_innerrr li {
+  font-size: 26px;
+  line-height: 1.4;
+}
 .modal_box .new_inner_img {
   height: 490px;
   object-fit: cover;
