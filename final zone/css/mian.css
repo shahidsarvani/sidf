@@ -1,0 +1,69 @@
+.page-logo img {
+    width: 600px;
+}
+.video-section {
+    margin-top: 150px;
+}
+.video-section h2 {
+    font-family: NeoSansAr;
+    font-size: 80px;
+}
+.main-slider {
+    height: 500px;
+    padding: 0 70px;
+}
+.main-slider p {
+    font-size: 36px;
+    font-family: NeoSansArabicRegular;
+}
+
+
+.color-switcher {
+    background: #98989c;
+}
+
+.color-switcher .page-logo .white-logo{
+    display: block !important;
+}
+
+.color-switcher .page-logo .black-logo{
+    display: none !important;
+}
+
+.video-section .video-wrapper {
+    height: 36vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-section .video-wrapper video{
+    max-height: 100%;
+}
+
+
+.thankyou-outter {
+    background: url("../images/thankyou.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.thankyou-content h2 {
+    color: #57b847;
+    font-size: 90px;
+    text-transform: uppercase;
+}
+.thankyou-content {
+    margin-top: 60px;
+    margin-left: 20px;
+}
+.thankyou-content .arbic-text{
+    font-family: NeoSansAr;
+}
+
+.thankyou-content .eng-text{
+    font-family: NeoSansArabicRegular;
+    font-size: 34px !important;
+}
+.page-logo {
+    margin-top: 100px;
+}
