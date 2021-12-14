@@ -27,19 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = array();
     if(array_key_exists('title_eng', $_POST)) {
         for($i = 0; $i < count($_POST['title_eng']); $i++) {
-            if($_POST['title_eng'][$i] != '') {
+            if($_POST['title_eng'][$i] != '' || $_POST['title_ar'][$i] || $_POST['text_eng'][$i] || $_POST['text_ar'][$i] || $_POST['old_media_id'][$i]) {
                 $data[] = [
                     'modal_id' => $id,
                     'title_eng' => $_POST['title_eng'][$i],
                     'title_ar' => $_POST['title_ar'][$i],
                     'text_eng' => $_POST['text_eng'][$i],
                     'text_ar' => $_POST['text_ar'][$i],
+                    'media_id' => $_POST['old_media_id'][$i],
                 ];
-                if($_POST['modal_media'][$i] == '' && $_POST['old_media_id'][$i] != '') {
-                    $data[$i]['media_id'] = $_POST['old_media_id'][$i];
-                } else if ($_POST['modal_media'][$i] != '') {
-                    $data[$i]['media_id'] = $_POST['modal_media'][$i];
-                }
+                // if($_POST['modal_media'][$i] == '' && $_POST['old_media_id'][$i] != '') {
+                //     $data[$i]['media_id'] = $_POST['old_media_id'][$i];
+                // } else if ($_POST['modal_media'][$i] != '') {
+                //     $data[$i]['media_id'] = $_POST['modal_media'][$i];
+                // }
             }
         }
     }
@@ -72,15 +73,22 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     if($item_media) {
         foreach ($item_media as $media) {
             $media_details = $modal_obj->get_media($media['media_id']);
-            $media['detail'] = $media_details->fetch_assoc();
-            $media['detail']['size'] = explode('_', $media['detail']['file_key'])[0];
+            $media['detail'] = array();
+            if ($media_details !== false) {
+                $media['detail'] = $media_details->fetch_assoc();
+                $media['detail']['size'] = explode('_', $media['detail']['file_key'])[0];
+            }
+            // $media['detail'] = $media_details->fetch_assoc();
+            // $media['detail']['size'] = explode('_', $media['detail']['file_key'])[0];
             array_push($medias, $media);
+            // echo json_encode($media);
         }
     }
     $modal['items'] = $medias;
 }
 
-// echo json_encode($modal['items']);die();
+// echo json_encode($modal['items']);
+// die();
 
 $title = 'Modals - SIDF';
 

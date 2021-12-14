@@ -411,18 +411,23 @@ var ImageEditUpload = (function () {
       deleteUrl: "media_delete.php"
     });
 
-    images.forEach(function (image, index) {
-      initialPreview.push(image.dataset.value);
-      initialPreviewConfig.push({
-        caption: image.dataset.caption,
-        size: parseInt(image.dataset.size),
-        key: image.dataset.key,
-        filetype: image.dataset.filetype,
-        type: image.dataset.type,
-        url: 'media_delete.php',
-      })
-
-      $('.file-input-overwrite-modal').fileinput({
+    var modalFileinput = document.querySelectorAll('.file-input-overwrite-modal');
+    modalFileinput.forEach(function (modalFile) {
+      var initialPreviewModal = [];
+      var initialPreviewConfigModal = [];
+      var tabBgVideo = $(modalFile).parents('.form-group').find('.old-images-modal');
+      if (tabBgVideo.get(0) && tabBgVideo.attr('data-value')) {
+        initialPreviewModal.push(tabBgVideo.attr('data-value'));
+        initialPreviewConfigModal.push({
+          caption: tabBgVideo.attr('data-caption'),
+          size: parseInt(tabBgVideo.attr('data-size')),
+          key: tabBgVideo.attr('data-key'),
+          filetype: tabBgVideo.attr('data-filetype'),
+          type: tabBgVideo.attr('data-type'),
+          url: 'modalmedia_delete.php',
+        })
+      }
+      $(modalFile).fileinput({
         browseLabel: 'Browse',
         uploadUrl: "upload_media.php", // server upload action
         enableResumableUpload: true,
@@ -435,8 +440,8 @@ var ImageEditUpload = (function () {
           icon: '<i class="icon-file-check"></i>',
           modal: modalTemplate
         },
-        initialPreview: initialPreview,
-        initialPreviewConfig: initialPreviewConfig,
+        initialPreview: initialPreviewModal,
+        initialPreviewConfig: initialPreviewConfigModal,
         initialPreviewAsData: true,
         overwriteInitial: false,
         previewZoomButtonClasses: previewZoomButtonClasses,
@@ -454,7 +459,7 @@ var ImageEditUpload = (function () {
           indicatorError: '<i class="icon-cross2 text-danger"></i>',
           indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
         },
-        deleteUrl: "media_delete.php"
+        deleteUrl: "modalmedia_delete.php"
       });
     })
   };
@@ -694,7 +699,7 @@ var ImageUploadToken = (function () {
       },
       deleteUrl: "media_delete.php"
     });
-    
+
     var tabbgfileInput = document.querySelectorAll('.tabbgfile-input-overwrite-section');
     tabbgfileInput.forEach(function (tabbgfile) {
       var initialPreviewTabBgVideo = [];
@@ -746,7 +751,7 @@ var ImageUploadToken = (function () {
         deleteUrl: "tabbgmedia_delete.php"
       });
     })
-    
+
     $('.file-input-overwrite-rfid-loadervid').fileinput({
       browseLabel: 'Browse',
       uploadUrl: "upload_media_loader.php", // server upload action
@@ -840,7 +845,7 @@ var Summernote = function () {
     $('.summernote').summernote({
       toolbar: [
         ['style', ['style', 'bold', 'italic', 'clear']],
-        ['para', ['paragraph']]
+        ['para', ['ul', 'ol', 'paragraph']]
       ]
     });
   };
