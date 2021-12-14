@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $modal = new Modal();
     $id = $_POST['id'];
     // echo json_encode($_FILES);
-    // echo json_encode($_POST);
+    // echo json_encode($_POST['text_ar']);
     // die();
     $res = $modal->edit_modal($id, $_POST);
     $data = array();
@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'modal_id' => $id,
                     'title_eng' => $_POST['title_eng'][$i],
                     'title_ar' => $_POST['title_ar'][$i],
-                    'text_eng' => $_POST['text_eng'][$i],
-                    'text_ar' => $_POST['text_ar'][$i],
+                    'text_eng' => strip_tags($_POST['text_eng'][$i], '<p><ol><ul><li>'),
+                    'text_ar' => strip_tags($_POST['text_ar'][$i], '<p><ol><ul><li>'),
                     'media_id' => $_POST['old_media_id'][$i],
                 ];
                 // if($_POST['modal_media'][$i] == '' && $_POST['old_media_id'][$i] != '') {
