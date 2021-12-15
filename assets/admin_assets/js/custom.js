@@ -342,6 +342,19 @@ var ImageEditUpload = (function () {
     var initialPreview = [];
     var initialPreviewConfig = [];
     var images = document.querySelectorAll('.old-images');
+    if (images) {
+      images.forEach(function (image) {
+        initialPreview.push(image.dataset.value);
+        initialPreviewConfig.push({
+          caption: image.dataset.caption,
+          size: parseInt(image.dataset.size),
+          key: image.dataset.key,
+          filetype: image.dataset.filetype,
+          type: image.dataset.type,
+          url: 'media_delete.php',
+        })
+      })
+    }
     // Modal template
     var modalTemplate =
       '<div class="modal-dialog modal-lg" role="document">\n' +
@@ -827,8 +840,10 @@ var OwlCarousel = (function () {
     function initialized(e) {
       var i = e.currentTarget;
       var item = $(i).find('.owl-item.active .img-fluid')
-      if (item[0].nodeName == 'VIDEO') {
-        item[0].play()
+      if(item.length > 0) {
+        if (item[0].nodeName == 'VIDEO') {
+          item[0].play()
+        }
       }
     }
 
