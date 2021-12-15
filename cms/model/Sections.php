@@ -340,7 +340,7 @@ class Sections
 		$query = '';
 		foreach ($data as $key => $value) {
 			$section_id = $value['section_id'];
-			$media_id = $value['media_id'];
+			$media_id = filter_var($value['media_id'], FILTER_SANITIZE_STRING);
 			$query .= "INSERT INTO section_media (section_id, media_id, created_on) VALUES ('$section_id','$media_id','$created_on');";
 		}
 		if ($this->connect->multi_query($query) === TRUE) {
