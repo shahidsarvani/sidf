@@ -27,7 +27,6 @@
 		// }
 
 		function operate_steps(paras1 = '0') {
-			console.log('operating steps')
 			$(document).ready(function () {
 				$('.video-container').removeClass('active')
 				var sl_lang = $("#sl_lang").val();
@@ -129,6 +128,7 @@
 
 						if (step2_tab_txt != '') {
 							$("#fetch_tab_detail_ul_list").html(step2_tab_txt);
+							$('#fetch_tab_detail_ul_list li').first().addClass('animated')
 							video_switcher();
 
 
