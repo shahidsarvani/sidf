@@ -278,6 +278,10 @@ footer h2 {
 .icon-section ul li.current {
   filter: invert(55%) sepia(23%) saturate(1076%) hue-rotate(63deg) brightness(103%) contrast(88%);
 }
+.icon-section ul li.animated-current {
+  filter: invert(55%) sepia(23%) saturate(1076%) hue-rotate(63deg) brightness(103%) contrast(88%);
+  animation: pulse 1s infinite ease-in-out alternate;
+}
 .icon-section ul li.animated {
   filter: invert(66%) sepia(9%) saturate(52%) hue-rotate(182deg) brightness(90%) contrast(93%);
   animation: pulse 1s infinite ease-in-out alternate;

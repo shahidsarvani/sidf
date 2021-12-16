@@ -19,10 +19,14 @@ function video_switcher() {
 				$('video#fetch_tab_detail_video').addClass('d-none')
 			}
 			var currentItem = document.querySelector('.current');
+			var currentAnimItem = document.querySelector('.animated-current');
 			var nextItem = document.querySelector('.next');
 			var animatedItems = document.querySelectorAll('.animated');
 			if (currentItem) {
 				currentItem.classList.remove('current');
+			}
+			if (currentAnimItem) {
+				currentAnimItem.classList.remove('animated-current');
 			}
 			if (nextItem) {
 				nextItem.classList.remove('next');
