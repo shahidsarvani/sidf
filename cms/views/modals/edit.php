@@ -85,7 +85,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                                 <textarea name="text_ar[]" class="summernote" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <input type="hidden" class="old-images-modal" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo isset($item['detail']['name']) ? $items_config['modal_media_url'] . $item['detail']['name'] : '' ?>" data-caption="<?php echo $item['detail']['name'] ?? ''; ?>" data-key="<?php echo $item['detail']['file_key'] ?? ''; ?>" data-size="<?php echo $item['detail']['size'] ?? ''; ?>" data-type="<?php echo $item['detail']['type'] ?? ''; ?>" data-filetype="<?php echo $item['detail']['filetype'] ?? ''; ?>">
+                                                <input type="hidden" class="modal_media" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo isset($item['detail']['name']) ? $items_config['modal_media_url'] . $item['detail']['name'] : '' ?>" data-caption="<?php echo $item['detail']['name'] ?? ''; ?>" data-key="<?php echo $item['detail']['file_key'] ?? ''; ?>" data-size="<?php echo $item['detail']['size'] ?? ''; ?>" data-type="<?php echo $item['detail']['type'] ?? ''; ?>" data-filetype="<?php echo $item['detail']['filetype'] ?? ''; ?>">
                                                 <label>Upload Media:</label>
                                                 <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
                                             </div>

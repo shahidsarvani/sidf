@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $modal = new Modal();
     $id = $_POST['id'];
     // echo json_encode($_FILES);
-    // echo json_encode($_POST['text_ar']);
+    // echo json_encode($_POST);
     // die();
     $res = $modal->edit_modal($id, $_POST);
     $data = array();

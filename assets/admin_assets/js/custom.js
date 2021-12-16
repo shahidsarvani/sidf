@@ -428,7 +428,7 @@ var ImageEditUpload = (function () {
     modalFileinput.forEach(function (modalFile) {
       var initialPreviewModal = [];
       var initialPreviewConfigModal = [];
-      var tabBgVideo = $(modalFile).parents('.form-group').find('.old-images-modal');
+      var tabBgVideo = $(modalFile).parents('.form-group').find('.modal_media');
       if (tabBgVideo.get(0) && tabBgVideo.attr('data-value')) {
         initialPreviewModal.push(tabBgVideo.attr('data-value'));
         initialPreviewConfigModal.push({

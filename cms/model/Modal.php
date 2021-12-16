@@ -140,7 +140,7 @@ class Modal
 			$title_ar = filter_var($value['title_ar'], FILTER_SANITIZE_STRING);
 			$text_eng = filter_var($value['text_eng'], FILTER_SANITIZE_STRING);
 			$text_ar = filter_var($value['text_ar'], FILTER_SANITIZE_STRING);
-			$media_id = $value['media_id'];
+			$media_id = filter_var($value['media_id'], FILTER_SANITIZE_STRING);
 
 			$query .= "
 			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media_id, created_on) 
