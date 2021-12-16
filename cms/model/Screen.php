@@ -152,7 +152,7 @@ class Screen
 		$query = '';
 		foreach ($data as $key => $value) {
 			$screen_id = $value['screen_id'];
-			$media_id = $value['media_id'];
+			$media_id = filter_var($value['media_id'], FILTER_SANITIZE_STRING);
 			$query .= "
 			INSERT INTO screen_media (screen_id, media_id, created_on) VALUES ('$screen_id','$media_id','$created_on');
 			";

@@ -98,9 +98,9 @@ class Company
 		$query = '';
 		foreach ($data as $key => $value) {
 			$company_token_id = $value['company_token_id'];
-			$title_eng = $value['title_eng'];
-			$title_ar = $value['title_ar'];
-			$icon = $value['icon'];
+			$title_eng = filter_var($value['title_eng'], FILTER_SANITIZE_STRING);
+			$title_ar = filter_var($value['title_ar'], FILTER_SANITIZE_STRING);
+			$icon = filter_var($value['icon'], FILTER_SANITIZE_STRING);
 			$query .= "
 			INSERT INTO company_menus (company_token_id, title_eng, title_ar, icon) 
 			VALUES ('$company_token_id','$title_eng','$title_ar','$icon');

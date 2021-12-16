@@ -136,10 +136,10 @@ class Modal
 		$query = '';
 		foreach ($data as $key => $value) {
 			$modal_id = $value['modal_id'];
-			$title_eng = mysqli_real_escape_string($this->connect, $value['title_eng']);
-			$title_ar = mysqli_real_escape_string($this->connect, $value['title_ar']);
-			$text_eng = mysqli_real_escape_string($this->connect, $value['text_eng']);
-			$text_ar = mysqli_real_escape_string($this->connect, $value['text_ar']);
+			$title_eng = filter_var($value['title_eng'], FILTER_SANITIZE_STRING);
+			$title_ar = filter_var($value['title_ar'], FILTER_SANITIZE_STRING);
+			$text_eng = filter_var($value['text_eng'], FILTER_SANITIZE_STRING);
+			$text_ar = filter_var($value['text_ar'], FILTER_SANITIZE_STRING);
 			$media_id = $value['media_id'];
 
 			$query .= "

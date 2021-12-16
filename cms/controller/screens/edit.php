@@ -56,18 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($item_media) {
         foreach ($item_media as $media) {
             $media['size'] = explode('_', $media['file_key'])[0];
-            if (explode('.', $media['file_key'])[1] == 'mp4') {
-                $media['filetype'] = 'video/' . explode('.', $media['file_key'])[1];
-                $media['type'] = 'video';
-            } else {
-                $media['filetype'] = 'image/' . explode('.', $media['file_key'])[1];
-                $media['type'] = 'image';
-            }
             array_push($medias, $media);
         }
     }
     $screen['media'] = $medias;
 
+    // echo json_encode($medias);
+    // die();
     // if($res) {
     //     $_SESSION['success'] = 'Screen Added Successfully';
     //     header('Location: ' . ADMIN_SITE_URL . '/controller/screens/index.php');
