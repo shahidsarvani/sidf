@@ -102,7 +102,7 @@ require ADMIN_VIEW . '/layout/header.php';
                         </div>
 
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
                         </div>
                     </form>
                 </div>
@@ -117,18 +117,19 @@ require ADMIN_VIEW . '/layout/footer.php';
 
 <script>
     function fileUploaded(event, previewId, index, fileId) {
-        console.log('File uploaded', previewId, index, fileId);
-        // var hiddenInput = '<input type="hidden" name="old_media_id[]" value="' + fileId + '" class="modal_media" >';
-        console.log($(this))
-        console.log(event.currentTarget);
+        $('#submitBtn').removeClass('disabled')
         $('#' + event.currentTarget.id).parents('.form-group').find('.modal_media').val(fileId);
+    }
+
+    function filepreajax(event, previewId, index) {
+        $('#submitBtn').addClass('disabled')
     }
     $(document).ready(function() {
         $('#navlink-modals').addClass('nav-item-open');
         $('#navlink-modals ul').css('display', 'block');
         $('#navlink-modals_index').addClass('active');
 
-        $('.file-input-overwrite-modal').on('fileuploaded', fileUploaded);
+        $('.file-input-overwrite-modal').on('filepreajax', filepreajax).on('fileuploaded', fileUploaded);
 
         $('#add_item').click(function() {
             var length = ++$('.carousel_item').length;
@@ -318,7 +319,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 deleteUrl: "media_delete.php"
             });
 
-            $('.file-input-overwrite-modal').on('fileuploaded', fileUploaded);
+            $('.file-input-overwrite-modal').on('filepreajax', filepreajax).on('fileuploaded', fileUploaded);
         }
 
         function init_summernote() {

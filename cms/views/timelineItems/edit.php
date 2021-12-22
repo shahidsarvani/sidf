@@ -57,7 +57,7 @@ require ADMIN_VIEW . '/layout/header.php';
                         </div>
 
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Update <i class="icon-pencil5 ml-2"></i></button>
                         </div>
                     </form>
                 </div>
@@ -85,10 +85,13 @@ require ADMIN_VIEW . '/layout/footer.php';
             }
         })
 
+        function filepreajax(event, previewId, index) {
+            $('#submitBtn').addClass('disabled')
+        }
+
         $('.file-input-overwrite').on(
             "filebatchuploadcomplete",
             function(event, preview, config, tags, extraData) {
-                console.log(config);
                 const atts = [{
                     'key': 'type',
                     'value': 'hidden'
@@ -107,8 +110,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                     input.value = file.key;
                     $('#screen-form').append(input);
                 })
+                $('#submitBtn').removeClass('disabled')
             }
-        );
+        ).on('filepreajax', filepreajax);
 
         var validator = $("#screen-form").validate({
             ignore: "input[type=hidden], .select2-search__field", // ignore hidden fields
@@ -166,7 +170,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     required: true,
                 },
                 image: {
-                    required: function () {
+                    required: function() {
                         return $('#position').val() == 9;
                     }
                 }

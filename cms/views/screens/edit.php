@@ -62,12 +62,11 @@ require ADMIN_VIEW . '/layout/footer.php';
         });
 
         $('.fileinput-upload').click(function() {
-            $('#submitBtn').attr('disabled', 'disabled');
+            $('#submitBtn').addClass('disabled');
         })
 
         $('.file-input-overwrite')
             .on("filebatchuploadcomplete", function(event, preview, config, tags, extraData) {
-                console.log(config);
                 const atts = [{
                     'key': 'type',
                     'value': 'hidden'
@@ -89,7 +88,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     input.value = file.key;
                     $('#screen-form').append(input);
                 })
-                $('#submitBtn').removeAttr('disabled');
+                $('#submitBtn').removeClass('disabled');
             })
             .on('filesorted', function(event, params) {
                 console.log(params);

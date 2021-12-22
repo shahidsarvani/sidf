@@ -51,6 +51,7 @@ class Media
 
 	public function get_media_by_file_key($file_key)
 	{
+		$file_key = filter_var($file_key, FILTER_SANITIZE_STRING);
 		$query = "
 		SELECT * FROM media WHERE file_key = '$file_key' 
 		";

@@ -313,7 +313,7 @@ require ADMIN_VIEW . '/layout/header.php'; ?>
 
 						<div class="text-right">
 							<input type="hidden" name="id" id="id" value="<?php echo $row['id']; ?>" />
-							<button name="updates" type="submit" class="btn btn-primary"> Update <i class="icon-plus-circle2 ml-2"></i></button>
+							<button name="updates" type="submit" id="submitBtn" class="btn btn-primary"> Update <i class="icon-plus-circle2 ml-2"></i></button>
 							<button name="cancels" type="button" class="btn btn-default" onclick="window.location='<?php echo ADMIN_SITE_URL . '/controller/sections/index.php'; ?>'"> Cancel </button>
 						</div>
 					</form>
@@ -421,15 +421,16 @@ require ADMIN_VIEW . '/layout/footer.php';
 		});
 
 		function fileUploaded(event, previewId, index, fileId) {
-			console.log('File uploaded', previewId, index, fileId);
-			console.log(event.currentTarget.id);
 			$('#' + event.currentTarget.id).parents('.form-group').find('.icon_video').val(fileId)
-			// $('.icon_video').val(fileId)
 			$('#' + event.currentTarget.id).parents('.form-group').find('.bgvideo_name').remove();
+			$('#submitBtn').removeClass('disabled')
+		}
+
+		function filepreajax(event, previewId, index) {
+			$('#submitBtn').addClass('disabled')
 		}
 
 		function fileDeleted(event, preview, config, tags, extraData) {
-			// setTimeout(function() {
 			swalInit.fire({
 				text: 'File deleted successfuly!',
 				type: 'success',
@@ -437,11 +438,10 @@ require ADMIN_VIEW . '/layout/footer.php';
 				showConfirmButton: false,
 				position: 'top-right'
 			});
-			// }, 200);
 		}
 
-		$('.bgfile-input-overwrite-section').on("fileuploaded", fileUploaded).on('filedeleted', fileDeleted);
-		$('.tabbgfile-input-overwrite-section').on("fileuploaded", fileUploaded)
+		$('.bgfile-input-overwrite-section').on("fileuploaded", fileUploaded).on('filedeleted', fileDeleted).on('filepreajax', filepreajax);
+		$('.tabbgfile-input-overwrite-section').on("fileuploaded", fileUploaded).on('filepreajax', filepreajax)
 
 	});
 

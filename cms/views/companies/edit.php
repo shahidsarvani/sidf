@@ -162,41 +162,45 @@ require ADMIN_VIEW . '/layout/footer.php';
         }
 
         function logoUploaded(event, previewId, index, fileId) {
-            console.log('File uploaded', previewId, index, fileId);
             $('#logo_key').val(fileId)
             $('#logo_key-error').css('display', 'none');
+            $('#submitBtn').removeClass('disabled')
         }
 
         function videoUploaded(event, previewId, index, fileId) {
-            console.log('File uploaded', previewId, index, fileId);
             $('#video_key').val(fileId)
             $('#video_key-error').css('display', 'none');
+            $('#submitBtn').removeClass('disabled')
         }
 
         function iconUploaded(event, previewId, index, fileId) {
-            console.log('File uploaded', previewId, index, fileId);
-            console.log(event);
             var hiddenInput = '<input type="hidden" name="icon_key[]" value="' + fileId + '" class="old-icons" >';
-            console.log($(this))
-            console.log(event.currentTarget);
             $('#' + event.currentTarget.id).parents('.form-group').find('.old-icons').remove();
             $('#' + event.currentTarget.id).parents('.form-group').append(hiddenInput);
+            $('#submitBtn').removeClass('disabled')
         }
+
         function logoDeleted(event, preview, config, tags, extraData) {
             $('#logo_key').removeAttr('value')
             fireAlert()
         }
+
         function videoDeleted(event, preview, config, tags, extraData) {
             $('#video_key').removeAttr('value')
             fireAlert()
         }
+
         function fileDeleted(event, preview, config, tags, extraData) {
             fireAlert()
         }
+        
+        function filepreajax(event, previewId, index) {
+            $('#submitBtn').addClass('disabled')
+        }
 
-        $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded).on('filedeleted', logoDeleted);
-        $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded).on('filedeleted', videoDeleted);
-        $('.file-input-overwrite-rfid-icon').on('fileuploaded', iconUploaded).on('filedeleted', fileDeleted);
+        $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded).on('filedeleted', logoDeleted).on('filepreajax', filepreajax);
+        $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded).on('filedeleted', videoDeleted).on('filepreajax', filepreajax);
+        $('.file-input-overwrite-rfid-icon').on('fileuploaded', iconUploaded).on('filedeleted', fileDeleted).on('filepreajax', filepreajax);
 
         var validator = $("#company-form").validate({
             ignore: ".select2-search__field", // ignore hidden fields

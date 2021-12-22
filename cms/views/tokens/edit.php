@@ -93,34 +93,43 @@ require ADMIN_VIEW . '/layout/footer.php';
         function logoUploaded(event, previewId, index, fileId) {
             $('#logo_key').val(fileId)
             $('#logo_key-error').css('display', 'none');
+            $('#submitBtn').removeClass('disabled')
         }
 
         function videoUploaded(event, previewId, index, fileId) {
             $('#video_key').val(fileId)
             $('#video_key-error').css('display', 'none');
+            $('#submitBtn').removeClass('disabled')
         }
 
         function loadervideoUploaded(event, previewId, index, fileId) {
             $('#loader_video_key').val(fileId)
             $('#loader_video_key-error').css('display', 'none');
+            $('#submitBtn').removeClass('disabled')
         }
 
         function logoDeleted(event, preview, config, tags, extraData) {
             $('#logo_key').removeAttr('value');
             fireAlert()
         }
+
         function videoDeleted(event, preview, config, tags, extraData) {
             $('#video_key').removeAttr('value');
             fireAlert()
         }
+
         function loadervideoDeleted(event, preview, config, tags, extraData) {
             $('#loader_video_key').removeAttr('value');
             fireAlert()
         }
+        
+        function filepreajax(event, previewId, index) {
+            $('#submitBtn').addClass('disabled')
+        }
 
-        $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded).on('filedeleted', logoDeleted);
-        $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded).on('filedeleted', videoDeleted);
-        $('.file-input-overwrite-rfid-loadervid').on('fileuploaded', loadervideoUploaded).on('filedeleted', loadervideoDeleted);
+        $('.file-input-overwrite-rfid-img').on('filepreajax', filepreajax).on('fileuploaded', logoUploaded).on('filedeleted', logoDeleted);
+        $('.file-input-overwrite-rfid-vid').on('filepreajax', filepreajax).on('fileuploaded', videoUploaded).on('filedeleted', videoDeleted);
+        $('.file-input-overwrite-rfid-loadervid').on('filepreajax', filepreajax).on('fileuploaded', loadervideoUploaded).on('filedeleted', loadervideoDeleted);
 
         var validator = $("#token-form").validate({
             ignore: ".select2-search__field", // ignore hidden fields
