@@ -60,12 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $tokens = $token->get_tokens();
     $company_obj = new Company();
     $company = $company_obj->get_company($_GET['id']);
-    $logo = $company_obj->get_media($company['logo_key']);
-    $logo = $logo->fetch_assoc();
-    $logo['size'] = explode('_', $logo['file_key'])[0];
-    $video = $company_obj->get_media($company['video_key']);
-    $video = $video->fetch_assoc();
-    $video['size'] = explode('_', $video['file_key'])[0];
+    $logo_media = $company_obj->get_media($company['logo_key']);
+    if($logo_media != false) {
+        $logo = $logo_media->fetch_assoc();
+        $logo['size'] = explode('_', $logo['file_key'])[0];
+    }
+    $video_media = $company_obj->get_media($company['video_key']);
+    if($video_media != false) {
+        $video = $video_media->fetch_assoc();
+        $video['size'] = explode('_', $video['file_key'])[0];
+    }
     $icon_array = array();
     $icons = $company_obj->get_company_icons($company['company_token_id']);
     if($icons) {

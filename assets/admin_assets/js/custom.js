@@ -499,7 +499,7 @@ var ImageUploadToken = (function () {
     var section_bgvideo = document.querySelector('.icon_video');
     var loader_video = document.querySelector('.old-loader-video');
     // var icons = document.querySelectorAll('.old-icons');
-    if (logo) {
+    if (logo && logo.dataset.value) {
       initialPreviewLogo.push(logo.dataset.value);
       initialPreviewConfigLogo.push({
         caption: logo.dataset.caption,
@@ -521,7 +521,7 @@ var ImageUploadToken = (function () {
         url: 'media_delete.php',
       })
     }
-    if (video) {
+    if (video && video.dataset.value) {
       initialPreviewVideo.push(video.dataset.value);
       initialPreviewConfigVideo.push({
         caption: video.dataset.caption,
@@ -532,7 +532,7 @@ var ImageUploadToken = (function () {
         url: 'media_delete.php',
       })
     }
-    if (loader_video) {
+    if (loader_video && loader_video.dataset.value) {
       initialPreviewLoaderVideo.push(loader_video.dataset.value);
       initialPreviewConfigLoaderVideo.push({
         caption: loader_video.dataset.caption,
@@ -540,7 +540,7 @@ var ImageUploadToken = (function () {
         key: loader_video.dataset.key,
         filetype: loader_video.dataset.filetype,
         type: loader_video.dataset.type,
-        url: 'media_delete.php',
+        url: 'loadermedia_delete.php',
       })
     }
     // Modal template
@@ -612,42 +612,63 @@ var ImageUploadToken = (function () {
       deleteUrl: "media_delete.php"
     });
 
-    $('.file-input-overwrite-rfid-icon').fileinput({
-      browseLabel: 'Browse',
-      uploadUrl: "upload_media.php", // server upload action
-      enableResumableUpload: true,
-      autoOrientImage: false,
-      allowedFileTypes: ["image"],
-      browseIcon: '<i class="icon-file-plus mr-2"></i>',
-      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
-      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
-      layoutTemplates: {
-        icon: '<i class="icon-file-check"></i>',
-        modal: modalTemplate
-      },
-      initialPreviewAsData: true,
-      overwriteInitial: false,
-      previewZoomButtonClasses: previewZoomButtonClasses,
-      previewZoomButtonIcons: previewZoomButtonIcons,
-      fileActionSettings: {
-        zoomClass: '',
-        zoomIcon: '<i class="icon-zoomin3"></i>',
-        dragClass: 'p-2',
-        dragIcon: '<i class="icon-three-bars"></i>',
-        removeClass: '',
-        removeErrorClass: 'text-danger',
-        removeIcon: '<i class="icon-bin"></i>',
-        indicatorNew: '<i class="icon-file-plus text-success"></i>',
-        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
-        indicatorError: '<i class="icon-cross2 text-danger"></i>',
-        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
-      },
-      deleteUrl: "media_delete.php"
+    var rfidIconfileInput = document.querySelectorAll('.file-input-overwrite-rfid-icon');
+    rfidIconfileInput.forEach(function (rfidIconfile) {
+      var initialPreviewRfidIcon = [];
+      var initialPreviewConfigRfidIcon = [];
+      var rfidIcon = $(rfidIconfile).parents('.form-group').find('.old-icons');
+      console.log(rfidIcon.attr('data-value'))
+      if (rfidIcon.get(0) && rfidIcon.attr('data-value')) {
+        initialPreviewRfidIcon.push(rfidIcon.attr('data-value'));
+        initialPreviewConfigRfidIcon.push({
+          caption: rfidIcon.attr('data-caption'),
+          size: parseInt(rfidIcon.attr('data-size')),
+          key: rfidIcon.attr('data-key'),
+          filetype: rfidIcon.attr('data-filetype'),
+          type: rfidIcon.attr('data-type'),
+          url: 'media_delete.php',
+        })
+      }
+      $(rfidIconfile).fileinput({
+        browseLabel: 'Browse',
+        uploadUrl: "upload_media.php", // server upload action
+        enableResumableUpload: true,
+        autoOrientImage: false,
+        allowedFileTypes: ["image"],
+        browseIcon: '<i class="icon-file-plus mr-2"></i>',
+        uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+        removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+        layoutTemplates: {
+          icon: '<i class="icon-file-check"></i>',
+          modal: modalTemplate
+        },
+        initialPreview: initialPreviewRfidIcon,
+        initialPreviewConfig: initialPreviewConfigRfidIcon,
+        initialPreviewAsData: true,
+        overwriteInitial: true,
+        previewZoomButtonClasses: previewZoomButtonClasses,
+        previewZoomButtonIcons: previewZoomButtonIcons,
+        fileActionSettings: {
+          zoomClass: '',
+          zoomIcon: '<i class="icon-zoomin3"></i>',
+          dragClass: 'p-2',
+          dragIcon: '<i class="icon-three-bars"></i>',
+          removeClass: '',
+          removeErrorClass: 'text-danger',
+          removeIcon: '<i class="icon-bin"></i>',
+          indicatorNew: '<i class="icon-file-plus text-success"></i>',
+          indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+          indicatorError: '<i class="icon-cross2 text-danger"></i>',
+          indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+        },
+        deleteUrl: "media_delete.php"
+      });
     });
     $('.file-input-overwrite-rfid-vid').fileinput({
       browseLabel: 'Browse',
       uploadUrl: "upload_media.php", // server upload action
       enableResumableUpload: true,
+      maxFileCount: 1,
       autoOrientImage: false,
       allowedFileTypes: ["video"],
       browseIcon: '<i class="icon-file-plus mr-2"></i>',
@@ -660,7 +681,7 @@ var ImageUploadToken = (function () {
       initialPreview: initialPreviewVideo,
       initialPreviewConfig: initialPreviewConfigVideo,
       initialPreviewAsData: true,
-      overwriteInitial: false,
+      overwriteInitial: true,
       previewZoomButtonClasses: previewZoomButtonClasses,
       previewZoomButtonIcons: previewZoomButtonIcons,
       fileActionSettings: {
@@ -797,7 +818,7 @@ var ImageUploadToken = (function () {
         indicatorError: '<i class="icon-cross2 text-danger"></i>',
         indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
       },
-      deleteUrl: "media_delete.php"
+      deleteUrl: "loadermedia_delete.php"
     });
   };
 
@@ -840,7 +861,7 @@ var OwlCarousel = (function () {
     function initialized(e) {
       var i = e.currentTarget;
       var item = $(i).find('.owl-item.active .img-fluid')
-      if(item.length > 0) {
+      if (item.length > 0) {
         if (item[0].nodeName == 'VIDEO') {
           item[0].play()
         }

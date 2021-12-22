@@ -3,7 +3,7 @@ $file_key = $_POST['key'];
 require './../../config/config.php';
 require BASE_PATH . '/cms/model/Media.php';
 
-$targetDir = $items_config['rfid_media_path'];
+$targetDir = $items_config['rfid_loadermedia_path'];
 
 $media = new Media();
 $media_details = $media->get_media_by_file_key($file_key);

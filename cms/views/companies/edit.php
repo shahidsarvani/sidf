@@ -37,13 +37,13 @@ require ADMIN_VIEW . '/layout/header.php';
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Name (English):</label>
-                                    <input type="text" name="name_eng" class="form-control" value="<?php echo $company['name_eng'] ?>" placeholder="Sabic" required>
+                                    <input type="text" name="name_eng" class="form-control" value="<?php echo $company['name_eng'] ?>" placeholder="Sabic">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Name (Arabic):</label>
-                                    <input type="text" name="name_ar" class="form-control" value="<?php echo $company['name_ar'] ?>" placeholder="سابك" required>
+                                    <input type="text" name="name_ar" class="form-control" value="<?php echo $company['name_ar'] ?>" placeholder="سابك">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -61,14 +61,14 @@ require ADMIN_VIEW . '/layout/header.php';
                         </div>
                         <div class="form-group" id="logo_error">
                             <label>Upload Logo:</label>
-                            <input type="file" name="logo" class="file-input-overwrite-rfid-img" accept="image/*" data-show-preview="false" data-fouc>
+                            <input type="file" name="logo" class="file-input-overwrite-rfid-img" accept="image/*" data-fouc>
                         </div>
                         <div class="form-group" id="video_error">
                             <label>Upload Video:</label>
                             <input type="file" name="video" class="file-input-overwrite-rfid-vid" accept="video/*" data-fouc>
                         </div>
-                        <input type="hidden" name="logo_key" id="logo_key" class="modal_media old-logo" data-error="#logo_error" value="<?php echo $logo['file_key']; ?>" data-value="<?php echo $items_config['rfid_media_url'] . $logo['name']; ?>" data-caption="<?php echo $logo['name']; ?>" data-key="<?php echo $logo['file_key']; ?>" data-size="<?php echo $logo['size']; ?>" data-type="<?php echo $logo['type']; ?>" data-filetype="<?php echo $logo['filetype']; ?>">
-                        <input type="hidden" name="video_key" id="video_key" class="modal_media old-video" data-error="#video_error" value="<?php echo $video['file_key']; ?>" data-value="<?php echo $items_config['rfid_media_url'] . $video['name']; ?>" data-caption="<?php echo $video['name']; ?>" data-key="<?php echo $video['file_key']; ?>" data-size="<?php echo $video['size']; ?>" data-type="<?php echo $video['type']; ?>" data-filetype="<?php echo $video['filetype']; ?>">
+                        <input type="hidden" name="logo_key" id="logo_key" class="modal_media old-logo" data-error="#logo_error" value="<?php echo isset($logo) ? $logo['file_key'] : ''; ?>" data-value="<?php echo isset($logo) ? $items_config['rfid_media_url'] . $logo['name'] : ''; ?>" data-caption="<?php echo isset($logo) ? $logo['name'] : ''; ?>" data-key="<?php echo isset($logo) ? $logo['file_key'] : ''; ?>" data-size="<?php echo isset($logo) ? $logo['size'] : ''; ?>" data-type="<?php echo isset($logo) ? $logo['type'] : ''; ?>" data-filetype="<?php echo isset($logo) ? $logo['filetype'] : ''; ?>">
+                        <input type="hidden" name="video_key" id="video_key" class="modal_media old-video" data-error="#video_error" value="<?php echo isset($video) ? $video['file_key'] : ''; ?>" data-value="<?php echo isset($video) ? $items_config['rfid_media_url'] . $video['name'] : ''; ?>" data-caption="<?php echo isset($video) ? $video['name'] : ''; ?>" data-key="<?php echo isset($video) ? $video['file_key'] : ''; ?>" data-size="<?php echo isset($video) ? $video['size'] : ''; ?>" data-type="<?php echo isset($video) ? $video['type'] : ''; ?>" data-filetype="<?php echo isset($video) ? $video['filetype'] : ''; ?>">
                         <hr>
                         <h4>Icons</h4>
 
@@ -107,9 +107,8 @@ require ADMIN_VIEW . '/layout/header.php';
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Icon:</label>
-                                                            <input type="file" name="icon[]" class="file-input-overwrite-rfid-icon" data-show-preview="false" data-fouc>
-                                                            <input type="hidden" class="old-icons" name="icon_key[]" value="<?php echo $icon['icon']; ?>">
-                                                            <span class="icon_name"><?php echo $icon['icon_detail']['name'] != '' ? '(' . $icon['icon_detail']['name'] . ')' : '' ?></span>
+                                                            <input type="file" name="icon[]" class="file-input-overwrite-rfid-icon" data-fouc>
+                                                            <input type="hidden" class="old-icons" name="icon_key[]" value="<?php echo $icon['icon_detail']['file_key']; ?>" data-value="<?php echo $icon['icon_detail']['name'] != '' ? $items_config['rfid_media_url'] . $icon['icon_detail']['name'] : ''; ?>" data-caption="<?php echo $icon['icon_detail']['name']; ?>" data-key="<?php echo $icon['icon_detail']['file_key']; ?>" data-size="<?php echo $icon['icon_detail']['size']; ?>" data-type="<?php echo $icon['icon_detail']['type']; ?>" data-filetype="<?php echo $icon['icon_detail']['filetype']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,7 +143,23 @@ require ADMIN_VIEW . '/layout/footer.php';
     $(document).ready(function() {
         $('#navlink-tokens').addClass('nav-item-open');
         $('#navlink-tokens ul').css('display', 'block');
-        $('#navlink-tokens_add').addClass('active');
+        $('#navlink-companies_index').addClass('active');
+
+        var swalInit = swal.mixin({
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-primary',
+            cancelButtonClass: 'btn btn-light'
+        });
+
+        function fireAlert() {
+            swalInit.fire({
+                text: 'File deleted successfuly!',
+                type: 'success',
+                toast: true,
+                showConfirmButton: false,
+                position: 'top-right'
+            });
+        }
 
         function logoUploaded(event, previewId, index, fileId) {
             console.log('File uploaded', previewId, index, fileId);
@@ -166,14 +181,24 @@ require ADMIN_VIEW . '/layout/footer.php';
             console.log(event.currentTarget);
             $('#' + event.currentTarget.id).parents('.form-group').find('.old-icons').remove();
             $('#' + event.currentTarget.id).parents('.form-group').append(hiddenInput);
-            $('#' + event.currentTarget.id).parents('.form-group').find('.icon_name').remove();
+        }
+        function logoDeleted(event, preview, config, tags, extraData) {
+            $('#logo_key').removeAttr('value')
+            fireAlert()
+        }
+        function videoDeleted(event, preview, config, tags, extraData) {
+            $('#video_key').removeAttr('value')
+            fireAlert()
+        }
+        function fileDeleted(event, preview, config, tags, extraData) {
+            fireAlert()
         }
 
-        $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded);
-        $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded);
-        $('.file-input-overwrite-rfid-icon').on('fileuploaded', iconUploaded);
+        $('.file-input-overwrite-rfid-img').on('fileuploaded', logoUploaded).on('filedeleted', logoDeleted);
+        $('.file-input-overwrite-rfid-vid').on('fileuploaded', videoUploaded).on('filedeleted', videoDeleted);
+        $('.file-input-overwrite-rfid-icon').on('fileuploaded', iconUploaded).on('filedeleted', fileDeleted);
 
-        var validator = $("#token-form").validate({
+        var validator = $("#company-form").validate({
             ignore: ".select2-search__field", // ignore hidden fields
             errorClass: "validation-invalid-label",
             successClass: "validation-valid-label",
@@ -185,7 +210,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 $(element).removeClass(errorClass);
             },
             submitHandler: function() {
-                document.forms["token-form"].submit();
+                document.forms["company-form"].submit();
             },
             // Different components require proper error label placement
             errorPlacement: function(error, element) {
@@ -222,7 +247,19 @@ require ADMIN_VIEW . '/layout/footer.php';
                 }
             },
             rules: {
-                name: {
+                company_token_id: {
+                    required: true,
+                },
+                name_eng: {
+                    required: true,
+                },
+                name_ar: {
+                    required: true,
+                },
+                info_eng: {
+                    required: true,
+                },
+                info_ar: {
                     required: true,
                 },
                 logo_key: {
@@ -233,8 +270,20 @@ require ADMIN_VIEW . '/layout/footer.php';
                 },
             },
             messages: {
-                name: {
-                    required: "Enter token name",
+                company_token_id: {
+                    required: "Select Token",
+                },
+                name_eng: {
+                    required: "Enter Name (eng)",
+                },
+                name_ar: {
+                    required: "Enter Name (ar)",
+                },
+                info_eng: {
+                    required: "Enter Description (eng)",
+                },
+                info_ar: {
+                    required: "Enter Description (ar)",
                 },
                 logo_key: {
                     required: "Add logo",
@@ -339,7 +388,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 // initialPreview: initialPreview,
                 // initialPreviewConfig: initialPreviewConfig,
                 initialPreviewAsData: true,
-                overwriteInitial: false,
+                overwriteInitial: true,
                 previewZoomButtonClasses: previewZoomButtonClasses,
                 previewZoomButtonIcons: previewZoomButtonIcons,
                 fileActionSettings: {

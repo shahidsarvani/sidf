@@ -38,15 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $token_obj = new Token();
     $token = $token_obj->get_token($_GET['id']);
-    $logo = $token_obj->get_media($token['logo_key']);
-    $logo = $logo->fetch_assoc();
-    $logo['size'] = explode('_', $logo['file_key'])[0];
-    $video = $token_obj->get_media($token['video_key']);
-    $video = $video->fetch_assoc();
-    $video['size'] = explode('_', $video['file_key'])[0];
-    $loader_video = $token_obj->get_media($token['loader_video_key']);
-    $loader_video = $loader_video->fetch_assoc();
-    $loader_video['size'] = explode('_', $loader_video['file_key'])[0];
+    $logo = array();
+    $video = array();
+    $loader_video = array();
+    $logo_media = $token_obj->get_media($token['logo_key']);
+    if($logo_media != false) {
+        $logo = $logo_media->fetch_assoc();
+        $logo['size'] = explode('_', $logo['file_key'])[0];
+    }
+    $video_media = $token_obj->get_media($token['video_key']);
+    if($video_media != false) {
+        $video = $video_media->fetch_assoc();
+        $video['size'] = explode('_', $video['file_key'])[0];
+    }
+    $loader_video_media = $token_obj->get_media($token['loader_video_key']);
+    if($loader_video_media != false) {
+        $loader_video = $loader_video_media->fetch_assoc();
+        $loader_video['size'] = explode('_', $loader_video['file_key'])[0];
+    }
 }
 
 $title = 'Tokens - SIDF';

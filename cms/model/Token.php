@@ -120,7 +120,7 @@ class Token
 		$logo_key = filter_var($data['logo_key'], FILTER_SANITIZE_STRING);
 		$video_key = filter_var($data['video_key'], FILTER_SANITIZE_STRING);
 		$loader_video_key = filter_var($data['loader_video_key'], FILTER_SANITIZE_STRING);
-		$sort_order = $data['sort_order'];
+		$sort_order = filter_var($data['sort_order'], FILTER_SANITIZE_STRING);
 		$slug = $this->slugify($name);
 		$query = "
 		UPDATE company_tokens SET name='$name',rfid_card_id='$rfid_card_id',slug='$slug',logo_key='$logo_key',video_key='$video_key',loader_video_key='$loader_video_key',sort_order='$sort_order' WHERE id='$id'
