@@ -27,7 +27,7 @@ foreach ($tokens as $index => $value) {
     if ($loader_video_media != false) {
         $loader_video = $loader_video_media->fetch_assoc();
     }
-    $temp .= '<div class="col-6 order-' . $value['sort_order'] . ' d-flex align-items-center justify-content-center flex-column next_tab logo_' . $i . '" data-slug="' . $value['slug'] . '" data-card_id="' . $value['rfid_card_id'] . '" data-loader_name="' . (isset($loader_video) ? $items_config['rfid_loadermedia_url'] . $loader_video['name'] : "") . '" data-loader_type="' . (isset($loader_video) ? $loader_video['filetype'] . $loader_video['name'] : "") . '">
+    $temp .= '<div class="col-6 order-' . $value['sort_order'] . ' d-flex align-items-center justify-content-center flex-column next_tab logo_' . $i . '" data-slug="' . $value['slug'] . '" data-card_id="' . $value['rfid_card_id'] . '" data-loader_name="' . (isset($loader_video) ? $items_config['rfid_loadermedia_url'] . $loader_video['name'] : "") . '" data-loader_type="' . (isset($loader_video) ? $loader_video['filetype'] : "") . '">
                 <div class="categoriesvideo_wrapper">
                     <video id="vid" class="categories_video_inner" autoplay loop muted>
                         <source src="' . (isset($video) ? $items_config['rfid_media_url'] . $video['name'] : "") . '" type="' . (isset($video) ? $video['filetype'] : "") . '">

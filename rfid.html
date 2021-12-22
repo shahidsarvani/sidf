@@ -16,9 +16,9 @@
 <body style="background-color: #edeeea;">
 
     <div id="preloader" style="display: none">
-        <!-- <video id="vid" class="categories_video_inner">
+        <video id="vid" class="categories_video_inner">
             <source src="" type="video/mp4">
-        </video> -->
+        </video>
     </div>
 
     <div class="text_wrapper_outter_1">
@@ -68,6 +68,32 @@
         }).catch(function (err) {
             alert('failed to connect to server:' + err);
         })
+
+
+        $(document).on("click", ".next_tab", function (event) {
+            var tag = $(this).attr("data-card_id");
+            if (tag) {
+                console.log(tag)
+                var loader_name = $(this).attr("data-loader_name");
+                var loader_type = $(this).attr("data-loader_type");
+                $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onended="preLoaderEnded();" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+                var video = document.querySelector('.categories_video_inner');
+                video.onloadedmetadata = preLoaderAdded(tag);
+            } else {
+                alert('Card ID not attached')
+            }
+        })
+        $(document).on("click", ".footer_logo", function (event) {
+            var vid = document.querySelector('.video_inner')
+            console.log(vid)
+            if (vid) {
+                vid.pause();
+            }
+            $('#index_1').fadeOut('slow', function () {
+                $('.text_wrapper_outter_1').fadeIn('slow')
+            })
+        })
+
     })
 
 
@@ -124,7 +150,9 @@
                 var loader_type = tab.dataset.loader_type;
                 $('#index_1').fadeOut('slow', function () {
                     $('#preloader').empty()
-                        .html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+                        .html('<video id="vid" class="categories_video_inner" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
+                    var video = document.querySelector('.categories_video_inner');
+                    video.onloadedmetadata = preLoaderAdded(tag);
                 });
             }
         })
@@ -147,7 +175,7 @@
         console.log('tag lost')
 
         var vid = document.querySelector('.video_inner')
-        if(vid) {
+        if (vid) {
             vid.pause();
         }
         $('#preloader').empty().css('display', 'none')
@@ -177,27 +205,8 @@
         rawFile.send(null);
     }
 
-    $(document).on("click", ".next_tab", function (event) {
-        var tag = $(this).attr("data-card_id");
-        if (tag) {
-            var loader_name = $(this).attr("data-loader_name");
-            var loader_type = $(this).attr("data-loader_type");
-            $('#preloader').empty().html('<video id="vid" class="categories_video_inner" onloadedmetadata="preLoaderAdded(\'' + tag + '\')" onended="preLoaderEnded()" autoplay muted><source src="' + loader_name + '" type="' + loader_type + '"></video>')
-        } else {
-            alert('Card ID not attached')
-        }
-    })
-    $(document).on("click", ".footer_logo", function (event) {
-        var vid = document.querySelector('.video_inner')
-        console.log(vid)
-        if (vid) {
-            vid.pause();
-        }
-        $('#index_1').fadeOut('slow', function () {
-            $('.text_wrapper_outter_1').fadeIn('slow')
-        })
-    })
     function preLoaderAdded(tag) {
+        console.log('here')
         readTextFile("companies.json", function (text) {
             var data = JSON.parse(text);
             // console.log(data.companies[tag])
@@ -208,7 +217,6 @@
                 $('#index_1').empty();
                 $('#index_1').append(html)
                 var vid = document.querySelector('.video_inner')
-                console.log(vid)
                 if (vid) {
                     vid.pause();
                     vid.duration = 0
