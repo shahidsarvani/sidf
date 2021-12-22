@@ -30,9 +30,11 @@
 }
 
 .video-section .video-wrapper {
-    height: 30vh;
+    /*height: 30vh;*/
+    height: auto;
     overflow: hidden;
-    background: #000;
+    /*background: #000;*/
+    background: #fff;
 }
 
 .video-section .video-wrapper video{
