@@ -19,22 +19,28 @@ require ADMIN_VIEW . '/layout/header.php';
                     <form action="<?php echo ADMIN_SITE_URL . '/controller/tokens/edit.php' ?>" method="post" enctype="multipart/form-data" id="token-form">
                         <input type="hidden" name="id" value="<?php echo $token['id']; ?>" />
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Token Name:</label>
                                     <input type="text" name="name" class="form-control" placeholder="Token Name" value="<?php echo $token['name'] ?>" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Card ID:</label>
-                                    <input type="text" name="rfid_card_id" class="form-control" placeholder="Card ID" value="<?php echo $token['rfid_card_id'] ?>" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Sort Order:</label>
                                     <input type="text" name="sort_order" class="form-control" placeholder="Sort Order" value="<?php echo $token['sort_order'] ?>" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Card ID 1:</label>
+                                    <input type="text" name="rfid_card_id" class="form-control" placeholder="Card ID 1" value="<?php echo $token['rfid_card_id'] ?>" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Card ID 2:</label>
+                                    <input type="text" name="rfid_card_id2" class="form-control" placeholder="Card ID 2" value="<?php echo $token['rfid_card_id2'] ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -186,6 +192,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                 rfid_card_id: {
                     required: true,
                 },
+                rfid_card_id2: {
+                    required: true,
+                },
                 sort_order: {
                     required: true,
                 },
@@ -204,7 +213,10 @@ require ADMIN_VIEW . '/layout/footer.php';
                     required: "Enter token name",
                 },
                 rfid_card_id: {
-                    required: "Enter Card ID",
+                    required: "Enter Card ID 1",
+                },
+                rfid_card_id2: {
+                    required: "Enter Card ID 2",
                 },
                 sort_order: {
                     required: "Enter Sort order",
