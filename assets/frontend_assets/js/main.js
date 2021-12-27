@@ -26,7 +26,7 @@ $(document).ready(function () {
       }
       $('#' + id).find('.content_slider').addClass('active');
       console.log($('#' + id).find('.content_slider .item').length);
-      if($('#' + id).find('.content_slider .item').length != 0) {
+      if ($('#' + id).find('.content_slider .item').length != 0) {
         $('#' + id).find('.content_slider').owlCarousel({
           items: 1,
           animateOut: "fadeOut",
@@ -38,14 +38,17 @@ $(document).ready(function () {
             "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
             "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
           ],
-          autoplayTimeout: 5000,
+          autoplayTimeout: function (e) {
+            var owlItem = $(i).find('.owl-item.active .new_inner_img')
+            return owlItem[0].nodeName == 'VIDEO' ? 0 : 5000;
+          },
           autoplay: true,
           loop: true,
           margin: 0,
           onInitialized: modalInitialized,
           onTranslated: modalTranslated,
         });
-  
+
         function modalTranslated(e) {
           var i = e.currentTarget;
           $(i).find('.owl-item video').each(function (index, value) {
@@ -60,7 +63,7 @@ $(document).ready(function () {
           var i = e.currentTarget;
           var owlItem = $(i).find('.owl-item.active .new_inner_img')
           var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
-          $.each(inactiveOwlItems, function(index, item) {
+          $.each(inactiveOwlItems, function (index, item) {
             if (item.nodeName == 'VIDEO') {
               item.pause()
             }
@@ -97,6 +100,6 @@ $(document).ready(function () {
   })
 
   //READ TIMELINE ITEMS JSON
-  
+
 })
 
