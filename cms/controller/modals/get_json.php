@@ -27,7 +27,7 @@ foreach ($modals as $index => $item) {
                     $media = $media->fetch_assoc();
                     if ($media['type'] == 'video') {
                         array_push($medias, '<div class="item">
-                                                <video class="new_inner_img" muted controls onplay="pauseModalSlider(\'#modal' . $i . '\');" onended="playModalSlider(\'#modal' . $i . '\');" ' . $loop . '>
+                                                <video class="new_inner_img" autoplay controls onplay="pauseModalSlider(\'#modal' . $i . '\');" onended="playModalSlider(\'#modal' . $i . '\');" ' . $loop . '>
                                                     <source src="' . $items_config["modal_media_url"] . $media["name"] . '" type="' . $media["filetype"] . '">
                                                 </video>
                                                 <div class="box_content_innerrr english active">
@@ -54,7 +54,7 @@ foreach ($modals as $index => $item) {
                     }
                 } else {
                     array_push($medias, '<div class="item">
-                                            <video class="new_inner_img" muted controls onplay="pauseModalSlider(\'#modal' . $i . '\');" onended="playModalSlider(\'#modal' . $i . '\');" ' . $loop . '>
+                                            <video class="new_inner_img" autoplay controls onplay="pauseModalSlider(\'#modal' . $i . '\');" onended="playModalSlider(\'#modal' . $i . '\');" ' . $loop . '>
                                                 <source src="#" type="#">
                                             </video>
                                             <div class="box_content_innerrr english active">

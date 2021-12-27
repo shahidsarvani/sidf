@@ -58,8 +58,13 @@ $(document).ready(function () {
         }
         function modalInitialized(e) {
           var i = e.currentTarget;
-          // console.log(i);
           var owlItem = $(i).find('.owl-item.active .new_inner_img')
+          var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
+          $.each(inactiveOwlItems, function(index, item) {
+            if (item.nodeName == 'VIDEO') {
+              item.pause()
+            }
+          })
           if (owlItem[0].nodeName == 'VIDEO') {
             owlItem[0].play()
           }
