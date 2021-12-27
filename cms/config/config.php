@@ -1,5 +1,5 @@
 <?php
-$mine = 2;
+$mine = 0;
 $host = $_SERVER['HTTP_HOST'];
 $con_file_path = __FILE__;
 $con_file_path = str_replace('\cms\config\config.php', '',  $con_file_path);
@@ -12,6 +12,8 @@ if ($host == 'localhost' && $mine == 1) {
 } else if ($host == 'localhost' && $mine == 2) {
     define('BASE_URL', 'http://' . $host . '/sidf');
 } else if ($host == 'shahids-macbook-pro.local' && $mine == 3) {
+    define('BASE_URL', 'http://' . $host . '/sidf');
+} else if ($host == '192.168.10.10') {
     define('BASE_URL', 'http://' . $host . '/sidf');
 } else {
     define('BASE_URL', 'https://sidf.digitalpoin8.com');

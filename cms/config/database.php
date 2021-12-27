@@ -7,7 +7,7 @@ class Database
 {
     function connect()
     {
-        if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'shahids-macbook-pro.local') {
+        if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'shahids-macbook-pro.local' || $_SERVER['HTTP_HOST'] == '192.168.10.10') {
             $database = array(
                 'host' => 'localhost',
                 'db' => 'sidf',
