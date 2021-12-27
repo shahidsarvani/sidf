@@ -100,7 +100,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 confirmButtonClass: 'btn btn-success',
                                 showLoaderOnConfirm: true,
                                 preConfirm: function(login) {
-                                    return fetch(admin_url + '/controller/download_json.php?name=screens.json')
+                                    return fetch(admin_url + '/controller/download_json.php?name=companies.json')
                                         .then(function(response) {
                                             console.log(response);
                                             if (!response.ok) {
@@ -112,7 +112,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             const a = document.createElement('a');
                                             a.style.display = 'none';
                                             a.href = url;
-                                            a.download = 'screens.json';
+                                            a.download = 'companies.json';
                                             document.body.appendChild(a);
                                             a.click();
                                             window.URL.revokeObjectURL(url);

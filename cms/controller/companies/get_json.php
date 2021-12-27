@@ -81,6 +81,42 @@ foreach ($companies as $index => $value) {
                     </div>
                 </div>';
     }
+    if ($token['rfid_card_id2']) {
+        $response['companies'][$token['rfid_card_id2']] = '<div class="video_wrapper video_wrapper_' . $token['slug'] . '">
+                    <video id="vid" class="w-100 video_inner" autoplay loop>
+                        <source src="' . $items_config['rfid_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">
+                    </video>
+                </div>
+                <div class="text_wrapper_outter">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-6 h-100 d-flex align-items-center justify-content-center left-column">
+                                <div class="images_single_outter w-100">
+                                    <div class="images_wrapper_inner d-flex justify-content-center pb-4 logo_' . $token['slug'] . '">
+                                        <img src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
+                                    </div>
+                                    <div class="icons_outter d-flex justify-content-start flex-wrap mt-5">
+                                        ' . $icon_html . '
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-6 h-100 d-flex align-items-center justify-content-center flex-column right-column">
+                                <div class="scroll-bar">
+                                    <div class="text_wrapper_op p-4 direction_rtl mb-4 arabic-content">
+                                        <h1 class="text-uppercase heading_main">' . $value['name_ar'] . '</h1>
+                                        <p>' . $value['info_ar'] . '</p>
+                                    </div>
+                                    <div class="text_wrapper_op p-4">
+                                        <h1 class="text-uppercase heading_main">' . $value['name_eng'] . '</h1>
+                                        <p>' . $value['info_eng'] . '</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+    }
 }
 // echo json_encode($response);
 // die();

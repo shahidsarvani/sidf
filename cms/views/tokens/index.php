@@ -8,7 +8,8 @@ require ADMIN_VIEW . '/layout/header.php';
     require ADMIN_VIEW . '/layout/alert.php';
     ?>
     <div class="w-100 text-right mb-3">
-        <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/tokens/get_json.php?' . time() ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/tokens/get_json.php?' . time() ?>">Create JSON File (screen 1)<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-brown" id="get_json2" data-href="<?php echo ADMIN_SITE_URL . '/controller/tokens/get_json2.php?' . time() ?>">Create JSON File (screen 2)<i class="icon-file-download2 ml-2"></i></button>
         <?php
         if (count($all_tokens) < 4) :
         ?>
@@ -110,7 +111,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 confirmButtonClass: 'btn btn-success',
                                 showLoaderOnConfirm: true,
                                 preConfirm: function(login) {
-                                    return fetch(admin_url + '/controller/download_json.php?name=screens.json')
+                                    return fetch(admin_url + '/controller/download_json.php?name=tokens.json')
                                         .then(function(response) {
                                             console.log(response);
                                             if (!response.ok) {
@@ -122,7 +123,73 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             const a = document.createElement('a');
                                             a.style.display = 'none';
                                             a.href = url;
-                                            a.download = 'screens.json';
+                                            a.download = 'tokens.json';
+                                            document.body.appendChild(a);
+                                            a.click();
+                                            window.URL.revokeObjectURL(url);
+                                        })
+                                        .catch(function(error) {
+                                            swalInit.showValidationMessage(
+                                                'Request failed: ' + error
+                                            );
+                                        });
+                                },
+                                allowOutsideClick: false
+                            })
+                            .then(function(result) {
+                                console.log(result);
+                                //     if (result.value) {
+                                //         swalInit.fire({
+                                //             title: 'File Downloaded',
+                                //         });
+                                //     }
+                            });
+                    } else {
+                        swalInit.fire({
+                            title: 'Error!',
+                            text: 'JSON file is not created.',
+                            type: 'error'
+                        })
+                    }
+                },
+                error: function(result) {
+                    console.log(result.responseText);
+                    swalInit.fire({
+                        title: 'Error!',
+                        text: 'JSON file is not created.',
+                        type: 'error'
+                    })
+                }
+            })
+        })
+        $('#get_json2').click(function() {
+            $.ajax({
+                url: $(this).attr('data-href'),
+                method: 'GET',
+                dataType: 'json',
+                success: function(resp) {
+                    if (resp.status == 1) {
+                        swalInit.fire({
+                                type: 'success',
+                                title: 'Your JSON file is ready to Download!',
+                                showCancelButton: true,
+                                confirmButtonText: '<i class="icon-file-download2 mr-2"></i> Download JSON file',
+                                confirmButtonClass: 'btn btn-success',
+                                showLoaderOnConfirm: true,
+                                preConfirm: function(login) {
+                                    return fetch(admin_url + '/controller/download_json.php?name=tokens2.json')
+                                        .then(function(response) {
+                                            console.log(response);
+                                            if (!response.ok) {
+                                                throw new Error(response.statusText)
+                                            }
+                                            return response.blob();
+                                        }).then(function(blob) {
+                                            const url = window.URL.createObjectURL(blob);
+                                            const a = document.createElement('a');
+                                            a.style.display = 'none';
+                                            a.href = url;
+                                            a.download = 'tokens2.json';
                                             document.body.appendChild(a);
                                             a.click();
                                             window.URL.revokeObjectURL(url);
