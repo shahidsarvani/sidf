@@ -55,10 +55,11 @@ html {
 }
 
 .process-title {
-  font-size: 64px;
-  color: #606060;
-  text-transform: uppercase;
-  font-family: "Neo Sans Arabic";
+    font-size: 64px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Neo Sans Arabic";
+    text-shadow: 1px 1px 3px rgb(150 150 150);
 }
 .main-section {
   overflow: hidden;
