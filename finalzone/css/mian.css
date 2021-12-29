@@ -1,7 +1,12 @@
 body {
     overflow: hidden;
 }
-
+.screen-4-logo {
+    max-height: 360px !important;
+}
+.logo-4 {
+    margin-top: 60px !important;
+}
 .page-logo img {
     width: 600px;
 }
