@@ -54,6 +54,7 @@ require ADMIN_VIEW . '/layout/header.php';
                         <div class="form-group" <?php echo $timeline['position'] == '9' ? '' : 'style="display: none;"' ?>>
                             <label>Upload Image:</label>
                             <input type="file" name="image" class="form-input-styled" id="image" accept="image/*">
+                            <span>(<?php echo $timeline['image'] ?>)</span>
                         </div>
 
                         <div class="text-right">

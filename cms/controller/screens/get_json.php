@@ -20,7 +20,7 @@ foreach ($screens as $index => $value) {
     $loop = $item_media->num_rows < 2 ? 'loop' : '';
     foreach ($item_media as $media) {
         if($media['type'] == 'video'){
-            array_push($medias, '<div class="item"><video class="img_slid" muted controls onplay="pauseSlider(\'.slider_'.$sliders[$index].'\');" onended="playSlider(\'.slider_'.$sliders[$index].'\');" '.$loop.'><source src="'.$items_config['images_url'] . $media['name'].'" type="'.$media['filetype'].'"></video></div>');
+            array_push($medias, '<div class="item"><video class="img_slid" muted onplay="pauseSlider(\'.slider_'.$sliders[$index].'\');" onended="playSlider(\'.slider_'.$sliders[$index].'\');" '.$loop.'><source src="'.$items_config['images_url'] . $media['name'].'" type="'.$media['filetype'].'"></video></div>');
         } else {
             array_push($medias, '<div class="item"><img src="'.$items_config['images_url'].$media['name'].'" alt="" class="img_slid"></div>');
         }
