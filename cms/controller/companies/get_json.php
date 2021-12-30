@@ -59,6 +59,10 @@ foreach ($companies as $index => $value) {
                                     <div class="images_wrapper_inner d-flex justify-content-center pb-4 logo_' . $token['slug'] . '">
                                         <img src="' . $items_config['rfid_media_url'] . $logo['name'] . '" alt="logo" />
                                     </div>
+                                    <div class="heading-container">
+                                        <span class="head_en">Products</span>
+                                        <span class="head_ar">المنتجات</span>
+                                    </div>
                                     <div class="icons_outter d-flex justify-content-start flex-wrap mt-5">
                                         ' . $icon_html . '
                                     </div>
