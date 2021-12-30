@@ -239,3 +239,14 @@ img.footer_logo {
 .video_wrapper_maaden video {
 	max-height: inherit !important;
 }
+.heading-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.heading-container span {
+    font-size: 40px;
+}
+.heading-container .head_ar {
+    margin-left: 10px;
+    font-family: NeoSansArabicRegular !important;
+}
