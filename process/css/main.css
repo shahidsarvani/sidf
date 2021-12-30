@@ -55,10 +55,11 @@ html {
 }
 
 .process-title {
-  font-size: 64px;
-  color: #606060;
-  text-transform: uppercase;
-  font-family: "Neo Sans Arabic";
+    font-size: 64px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Neo Sans Arabic";
+    text-shadow: 1px 1px 3px rgb(150 150 150);
 }
 .main-section {
   overflow: hidden;
@@ -351,14 +352,14 @@ footer h2 {
 .detail-language-switcher p {
     text-decoration: none;
     font-size: 30px;
-    color: #606060;
+    color: #ffffff;
     text-transform: uppercase;
     font-family: "Neo Sans Arabic";
     font-weight: normal;
     margin: 0;
 }
 .detail-language-switcher p a {
-  color: #606060;
+  color: #ffffff;
   text-shadow: 2px 2px 5px rgba(150, 150, 150, 1);
 }
 
