@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="./css/mian.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./fonts/stylesheet.css">
-
 </head>
-<body>
 
+<body>
   <div class="page-content">
     <div class="page-logo d-flex justify-content-center align-items-center">
-      <img class="black-logo" src="./images/logo.svg">
-      <img class="white-logo" style="display: none;" src="./images/white-logo.svg">
+      <img class="black-logo" style="display: none;" src="">
+      <img class="white-logo" src="">
     </div>
-
     <div class="video-section text-center">
       <div class="video-wrapper mt-5 d-flex">
-        <video width="100%" id="vid" autoplay loop>
-          <source src="./videos/screen1-main.mp4" type="video/mp4">
-          Your browser does not support HTML video.
-        </video>
       </div>
     </div>
-
-<!--     <div class="video-section mt-0 text-center">
-      <div class="video-wrapper d-flex bg-white">
-        <video width="100%" id="vid" autoplay loop>
-          <source src="./videos/screen1-title.mp4" type="video/mp4">
-          Your browser does not support HTML video.
-        </video>
-      </div>
-    </div> -->
-
   </div>
-
-</body>
 
   <script src="./js/bootstrap.bundle.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script>
+    function readTextFile(file, callback) {
+      var rawFile = new XMLHttpRequest();
+      rawFile.overrideMimeType("application/json");
+      rawFile.open("GET", file, true);
+      rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+          callback(rawFile.responseText);
+        }
+      }
+      rawFile.send(null);
+    }
+    readTextFile("finalzone.json", function (text) {
+      var data = JSON.parse(text);
+      console.log(data);
+      if (data["screen-1"] === undefined) {
+        alert('This Screen Data is not added in the JSON file!')
+      } else {
+        var logoBlack = document.querySelector('.black-logo');
+        var logoWhite = document.querySelector('.white-logo');
+        var videoWrap = document.querySelector('.video-wrapper');
 
+        logoBlack.src = data["screen-1"]['logo_black']
+        logoWhite.src = data["screen-1"]['logo_white']
+        videoWrap.innerHTML = data["screen-1"]['video']
+      }
+    });
+  </script>
 
 </body>
+
 </html>
