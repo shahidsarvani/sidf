@@ -10,7 +10,7 @@ require ADMIN_VIEW . '/layout/header.php';
     <div class="w-100 text-right mb-3">
         <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/finalzone/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
         <?php
-        if (count($all_screens) < 4) :
+        if (count($all_screens) < 5) :
         ?>
             <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/finalzone/add.php' ?>">Add Final Zone Screen<i class="icon-plus-circle2 ml-2"></i></a>
         <?php

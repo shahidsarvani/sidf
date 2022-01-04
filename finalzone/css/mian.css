@@ -45,13 +45,6 @@ body {
     max-height: 100%;
 }
 
-
-.thankyou-outter {
-    background: url("../images/thankyou.svg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 .thankyou-content h2 {
     color: #57b847;
     font-size: 90px;

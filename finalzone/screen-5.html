@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,9 +11,10 @@
   <link rel="stylesheet" href="./fonts/stylesheet.css">
 
 </head>
+
 <body>
 
-  
+
   <div class="thankyou-outter min-vh-100 overflow-hidden">
     <div class="row min-vh-100 d-flex justify-content-start align-items-center text-center">
       <div class="col-7">
@@ -27,9 +29,37 @@
 
 </body>
 
-  <script src="./js/bootstrap.bundle.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
+<script src="./js/bootstrap.bundle.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script>
+  function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4 && rawFile.status == "200") {
+        callback(rawFile.responseText);
+      }
+    }
+    rawFile.send(null);
+  }
+  readTextFile("finalzone.json", function (text) {
+    var data = JSON.parse(text);
+    if (data["screen-5"] === undefined) {
+      alert('This Screen Data is not added in the JSON file!')
+    } else {
+      var thankyouWrap = document.querySelector('.thankyou-outter');
+
+      thankyouWrap.style.background = "url('" + data["screen-5"]['logo'] + "')"
+      thankyouWrap.style.backgroundPosition = "center";
+      thankyouWrap.style.backgroundRepeat = "no-repeat";
+      thankyouWrap.style.backgroundSize = "cover";
+      
+    }
+  });
+</script>
 
 
 </body>
+
 </html>

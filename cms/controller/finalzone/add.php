@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require_once(BASE_PATH . '/cms/model/Finalzone.php');
     $screen = new Finalzone();
     $count = $screen->get_screen_count();
-    if ($count['count'] >= 4) {
+    if ($count['count'] >= 5) {
         header('Location: ' . ADMIN_SITE_URL . '/controller/finalzone/index.php');
     } else {
 

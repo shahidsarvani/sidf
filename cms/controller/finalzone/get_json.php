@@ -16,10 +16,11 @@ foreach ($screens as $index => $value) {
     $name = $screen->slugify($value['name']);
     $data[$name] = array();
     $temp['logo'] = $items_config['finalzone_image_media_url'] . $value['logo'];
-    $video = $item_media->fetch_assoc();
-    $temp['video'] = '<video width="100%" id="vid" autoplay loop><source src="' . $items_config['finalzone_video_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">Your browser does not support HTML video.</video>';
-    // $temp['video_src'] = $items_config['finalzone_video_media_url'] . $video['name'];
-    // $temp['video_type'] = $video['filetype'];
+    $temp['video'] = '';
+    if($item_media != false) {
+        $video = $item_media->fetch_assoc();
+        $temp['video'] = '<video width="100%" id="vid" autoplay loop><source src="' . $items_config['finalzone_video_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">Your browser does not support HTML video.</video>';
+    }
     $data[$name] = $temp;
 }
 // echo json_encode($data);
