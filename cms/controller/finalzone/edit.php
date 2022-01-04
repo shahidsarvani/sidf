@@ -33,31 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         @mkdir($targetDir);
     }
 
-    $data['logo_white'] = $screen['logo_white'];
-    $data['logo_black'] = $screen['logo_black'];
+    $data['logo'] = $screen['logo'];
     
-    if (isset($_FILES['logo_white']['tmp_name']) && $_FILES['logo_white']['tmp_name'] != '') {
-        if ($screen['logo_white']) {
-            $file = $targetDir . $screen['logo_white'];
+    if (isset($_FILES['logo']['tmp_name']) && $_FILES['logo']['tmp_name'] != '') {
+        if ($screen['logo']) {
+            $file = $targetDir . $screen['logo'];
             @unlink("{$file}");
         }
-        $file = $_FILES['logo_white']['tmp_name'];
-        $fileName = time() . '_' . $_FILES['logo_white']['name'];
+        $file = $_FILES['logo']['tmp_name'];
+        $fileName = time() . '_' . $_FILES['logo']['name'];
         $targetFile = $targetDir . '/' . $fileName;
         if (move_uploaded_file($file, $targetFile)) {
-            $data['logo_white'] = $fileName;
-        }
-    }
-    if (isset($_FILES['logo_black']['tmp_name']) && $_FILES['logo_black']['tmp_name'] != '') {
-        if ($screen['logo_black']) {
-            $file = $targetDir . $screen['logo_black'];
-            @unlink("{$file}");
-        }
-        $file = $_FILES['logo_black']['tmp_name'];
-        $fileName = time() . '_' . $_FILES['logo_black']['name'];
-        $targetFile = $targetDir . '/' . $fileName;
-        if (move_uploaded_file($file, $targetFile)) {
-            $data['logo_black'] = $fileName;
+            $data['logo'] = $fileName;
         }
     }
     $res = $screen_obj->edit_screen($id, $data);

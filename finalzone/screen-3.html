@@ -16,8 +16,8 @@
 
   <div class="page-content">
     <div class="page-logo d-flex justify-content-center align-items-center">
-      <img class="black-logo" style="display: none;" src="">
-      <img class="white-logo" src="">
+      <img class="black-logo" src="">
+      <img class="white-logo" style="display: none;" src="">
     </div>
 
     <div class="video-section text-center">
@@ -48,8 +48,8 @@
         var logoWhite = document.querySelector('.white-logo');
         var videoWrap = document.querySelector('.video-wrapper');
 
-        logoBlack.src = data["screen-3"]['logo_black']
-        logoWhite.src = data["screen-3"]['logo_white']
+        logoBlack.src = data["screen-3"]['logo']
+        logoWhite.src = data["screen-3"]['logo']
         videoWrap.innerHTML = data["screen-3"]['video']
 
         // video.play();

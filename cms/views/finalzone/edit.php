@@ -22,21 +22,10 @@ require ADMIN_VIEW . '/layout/header.php';
                             <label>Screen Name:</label>
                             <input type="text" name="name" value="<?php echo $screen['name']; ?>" class="form-control" placeholder="Screen 1" disabled>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Upload Logo Image (Light):</label>
-                                    <input type="file" name="logo_white" id="logo_white" accept="image/*" class="form-input-styled" value="<?php echo $screen['logo_white'] ?>" data-fouc>
-                                    <span><?php echo $screen['logo_white'] != '' ? '(' . $screen['logo_white'] . ')' : '' ?></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Upload Logo Image (Dark):</label>
-                                    <input type="file" name="logo_black" id="logo_black" accept="image/*" class="form-input-styled" value="<?php echo $screen['logo_black'] ?>" data-fouc>
-                                    <span><?php echo $screen['logo_black'] != '' ? '(' . $screen['logo_black'] . ')' : '' ?></span>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label>Upload Logo Image:</label>
+                            <input type="file" name="logo" id="logo" accept="image/*" class="form-input-styled" value="<?php echo $screen['logo'] ?>" data-fouc>
+                            <span><?php echo $screen['logo'] != '' ? '(' . $screen['logo'] . ')' : '' ?></span>
                         </div>
                         <div class="form-group" id="video_error">
                             <label>Upload Video:</label>
@@ -145,16 +134,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 // name: {
                 //     required: true,
                 // },
-                logo_white: {
-                    required: function(e) {
-                        var logo = $(e).parent().siblings('span').html();
-                        if (logo.length > 0) {
-                            return false
-                        }
-                        return true
-                    },
-                },
-                logo_black: {
+                logo: {
                     required: function(e) {
                         var logo = $(e).parent().siblings('span').html();
                         if (logo.length > 0) {
@@ -171,11 +151,8 @@ require ADMIN_VIEW . '/layout/footer.php';
                 // name: {
                 //     required: "Enter screen name",
                 // },
-                logo_white: {
+                logo: {
                     required: "Upload Logo (light)",
-                },
-                logo_black: {
-                    required: "Upload Logo (dark)",
                 },
                 video_key: {
                     required: "Upload video",

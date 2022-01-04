@@ -15,8 +15,7 @@ foreach ($screens as $index => $value) {
     $item_media = $screen->get_media($value['video_key']);
     $name = $screen->slugify($value['name']);
     $data[$name] = array();
-    $temp['logo_white'] = $items_config['finalzone_image_media_url'] . $value['logo_white'];
-    $temp['logo_black'] = $items_config['finalzone_image_media_url'] . $value['logo_black'];
+    $temp['logo'] = $items_config['finalzone_image_media_url'] . $value['logo'];
     $video = $item_media->fetch_assoc();
     $temp['video'] = '<video width="100%" id="vid" autoplay loop><source src="' . $items_config['finalzone_video_media_url'] . $video['name'] . '" type="' . $video['filetype'] . '">Your browser does not support HTML video.</video>';
     // $temp['video_src'] = $items_config['finalzone_video_media_url'] . $video['name'];

@@ -79,11 +79,10 @@ class Finalzone
 	public function add_screen($data)
 	{
 		$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
-		$logo_white = filter_var($data['logo_white'], FILTER_SANITIZE_STRING);
-		$logo_black = filter_var($data['logo_black'], FILTER_SANITIZE_STRING);
+		$logo = filter_var($data['logo'], FILTER_SANITIZE_STRING);
 		$video_key = filter_var($data['video_key'], FILTER_SANITIZE_STRING);
 		$query = "
-		INSERT INTO finalzone_screens (name, logo_white, logo_black, video_key) VALUES ('$name','$logo_white','$logo_black','$video_key')
+		INSERT INTO finalzone_screens (name, logo, video_key) VALUES ('$name','$logo','$video_key')
 		";
 		if (TRUE === $this->connect->query($query)) {
 			return $this->connect->insert_id;
@@ -97,11 +96,10 @@ class Finalzone
 	public function edit_screen($id, $data)
 	{
 		// $name = filter_var($data['name'], FILTER_SANITIZE_STRING);
-		$logo_white = filter_var($data['logo_white'], FILTER_SANITIZE_STRING);
-		$logo_black = filter_var($data['logo_black'], FILTER_SANITIZE_STRING);
+		$logo = filter_var($data['logo'], FILTER_SANITIZE_STRING);
 		$video_key = filter_var($data['video_key'], FILTER_SANITIZE_STRING);
 		$query = "
-		UPDATE finalzone_screens SET logo_white='$logo_white',logo_black='$logo_black',video_key='$video_key' WHERE id='$id'
+		UPDATE finalzone_screens SET logo='$logo',video_key='$video_key' WHERE id='$id'
 		";
 		if (TRUE === $this->connect->query($query)) {
 			return true;

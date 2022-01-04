@@ -35,8 +35,7 @@ require ADMIN_VIEW . '/layout/header.php';
                             <tr>
                                 <th>#</th>
                                 <th>Screen Name</th>
-                                <th>Logo (Light)</th>
-                                <th>Logo (Dark)</th>
+                                <th>Logo</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -49,13 +48,8 @@ require ADMIN_VIEW . '/layout/header.php';
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $item['name']; ?></td>
                                     <td>
-                                        <?php echo $item['logo_white'] != ''
-                                            ? $item['logo_white']
-                                            : 'NA' ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $item['logo_black'] != ''
-                                            ? $item['logo_black']
+                                        <?php echo $item['logo'] != ''
+                                            ? $item['logo']
                                             : 'NA' ?>
                                     </td>
                                     <td>
