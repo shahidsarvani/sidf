@@ -38,6 +38,10 @@ $items_config = array(
     'section_tabbgvid_media_path' => BASE_PATH . '/process/frontend_assets/tab_bg_videos/',
     'section_tabicon_media_url' => BASE_URL . '/process/frontend_assets/section_tabs/',
     'section_tabicon_media_path' => BASE_PATH . '/process/frontend_assets/section_tabs/',
+    'finalzone_video_media_url' => BASE_URL . '/finalzone/videos/',
+    'finalzone_video_media_path' => BASE_PATH . '/finalzone/videos/',
+    'finalzone_image_media_url' => BASE_URL . '/finalzone/images/',
+    'finalzone_image_media_path' => BASE_PATH . '/finalzone/images/',
 );
 
 /* start of the file uploading function */
