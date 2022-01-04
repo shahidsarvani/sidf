@@ -30,3 +30,11 @@ h6 {
 .table-img {
   height: 50px;
 }
+
+.navbar-heading {
+  color: white;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.2rem;
+  font-size: 20px;
+}

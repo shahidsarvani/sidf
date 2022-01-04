@@ -4,7 +4,8 @@
     <div class="navbar navbar-expand-md navbar-dark bg-indigo navbar-static">
         <div class="navbar-brand">
             <a href="<?php echo ADMIN_SITE_URL . '/controller/dashboard.php' ?>" class="d-inline-block">
-                <img src="<?php echo ADMIN_ASSET ?>/global_assets/images/logo_light1.png" alt="">
+                <!-- <img src="<?php echo ADMIN_ASSET ?>/global_assets/images/logo_light1.png" alt=""> -->
+                <h4 class="navbar-heading">SIDF CMS</h4>
             </a>
         </div>
 
