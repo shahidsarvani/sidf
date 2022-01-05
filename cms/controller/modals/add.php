@@ -24,26 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $modal = new Modal();
     $modal_id = $modal->add_modal($_POST);
     $data = array();
-    for($i = 0; $i < count($_POST['title_eng']); $i++) {
-        if($_POST['title_eng'][$i] != '') {
-            $data[] = [
-                'modal_id' => $modal_id,
-                'title_eng' => $_POST['title_eng'][$i],
-                'title_ar' => $_POST['title_ar'][$i],
-                'text_eng' => $_POST['text_eng'][$i],
-                'text_ar' => $_POST['text_ar'][$i],
-            ];
-            if($_FILES['media']['tmp_name'][$i] != '') {
-                $targetDir = $items_config['modal_media_path'];
-                if (!file_exists($targetDir)) {
-                    @mkdir($targetDir);
-                }
-                $file = $_FILES['media']['tmp_name'][$i];
-                $fileName = time().'_'.$_FILES['media']['name'][$i]; 
-                $targetFile = $targetDir . '/' . $fileName;
-                if (move_uploaded_file($file, $targetFile)) {
-                    $data[$i]['media'] = $fileName;
-                }
+    if(array_key_exists('title_eng', $_POST)) {
+        for($i = 0; $i < count($_POST['title_eng']); $i++) {
+            if($_POST['title_eng'][$i] != '' || $_POST['title_ar'][$i] || $_POST['text_eng'][$i] || $_POST['text_ar'][$i] || $_POST['old_media_id'][$i]) {
+                $data[] = [
+                    'modal_id' => $modal_id,
+                    'title_eng' => $_POST['title_eng'][$i],
+                    'title_ar' => $_POST['title_ar'][$i],
+                    'text_eng' => strip_tags($_POST['text_eng'][$i], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>'),
+                    'text_ar' => strip_tags($_POST['text_ar'][$i], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>'),
+                    'media_id' => $_POST['old_media_id'][$i],
+                ];
             }
         }
     }
@@ -71,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $count = $modal->get_modal_count();
 	$timeline_obj = new Timeline();
     $timelines = $timeline_obj->get_timeline_items();
-    if($count['count'] >= 15) {
+    if($count['count'] >= 16) {
         header('Location: ' . ADMIN_SITE_URL . '/controller/modals/index.php');
     } else {
         $title = 'Modals - SIDF';

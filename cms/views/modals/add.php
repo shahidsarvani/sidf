@@ -40,36 +40,44 @@ require ADMIN_VIEW . '/layout/header.php';
                                 </div>
                             </div>
                         </div>
-                        <div id="items">
+                        <hr>
+                        <h4>Carousel Items</h4>
+                        <div class="row sortable-card" id="items">
                             <!-- <h6>Modal Carousel Items</h6> -->
-                            <div class="row carousel_item">
-                                <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                    <h6>Carousel Item:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title English:</label>
-                                        <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+                            <div class="col-md-12 carousel_item pre_added">
+                                <div class="card sortablecard item_1">
+                                    <div class="card-header header-elements-inline">
+                                        <h6 class="card-title">Item 1:</h6>
+                                        <div class="header-elements">
+                                            <div class="list-icons">
+                                                <a class="list-icons-item" data-action="collapse"></a>
+                                                <a class="list-icons-item" data-action="move"></a>
+                                                <a class="list-icons-item" data-action="remove"></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>English Description:</label>
-                                        <textarea name="text_eng[]" class="form-control" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title Arabic:</label>
-                                        <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Arabic Description:</label>
-                                        <textarea name="text_ar[]" class="form-control" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Upload Media:</label>
-                                        <input type="file" name="media[]" class="form-input-styled">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Title English:</label>
+                                            <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Title Arabic:</label>
+                                            <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>English Description:</label>
+                                            <textarea name="text_eng[]" class="summernote" cols="30" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Arabic Description:</label>
+                                            <textarea name="text_ar[]" class="summernote" cols="30" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="modal_media" name="media_id[]">
+                                            <label>Upload Media:</label>
+                                            <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -93,76 +101,77 @@ require ADMIN_VIEW . '/layout/footer.php';
 ?>
 
 <script>
+    function fileUploaded(event, previewId, index, fileId) {
+        $('#submitBtn').removeClass('disabled')
+        $('#' + event.currentTarget.id).parents('.form-group').find('.modal_media').val(fileId);
+    }
+
+    function filepreajax(event, previewId, index) {
+        $('#submitBtn').addClass('disabled')
+    }
     $(document).ready(function() {
         $('#navlink-modals').addClass('nav-item-open');
         $('#navlink-modals ul').css('display', 'block');
         $('#navlink-modals_add').addClass('active');
 
-        $('.file-input-ajax2').on(
-            "filebatchuploadcomplete",
-            function(event, preview, config, tags, extraData) {
-                console.log(config);
-                const atts = [{
-                    'key': 'type',
-                    'value': 'hidden'
-                }, {
-                    'key': 'name',
-                    'value': 'file_keys[]'
-                }];
-                config.forEach(function(file) {
-                    var input = document.createElement('input');
-                    atts.forEach(function(value, index) {
-                        var att = document.createAttribute(value.key);
-                        att.value = value.value;
-                        input.setAttributeNode(att);
-                    })
-                    input.value = file.key;
-                    $('#screen-form').append(input);
-                })
-            }
-        );
+        $('.file-input-overwrite-modal').on('filepreajax', filepreajax).on('fileuploaded', fileUploaded);
 
         $('#add_item').click(function() {
-            // var count = ++$('#items').find('div.row').length;
-            // console.log(count)
-            const html = `<div class="row carousel_item">
-                                <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0">Carousel Item:</h6>
-                                    <button type="button" class="btn btn-danger remove_item"">Remove Item<i class="icon-trash ml-2"></i></button>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title English:</label>
-                                        <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+            var length = ++$('.carousel_item').length;
+            const html = `<div class="col-md-12 carousel_item">
+                                    <div class="card sortablecard item_${length}">
+                                        <div class="card-header header-elements-inline">
+                                            <h6 class="card-title">Item ${length}:</h6>
+                                            <div class="header-elements">
+                                                <div class="list-icons">
+                                                    <a class="list-icons-item" data-action="collapse"></a>
+                                                    <a class="list-icons-item" data-action="move"></a>
+                                                    <a class="list-icons-item" data-action="remove"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label>Title English:</label>
+                                                        <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Title Arabic:</label>
+                                                        <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>English Description:</label>
+                                                        <textarea name="text_eng[]" class="summernote" cols="30" rows="3"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Arabic Description:</label>
+                                                        <textarea name="text_ar[]" class="summernote" cols="30" rows="3"></textarea>
+                                                    </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="media_id[]" class="modal_media" >
+                                                <label>Upload Media:</label>
+                                                <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>English Description:</label>
-                                        <textarea name="text_eng[]" class="form-control" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Title Arabic:</label>
-                                        <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Arabic Description:</label>
-                                        <textarea name="text_ar[]" class="form-control" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Upload Media:</label>
-                                        <input type="file" name="media[]" class="form-input-styled">
-                                    </div>
-                                </div>
-                            </div>`
+                                </div>`;
             $('#items').append(html);
-            $(".form-input-styled").uniform();
+            init_fileinput();
+            init_summernote();
         })
 
-        $(document).on('click', '.remove_item', function() {
+        $(document).on('click', '.card [data-action=remove]', function() {
             $(this).parents('.carousel_item').remove();
+        })
+        $(document).on('click', '.card [data-action=collapse]:not(.disabled)', function(e) {
+            var $target = $(this),
+                slidingSpeed = 150;
+            if ($target.parents('.pre_added').get(0) === undefined) {
+                e.preventDefault();
+                $target.parents('.card').toggleClass('card-collapsed');
+                $target.toggleClass('rotate-180');
+                $target.closest('.card').children('.card-header').nextAll().slideToggle(slidingSpeed);
+            }
         })
 
         var validator = $("#screen-form").validate({
@@ -224,6 +233,91 @@ require ADMIN_VIEW . '/layout/footer.php';
                 }
             },
         });
+
+        function init_fileinput() {
+            var fileInputElem = $("#items .carousel_item").last().find('.file-input-overwrite-modal');
+            var modalTemplate =
+                '<div class="modal-dialog modal-lg" role="document">\n' +
+                '  <div class="modal-content">\n' +
+                '    <div class="modal-header align-items-center">\n' +
+                '      <h6 class="modal-title">{heading} <small><span class="kv-zoom-title"></span></small></h6>\n' +
+                '      <div class="kv-zoom-actions btn-group">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+                "    </div>\n" +
+                '    <div class="modal-body">\n' +
+                '      <div class="floating-buttons btn-group"></div>\n' +
+                '      <div class="kv-zoom-body file-zoom-content"></div>\n' +
+                "{prev} {next}\n" +
+                "    </div>\n" +
+                "  </div>\n" +
+                "</div>\n";
+
+            // Buttons inside zoom modal
+            var previewZoomButtonClasses = {
+                toggleheader: "btn btn-light btn-icon btn-header-toggle btn-sm",
+                fullscreen: "btn btn-light btn-icon btn-sm",
+                borderless: "btn btn-light btn-icon btn-sm",
+                close: "btn btn-light btn-icon btn-sm",
+            };
+
+            // Icons inside zoom modal classes
+            var previewZoomButtonIcons = {
+                prev: '<i class="icon-arrow-left32"></i>',
+                next: '<i class="icon-arrow-right32"></i>',
+                toggleheader: '<i class="icon-menu-open"></i>',
+                fullscreen: '<i class="icon-screen-full"></i>',
+                borderless: '<i class="icon-alignment-unalign"></i>',
+                close: '<i class="icon-cross2 font-size-base"></i>',
+            };
+
+            fileInputElem.fileinput({
+                browseLabel: 'Browse',
+                uploadUrl: "upload_media.php", // server upload action
+                enableResumableUpload: true,
+                autoOrientImage: false,
+                allowedFileTypes: ["image", "video"],
+                browseIcon: '<i class="icon-file-plus mr-2"></i>',
+                uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+                removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+                layoutTemplates: {
+                    icon: '<i class="icon-file-check"></i>',
+                    modal: modalTemplate
+                },
+                // initialPreview: initialPreview,
+                // initialPreviewConfig: initialPreviewConfig,
+                initialPreviewAsData: true,
+                overwriteInitial: false,
+                previewZoomButtonClasses: previewZoomButtonClasses,
+                previewZoomButtonIcons: previewZoomButtonIcons,
+                fileActionSettings: {
+                    zoomClass: '',
+                    zoomIcon: '<i class="icon-zoomin3"></i>',
+                    dragClass: 'p-2',
+                    dragIcon: '<i class="icon-three-bars"></i>',
+                    removeClass: '',
+                    removeErrorClass: 'text-danger',
+                    removeIcon: '<i class="icon-bin"></i>',
+                    indicatorNew: '<i class="icon-file-plus text-success"></i>',
+                    indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+                    indicatorError: '<i class="icon-cross2 text-danger"></i>',
+                    indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+                },
+                deleteUrl: "modalmedia_delete.php"
+            });
+
+            $('.file-input-overwrite-modal').on('filepreajax', filepreajax).on('fileuploaded', fileUploaded);
+        }
+
+        function init_summernote() {
+            var summernoteElem = $("#items .carousel_item").last().find('.summernote');
+
+            summernoteElem.summernote({
+                toolbar: [
+                    ['style', ['style', 'bold', 'italic', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['view', ['codeview']]
+                ]
+            });
+        }
     })
 </script>
 

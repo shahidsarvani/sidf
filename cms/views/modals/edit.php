@@ -62,20 +62,14 @@ require ADMIN_VIEW . '/layout/header.php';
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <!-- <div class="row">
-                                                <div class="col-md-6"> -->
                                             <div class="form-group">
                                                 <label>Title English:</label>
                                                 <input type="text" name="title_eng[]" class="form-control" value="<?php echo $item['title_eng'] ?>" placeholder="Title">
                                             </div>
-                                            <!-- </div>
-                                                <div class="col-md-6"> -->
                                             <div class="form-group">
                                                 <label>Title Arabic:</label>
                                                 <input type="text" name="title_ar[]" class="form-control" value="<?php echo $item['title_ar'] ?>" placeholder="العنوان">
                                             </div>
-                                            <!-- </div>
-                                                <div class="col-md-6"> -->
                                             <div class="form-group">
                                                 <label>English Description:</label>
                                                 <textarea name="text_eng[]" class="summernote" cols="30" rows="3"><?php echo $item['text_eng'] ?></textarea>
@@ -316,7 +310,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     indicatorError: '<i class="icon-cross2 text-danger"></i>',
                     indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
                 },
-                deleteUrl: "media_delete.php"
+                deleteUrl: "modalmedia_delete.php"
             });
 
             $('.file-input-overwrite-modal').on('filepreajax', filepreajax).on('fileuploaded', fileUploaded);
