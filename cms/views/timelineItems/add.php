@@ -30,7 +30,7 @@ require ADMIN_VIEW . '/layout/header.php';
                                     <select name="position" id="position" class="form-control">
                                         <option value="">Select Position</option>
                                         <?php
-                                        for ($i = 1; $i < 14; $i++) :
+                                        for ($i = 1; $i < 16; $i++) :
                                         ?>
                                             <option value="<?php echo $i; ?>">Position <?php echo $i; ?></option>
                                         <?php

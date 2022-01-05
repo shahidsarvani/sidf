@@ -9,7 +9,13 @@ require ADMIN_VIEW . '/layout/header.php';
     ?>
     <div class="w-100 text-right mb-3">
         <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <!-- <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/add.php' ?>">Add Timeline Item<i class="icon-plus-circle2 ml-2"></i></a> -->
+        <?php
+        if ($timeline_items->num_rows < 15) :
+        ?>
+            <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/add.php' ?>">Add Timeline Item<i class="icon-plus-circle2 ml-2"></i></a>
+        <?php
+        endif;
+        ?>
     </div>
     <div class="row">
         <div class="card w-100">

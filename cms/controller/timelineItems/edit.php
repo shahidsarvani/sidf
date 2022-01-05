@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
     // echo $data['text_eng'];
-    // // echo json_encode($_FILES);
+    // echo json_encode($data);
     // die();
     $res = $screen->edit_timeline_item($id, $data);
 

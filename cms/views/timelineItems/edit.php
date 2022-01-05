@@ -28,11 +28,11 @@ require ADMIN_VIEW . '/layout/header.php';
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Position:</label>
-                                    <input type="hidden" name="position" value="<?php echo $timeline['position'] ?>">
-                                    <select id="position" class="form-control" disabled>
+                                    <!-- <input type="hidden" name="position" value="<?php echo $timeline['position'] ?>"> -->
+                                    <select id="position" class="form-control" name="position">
                                         <option value="">Select Position</option>
                                         <?php
-                                        for ($i = 1; $i < 14; $i++) :
+                                        for ($i = 1; $i < 16; $i++) :
                                         ?>
                                             <option value="<?php echo $i; ?>" <?php echo $i == $timeline['position'] ? 'selected' : '' ?>>Position <?php echo $i; ?></option>
                                         <?php

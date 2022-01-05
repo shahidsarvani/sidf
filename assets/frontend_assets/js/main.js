@@ -5,27 +5,25 @@ $(document).ready(function () {
   pulsatingCircle.forEach(function (item) {
     item.addEventListener('click', function (e) {
       const id = e.currentTarget.dataset.modal_id;
+      // console.log(id)
       var modal = document.getElementById(id); //get modal
       //show/hide modals
       if ($(modal).parents('.main_box').find('.modal_box').hasClass('active')) {
-        console.log('if')
-        console.log(modal);
         $(modal).parents('.main_box').find('.modal_box').removeClass('active')
         $(modal).parents('.main_box').find('.content_slider').find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
-          console.log(value);
-          this.pause();
-          this.currentTime = 0;
+          // console.log(value);
+          value.pause();
+          value.currentTime = 0;
         });
         $(modal).parents('.main_box').find('.content_slider').removeClass('active').owlCarousel('destroy')
         setTimeout(function () {
           modal.classList.add('active');
         }, 300);
       } else {
-        console.log('else')
         modal.classList.add('active');
       }
       $('#' + id).find('.content_slider').addClass('active');
-      console.log($('#' + id).find('.content_slider .item').length);
+      console.log($('#' + id).find('.content_slider .item'));
       if ($('#' + id).find('.content_slider .item').length != 0) {
         $('#' + id).find('.content_slider').owlCarousel({
           items: 1,
@@ -50,6 +48,7 @@ $(document).ready(function () {
         });
 
         function modalTranslated(e) {
+          console.log('modal translated')
           var i = e.currentTarget;
           $(i).find('.owl-item video').each(function (index, value) {
             this.pause();
@@ -61,6 +60,7 @@ $(document).ready(function () {
         }
         function modalInitialized(e) {
           var i = e.currentTarget;
+          console.log('modal initialized')
           var owlItem = $(i).find('.owl-item.active .new_inner_img')
           var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
           $.each(inactiveOwlItems, function (index, item) {

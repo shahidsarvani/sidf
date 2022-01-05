@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     require_once(BASE_PATH . '/cms/model/Timeline.php');
     $timeline = new Timeline();
     $count = $timeline->get_timeline_count();
-    if($count['count'] >= 13) {
+    if($count['count'] >= 15) {
         header('Location: ' . ADMIN_SITE_URL . '/controller/timelineItems/index.php');
     } else {
         $title = 'Timeline Items - SIDF';
