@@ -135,12 +135,16 @@ class Modal
 		$created_on = date('Y-m-d H:i:s');
 		$query = '';
 		foreach ($data as $key => $value) {
+			// echo $value['text_ar'];
 			$modal_id = $value['modal_id'];
 			$title_eng = filter_var($value['title_eng'], FILTER_SANITIZE_STRING);
 			$title_ar = filter_var($value['title_ar'], FILTER_SANITIZE_STRING);
-			$text_eng = filter_var($value['text_eng'], FILTER_SANITIZE_STRING);
-			$text_ar = filter_var($value['text_ar'], FILTER_SANITIZE_STRING);
+			$text_eng = htmlspecialchars($value['text_eng'], ENT_QUOTES);
+			$text_ar = htmlspecialchars($value['text_ar'], ENT_QUOTES);
 			$media_id = filter_var($value['media_id'], FILTER_SANITIZE_STRING);
+
+			// echo $text_ar;
+			// die();
 
 			$query .= "
 			INSERT INTO modal_items (modal_id, title_eng, title_ar, text_eng, text_ar, media_id, created_on) 
