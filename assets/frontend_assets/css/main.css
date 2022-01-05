@@ -291,7 +291,13 @@ table {
   margin: 245px 0 0 100px;
 }
 .box_pin.box_pin_thirteen {
-  margin: 13px 0 0 690px;
+  margin: 120px 0 0 -200px;
+}
+.box_pin.box_pin_fourteen {
+    margin: 9px 0 0 -20px;
+}
+.box_pin.box_pin_fifteen {
+    margin: 9px 0 0 0px;
 }
 .box_pin.box_pin_nine .border_verti,
 .box_pin.box_pin_four .border_verti {
