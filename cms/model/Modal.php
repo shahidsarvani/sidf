@@ -167,7 +167,7 @@ class Modal
 		$query = "
 		SELECT * 
 		FROM modal_items
-		WHERE modal_items.modal_id = '$id'
+		WHERE modal_id = '$id'
 		";
 		$result = $this->connect->query($query);
 		if ($this->connect->error) {

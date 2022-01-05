@@ -148,11 +148,29 @@
       </div>
       <span class="close-modal"><img src="./assets/frontend_assets/img/close-cross.svg" alt=""></span>
     </div>
+    <div class="modal_box" id="modal13">
+      <div class="owl-carousel owl-theme content_slider">
+      </div>
+      <div class="lang-toggle">
+        <span class="lang-eng active">English</span>&nbsp;/
+        <span class="lang-ar">عربی</span>
+      </div>
+      <span class="close-modal"><img src="./assets/frontend_assets/img/close-cross.svg" alt=""></span>
+    </div>
   </div>
   <div class="main_box">
     <div class="fadeOut owl-carousel owl-theme slider_box slider_seven">
     </div>
-    <div class="modal_box" id="modal13">
+    <div class="modal_box" id="modal14">
+      <div class="owl-carousel owl-theme content_slider">
+      </div>
+      <div class="lang-toggle">
+        <span class="lang-eng active">English</span>&nbsp;/
+        <span class="lang-ar">عربی</span>
+      </div>
+      <span class="close-modal"><img src="./assets/frontend_assets/img/close-cross.svg" alt=""></span>
+    </div>
+    <div class="modal_box" id="modal15">
       <div class="owl-carousel owl-theme content_slider">
       </div>
       <div class="lang-toggle">
@@ -291,7 +309,7 @@
       </div>
     </div>
     <div class="box_pin box_pin_fourteen white_blob">
-      <div class="pulsating-circle" data-modal_id="modal13"></div>
+      <div class="pulsating-circle" data-modal_id="modal14"></div>
       <span class="border_verti"></span>
       <div class="timeline_items">
         <h3></h3>
@@ -301,7 +319,7 @@
       </div>
     </div>
     <div class="box_pin box_pin_fifteen white_blob">
-      <div class="pulsating-circle" data-modal_id="modal13"></div>
+      <div class="pulsating-circle" data-modal_id="modal15"></div>
       <span class="border_verti"></span>
       <div class="timeline_items">
         <h3></h3>
@@ -320,6 +338,7 @@
   <script src="./assets/frontend_assets/js/main.js"></script>
   <script>
     function playSlider(element) {
+      $(element).trigger('next.owl.carousel');
       $(element).trigger('play.owl.autoplay')
     }
 
@@ -327,6 +346,7 @@
       $(element).trigger('stop.owl.autoplay')
     }
     function playModalSlider(element) {
+      $(element).find('.content_slider').trigger('next.owl.carousel');
       $(element).find('.content_slider').trigger('play.owl.autoplay')
     }
 
@@ -350,7 +370,7 @@
       var data = JSON.parse(text);
       var timeline_items = document.querySelectorAll('.timeline_items');
       timeline_items.forEach(function (timeline_item, i) {
-        console.log(data.timeline_items[i])
+        // console.log(data.timeline_items[i])
         $(timeline_item).find('h3').html(data.timeline_items[i].title);
         $(timeline_item).find('.arabic').html(data.timeline_items[i].text_ar);
         $(timeline_item).find('.english').html(data.timeline_items[i].text_eng);
@@ -376,10 +396,7 @@
           items: 1,
           animateOut: "fadeOut",
           dots: false,
-          autoplayTimeout: function (e) {
-            var owlItem = $(i).find('.owl-item.active .new_inner_img')
-            return owlItem[0].nodeName == 'VIDEO' ? 0 : 5000;
-          },
+          autoplayTimeout: 5000,
           autoplay: true,
           lazyLoad: true,
           loop: true,
@@ -410,30 +427,6 @@
       }
     });
 
-    // Modals
-    readTextFile("modals.json", function (text) {
-      var data = JSON.parse(text);
-      // console.log(data);
-      var modals = document.querySelectorAll('.modal_box');
-      modals.forEach(function (modal, i) {
-        var html = '';
-        // if (i < 3) {
-        data.modals[i].items.forEach(function (item) {
-          // html += '<div class="item"><img src="' + item.media + '" alt="" class="new_inner_img"><div class="box_content_innerrr english active"><h3>' + item.title_eng + '</h3><p>' + item.text_eng + '</p></div><div class="box_content_innerrr arabic"><h3>' + item.title_ar + '</h3><p>' + item.text_ar + '</p></div></div>'
-          html += item
-        })
-        if (data.modals[i].items.length == 0) {
-          console.log('if');
-          $(modal).find('.content_slider').html('')
-          $(modal).find('.lang-toggle').html('')
-          // $(modal).empty();
-        } else {
-          console.log('modal' + i + ' data added');
-          $(modal).find('.content_slider').html(html)
-        }
-        // }
-      })
-    });
   </script>
 </body>
 

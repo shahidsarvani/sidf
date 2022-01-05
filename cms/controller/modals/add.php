@@ -49,7 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // echo json_encode($data);
     // die();
-    $res = $modal->add_modal_item($data);
+    $res = true;
+    if($data) {
+        $res = $modal->add_modal_item($data);
+    }
 
     if ($res) {
         $_SESSION['success'] = 'Modal Added Successfully';
@@ -68,7 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $count = $modal->get_modal_count();
 	$timeline_obj = new Timeline();
     $timelines = $timeline_obj->get_timeline_items();
-    if($count['count'] >= 13) {
+    if($count['count'] >= 15) {
         header('Location: ' . ADMIN_SITE_URL . '/controller/modals/index.php');
     } else {
         $title = 'Modals - SIDF';
