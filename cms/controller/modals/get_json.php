@@ -32,11 +32,11 @@ foreach ($modals as $index => $item) {
                                                 </video>
                                                 <div class="box_content_innerrr english active">
                                                     <h3>' . $value["title_eng"] . '</h3>
-                                                    <p>' . $value["text_eng"] . '</p>
+                                                    <p>' . html_entity_decode($value["text_eng"]) . '</p>
                                                 </div>
                                                 <div class="box_content_innerrr arabic">
                                                     <h3>' . $value["title_ar"] . '</h3>
-                                                    <p>' . $value["text_ar"] . '</p>
+                                                    <p>' . html_entity_decode($value["text_ar"]) . '</p>
                                                 </div>
                                             </div>');
                     } else {
@@ -44,11 +44,11 @@ foreach ($modals as $index => $item) {
                                                 <img src="' . $items_config["modal_media_url"] . $media["name"] . '" alt="" class="new_inner_img">
                                                 <div class="box_content_innerrr english active">
                                                     <h3>' . $value["title_eng"] . '</h3>
-                                                    <p>' . $value["text_eng"] . '</p>
+                                                    <p>' . html_entity_decode($value["text_eng"]) . '</p>
                                                 </div>
                                                 <div class="box_content_innerrr arabic">
                                                     <h3>' . $value["title_ar"] . '</h3>
-                                                    <p>' . $value["text_ar"] . '</p>
+                                                    <p>' . html_entity_decode($value["text_ar"]) . '</p>
                                                 </div>
                                             </div>');
                     }
@@ -59,11 +59,11 @@ foreach ($modals as $index => $item) {
                                             </video>
                                             <div class="box_content_innerrr english active">
                                                 <h3>' . $value["title_eng"] . '</h3>
-                                                <p>' . $value["text_eng"] . '</p>
+                                                <p>' . html_entity_decode($value["text_eng"]) . '</p>
                                             </div>
                                             <div class="box_content_innerrr arabic">
                                                 <h3>' . $value["title_ar"] . '</h3>
-                                                <p>' . $value["text_ar"] . '</p>
+                                                <p>' . html_entity_decode($value["text_ar"]) . '</p>
                                             </div>
                                         </div>');
                 }
