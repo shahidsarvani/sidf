@@ -21,8 +21,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$screen = new Timeline();
     $id = $_POST['id'];
     $data = $_POST;
-    $data['text_eng'] = strlen(strip_tags($_POST['text_eng'])) > 0 ? strip_tags($_POST['text_eng'], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>') : '';
-    $data['text_ar'] = strlen(strip_tags($_POST['text_ar'])) > 0 ? strip_tags($_POST['text_ar'], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>') : '';
+    $data['text_eng'] = strlen(strip_tags($_POST['text_eng'])) > 0 ? strip_tags($_POST['text_eng']) : '';
+    $data['text_ar'] = strlen(strip_tags($_POST['text_ar'])) > 0 ? strip_tags($_POST['text_ar']) : '';
+
+    // echo json_encode($_FILES['image']['tmp_name']);
+    // echo json_encode($_POST);
+    // die();
+
+    if($_FILES['image']['tmp_name'] == '' && isset($_POST['old_image'])) {
+        $data['image'] = $_POST['old_image'];
+    }
+
     if($_FILES['image']['tmp_name'] != '' && $data['position'] == '9') {
         
         $targetDir = $items_config['images_path'];

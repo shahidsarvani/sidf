@@ -53,6 +53,7 @@ require ADMIN_VIEW . '/layout/header.php';
 
                         <div class="form-group" <?php echo $timeline['position'] == '9' ? '' : 'style="display: none;"' ?>>
                             <label>Upload Image:</label>
+                            <input type="hidden" name="old_image" id="old_image" value="<?php echo $timeline['image'] ?>">
                             <input type="file" name="image" class="form-input-styled" id="image" accept="image/*">
                             <span>(<?php echo $timeline['image'] ?>)</span>
                         </div>
@@ -115,6 +116,8 @@ require ADMIN_VIEW . '/layout/footer.php';
             }
         ).on('filepreajax', filepreajax);
 
+        console.log($('#position').val() == 9 && $('#old_image').val() == '')
+
         var validator = $("#screen-form").validate({
             ignore: "input[type=hidden], .select2-search__field", // ignore hidden fields
             errorClass: "validation-invalid-label",
@@ -166,7 +169,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                 },
                 image: {
                     required: function() {
-                        return $('#position').val() == 9;
+                        return $('#position').val() == 9 && $('#old_image').val() == '';
                     }
                 }
             },
