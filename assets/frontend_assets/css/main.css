@@ -446,6 +446,10 @@ table {
 .modal_box .content_slider video {
   width: 100%;
 }
+.owl-carousel .owl-item img {
+	width: auto !important;
+	margin: 0 auto !important;
+}
 
 @-webkit-keyframes pulse-ring {
   0% {

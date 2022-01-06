@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'modal_id' => $id,
                     'title_eng' => $_POST['title_eng'][$i],
                     'title_ar' => $_POST['title_ar'][$i],
-                    'text_eng' => strip_tags($_POST['text_eng'][$i], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>'),
-                    'text_ar' => strip_tags($_POST['text_ar'][$i], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>'),
+                    'text_eng' => strlen(strip_tags($_POST['text_eng'][$i])) > 0 ? strip_tags($_POST['text_eng'][$i], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>') : '',
+                    'text_ar' => strlen(strip_tags($_POST['text_ar'][$i])) > 0 ? strip_tags($_POST['text_ar'][$i], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>') : '',
                     'media_id' => $_POST['old_media_id'][$i],
                 ];
                 // if($_POST['modal_media'][$i] == '' && $_POST['old_media_id'][$i] != '') {

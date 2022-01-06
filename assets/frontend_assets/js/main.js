@@ -3,6 +3,13 @@ $(document).ready(function () {
   function modalTranslated(e) {
     // console.log('modal translated')
     var i = e.currentTarget;
+    if($(i).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
+      $(i).parent().find('.lang-eng').addClass('active');
+      $(i).parent().find('.lang-ar').removeClass('active');
+    } else {
+      $(i).parent().find('.lang-eng').removeClass('active');
+      $(i).parent().find('.lang-ar').addClass('active');
+    }
     $(i).find('.owl-item video').each(function (index, value) {
       this.pause();
       this.currentTime = 0;
@@ -23,6 +30,13 @@ $(document).ready(function () {
     })
     if (owlItem[0].nodeName == 'VIDEO') {
       owlItem[0].play()
+    }
+    if(owlItem.parent().find('.box_content_innerrr.english').hasClass('active')) {
+      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
+    } else {
+      owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
     }
   }
 
