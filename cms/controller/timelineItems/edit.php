@@ -21,6 +21,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$screen = new Timeline();
     $id = $_POST['id'];
     $data = $_POST;
+    $data['text_eng'] = strlen(strip_tags($_POST['text_eng'])) > 0 ? strip_tags($_POST['text_eng'], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>') : '';
+    $data['text_ar'] = strlen(strip_tags($_POST['text_ar'])) > 0 ? strip_tags($_POST['text_ar'], '<p><ol><ul><li><h1><h2><h3><h4><h5><h6>') : '';
     if($_FILES['image']['tmp_name'] != '' && $data['position'] == '9') {
         
         $targetDir = $items_config['images_path'];

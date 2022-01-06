@@ -125,8 +125,10 @@ class Timeline
 	public function edit_timeline_item($id, $data)
 	{
 		$title = filter_var($data['title'], FILTER_SANITIZE_STRING);
-		$text_eng = htmlentities($data['text_eng']);
-		$text_ar = htmlentities($data['text_ar']);
+		$text_eng = htmlspecialchars($data['text_eng'], ENT_QUOTES);
+		$text_ar = htmlspecialchars($data['text_ar'], ENT_QUOTES);
+		// $text_eng = htmlentities($data['text_eng']);
+		// $text_ar = htmlentities($data['text_ar']);
 		$position = filter_var($data['position'], FILTER_SANITIZE_NUMBER_INT);
 		$slug = 'item-'.$position;
 		$updated_on = date('Y-m-d H:i:s');

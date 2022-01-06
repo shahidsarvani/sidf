@@ -164,12 +164,6 @@ require ADMIN_VIEW . '/layout/footer.php';
                 position: {
                     required: true,
                 },
-                text_eng: {
-                    required: true,
-                },
-                text_ar: {
-                    required: true,
-                },
                 image: {
                     required: function() {
                         return $('#position').val() == 9;
@@ -182,12 +176,6 @@ require ADMIN_VIEW . '/layout/footer.php';
                 },
                 position: {
                     required: 'Select position',
-                },
-                text_eng: {
-                    required: 'Enter English description',
-                },
-                text_ar: {
-                    required: 'Enter Arabic description',
                 },
                 image: {
                     required: 'Select an image file'
