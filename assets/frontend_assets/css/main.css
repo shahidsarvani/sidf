@@ -180,6 +180,9 @@ table {
   font-size: 30px;
   margin: 20px 0;
 }
+p.arabic {
+    direction: rtl !important;
+}
 .modal_box .owl-nav {
   margin: 0 !important;
   position: absolute;
