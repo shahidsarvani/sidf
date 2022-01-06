@@ -23,6 +23,15 @@ $(document).ready(function () {
     // console.log('modal initialized')
     var owlItem = $(i).find('.owl-item.active .new_inner_img')
     var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
+    //active language toggler
+    if(owlItem.parent().find('.box_content_innerrr.english').hasClass('active')) {
+      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
+    } else {
+      owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
+    }
+    //pause all videos, just play active owl-item video 
     $.each(inactiveOwlItems, function (index, item) {
       if (item.nodeName == 'VIDEO') {
         item.pause()
@@ -30,13 +39,6 @@ $(document).ready(function () {
     })
     if (owlItem[0].nodeName == 'VIDEO') {
       owlItem[0].play()
-    }
-    if(owlItem.parent().find('.box_content_innerrr.english').hasClass('active')) {
-      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
-    } else {
-      owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
     }
   }
 

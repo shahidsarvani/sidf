@@ -14,7 +14,8 @@ $modals = $modal->get_modals();
 foreach ($modals as $index => $item) {
     $modal_items = $modal->get_modal_items($item['id']);
     $medias = array();
-    $i = ++$index;
+    // echo $item['slug'];
+    $i = str_replace('modal-', '', $item['slug']);;
     if ($modal_items) {
         foreach ($modal_items as $value) {
             // echo $item['slug'];
