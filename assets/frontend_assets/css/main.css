@@ -216,7 +216,7 @@ table {
     list-style: circle;
 }
 
-.box_content_innerrr.arabic ul {
+.box_content_innerrr.arabic ul, .box_content_innerrr.arabic ol {
     margin-right: 50px;
 }
 
