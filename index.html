@@ -379,14 +379,22 @@
         $(timeline_item).find('.arabic').html(data.timeline_items[i].titles_ar[0]);
         //if there are more titles then clone the dom element, change the html and append it to the container but skip the first title
         data.timeline_items[i].titles_ar.forEach(function (title_ar, j) {
-          if(j !== 0) {
-            $(timeline_item).find('.arabic').clone().html(title_ar).appendTo(timeline_item);
-          } 
+          if (j !== 0) {
+            if ($(timeline_item).find('img').length > 0) {
+              $(timeline_item).find('.arabic').clone().html(title_ar).insertBefore('.mx_auto');
+            } else {
+              $(timeline_item).find('.arabic').clone().html(title_ar).appendTo(timeline_item);
+            }
+          }
         })
         data.timeline_items[i].titles_en.forEach(function (title_en, j) {
-          if(j !== 0) {
-            $(timeline_item).find('.english').clone().html(title_en).appendTo(timeline_item);
-          } 
+          if (j !== 0) {
+            if ($(timeline_item).find('img').length > 0) {
+              $(timeline_item).find('.english').clone().html(title_ar).insertBefore('.mx_auto');
+            } else {
+              $(timeline_item).find('.english').clone().html(title_ar).appendTo(timeline_item);
+            }
+          }
         })
         if (data.timeline_items[i].image && i == 8) {
           $(timeline_item).find('img').attr('src', data.timeline_items[i].image);
