@@ -374,8 +374,20 @@
       timeline_items.forEach(function (timeline_item, i) {
         // console.log(data.timeline_items[i])
         $(timeline_item).find('h3').html(data.timeline_items[i].title);
-        $(timeline_item).find('.arabic').html(data.timeline_items[i].text_ar);
-        $(timeline_item).find('.english').html(data.timeline_items[i].text_eng);
+        //first dom element data is added
+        $(timeline_item).find('.english').html(data.timeline_items[i].titles_en[0])
+        $(timeline_item).find('.arabic').html(data.timeline_items[i].titles_ar[0]);
+        //if there are more titles then clone the dom element, change the html and append it to the container but skip the first title
+        data.timeline_items[i].titles_ar.forEach(function (title_ar, j) {
+          if(j !== 0) {
+            $(timeline_item).find('.arabic').clone().html(title_ar).appendTo(timeline_item);
+          } 
+        })
+        data.timeline_items[i].titles_en.forEach(function (title_en, j) {
+          if(j !== 0) {
+            $(timeline_item).find('.english').clone().html(title_en).appendTo(timeline_item);
+          } 
+        })
         if (data.timeline_items[i].image && i == 8) {
           $(timeline_item).find('img').attr('src', data.timeline_items[i].image);
         }

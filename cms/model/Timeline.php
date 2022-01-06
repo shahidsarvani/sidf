@@ -29,6 +29,24 @@ class Timeline
 		}
 	}
 
+	public function get_timeline_items_with_modal()
+	{
+		$query = "
+		SELECT timeline_items.*, modals.id as modal_id FROM timeline_items
+		INNER JOIN modals ON modals.timeline_item_id = timeline_items.id
+		ORDER BY timeline_items.position ASC
+		";
+		$result = $this->connect->query($query);
+		if ($this->connect->error) {
+			die("Connection failed: " . $this->connect->error);
+		}
+		if ($result->num_rows > 0) {
+			return $result;
+		} else {
+			return [];
+		}
+	}
+
 	public function get_timeline_count()
 	{
 		$query = "
