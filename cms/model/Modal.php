@@ -18,7 +18,7 @@ class Modal
 		$query = "
 		SELECT modals.*, timeline_items.title 
 		FROM modals 
-		INNER JOIN timeline_items ON modals.timeline_item_id = timeline_items.id ORDER BY modals.id ASC
+		INNER JOIN timeline_items ON modals.timeline_item_id = timeline_items.id ORDER BY timeline_items.position ASC
 		";
 		$result = $this->connect->query($query);
 		if ($this->connect->error) {
