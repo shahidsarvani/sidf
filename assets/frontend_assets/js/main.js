@@ -24,12 +24,12 @@ $(document).ready(function () {
     var owlItem = $(i).find('.owl-item.active .new_inner_img')
     var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
     //active language toggler
-    if(owlItem.parent().find('.box_content_innerrr.english').hasClass('active')) {
-      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
-    } else {
+    if(owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
       owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
       owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
+    } else {
+      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
     }
     //pause all videos, just play active owl-item video 
     $.each(inactiveOwlItems, function (index, item) {
