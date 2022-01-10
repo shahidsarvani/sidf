@@ -110,9 +110,8 @@ $(document).ready(function () {
   closeModal.forEach(function (close) {
     close.addEventListener('click', function () {
       $(this).parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
-        // console.log(value)
-        value.pause();
-        value.currentTime = 0;
+        this.pause();
+        this.currentTime = 0;
       });
       $(this).parent().find('.content_slider').removeClass('active').owlCarousel('destroy')
       $(this).parents('.modal_box').removeClass('active');

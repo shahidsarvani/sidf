@@ -17,20 +17,6 @@
 </head>
 
 <body>
-  <input type="hidden" class="modal_data" id="modal1_data">
-  <input type="hidden" class="modal_data" id="modal2_data">
-  <input type="hidden" class="modal_data" id="modal3_data">
-  <input type="hidden" class="modal_data" id="modal4_data">
-  <input type="hidden" class="modal_data" id="modal5_data">
-  <input type="hidden" class="modal_data" id="modal6_data">
-  <input type="hidden" class="modal_data" id="modal7_data">
-  <input type="hidden" class="modal_data" id="modal8_data">
-  <input type="hidden" class="modal_data" id="modal9_data">
-  <input type="hidden" class="modal_data" id="modal10_data">
-  <input type="hidden" class="modal_data" id="modal11_data">
-  <input type="hidden" class="modal_data" id="modal12_data">
-  <input type="hidden" class="modal_data" id="modal13_data">
-  <input type="hidden" class="modal_data" id="modal14_data">
   <div class="main_box">
     <div class="fadeOut owl-carousel owl-theme slider_box slider_one">
     </div>
@@ -366,7 +352,7 @@
     }
 
     function pauseModalSlider(element) {
-      // console.log('modal carousal paused')
+      console.log('modal carousal paused')
       $(element).find('.content_slider').trigger('stop.owl.autoplay')
     }
     function readTextFile(file, callback) {
@@ -463,21 +449,6 @@
       }
     });
 
-    //Modals
-    // readTextFile("modals.json", function (text) {
-    //   var data = JSON.parse(text);
-    //   for (let [key, value] of Object.entries(data)) {
-    //     console.log(key)
-    //     value.forEach(function (val, index) {
-    //       var i = index++;
-    //       console.log(i)
-    //       console.log(val)
-    //       // console.log(key + '_data')
-    //       $('#'+key + '_data').attr('data-item' + i, val)
-    //       i++
-    //     })
-    //   }
-    // });
   </script>
 </body>
 
