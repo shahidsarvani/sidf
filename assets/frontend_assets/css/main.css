@@ -286,7 +286,7 @@ p.arabic {
 }
 
 .box_pin.box_pin_eight {
-  margin: 60px 0 0 -260px;
+  margin: 48px 0 0 -260px;
 }
 .box_pin.box_pin_nine {
   margin: 3px 0 0 -220px;
@@ -412,17 +412,18 @@ p.arabic {
 }
 
 .close-modal {
-  bottom: -30px;
-  left: -30px;
-  position: absolute;
-  z-index: 99;
-  background: #fff;
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  line-height: 86px;
-  border-radius: 50%;
-  cursor: pointer;
+    bottom: -30px;
+    left: -30px;
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    line-height: 86px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #c3c3c3;
 }
 .close-modal img {
   width: 28px;
