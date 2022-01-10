@@ -494,10 +494,13 @@ var ImageUploadToken = (function () {
     var initialPreviewConfigVideo = [];
     var initialPreviewLoaderVideo = [];
     var initialPreviewConfigLoaderVideo = [];
+    var initialPreviewProjectorVideo = [];
+    var initialPreviewConfigProjectorVideo = [];
     var logo = document.querySelector('.old-logo');
     var video = document.querySelector('.old-video');
     var section_bgvideo = document.querySelector('.icon_video');
     var loader_video = document.querySelector('.old-loader-video');
+    var projector_video = document.querySelector('.old-projector-video');
     // var icons = document.querySelectorAll('.old-icons');
     if (logo && logo.dataset.value) {
       initialPreviewLogo.push(logo.dataset.value);
@@ -541,6 +544,17 @@ var ImageUploadToken = (function () {
         filetype: loader_video.dataset.filetype,
         type: loader_video.dataset.type,
         url: 'loadermedia_delete.php',
+      })
+    }
+    if (projector_video && projector_video.dataset.value) {
+      initialPreviewProjectorVideo.push(projector_video.dataset.value);
+      initialPreviewConfigProjectorVideo.push({
+        caption: projector_video.dataset.caption,
+        size: parseInt(projector_video.dataset.size),
+        key: projector_video.dataset.key,
+        filetype: projector_video.dataset.filetype,
+        type: projector_video.dataset.type,
+        url: 'media_delete.php',
       })
     }
     // Modal template
@@ -819,6 +833,40 @@ var ImageUploadToken = (function () {
         indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
       },
       deleteUrl: "loadermedia_delete.php"
+    });
+    $('.file-input-projector-video').fileinput({
+      browseLabel: 'Browse',
+      uploadUrl: "upload_media.php", // server upload action
+      enableResumableUpload: true,
+      autoOrientImage: false,
+      allowedFileTypes: ["video"],
+      browseIcon: '<i class="icon-file-plus mr-2"></i>',
+      uploadIcon: '<i class="icon-file-upload2 mr-2"></i>',
+      removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>',
+      layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: modalTemplate
+      },
+      initialPreview: initialPreviewProjectorVideo,
+      initialPreviewConfig: initialPreviewConfigProjectorVideo,
+      initialPreviewAsData: true,
+      overwriteInitial: true,
+      previewZoomButtonClasses: previewZoomButtonClasses,
+      previewZoomButtonIcons: previewZoomButtonIcons,
+      fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+      },
+      deleteUrl: "media_delete.php"
     });
   };
 
