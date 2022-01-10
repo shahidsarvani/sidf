@@ -68,45 +68,70 @@ require ADMIN_VIEW . '/layout/footer.php';
         })
 
         function copyVideoUrl() {
-            /* Get the text field */
-            var copyText = document.getElementById("videoUrl");
 
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            var copyTextarea = document.querySelector('#videoUrl');
+            copyTextarea.focus();
+            copyTextarea.select();
 
-            /* Copy the text inside the text field */
-            navigator.clipboard.writeText(copyText.value);
-
-            navigator.clipboard.writeText(copyText.value)
-                .then(() => {
-                    swalInit.fire({
-                        text: "Copied the Video URL!",
-                        type: 'success',
-                        toast: true,
-                        showConfirmButton: false,
-                        position: 'top-right'
-                    });
-                })
-                .catch(() => {
-                    swalInit.fire({
-                        text: "Something went wrong!",
-                        type: 'warning',
-                        toast: true,
-                        showConfirmButton: false,
-                        position: 'top-right'
-                    });
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                swalInit.fire({
+                    text: "Copying text command was " + msg,
+                    type: 'success',
+                    toast: true,
+                    showConfirmButton: false,
+                    position: 'top-right'
                 });
+            } catch (err) {
+                console.log(err)
+                swalInit.fire({
+                    text: "Something went wrong!",
+                    type: 'warning',
+                    toast: true,
+                    showConfirmButton: false,
+                    position: 'top-right'
+                });
+            }
+            // /* Get the text field */
+            // var copyText = document.getElementById("videoUrl");
 
-            /* Alert the copied text */
-            // alert("Copied the text: " + copyText.value);
-            swalInit.fire({
-                text: "Copied the Video URL!",
-                type: 'success',
-                toast: true,
-                showConfirmButton: false,
-                position: 'top-right'
-            });
+            // /* Select the text field */
+            // copyText.select();
+            // copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            // /* Copy the text inside the text field */
+            // // navigator.clipboard.writeText(copyText.value);
+
+            // navigator.clipboard.writeText(copyText.value)
+            //     .then(() => {
+            //         swalInit.fire({
+            //             text: "Copied the Video URL!",
+            //             type: 'success',
+            //             toast: true,
+            //             showConfirmButton: false,
+            //             position: 'top-right'
+            //         });
+            //     })
+            //     .catch(() => {
+            //         swalInit.fire({
+            //             text: "Something went wrong!",
+            //             type: 'warning',
+            //             toast: true,
+            //             showConfirmButton: false,
+            //             position: 'top-right'
+            //         });
+            //     });
+
+            // /* Alert the copied text */
+            // // alert("Copied the text: " + copyText.value);
+            // swalInit.fire({
+            //     text: "Copied the Video URL!",
+            //     type: 'success',
+            //     toast: true,
+            //     showConfirmButton: false,
+            //     position: 'top-right'
+            // });
         }
 
         function fireAlert() {
