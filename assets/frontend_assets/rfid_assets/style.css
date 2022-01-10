@@ -24,15 +24,15 @@ p {
 }
 
 .video_wrapper {
-  height: 32vh;
-  overflow: hidden;
-  background: #000;
+    height: 40vh;
+    overflow: hidden;
+    background: #000;
 }
 .text_wrapper_op {
   background:#e1e0e2;
 }
 .text_wrapper_outter {
-  height: 68vh;
+    height: 60vh;
 }
 .heading_main {
   font-size: 30px;
