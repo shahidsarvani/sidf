@@ -1,77 +1,170 @@
-$(document).ready(function () {
 
-  function modalTranslated(e) {
-    // console.log('modal translated')
-    var i = e.currentTarget;
-    if($(i).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
-      $(i).parent().find('.lang-eng').addClass('active');
-      $(i).parent().find('.lang-ar').removeClass('active');
-    } else {
-      $(i).parent().find('.lang-eng').removeClass('active');
-      $(i).parent().find('.lang-ar').addClass('active');
+function playSlider(element) {
+  $(element).trigger('next.owl.carousel');
+  $(element).trigger('play.owl.autoplay')
+}
+
+function pauseSlider(element) {
+  $(element).trigger('stop.owl.autoplay')
+}
+
+function playModalSlider(element) {
+  $(element).find('.content_slider').trigger('next.owl.carousel');
+  $(element).find('.content_slider').trigger('play.owl.autoplay')
+}
+
+function pauseModalSlider(element) {
+  // console.log('modal carousal paused')
+  $(element).find('.content_slider').trigger('stop.owl.autoplay')
+}
+
+function readTextFile(file, callback) {
+  var rawFile = new XMLHttpRequest();
+  rawFile.overrideMimeType("application/json");
+  rawFile.open("GET", file, true);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4 && rawFile.status == "200") {
+      callback(rawFile.responseText);
     }
-    $(i).find('.owl-item video').each(function (index, value) {
-      this.pause();
-      this.currentTime = 0;
-    });
-    $(i).find('.owl-item.active video').each(function (index, value) {
-      this.play();
-    });
   }
-  function modalInitialized(e) {
-    var i = e.currentTarget;
-    // console.log('modal initialized')
-    var owlItem = $(i).find('.owl-item.active .new_inner_img')
-    var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
-    //active language toggler
-    if(owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
-      owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
-    } else {
-      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
-    }
-    //pause all videos, just play active owl-item video 
-    $.each(inactiveOwlItems, function (index, item) {
-      if (item.nodeName == 'VIDEO') {
-        item.pause()
+  rawFile.send(null);
+}
+
+var random_number = Math.floor(Math.random() * 100);
+
+//Timeline_items:
+//read timeline_items.json file and populate the data
+readTextFile("timeline_items.json?rm=" + random_number, function (text) {
+  var data = JSON.parse(text);
+  var timeline_items = document.querySelectorAll('.timeline_items');
+  timeline_items.forEach(function (timeline_item, i) {
+    //year
+    $(timeline_item).find('h3').html(data.timeline_items[i].title);
+    //timeline titles in english and arabic - can be multiple
+    //first dom element data is added
+    $(timeline_item).find('.english').html(data.timeline_items[i].titles_en[0])
+    $(timeline_item).find('.arabic').html(data.timeline_items[i].titles_ar[0]);
+    //if there are more titles then clone the dom element, change the html and append it to the container but skip the first title
+    data.timeline_items[i].titles_ar.forEach(function (title_ar, j) {
+      if (j !== 0) {
+        //if there is an img tag (incase of year 2016), clone the dom element and insert it before the img tag else just append
+        if ($(timeline_item).find('img').length > 0) {
+          $(timeline_item).find('.arabic').clone().html(title_ar).insertBefore('.mx_auto');
+        } else {
+          $(timeline_item).find('.arabic').clone().html(title_ar).appendTo(timeline_item);
+        }
       }
     })
-    if (owlItem[0].nodeName == 'VIDEO') {
-      owlItem[0].play()
+    //same logic for the english titles
+    data.timeline_items[i].titles_en.forEach(function (title_en, j) {
+      if (j !== 0) {
+        if ($(timeline_item).find('img').length > 0) {
+          $(timeline_item).find('.english').clone().html(title_en).insertBefore('.mx_auto');
+        } else {
+          $(timeline_item).find('.english').clone().html(title_en).appendTo(timeline_item);
+        }
+      }
+    })
+    //add img source if the image is there in json data
+    if (data.timeline_items[i].image && i == 8) {
+      $(timeline_item).find('img').attr('src', data.timeline_items[i].image);
+    }
+  })
+});
+
+//Screens:
+//read screens.json file and add the html and then initialize the owl carousel
+readTextFile("screens.json?rm=" + random_number, function (text) {
+  var data = JSON.parse(text);
+  // console.log(data);
+  var screens = document.querySelectorAll('.main_box');
+  screens.forEach(function (screen, i) {
+    var screen_html_text = '';
+    data.screens[i].media.forEach(function (media) {
+      screen_html_text += media
+    })
+    $(screen).find('.slider_box').html(screen_html_text)
+    $(screen).find('.slider_box').owlCarousel({
+      items: 1,
+      animateOut: "fadeOut",
+      dots: false,
+      autoplayTimeout: 5000,
+      autoplay: true,
+      lazyLoad: true,
+      loop: true,
+      margin: 0,
+      onInitialized: screenInitialized,
+      onTranslated: screenTranslated,
+    });
+  })
+
+  function screenTranslated(e) {
+    var i = e.currentTarget;
+    // var item = $(i).find('.owl-item.active .img-fluid')
+    $(i).find('.owl-item video').each(function (index, value) {
+      value.pause();
+      value.currentTime = 0;
+    });
+    $(i).find('.owl-item.active video').each(function (index, value) {
+      value.play();
+    });
+  }
+  function screenInitialized(e) {
+    var i = e.currentTarget;
+    // console.log(i);
+    var item = $(i).find('.owl-item.active .img_slid')
+    if (item[0].nodeName == 'VIDEO') {
+      item[0].play()
     }
   }
+});
 
+//Modals:
+//read modals.json file and save the data in a variable
+var modalData = ''
+readTextFile("modals.json?rm=" + random_number, function (resp_txt) {
+  modalData = JSON.parse(resp_txt);
+  console.log(modalData);
+});
+
+$(document).ready(function () {
   // OPEN MODAL
-  const pulsatingCircle = document.querySelectorAll('.pulsating-circle');
-  var prevId = '';
-  pulsatingCircle.forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      const id = e.currentTarget.dataset.modal_id;
-      var modal = document.getElementById(id); //get modal
+  const pulsatingCircles = document.querySelectorAll('.pulsating-circle');
+  var prevModalId = '';
+  pulsatingCircles.forEach(function (pulsatingCircle) {
+    pulsatingCircle.addEventListener('click', function (e) {
+      const modalId = e.currentTarget.dataset.modal_id;
+      var modal = document.getElementById(modalId); //get modal
       //show/hide modals
-      if (prevId == id) {
-        // console.log('modal is same')
-      } else {
-        // console.log('modal is changed')
-        readTextFile("modals.json", function (text) {
-          var data = JSON.parse(text);
-          if (data[id] == undefined) {
-            // console.log('data is not added')
-          } else {
-            if (data[id].length == 0) {
-              // console.log('does not contains data');
-              $(modal).find('.content_slider').html('')
-              $(modal).find('.lang-toggle').html('')
-            } else {
-              // console.log('contains data');
-              var html = data[id];
-              $(modal).find('.content_slider').html(html)
+      if (prevModalId != modalId) {
+        console.log('modal is changed')
+        var data = modalData;
+        if (data[modalId] !== undefined) {
+          if (data[modalId].modal_data.length > 0) {
+            console.log('contains data');
+            //if modal carousel has no html then add the html else keep it unchanged
+            if ($(modal).find('.content_slider').html().trim().length <= 0) {
+              var modal_html_text = '';
+              var loop = data[modalId].loop; //if there is single item in carousel then video will loop else not
+              var data_items = data[modalId].modal_data; //all the important data of carousel item
+              data_items.forEach(function (data_item) {
+                console.log('hello')
+                //here we will make html for the carousel item
+                //if the type is image then add img tag in carousel else video
+                if (data_item['type'] == 'video' || data_item['type'] == '') {
+                  modal_html_text += '<div class="item"><video class="new_inner_img" autoplay controls onplay="pauseModalSlider("#' + modalId + '");" onended="playModalSlider("#' + modalId + '");" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                } else {
+                  modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                }
+              })
+              // console.log(modal_html_text)
+              $(modal).find('.content_slider').html(modal_html_text.trim())
             }
-            $('#' + id).find('.content_slider').addClass('active');
+            //give active class to the current slider
+            $('#' + modalId).find('.content_slider').addClass('active');
             // console.log($('#' + id).find('.content_slider .item').length);
-            if ($('#' + id).find('.content_slider .item').length != 0) {
-              $('#' + id).find('.content_slider').owlCarousel({
+            if ($('#' + modalId).find('.content_slider .item').length != 0) {
+              $('#' + modalId).find('.content_slider').owlCarousel({
                 items: 1,
                 animateOut: "fadeOut",
                 dots: false,
@@ -89,19 +182,75 @@ $(document).ready(function () {
                 onInitialized: modalInitialized,
                 onTranslated: modalTranslated,
               });
+
+              function modalTranslated(e) {
+                // console.log('modal translated')
+                var i = e.currentTarget;
+                if ($(i).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
+                  $(i).parent().find('.lang-eng').addClass('active');
+                  $(i).parent().find('.lang-ar').removeClass('active');
+                } else {
+                  $(i).parent().find('.lang-eng').removeClass('active');
+                  $(i).parent().find('.lang-ar').addClass('active');
+                }
+                $(i).find('.owl-item video').each(function (index, value) {
+                  value.pause();
+                  value.currentTime = 0;
+                });
+                $(i).find('.owl-item.active video').each(function (index, value) {
+                  value.play();
+                });
+              }
+              function modalInitialized(e) {
+                var i = e.currentTarget;
+                // console.log('modal initialized')
+                var owlItem = $(i).find('.owl-item.active .new_inner_img')
+                var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
+                //active language toggler
+                if (owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
+                  owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
+                  owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
+                } else {
+                  owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
+                  owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
+                }
+                //pause all videos, just play active owl-item video 
+                $.each(inactiveOwlItems, function (index, item) {
+                  if (item.nodeName == 'VIDEO') {
+                    item.pause()
+                  }
+                })
+                if (owlItem[0].nodeName == 'VIDEO') {
+                  owlItem[0].play()
+                }
+              }
             }
+
+            //remove active class from other modal boxes in the same screen to close them
+            $(modal).parents('.main_box').find('.modal_box').removeClass('active')
+            //after removing active class pause the videos in that carousel
+            $(modal).parents('.main_box').find('.content_slider').find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
+              value.pause();
+              value.currentTime = 0;
+            });
+            //remove the active class from other modal carousels and destroy the carousel
+            $(modal).parents('.main_box').find('.content_slider').removeClass('active').owlCarousel('destroy')
+            //after 300 ms add the active class to current clicked modal box so it can be displayed
+            setTimeout(function () {
+              modal.classList.add('active');
+            }, 300);
+            //update prevModalId
+            prevModalId = modalId;
+          } else {
+            console.log('does not contains data');
+            $(modal).find('.content_slider').html('')
+            $(modal).find('.lang-toggle').html('')
           }
-        });
-        $(modal).parents('.main_box').find('.modal_box').removeClass('active')
-        $(modal).parents('.main_box').find('.content_slider').find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
-          value.pause();
-          value.currentTime = 0;
-        });
-        $(modal).parents('.main_box').find('.content_slider').removeClass('active').owlCarousel('destroy')
-        setTimeout(function () {
-          modal.classList.add('active');
-        }, 300);
-        prevId = id;
+        } else {
+          console.log('data is not in the json file')
+        }
+      } else {
+        console.log('modal is same')
       }
     })
   })
@@ -116,7 +265,7 @@ $(document).ready(function () {
       });
       $(this).parent().find('.content_slider').removeClass('active').owlCarousel('destroy')
       $(this).parents('.modal_box').removeClass('active');
-      prevId = '';
+      prevModalId = '';
     })
   })
   //CHANGE LANGUAGE

@@ -13,38 +13,50 @@ $modal = new Modal();
 $modals = $modal->get_modals();
 foreach ($modals as $index => $item) {
     $modal_items = $modal->get_modal_items($item['id']);
-    $medias = array();
-    // echo $item['slug'];
-    $i = str_replace('modal-', '', $item['slug']);;
+    $data = array();
+    $loop = $modal_items->num_rows < 2 ? 'loop' : '';
     if ($modal_items) {
         foreach ($modal_items as $value) {
-            // echo $item['slug'];
-            // if($item['id'] == 14) {
-            //     echo $item['id'].' '.$value["text_eng"];
-            // }
-            $active_en = $value["title_ar"] == '' && $value["text_ar"] == '' ? 'active' : '';
-            $active_ar = $value["title_ar"] != '' || $value["text_ar"] != '' ? 'active' : '';
+            $temp_data = [
+                'title_eng' => $value["title_eng"],
+                'text_eng' => html_entity_decode($value["text_eng"]),
+                'title_ar' => $value["title_ar"],
+                'text_ar' => html_entity_decode($value["text_ar"]),
+                'active_en' => $value["title_ar"] == '' && $value["text_ar"] == '' ? 'active' : '',
+                'active_ar' => $value["title_ar"] != '' || $value["text_ar"] != '' ? 'active' : '',
+            ];
             if ($value['media_id'] != '' && $value['media_id'] != 0) {
                 $media = $modal->get_media($value['media_id']);
-                $loop = $modal_items->num_rows < 2 ? 'loop' : '';
                 // echo json_encode($media);
                 if ($media != false) {
                     $media = $media->fetch_assoc();
-                    if ($media['type'] == 'video') {
-                        array_push($medias, '<div class="item"><video class="new_inner_img" autoplay controls onplay="pauseModalSlider(\'#modal' . $i . '\');" onended="playModalSlider(\'#modal' . $i . '\');" ' . $loop . '><source src="' . $items_config["modal_media_url"] . $media["name"] . '?dummy=' . strtotime("now") . '" type="' . $media["filetype"] . '"></video><div class="box_content_innerrr arabic ' . $active_ar . '"><h3>' . $value["title_ar"] . '</h3><p>' . html_entity_decode($value["text_ar"]) . '</p></div><div class="box_content_innerrr english ' . $active_en . '"><h3>' . $value["title_eng"] . '</h3><p>' . html_entity_decode($value["text_eng"]) . '</p></div></div>');
-                    } else {
-                        array_push($medias, '<div class="item"><img src="' . $items_config["modal_media_url"] . $media["name"] . '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' . $active_ar . '"><h3>' . $value["title_ar"] . '</h3><p>' . html_entity_decode($value["text_ar"]) . '</p></div><div class="box_content_innerrr english ' . $active_en . '"><h3>' . $value["title_eng"] . '</h3><p>' . html_entity_decode($value["text_eng"]) . '</p></div></div>');
-                    }
+                    // if ($media['type'] == 'video') {
+                        $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
+                        $temp_data['type'] = $media["type"];
+                        $temp_data['filetype'] = $media["filetype"];
+                    // } else {
+                    //     $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
+                    //     $temp_data['type'] = $media["type"];
+                    // }
                 } else {
-                    array_push($medias, '<div class="item"><video class="new_inner_img"><source src="#" type="#"></video><div class="box_content_innerrr arabic ' . $active_ar . '"><h3>' . $value["title_ar"] . '</h3><p>' . html_entity_decode($value["text_ar"]) . '</p></div><div class="box_content_innerrr english ' . $active_en . '"><h3>' . $value["title_eng"] . '</h3><p>' . html_entity_decode($value["text_eng"]) . '</p></div></div>');
+                    $temp_data['src'] = '';
+                    $temp_data['type'] = '';
+                    $temp_data['filetype'] = '';
                 }
             } else {
-                array_push($medias, '<div class="item"><video class="new_inner_img"><source src="#" type="#"></video><div class="box_content_innerrr arabic ' . $active_ar . '"><h3>' . $value["title_ar"] . '</h3><p>' . html_entity_decode($value["text_ar"]) . '</p></div><div class="box_content_innerrr english ' . $active_en . '"><h3>' . $value["title_eng"] . '</h3><p>' . html_entity_decode($value["text_eng"]) . '</p></div></div>');
+                $temp_data['src'] = '';
+                $temp_data['type'] = '';
+                $temp_data['filetype'] = '';
             }
+            array_push($data, $temp_data);    
         }
     }
     $modal_index = str_replace('-', '', $item['slug']);
-    $response[$modal_index] = $medias;
+    $modal_data = [
+        'loop' => $loop,
+        'modal_data' => $data
+    ];
+    $response[$modal_index] = $modal_data;
 }
 $filename = BASE_PATH . '/modals.json';
 $fp = fopen($filename, 'w');
