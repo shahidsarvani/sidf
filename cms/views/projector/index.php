@@ -78,6 +78,26 @@ require ADMIN_VIEW . '/layout/footer.php';
             /* Copy the text inside the text field */
             navigator.clipboard.writeText(copyText.value);
 
+            navigator.clipboard.writeText(copyText.value)
+                .then(() => {
+                    swalInit.fire({
+                        text: "Copied the Video URL!",
+                        type: 'success',
+                        toast: true,
+                        showConfirmButton: false,
+                        position: 'top-right'
+                    });
+                })
+                .catch(() => {
+                    swalInit.fire({
+                        text: "Something went wrong!",
+                        type: 'warning',
+                        toast: true,
+                        showConfirmButton: false,
+                        position: 'top-right'
+                    });
+                });
+
             /* Alert the copied text */
             // alert("Copied the text: " + copyText.value);
             swalInit.fire({
