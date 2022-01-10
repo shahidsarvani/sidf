@@ -70,6 +70,14 @@
           <li class="nav-item">
             <a href="<?php echo ADMIN_SITE_URL . '/controller/finalzone/index.php' ?>" class="nav-link" id="navlink-finalzone"> <i class="icon-screen3"></i> <span> Final Zone Screens </span> </a>
           </li>
+          <!-- Projector Video -->
+          <li class="nav-item-header">
+            <div class="text-uppercase font-size-xs line-height-xs">Projector Video</div>
+            <i class="icon-menu" title="RFID"></i>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo ADMIN_SITE_URL . '/controller/projector/index.php' ?>" class="nav-link" id="navlink-projector"> <i class="icon-video-camera"></i> <span> Projector Video </span> </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -42,6 +42,8 @@ $items_config = array(
     'finalzone_video_media_path' => BASE_PATH . '/finalzone/videos/',
     'finalzone_image_media_url' => BASE_URL . '/finalzone/images/',
     'finalzone_image_media_path' => BASE_PATH . '/finalzone/images/',
+    'projector_media_url' => BASE_URL . '/assets/frontend_assets/projector/',
+    'projector_media_path' => BASE_PATH . '/assets/frontend_assets/projector/',
 );
 
 /* start of the file uploading function */
