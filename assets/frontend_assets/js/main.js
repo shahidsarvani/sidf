@@ -128,6 +128,54 @@ readTextFile("modals.json?rm=" + random_number, function (resp_txt) {
 });
 
 $(document).ready(function () {
+
+  function modalTranslated(e) {
+    console.log('modal translated')
+    var i = e.currentTarget;
+    if ($(i).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
+      $(i).parent().find('.lang-eng').addClass('active');
+      $(i).parent().find('.lang-ar').removeClass('active');
+    } else {
+      $(i).parent().find('.lang-eng').removeClass('active');
+      $(i).parent().find('.lang-ar').addClass('active');
+    }
+    $(i).find('.owl-item video').each(function (index, value) {
+      value.pause();
+      value.currentTime = 0;
+    });
+    $(i).find('.owl-item.active video').each(function (index, value) {
+      value.load();
+      // value.play();
+    });
+  }
+  function modalInitialized(e) {
+    var i = e.currentTarget;
+    console.log('modal initialized')
+    var owlItem = $(i).find('.owl-item.active .new_inner_img')
+    var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
+    //active language toggler
+    if (owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
+      owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
+    } else {
+      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
+      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
+    }
+    // pause all videos, just play active owl-item video 
+    $.each(inactiveOwlItems, function (index, item) {
+      if (!$(item).parents('.owl-item').hasClass('active')) {
+        console.log($(item).parents('.owl-item'))
+        if (item.nodeName == 'VIDEO') {
+          item.pause()
+          item.currentTime = 0;
+        }
+      }
+    })
+    if (owlItem[0].nodeName == 'VIDEO') {
+      owlItem[0].load()
+      // owlItem[0].play()
+    }
+  }
   // OPEN MODAL
   const pulsatingCircles = document.querySelectorAll('.pulsating-circle');
   var prevModalId = '';
@@ -141,6 +189,7 @@ $(document).ready(function () {
         var data = modalData;
         if (data[modalId] !== undefined) {
           if (data[modalId].modal_data.length > 0) {
+            // if (data[modalId].length > 0) {
             console.log('contains data');
             //if modal carousel has no html then add the html else keep it unchanged
             if ($(modal).find('.content_slider').html().trim().length <= 0) {
@@ -148,22 +197,26 @@ $(document).ready(function () {
               var loop = data[modalId].loop; //if there is single item in carousel then video will loop else not
               var data_items = data[modalId].modal_data; //all the important data of carousel item
               data_items.forEach(function (data_item) {
-                console.log('hello')
+                // console.log('hello')
                 //here we will make html for the carousel item
                 //if the type is image then add img tag in carousel else video
                 if (data_item['type'] == 'video' || data_item['type'] == '') {
-                  modal_html_text += '<div class="item"><video class="new_inner_img" autoplay controls onplay="pauseModalSlider("#' + modalId + '");" onended="playModalSlider("#' + modalId + '");" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  modal_html_text += '<div class="item"><video class="new_inner_img" autoplay controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
                 } else {
                   modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
                 }
               })
               // console.log(modal_html_text)
-              $(modal).find('.content_slider').html(modal_html_text.trim())
+              $(modal).find('.content_slider').html(modal_html_text)
+              // data[modalId].forEach(function(modal_data) {
+              //   modal_html_text += modal_data;
+              // })
+              // $(modal).find('.content_slider').html(modal_html_text)
             }
             //give active class to the current slider
             $('#' + modalId).find('.content_slider').addClass('active');
             // console.log($('#' + id).find('.content_slider .item').length);
-            if ($('#' + modalId).find('.content_slider .item').length != 0) {
+            if ($('#' + modalId).find('.content_slider .item').length > 0) {
               $('#' + modalId).find('.content_slider').owlCarousel({
                 items: 1,
                 animateOut: "fadeOut",
@@ -182,48 +235,6 @@ $(document).ready(function () {
                 onInitialized: modalInitialized,
                 onTranslated: modalTranslated,
               });
-
-              function modalTranslated(e) {
-                // console.log('modal translated')
-                var i = e.currentTarget;
-                if ($(i).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
-                  $(i).parent().find('.lang-eng').addClass('active');
-                  $(i).parent().find('.lang-ar').removeClass('active');
-                } else {
-                  $(i).parent().find('.lang-eng').removeClass('active');
-                  $(i).parent().find('.lang-ar').addClass('active');
-                }
-                $(i).find('.owl-item video').each(function (index, value) {
-                  value.pause();
-                  value.currentTime = 0;
-                });
-                $(i).find('.owl-item.active video').each(function (index, value) {
-                  value.play();
-                });
-              }
-              function modalInitialized(e) {
-                var i = e.currentTarget;
-                // console.log('modal initialized')
-                var owlItem = $(i).find('.owl-item.active .new_inner_img')
-                var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
-                //active language toggler
-                if (owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
-                  owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
-                  owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
-                } else {
-                  owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
-                  owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
-                }
-                //pause all videos, just play active owl-item video 
-                $.each(inactiveOwlItems, function (index, item) {
-                  if (item.nodeName == 'VIDEO') {
-                    item.pause()
-                  }
-                })
-                if (owlItem[0].nodeName == 'VIDEO') {
-                  owlItem[0].play()
-                }
-              }
             }
 
             //remove active class from other modal boxes in the same screen to close them
@@ -234,7 +245,7 @@ $(document).ready(function () {
               value.currentTime = 0;
             });
             //remove the active class from other modal carousels and destroy the carousel
-            $(modal).parents('.main_box').find('.content_slider').removeClass('active').owlCarousel('destroy')
+            $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
             //after 300 ms add the active class to current clicked modal box so it can be displayed
             setTimeout(function () {
               modal.classList.add('active');
