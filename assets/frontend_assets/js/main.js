@@ -1,4 +1,4 @@
-
+const modalOpenDelay = 300;
 function playSlider(element) {
   $(element).trigger('next.owl.carousel');
   $(element).trigger('play.owl.autoplay')
@@ -173,11 +173,13 @@ $(document).ready(function () {
     })
     // console.log(owlItem[0].nodeName)
     if (owlItem[0].nodeName == 'VIDEO') {
-      // setTimeout(function () {
-        owlItem[0].play();
-      // }, 150);
-    } else if (owlItem[0].nodeName == 'IMG') {
 
+      //setTimeOut so that the issue with play() and pause() is resolved
+      setTimeout(function () {
+        owlItem[0].play();
+      }, modalOpenDelay + 50);
+      // if ($(i).parents('.modal_box').hasClass('active')) {
+      // }
     }
   }
   // OPEN MODAL
@@ -186,6 +188,8 @@ $(document).ready(function () {
   pulsatingCircles.forEach(function (pulsatingCircle) {
     pulsatingCircle.addEventListener('click', function (e) {
       const modalId = e.currentTarget.dataset.modal_id;
+      console.log(prevModalId)
+      console.log(modalId)
       var modal = document.getElementById(modalId); //get modal
       //show/hide modals
       if (prevModalId != modalId) {
@@ -203,7 +207,6 @@ $(document).ready(function () {
               var loop = data[modalId].loop; //if there is single item in carousel then video will loop else not
               var data_items = data[modalId].modal_data; //all the important data of carousel item
               data_items.forEach(function (data_item) {
-                // console.log('hello')
                 //here we will make html for the carousel item
                 //if the type is image then add img tag in carousel else video
                 if (data_item['type'] == 'video' || data_item['type'] == '') {
@@ -250,10 +253,10 @@ $(document).ready(function () {
             });
             //remove the active class from other modal carousels and destroy the carousel
             $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
-            //after 300 ms add the active class to current clicked modal box so it can be displayed
+            //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
             setTimeout(function () {
               modal.classList.add('active');
-            }, 300);
+            }, modalOpenDelay);
           } else {
             console.log('does not contains data');
             $(modal).find('.content_slider').html('')
