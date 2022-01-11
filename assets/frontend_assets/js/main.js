@@ -173,9 +173,9 @@ $(document).ready(function () {
     })
     // console.log(owlItem[0].nodeName)
     if (owlItem[0].nodeName == 'VIDEO') {
-      setTimeout(function () {
+      // setTimeout(function () {
         owlItem[0].play();
-      }, 150);
+      // }, 150);
     } else if (owlItem[0].nodeName == 'IMG') {
 
     }
@@ -232,8 +232,8 @@ $(document).ready(function () {
                   "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
                   "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
                 ],
-                // autoplayTimeout: 5000,
-                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplay: true,
                 loop: true,
                 margin: 0,
                 onInitialized: modalInitialized,
@@ -244,7 +244,7 @@ $(document).ready(function () {
             //remove active class from other modal boxes in the same screen to close them
             $(modal).parents('.main_box').find('.modal_box').removeClass('active')
             //after removing active class pause the videos in that carousel
-            $(modal).parents('.main_box').find('.content_slider').find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
+            $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
               value.pause();
               value.currentTime = 0;
             });
@@ -254,8 +254,6 @@ $(document).ready(function () {
             setTimeout(function () {
               modal.classList.add('active');
             }, 300);
-            //update prevModalId
-            prevModalId = modalId;
           } else {
             console.log('does not contains data');
             $(modal).find('.content_slider').html('')
@@ -264,6 +262,8 @@ $(document).ready(function () {
         } else {
           console.log('data is not in the json file')
         }
+        //update prevModalId
+        prevModalId = modalId;
       } else {
         console.log('modal is same')
       }
