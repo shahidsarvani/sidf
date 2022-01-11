@@ -40,12 +40,12 @@ function video_switcher() {
 			var nextSibling = item.nextElementSibling;
 			if (nextSibling) {
 				nextSibling.classList.add('next');
-				var siblings = $(this).siblings();
-				var x1 = Math.floor(Math.random() * siblings.length);
-				var x2 = Math.floor(Math.random() * siblings.length);
+				// var siblings = $(this).siblings();
+				// var x1 = Math.floor(Math.random() * siblings.length);
+				// var x2 = Math.floor(Math.random() * siblings.length);
 
-				siblings[x1].classList.add('animated');
-				siblings[x2].classList.add('animated');
+				// siblings[x1].classList.add('animated');
+				// siblings[x2].classList.add('animated');
 			}
 			var src = item.dataset.src;
 			var type = item.dataset.type;
