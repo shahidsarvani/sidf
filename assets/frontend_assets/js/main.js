@@ -144,15 +144,16 @@ $(document).ready(function () {
       value.currentTime = 0;
     });
     $(i).find('.owl-item.active video').each(function (index, value) {
-      value.load();
-      // value.play();
+      // value.load();
+      value.play();
     });
   }
   function modalInitialized(e) {
     var i = e.currentTarget;
     console.log('modal initialized')
     var owlItem = $(i).find('.owl-item.active .new_inner_img')
-    var inactiveOwlItems = $(i).find('.owl-item .new_inner_img')
+    // console.log(owlItem)
+    var inactiveOwlItems = $(i).find('.owl-item .new_inner_img').not('.owl-item.active .new_inner_img')
     //active language toggler
     if (owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
       owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
@@ -163,17 +164,20 @@ $(document).ready(function () {
     }
     // pause all videos, just play active owl-item video 
     $.each(inactiveOwlItems, function (index, item) {
-      if (!$(item).parents('.owl-item').hasClass('active')) {
-        console.log($(item).parents('.owl-item'))
-        if (item.nodeName == 'VIDEO') {
-          item.pause()
-          item.currentTime = 0;
-        }
+      // if (!$(item).parents('.owl-item').hasClass('active')) {
+      if (item.nodeName == 'VIDEO') {
+        item.pause()
+        item.currentTime = 0;
       }
+      // }
     })
+    // console.log(owlItem[0].nodeName)
     if (owlItem[0].nodeName == 'VIDEO') {
-      owlItem[0].load()
-      // owlItem[0].play()
+      setTimeout(function () {
+        owlItem[0].play();
+      }, 150);
+    } else if (owlItem[0].nodeName == 'IMG') {
+
     }
   }
   // OPEN MODAL
@@ -194,6 +198,8 @@ $(document).ready(function () {
             //if modal carousel has no html then add the html else keep it unchanged
             if ($(modal).find('.content_slider').html().trim().length <= 0) {
               var modal_html_text = '';
+              var p = 1;
+              var autoplay_val = '';
               var loop = data[modalId].loop; //if there is single item in carousel then video will loop else not
               var data_items = data[modalId].modal_data; //all the important data of carousel item
               data_items.forEach(function (data_item) {
@@ -201,17 +207,15 @@ $(document).ready(function () {
                 //here we will make html for the carousel item
                 //if the type is image then add img tag in carousel else video
                 if (data_item['type'] == 'video' || data_item['type'] == '') {
-                  modal_html_text += '<div class="item"><video class="new_inner_img" autoplay controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  autoplay_val = (p == 1) ? 'autoplay' : '';
+                  modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  p++;
                 } else {
                   modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
                 }
               })
               // console.log(modal_html_text)
               $(modal).find('.content_slider').html(modal_html_text)
-              // data[modalId].forEach(function(modal_data) {
-              //   modal_html_text += modal_data;
-              // })
-              // $(modal).find('.content_slider').html(modal_html_text)
             }
             //give active class to the current slider
             $('#' + modalId).find('.content_slider').addClass('active');
@@ -228,8 +232,8 @@ $(document).ready(function () {
                   "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
                   "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
                 ],
-                autoplayTimeout: 5000,
-                autoplay: true,
+                // autoplayTimeout: 5000,
+                autoplay: false,
                 loop: true,
                 margin: 0,
                 onInitialized: modalInitialized,
