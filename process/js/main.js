@@ -21,7 +21,7 @@ function video_switcher() {
 			var currentItem = document.querySelector('.current');
 			var currentAnimItem = document.querySelector('.animated-current');
 			var nextItem = document.querySelector('.next');
-			var animatedItems = document.querySelectorAll('.animated');
+			// var animatedItems = document.querySelectorAll('.animated');
 			if (currentItem) {
 				currentItem.classList.remove('current');
 			}
@@ -31,11 +31,11 @@ function video_switcher() {
 			if (nextItem) {
 				nextItem.classList.remove('next');
 			}
-			if (animatedItems) {
-				animatedItems.forEach(function (animatedItem) {
-					animatedItem.classList.remove('animated');
-				});
-			}
+			// if (animatedItems) {
+			// 	animatedItems.forEach(function (animatedItem) {
+			// 		animatedItem.classList.remove('animated');
+			// 	});
+			// }
 			item.classList.add('current')
 			var nextSibling = item.nextElementSibling;
 			if (nextSibling) {
