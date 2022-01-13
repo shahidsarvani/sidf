@@ -271,10 +271,10 @@ p.arabic {
   margin: 237px -30px 0 130px;
 }
 .box_pin.box_pin_five {
-  margin: 237px 0 0 -170px;
+    margin: 237px 0 0 -200px;
 }
 .box_pin.box_pin_six {
-  margin: 237px 0 0 -300px;
+    margin: 237px 0 0 -280px;
 }
 .box_pin.box_pin_seven {
   margin: 237px 0 0px -30px;
@@ -292,13 +292,15 @@ p.arabic {
   margin: 150px 0 0 310px;
 }
 .box_pin.box_pin_ten {
-  margin: 245px 0 0 190px;
+    margin: 245px 0 0 280px;
 }
 .box_pin.box_pin_eleven {
-  margin: 245px 0 0 -270px;
+    margin: 245px 0 0 -300px;
+    width: 360px;
 }
 .box_pin.box_pin_twelve {
-  margin: 70px 0 0 -200px;
+    margin: 70px 0 0 -110px;
+    width: 360px;
 }
 .box_pin.box_pin_thirteen {
   margin: 9px 0 0 -10px;
