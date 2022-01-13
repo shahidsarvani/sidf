@@ -324,12 +324,12 @@ p.arabic {
   height: 200px;
 }
 .box_pin .border_verti {
-  width: 2px;
-  height: 300px;
-  margin: 0 auto 0px auto;
-  background: #fff;
-  display: flex;
-  padding-top: 500px 0;
+    width: 2px;
+    height: 220px;
+    margin: 0 auto 0px auto;
+    background: #fff;
+    display: flex;
+    padding-top: 500px 0;
 }
 .box_pin h3 {
   text-align: center;
@@ -604,4 +604,28 @@ p.arabic {
 #modal15 .box_content_innerrr {
   max-height: 200px;
   overflow: auto !important;
+}
+
+.box_pin_three .border_verti {
+    height: 300px !important;
+}
+
+.box_pin_seven .border_verti, .box_pin_eight .border_verti {
+    height: 300px !important;
+}
+.box_pin_nine .border_verti {
+    height: 250px !important;
+}
+.box_pin_ten .border_verti {
+    height: 600px !important;
+}
+
+.box_pin_twelve .border_verti {
+    height: 400px !important;
+}
+.box_pin_thirteen .border_verti {
+    height: 350px !important;
+}
+.box_pin_fourteen .border_verti {
+    height: 600px !important;
 }
