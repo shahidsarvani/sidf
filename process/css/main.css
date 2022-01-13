@@ -317,6 +317,7 @@ footer h2 {
 }
 .thankyou-logo img {
   width: 340px;
+  animation: blinker 1s linear infinite;
 }
 .thankyou-logo {
   margin-top: 100px;
