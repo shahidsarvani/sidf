@@ -286,29 +286,29 @@ p.arabic {
 }
 
 .box_pin.box_pin_eight {
-  margin: 48px 0 0 -260px;
+  margin: 3px 0 0 -110px;
 }
 .box_pin.box_pin_nine {
-  margin: 3px 0 0 -220px;
+  margin: 150px 0 0 310px;
 }
 .box_pin.box_pin_ten {
-  margin: 3px 0 0 -100px;
+  margin: 245px 0 0 190px;
 }
 .box_pin.box_pin_eleven {
-  margin-top: 245px;
+  margin: 245px 0 0 -270px;
 }
 .box_pin.box_pin_twelve {
-  margin: 245px 0 0 100px;
+  margin: 70px 0 0 -200px;
 }
 .box_pin.box_pin_thirteen {
-  margin: 120px 0 0 -200px;
+  margin: 9px 0 0 -10px;
 }
 .box_pin.box_pin_fourteen {
-  margin: 9px 0 0 300px;
+  margin: 9px 0 0 -10px;
 }
-.box_pin.box_pin_fifteen {
+/* .box_pin.box_pin_fifteen {
   margin: 9px 0 0 0px;
-}
+} */
 .box_pin.box_pin_nine .border_verti,
 .box_pin.box_pin_four .border_verti {
   height: 590px;
@@ -329,7 +329,7 @@ p.arabic {
   margin: 0 auto 0px auto;
   background: #fff;
   display: flex;
-  padding-top: 500px0;
+  padding-top: 500px 0;
 }
 .box_pin h3 {
   text-align: center;
@@ -359,6 +359,8 @@ p.arabic {
 .white_blob.box_pin h3 {
   color: #92b545;
 }
+.box_pin_nine .pulsating-circle:after,
+.box_pin_nine .pulsating-circle:before,
 .white_blob .pulsating-circle::after,
 .white_blob .pulsating-circle::before,
 .white_blob.box_pin .border_verti {
