@@ -31,16 +31,16 @@ html {
 }
 
 .main-section h2 {
-  position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  bottom: 80px;
-  color: #fff;
-  font-size: 100px;
-  font-family: "Neo Sans Arabic";
-  font-weight: normal;
-  text-transform: uppercase;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 80px;
+    color: #606060;
+    font-size: 100px;
+    font-family: "Neo Sans Arabic";
+    font-weight: normal;
+    text-transform: uppercase;
 }
 
 
@@ -220,12 +220,12 @@ header a {
 }
 
 header a, header p {
-  color: #fff;
-  font-size: 30px;
-  text-transform: uppercase;
-  margin: 0;
-  font-family: "Neo Sans Arabic";
-  font-weight: normal;
+    color: #606060;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: "Neo Sans Arabic";
+    font-weight: normal;
 }
 .eng-language {
     font-size: 24px;
