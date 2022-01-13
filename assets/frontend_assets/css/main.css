@@ -271,10 +271,10 @@ p.arabic {
   margin: 237px -30px 0 130px;
 }
 .box_pin.box_pin_five {
-    margin: 237px 0 0 -200px;
+  margin: 237px 0 0 -200px;
 }
 .box_pin.box_pin_six {
-    margin: 237px 0 0 -280px;
+  margin: 237px 0 0 -280px;
 }
 .box_pin.box_pin_seven {
   margin: 237px 0 0px -30px;
@@ -289,21 +289,21 @@ p.arabic {
   margin: 3px 0 0 -110px;
 }
 .box_pin.box_pin_nine {
-  margin: 150px 0 0 310px;
+  margin: 150px 0 0 320px;
 }
 .box_pin.box_pin_ten {
-    margin: 245px 0 0 280px;
+  margin: 245px 0 0 270px;
 }
 .box_pin.box_pin_eleven {
-    margin: 245px 0 0 -300px;
-    width: 360px;
+  margin: 245px 0 0 -300px;
+  width: 360px;
 }
 .box_pin.box_pin_twelve {
-    margin: 70px 0 0 -110px;
-    width: 360px;
+  margin: 70px 0 0 -110px;
+  width: 360px;
 }
 .box_pin.box_pin_thirteen {
-    margin: 9px 0 0 40px;
+  margin: 9px 0 0 40px;
 }
 .box_pin.box_pin_fourteen {
   margin: 9px 0 0 -10px;
@@ -326,12 +326,12 @@ p.arabic {
   height: 200px;
 }
 .box_pin .border_verti {
-    width: 2px;
-    height: 220px;
-    margin: 0 auto 0px auto;
-    background: #fff;
-    display: flex;
-    padding-top: 500px 0;
+  width: 2px;
+  height: 220px;
+  margin: 0 auto 0px auto;
+  background: #fff;
+  display: flex;
+  padding-top: 500px 0;
 }
 .box_pin h3 {
   text-align: center;
@@ -416,18 +416,18 @@ p.arabic {
 }
 
 .close-modal {
-    bottom: -30px;
-    left: -30px;
-    position: absolute;
-    z-index: 99;
-    background: #fff;
-    width: 70px;
-    height: 70px;
-    text-align: center;
-    line-height: 86px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 1px solid #c3c3c3;
+  bottom: -30px;
+  left: -30px;
+  position: absolute;
+  z-index: 99;
+  background: #fff;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 86px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #c3c3c3;
 }
 .close-modal img {
   width: 28px;
@@ -609,25 +609,26 @@ p.arabic {
 }
 
 .box_pin_three .border_verti {
-    height: 300px !important;
+  height: 300px !important;
 }
 
-.box_pin_seven .border_verti, .box_pin_eight .border_verti {
-    height: 300px !important;
+.box_pin_seven .border_verti,
+.box_pin_eight .border_verti {
+  height: 300px !important;
 }
 .box_pin_nine .border_verti {
-    height: 250px !important;
+  height: 250px !important;
 }
 .box_pin_ten .border_verti {
-    height: 600px !important;
+  height: 600px !important;
 }
 
 .box_pin_twelve .border_verti {
-    height: 400px !important;
+  height: 400px !important;
 }
 .box_pin_thirteen .border_verti {
-    height: 350px !important;
+  height: 350px !important;
 }
 .box_pin_fourteen .border_verti {
-    height: 600px !important;
+  height: 600px !important;
 }
