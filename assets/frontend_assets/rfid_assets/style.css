@@ -245,6 +245,7 @@ img.footer_logo {
 }
 .heading-container span {
     font-size: 40px;
+    font-family: NeoSansArabicRegular !important;
 }
 .heading-container .head_ar {
     margin-left: 10px;
