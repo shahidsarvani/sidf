@@ -230,14 +230,14 @@ p.arabic {
 .box_content_innerrr.arabic ol {
   margin-right: 50px;
 }
-.box_content_innerrr.english ul,
-.box_content_innerrr.english ol {
-  margin-left: 50px;
-}
 
 .box_content_innerrr.english ul {
   margin-left: 50px;
 }
+.box_content_innerrr.english ol {
+  margin-left: 40px;
+}
+
 
 .modal_box .new_inner_img {
   height: 490px;
