@@ -48,11 +48,11 @@ readTextFile("timeline_items.json?rm=" + random_number, function (text) {
     data.timeline_items[i].titles_ar.forEach(function (title_ar, j) {
       if (j !== 0) {
         //if there is an img tag (incase of year 2016), clone the dom element and insert it before the img tag else just append
-        if ($(timeline_item).find('img').length > 0) {
-          $(timeline_item).find('.arabic').clone().html(title_ar).insertBefore('.mx_auto');
-        } else {
+        // if ($(timeline_item).find('img').length > 0) {
+        //   $(timeline_item).find('.arabic').clone().html(title_ar).insertBefore('.mx_auto');
+        // } else {
           $(timeline_item).find('.arabic').clone().html(title_ar).appendTo(timeline_item);
-        }
+        // }
       }
     })
     //same logic for the english titles
