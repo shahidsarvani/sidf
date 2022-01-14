@@ -632,3 +632,9 @@ p.arabic {
 .box_pin_fourteen .border_verti {
   height: 600px !important;
 }
+.timeline_items .english {
+    margin-bottom: 50px !important;
+}
+.box_pin_nine .timeline_items img {
+    margin-bottom: 50px;
+}
