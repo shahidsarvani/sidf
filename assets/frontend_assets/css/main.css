@@ -108,8 +108,9 @@ section {
   display: block;
 }
 body {
-  line-height: 1;
-  font-family: "Neo Sans Arabic Regular", sans-serif;
+    line-height: 1;
+    font-family: "Neo Sans Arabic Regular", sans-serif;
+    overflow-y: hidden;
 }
 /* ol, */
 ul {
