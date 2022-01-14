@@ -58,11 +58,11 @@ readTextFile("timeline_items.json?rm=" + random_number, function (text) {
     //same logic for the english titles
     data.timeline_items[i].titles_en.forEach(function (title_en, j) {
       if (j !== 0) {
-        if ($(timeline_item).find('img').length > 0) {
-          $(timeline_item).find('.english').clone().html(title_en).insertBefore('.mx_auto');
-        } else {
+        // if ($(timeline_item).find('img').length > 0) {
+        //   $(timeline_item).find('.english').clone().html(title_en).insertBefore('.mx_auto');
+        // } else {
           $(timeline_item).find('.english').clone().html(title_en).appendTo(timeline_item);
-        }
+        // }
       }
     })
     //add img source if the image is there in json data
