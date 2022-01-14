@@ -232,10 +232,12 @@ p.arabic {
 }
 
 .box_content_innerrr.english ul {
-  margin-left: 50px;
+    margin-left: 50px;
+    margin-bottom: 20px;
 }
 .box_content_innerrr.english ol {
   margin-left: 40px;
+  margin-bottom: 20px;
 }
 
 
