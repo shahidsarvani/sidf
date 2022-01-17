@@ -10,11 +10,14 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/frontend_assets/img/favicon-16x16.png">
 
   <style>
+    html,
+    body {
+      height: 90vh;
+    }
+
     body {
       display: flex;
       justify-content: space-evenly;
-      width: 100vw;
-      height: 100vh;
     }
 
     div {
@@ -174,19 +177,18 @@
 
   <!-- javascript -->
   <script src="./assets/frontend_assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.slimscroll.js"></script>
 
   <script>
-    $('div').scroll(function () {
-      var _this = $(this)
-      console.log(_this)
-      $(_this).scrollTop()
-    })
-    // var subCatContainer = $("div");
-    // subCatContainer.scroll(function () {
+    // $('div').scroll(function () {
     //   var _this = $(this)
     //   console.log(_this)
-    //   subCatContainer.scrollTop($(_this).scrollTop());
-    // });
+    //   $(_this).scrollTop()
+    // })
+
+    $('div').slimScroll({
+      height: '250px'
+    });
   </script>
 </body>
 
