@@ -174,16 +174,17 @@
   <script src="./assets/frontend_assets/js/jquery.min.js"></script>
 
   <script>
-    // $('div').scroll(function () {
-    //   var _this = $(this)
-    //   console.log(_this)
-    // })
-    var subCatContainer = $("div");
-    subCatContainer.scroll(function () {
+    $('div').scroll(function () {
       var _this = $(this)
       console.log(_this)
-      subCatContainer.scrollTop($(_this).scrollTop());
-    });
+      $(_this).scrollTop()
+    })
+    // var subCatContainer = $("div");
+    // subCatContainer.scroll(function () {
+    //   var _this = $(this)
+    //   console.log(_this)
+    //   subCatContainer.scrollTop($(_this).scrollTop());
+    // });
   </script>
 </body>
 
