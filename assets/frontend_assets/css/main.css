@@ -306,11 +306,11 @@ p.arabic {
   width: 360px;
 }
 .box_pin.box_pin_twelve {
-  margin: 70px 0 0 -110px;
-  width: 360px;
+    margin: 20px 0 0 -60px;
+    width: 360px;
 }
 .box_pin.box_pin_thirteen {
-  margin: 9px 0 0 40px;
+    margin: 9px 0 0 -10px;
 }
 .box_pin.box_pin_fourteen {
   margin: 9px 0 0 -10px;
@@ -643,5 +643,6 @@ p.arabic {
     margin-bottom: 50px !important;
 }
 .box_pin_nine .timeline_items img {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
+    margin-top: 80px;
 }
