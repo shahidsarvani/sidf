@@ -646,3 +646,18 @@ p.arabic {
     margin-bottom: 80px;
     margin-top: 80px;
 }
+
+.readmore a {
+    position: absolute;
+    right: 0;
+    left: 50%;
+    margin: 0 auto;
+    bottom: 16px;
+    z-index: 9;
+    font-size: 26px;
+    line-height: 1.4;
+    text-decoration: none;
+    color: #92b544;
+    font-family: "Neo Sans Arabic Regular", sans-serif;
+    transform: translate(-50px, 0);
+}
