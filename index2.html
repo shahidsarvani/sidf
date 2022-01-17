@@ -247,7 +247,7 @@
     var readLess2Clicked = 0;
 
     readMoreLink1.addEventListener('touchstart', function (event) {
-      console.log(new Date())
+      console.log(new Date().now())
       var wrapper = $(readMoreLink1).parents('.wrapper');
       var activeTextBox = wrapper.find('.box_content_innerrr');
       var height = activeTextBox.outerHeight() * readMore1Clicked; //height of the scrollable div * dynamic number of clicks
@@ -281,7 +281,7 @@
       }
     })
     readMoreLink2.addEventListener('touchstart', function (event) {
-      console.log(new Date())
+      console.log(new Date().now())
       var wrapper = $(readMoreLink2).parents('.wrapper');
       var activeTextBox = wrapper.find('.box_content_innerrr');
       var height = activeTextBox.outerHeight() * readMore2Clicked; //height of the scrollable div * dynamic number of clicks
