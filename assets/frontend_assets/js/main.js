@@ -188,17 +188,17 @@ $(document).ready(function () {
   pulsatingCircles.forEach(function (pulsatingCircle) {
     pulsatingCircle.addEventListener('click', function (e) {
       const modalId = e.currentTarget.dataset.modal_id;
-      console.log(prevModalId)
-      console.log(modalId)
+      // console.log(prevModalId)
+      // console.log(modalId)
       var modal = document.getElementById(modalId); //get modal
       //show/hide modals
       if (prevModalId != modalId) {
-        console.log('modal is changed')
+        // console.log('modal is changed')
         var data = modalData;
         if (data[modalId] !== undefined) {
           if (data[modalId].modal_data.length > 0) {
             // if (data[modalId].length > 0) {
-            console.log('contains data');
+            // console.log('contains data');
             //if modal carousel has no html then add the html else keep it unchanged
             if ($(modal).find('.content_slider').html().trim().length <= 0) {
               var modal_html_text = '';
@@ -284,18 +284,52 @@ $(document).ready(function () {
       $(this).parent().find('.content_slider').removeClass('active').owlCarousel('destroy')
       $(this).parents('.modal_box').removeClass('active');
       prevModalId = '';
+      readMoreClicked = 1;
     })
   })
   //CHANGE LANGUAGE
   $('.lang-eng').click(function () {
-    $(this).parents('.modal_box').find('.arabic').removeClass('active');
+    $(this).parents('.modal_box').find('.arabic').scrollTop(0).removeClass('active');
     $(this).parents('.modal_box').find('.english').addClass('active');
     $(this).addClass('active').parent().find('.lang-ar').removeClass('active');
+    readMoreClicked = 1
   })
   $('.lang-ar').click(function () {
-    $(this).parents('.modal_box').find('.english').removeClass('active');
+    $(this).parents('.modal_box').find('.english').scrollTop(0).removeClass('active');
     $(this).parents('.modal_box').find('.arabic').addClass('active');
     $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
+    readMoreClicked = 1
+  })
+
+  //Reamore Functionality in modal popup
+  const readMoreLinks = document.querySelectorAll('.readmore')
+  readMoreLinks.forEach(function (readMoreLink) {
+    var readMoreClicked = 1;
+
+    $(readMoreLink).parents('.modal_box').find('.lang-eng').click(function () {
+      readMoreClicked = 1
+    })
+    $(readMoreLink).parents('.modal_box').find('.lang-ar').click(function () {
+      readMoreClicked = 1
+    })
+    $(readMoreLink).parents('.modal_box').find('.close-modal').click(function () {
+      readMoreClicked = 1
+    })
+    readMoreLink.addEventListener('click', function (event) {
+      var modal = $(readMoreLink).parents('.modal_box');
+      var height = 250 * readMoreClicked;
+      var activeTextBox = modal.find('.owl-item.active .box_content_innerrr.active');
+      // console.log(activeTextBox[0].scrollHeight)
+      console.log(height)
+      if (activeTextBox[0].scrollHeight > height) {
+        activeTextBox.animate(
+          {
+            scrollTop: height
+          },
+          'slow')
+        readMoreClicked++;
+      }
+    })
   })
 
   //Multitouch Scroll for modal popups
