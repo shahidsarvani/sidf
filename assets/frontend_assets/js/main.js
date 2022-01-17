@@ -299,17 +299,16 @@ $(document).ready(function () {
     $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
   })
 
-  //Reamore Functionality in modal popup
-  var changeReadLessVal;
+
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+
+  //Readmore Functionality in modal popup
   const readMoreLinks = document.querySelectorAll('.readmore')
   readMoreLinks.forEach(function (readMoreLink) {
     var readMoreClicked = 1;
     var readLessClicked = 0;
-
-    // changeReadLessVal = function (val) {
-    //   // console.log(val)
-    //   readLessClicked = val;
-    // }
 
     $(readMoreLink).parents('.modal_box').find('.lang-eng').click(function () {
       readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
@@ -324,11 +323,15 @@ $(document).ready(function () {
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.content_slider').on('translate.owl.carousel', function () {
-      readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+      if ($(readMoreLink).parents('.modal_box').find('.lang-toggle .lang-eng').hasClass('active')) {
+        readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+      } else {
+        readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+      }
       readMoreClicked = 1
     })
 
-    //disable scroll on mousewheel
+    // disable scroll on mousewheel
     // $('.modal_box').on("wheel mousewheel", function (e) {
     //   var modal = e.currentTarget;
     //   var activeTextBox = $(modal).find('.owl-item.active .box_content_innerrr.active');
@@ -349,13 +352,15 @@ $(document).ready(function () {
     //     readLessClicked = 0
     //   }
     // });
-    readMoreLink.addEventListener('click', function (event) {
+    readMoreLink.addEventListener('touchstart', function (event) {
+
+      console.log(Date.now());
       var modal = $(readMoreLink).parents('.modal_box');
       var activeTextBox = modal.find('.owl-item.active .box_content_innerrr.active');
       var height = activeTextBox.outerHeight() * readMoreClicked; //height of the scrollable div * dynamic number of clicks
       // console.log(activeTextBox[0].scrollHeight)
       // console.log(height)
-      console.log(readLessClicked)
+      // console.log(readLessClicked)
 
       if (readLessClicked) {
         activeTextBox.animate(
@@ -369,7 +374,6 @@ $(document).ready(function () {
             } else {
               readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
             }
-            // readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
             readLessClicked = 0;
             return 'slow';
           })
@@ -388,7 +392,6 @@ $(document).ready(function () {
               } else {
                 readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
               }
-              // readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
               readLessClicked = 1;
             }
             return 'slow';
@@ -396,6 +399,53 @@ $(document).ready(function () {
         // return;
       }
     })
+    // readMoreLink.addEventListener('click', function (event) {
+
+    //   console.log(Date.now());
+    //   var modal = $(readMoreLink).parents('.modal_box');
+    //   var activeTextBox = modal.find('.owl-item.active .box_content_innerrr.active');
+    //   var height = activeTextBox.outerHeight() * readMoreClicked; //height of the scrollable div * dynamic number of clicks
+    //   // console.log(activeTextBox[0].scrollHeight)
+    //   // console.log(height)
+    //   // console.log(readLessClicked)
+
+    //   if (readLessClicked) {
+    //     activeTextBox.animate(
+    //       {
+    //         scrollTop: '0'
+    //       },
+    //       function () {
+    //         readMoreClicked = 1
+    //         if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+    //           readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+    //         } else {
+    //           readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+    //         }
+    //         readLessClicked = 0;
+    //         return 'slow';
+    //       })
+    //     // return;
+    //   }
+    //   if (activeTextBox[0].scrollHeight >= height) {
+    //     activeTextBox.animate(
+    //       {
+    //         scrollTop: height
+    //       },
+    //       function () {
+    //         readMoreClicked++;
+    //         if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
+    //           if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+    //             readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
+    //           } else {
+    //             readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
+    //           }
+    //           readLessClicked = 1;
+    //         }
+    //         return 'slow';
+    //       })
+    //     // return;
+    //   }
+    // })
   })
 
   //Multitouch Scroll for modal popups
