@@ -131,7 +131,7 @@
         odio possimus laudantium velit, voluptate magni neque vitae ducimus.
       </p>
     </div>
-    <div class="readmore"><a href="javascript:void(0)">Read more</a></div>
+    <div class="readmore1"><a href="javascript:void(0)">Read more</a></div>
   </div>
   <div class="wrapper">
     <div class="div2 box_content_innerrr">
@@ -231,7 +231,7 @@
         odio possimus laudantium velit, voluptate magni neque vitae ducimus.
       </p>
     </div>
-    <div class="readmore"><a href="javascript:void(0)">Read more</a></div>
+    <div class="readmore2"><a href="javascript:void(0)">Read more</a></div>
   </div>
 
   <!-- javascript -->
@@ -239,47 +239,78 @@
   <!-- <script type="text/javascript" src="jquery.slimscroll.js"></script> -->
 
   <script>
-    const readMoreLinks = document.querySelectorAll('.readmore')
-    readMoreLinks.forEach(function (readMoreLink) {
-      var readMoreClicked = 1;
-      var readLessClicked = 0;
+    const readMoreLink1 = document.querySelector('.readmore1')
+    const readMoreLink2 = document.querySelector('.readmore2')
+    var readMore1Clicked = 1;
+    var readLess1Clicked = 0;
+    var readMore2Clicked = 1;
+    var readLess2Clicked = 0;
 
-      console.log(readMoreLink);
-      readMoreLink.addEventListener('click', function (event) {
-        var wrapper = $(readMoreLink).parents('.wrapper');
-        var activeTextBox = wrapper.find('.box_content_innerrr');
-        var height = activeTextBox.outerHeight() * readMoreClicked; //height of the scrollable div * dynamic number of clicks
-        // console.log(activeTextBox[0].scrollHeight)
-        // console.log(height)
-        console.log(readLessClicked)
-
-        if (readLessClicked) {
-          activeTextBox.animate(
-            {
-              scrollTop: '0'
-            },
-            function () {
-              readMoreClicked = 1
-              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
-              readLessClicked = 0;
-              return 'slow';
-            })
-        }
-        if (activeTextBox[0].scrollHeight >= height) {
-          activeTextBox.animate(
-            {
-              scrollTop: height
-            },
-            function () {
-              readMoreClicked++;
-              if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
-                readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
-                readLessClicked = 1;
-              }
-              return 'slow';
-            })
-        }
-      })
+    readMoreLink1.addEventListener('click', function (event) {
+      var wrapper = $(readMoreLink1).parents('.wrapper');
+      var activeTextBox = wrapper.find('.box_content_innerrr');
+      var height = activeTextBox.outerHeight() * readMore1Clicked; //height of the scrollable div * dynamic number of clicks
+      // console.log(activeTextBox[0].scrollHeight)
+      // console.log(height)
+      if (readLess1Clicked) {
+        activeTextBox.animate(
+          {
+            scrollTop: '0'
+          },
+          function () {
+            readMore1Clicked = 1
+            readMoreLink1.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+            readLess1Clicked = 0;
+            return 'slow';
+          })
+      }
+      if (activeTextBox[0].scrollHeight >= height) {
+        activeTextBox.animate(
+          {
+            scrollTop: height
+          },
+          function () {
+            readMore1Clicked++;
+            if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
+              readMoreLink1.innerHTML = '<a href="javascript:void(0)">Close</a>'
+              readLess1Clicked = 1;
+            }
+            return 'slow';
+          })
+      }
+    })
+    readMoreLink2.addEventListener('click', function (event) {
+      var wrapper = $(readMoreLink2).parents('.wrapper');
+      var activeTextBox = wrapper.find('.box_content_innerrr');
+      var height = activeTextBox.outerHeight() * readMore2Clicked; //height of the scrollable div * dynamic number of clicks
+      // console.log(activeTextBox[0].scrollHeight)
+      // console.log(height)
+      if (readLess2Clicked) {
+        activeTextBox.animate(
+          {
+            scrollTop: '0'
+          },
+          function () {
+            readMore2Clicked = 1
+            readMoreLink2.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+            readLess2Clicked = 0;
+            return 'slow';
+          })
+      }
+      if (activeTextBox[0].scrollHeight >= height) {
+        activeTextBox.animate(
+          {
+            scrollTop: height
+          },
+          function () {
+            readMore2Clicked++;
+            if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
+              readMoreLink2.innerHTML = '<a href="javascript:void(0)">Close</a>'
+              readLess2Clicked = 1;
+            }
+            return 'slow';
+          })
+      }
     })
   </script>
 </body>
