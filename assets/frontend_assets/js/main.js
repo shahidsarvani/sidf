@@ -8,15 +8,15 @@ function pauseSlider(element) {
   $(element).trigger('stop.owl.autoplay')
 }
 
-function playModalSlider(element) {
-  $(element).find('.content_slider').trigger('next.owl.carousel');
-  $(element).find('.content_slider').trigger('play.owl.autoplay')
-}
+// function playModalSlider(element) {
+//   $(element).find('.content_slider').trigger('next.owl.carousel');
+//   $(element).find('.content_slider').trigger('play.owl.autoplay')
+// }
 
-function pauseModalSlider(element) {
-  // console.log('modal carousal paused')
-  $(element).find('.content_slider').trigger('stop.owl.autoplay')
-}
+// function pauseModalSlider(element) {
+//   // console.log('modal carousal paused')
+//   $(element).find('.content_slider').trigger('stop.owl.autoplay')
+// }
 
 function readTextFile(file, callback) {
   var rawFile = new XMLHttpRequest();
@@ -211,7 +211,8 @@ $(document).ready(function () {
                 //if the type is image then add img tag in carousel else video
                 if (data_item['type'] == 'video' || data_item['type'] == '') {
                   autoplay_val = (p == 1) ? 'autoplay' : '';
-                  modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  // modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
                   p++;
                 } else {
                   modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
@@ -235,8 +236,8 @@ $(document).ready(function () {
                   "<img src='./assets/frontend_assets/img/arrow_left.svg'>",
                   "<img src='./assets/frontend_assets/img/arrow_right.svg'>",
                 ],
-                autoplayTimeout: 5000,
-                autoplay: true,
+                // autoplayTimeout: 5000,
+                // autoplay: true,
                 loop: true,
                 margin: 0,
                 onInitialized: modalInitialized,
@@ -284,7 +285,6 @@ $(document).ready(function () {
       $(this).parent().find('.content_slider').removeClass('active').owlCarousel('destroy')
       $(this).parents('.modal_box').removeClass('active');
       prevModalId = '';
-      readMoreClicked = 1;
     })
   })
   //CHANGE LANGUAGE
@@ -292,42 +292,108 @@ $(document).ready(function () {
     $(this).parents('.modal_box').find('.arabic').scrollTop(0).removeClass('active');
     $(this).parents('.modal_box').find('.english').addClass('active');
     $(this).addClass('active').parent().find('.lang-ar').removeClass('active');
-    readMoreClicked = 1
   })
   $('.lang-ar').click(function () {
     $(this).parents('.modal_box').find('.english').scrollTop(0).removeClass('active');
     $(this).parents('.modal_box').find('.arabic').addClass('active');
     $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
-    readMoreClicked = 1
   })
 
   //Reamore Functionality in modal popup
+  var changeReadLessVal;
   const readMoreLinks = document.querySelectorAll('.readmore')
   readMoreLinks.forEach(function (readMoreLink) {
     var readMoreClicked = 1;
+    var readLessClicked = 0;
+
+    // changeReadLessVal = function (val) {
+    //   // console.log(val)
+    //   readLessClicked = val;
+    // }
 
     $(readMoreLink).parents('.modal_box').find('.lang-eng').click(function () {
+      readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.lang-ar').click(function () {
+      readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.close-modal').click(function () {
+      // readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
       readMoreClicked = 1
     })
+    $(readMoreLink).parents('.modal_box').find('.content_slider').on('translate.owl.carousel', function () {
+      readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+      readMoreClicked = 1
+    })
+
+    //disable scroll on mousewheel
+    // $('.modal_box').on("wheel mousewheel", function (e) {
+    //   var modal = e.currentTarget;
+    //   var activeTextBox = $(modal).find('.owl-item.active .box_content_innerrr.active');
+    //   var readMoreLink = $(modal).find('.readmore')[0]
+    //   if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
+    //     if($(modal).find('.lang-toggle .lang-eng').hasClass('active')) {
+    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
+    //     } else {
+    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
+    //     }
+    //     readLessClicked = 1
+    //   } else {
+    //     if($(modal).find('.lang-toggle .lang-eng').hasClass('active')) {
+    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+    //     } else {
+    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+    //     }
+    //     readLessClicked = 0
+    //   }
+    // });
     readMoreLink.addEventListener('click', function (event) {
       var modal = $(readMoreLink).parents('.modal_box');
-      var height = 250 * readMoreClicked;
       var activeTextBox = modal.find('.owl-item.active .box_content_innerrr.active');
+      var height = activeTextBox.outerHeight() * readMoreClicked; //height of the scrollable div * dynamic number of clicks
       // console.log(activeTextBox[0].scrollHeight)
-      console.log(height)
-      if (activeTextBox[0].scrollHeight > height) {
+      // console.log(height)
+      console.log(readLessClicked)
+
+      if (readLessClicked) {
+        activeTextBox.animate(
+          {
+            scrollTop: '0'
+          },
+          function () {
+            readMoreClicked = 1
+            if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+            } else {
+              readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+            }
+            // readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+            readLessClicked = 0;
+            return 'slow';
+          })
+        // return;
+      }
+      if (activeTextBox[0].scrollHeight >= height) {
         activeTextBox.animate(
           {
             scrollTop: height
           },
-          'slow')
-        readMoreClicked++;
+          function () {
+            readMoreClicked++;
+            if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
+              if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+                readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
+              } else {
+                readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
+              }
+              // readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
+              readLessClicked = 1;
+            }
+            return 'slow';
+          })
+        // return;
       }
     })
   })

@@ -14,7 +14,8 @@ $modals = $modal->get_modals();
 foreach ($modals as $index => $item) {
     $modal_items = $modal->get_modal_items($item['id']);
     $data = array();
-    $loop = $modal_items->num_rows < 2 ? 'loop' : '';
+    // $loop = $modal_items->num_rows < 2 ? 'loop' : '';
+    $loop = 'loop';
     if ($modal_items) {
         foreach ($modal_items as $value) {
             $temp_data = [

@@ -649,7 +649,6 @@ p.arabic {
 
 .readmore a {
     position: absolute;
-    right: 0;
     left: 50%;
     margin: 0 auto;
     bottom: 16px;
