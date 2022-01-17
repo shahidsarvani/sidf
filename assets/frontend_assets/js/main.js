@@ -124,7 +124,7 @@ readTextFile("screens.json?rm=" + random_number, function (text) {
 var modalData = ''
 readTextFile("modals.json?rm=" + random_number, function (resp_txt) {
   modalData = JSON.parse(resp_txt);
-  console.log(modalData);
+  // console.log(modalData);
 });
 
 $(document).ready(function () {
@@ -318,6 +318,7 @@ $(document).ready(function () {
 
 
   document.body.addEventListener('touchstart', function (event) {
+    console.log('touchstart')
     var insideTarget = isDescendant(event.target, ".modal_box");
     if (insideTarget) {
       var index = touchedTargets.indexOf(event.target);
@@ -335,6 +336,7 @@ $(document).ready(function () {
     }
   });
   document.body.addEventListener('touchend', function (event) {
+    console.log('touchend')
     var index = touchedTargets.indexOf(event.target);
     if (index > -1) {
       touchedTargets.splice(index, 1);
@@ -342,6 +344,7 @@ $(document).ready(function () {
     }
   });
   document.body.addEventListener('touchmove', function (event) {
+    console.log('touchmove')
     for (var i = 0; i < event.touches.length; i++) {
       var index = touchedTargets.indexOf(event.touches[i].target);
       if (index > -1) {
