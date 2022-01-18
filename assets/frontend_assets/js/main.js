@@ -288,12 +288,12 @@ $(document).ready(function () {
     })
   })
   //CHANGE LANGUAGE
-  $('.lang-eng').click(function () {
+  $('.lang-eng').on('touchstart', function () {
     $(this).parents('.modal_box').find('.arabic').scrollTop(0).removeClass('active');
     $(this).parents('.modal_box').find('.english').addClass('active');
     $(this).addClass('active').parent().find('.lang-ar').removeClass('active');
   })
-  $('.lang-ar').click(function () {
+  $('.lang-ar').on('touchstart', function () {
     $(this).parents('.modal_box').find('.english').scrollTop(0).removeClass('active');
     $(this).parents('.modal_box').find('.arabic').addClass('active');
     $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
