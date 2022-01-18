@@ -325,15 +325,15 @@ $(document).ready(function () {
     var readMoreClicked = 1;
     var readLessClicked = 0;
 
-    $(readMoreLink).parents('.modal_box').find('.lang-eng').click(function () {
+    $(readMoreLink).parents('.modal_box').find('.lang-eng').on('touchstart', function () {
       readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
       readMoreClicked = 1
     })
-    $(readMoreLink).parents('.modal_box').find('.lang-ar').click(function () {
+    $(readMoreLink).parents('.modal_box').find('.lang-ar').on('touchstart', function () {
       readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
       readMoreClicked = 1
     })
-    $(readMoreLink).parents('.modal_box').find('.close-modal').click(function () {
+    $(readMoreLink).parents('.modal_box').find('.close-modal').on('touchstart', function () {
       // readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
       readMoreClicked = 1
     })
