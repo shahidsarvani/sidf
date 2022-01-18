@@ -170,7 +170,7 @@ $(document).ready(function () {
       readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read more</a>'
     } else {
       console.log('arabic')
-      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
     }
     // pause all videos, just play active owl-item video 
     $.each(inactiveOwlItems, function (index, item) {
@@ -330,18 +330,18 @@ $(document).ready(function () {
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.lang-ar').on('touchstart', function () {
-      readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+      readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.close-modal').on('touchstart', function () {
-      // readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+      // readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.content_slider').on('translate.owl.carousel', function () {
       if ($(readMoreLink).parents('.modal_box').find('.lang-toggle .lang-eng').hasClass('active')) {
         readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
       } else {
-        readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+        readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       }
       readMoreClicked = 1
     })
@@ -371,7 +371,7 @@ $(document).ready(function () {
             if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
               readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
             } else {
-              readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
+              readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
             }
             readLessClicked = 0;
             return 'slow';
