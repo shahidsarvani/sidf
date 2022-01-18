@@ -389,7 +389,7 @@ $(document).ready(function () {
               if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
                 readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
               } else {
-                readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
+                readMoreLink.innerHTML = '<a href="javascript:void(0)">لإغلاق النافذة</a>'
               }
               readLessClicked = 1;
             }
