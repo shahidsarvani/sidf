@@ -314,9 +314,9 @@ $(document).ready(function () {
 
 
   //prevent context menu to open
-  document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-  });
+  // document.addEventListener("contextmenu", function (e) {
+  //   e.preventDefault();
+  // });
 
 
   //Readmore Functionality in modal popup
