@@ -154,13 +154,23 @@ $(document).ready(function () {
     var owlItem = $(i).find('.owl-item.active .new_inner_img')
     // console.log(owlItem)
     var inactiveOwlItems = $(i).find('.owl-item .new_inner_img').not('.owl-item.active .new_inner_img')
+    var modal = owlItem.parents('.modal_box');
+    var readMoreLink = modal.find('.readmore');
     //active language toggler
     if (owlItem.parent().find('.box_content_innerrr.arabic').hasClass('active')) {
-      owlItem.parents('.modal_box').find('.lang-eng').removeClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').addClass('active');
+      modal.find('.lang-eng').removeClass('active');
+      modal.find('.lang-ar').addClass('active');
     } else {
-      owlItem.parents('.modal_box').find('.lang-eng').addClass('active');
-      owlItem.parents('.modal_box').find('.lang-ar').removeClass('active');
+      modal.find('.lang-eng').addClass('active');
+      modal.find('.lang-ar').removeClass('active');
+    }
+    //text for the readmore
+    if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+      console.log('eng')
+      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read more</a>'
+    } else {
+      console.log('arabic')
+      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
     }
     // pause all videos, just play active owl-item video 
     $.each(inactiveOwlItems, function (index, item) {
@@ -282,7 +292,10 @@ $(document).ready(function () {
         value.pause();
         value.currentTime = 0;
       });
-      $(this).parent().find('.content_slider').removeClass('active').owlCarousel('destroy')
+      var conent_slider = $(this).parent().find('.content_slider');
+      conent_slider.find('.box_content_innerrr.english').removeClass('active')
+      conent_slider.find('.box_content_innerrr.arabic').addClass('active')
+      conent_slider.removeClass('active').owlCarousel('destroy')
       $(this).parents('.modal_box').removeClass('active');
       prevModalId = '';
     })
@@ -332,29 +345,6 @@ $(document).ready(function () {
       }
       readMoreClicked = 1
     })
-
-    // disable scroll on mousewheel
-    // $('.modal_box').on("wheel mousewheel", function (e) {
-    //   var modal = e.currentTarget;
-    //   var activeTextBox = $(modal).find('.owl-item.active .box_content_innerrr.active');
-    //   var readMoreLink = $(modal).find('.readmore')[0]
-    //   if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
-    //     if($(modal).find('.lang-toggle .lang-eng').hasClass('active')) {
-    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
-    //     } else {
-    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
-    //     }
-    //     readLessClicked = 1
-    //   } else {
-    //     if($(modal).find('.lang-toggle .lang-eng').hasClass('active')) {
-    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
-    //     } else {
-    //       readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
-    //     }
-    //     readLessClicked = 0
-    //   }
-    // });
-
 
     //prevent touch move event to disable scroll
     $(readMoreLink).parents('.modal_box').find('.content_slider')[0].addEventListener("touchmove", function (e) {
@@ -408,112 +398,6 @@ $(document).ready(function () {
         // return;
       }
     })
-    // readMoreLink.addEventListener('click', function (event) {
-
-    //   console.log(Date.now());
-    //   var modal = $(readMoreLink).parents('.modal_box');
-    //   var activeTextBox = modal.find('.owl-item.active .box_content_innerrr.active');
-    //   var height = activeTextBox.outerHeight() * readMoreClicked; //height of the scrollable div * dynamic number of clicks
-    //   // console.log(activeTextBox[0].scrollHeight)
-    //   // console.log(height)
-    //   // console.log(readLessClicked)
-
-    //   if (readLessClicked) {
-    //     activeTextBox.animate(
-    //       {
-    //         scrollTop: '0'
-    //       },
-    //       function () {
-    //         readMoreClicked = 1
-    //         if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-    //           readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
-    //         } else {
-    //           readMoreLink.innerHTML = '<a href="javascript:void(0)">إقرأ المزيد</a>'
-    //         }
-    //         readLessClicked = 0;
-    //         return 'slow';
-    //       })
-    //     // return;
-    //   }
-    //   if (activeTextBox[0].scrollHeight >= height) {
-    //     activeTextBox.animate(
-    //       {
-    //         scrollTop: height
-    //       },
-    //       function () {
-    //         readMoreClicked++;
-    //         if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
-    //           if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-    //             readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
-    //           } else {
-    //             readMoreLink.innerHTML = '<a href="javascript:void(0)">أغلق</a>'
-    //           }
-    //           readLessClicked = 1;
-    //         }
-    //         return 'slow';
-    //       })
-    //     // return;
-    //   }
-    // })
   })
-
-  //Multitouch Scroll for modal popups
-  // function isDescendant(child, queryString) {
-  //   if (child.matches(queryString)) {
-  //     return child;
-  //   }
-  //   var parent = child.parentNode;
-  //   while (parent.matches) {
-  //     if (parent.matches(queryString)) {
-  //       return parent;
-  //     }
-  //     parent = parent.parentNode;
-  //   }
-  //   return false;
-  // }
-
-  // var touchedTargets = [];
-  // var touchedData = [];
-
-
-  // document.body.addEventListener('touchstart', function (event) {
-  //   console.log('touchstart')
-  //   var insideTarget = isDescendant(event.target, ".modal_box");
-  //   console.log(insideTarget)
-  //   if (insideTarget) {
-  //     var index = touchedTargets.indexOf(event.target);
-  //     if (index < 0) {
-  //       var data = { x: 0, y: 0, scroller: insideTarget };
-  //       for (var i = 0; i < event.touches.length; i++) {
-  //         if (event.touches[i].target.isSameNode(event.target)) {
-  //           data.x = event.touches[i].clientX;
-  //           data.y = event.touches[i].clientY;
-  //         }
-  //       }
-  //       touchedTargets.push(event.target);
-  //       touchedData.push(data);
-  //     }
-  //   }
-  // });
-  // document.body.addEventListener('touchend', function (event) {
-  //   console.log('touchend')
-  //   var index = touchedTargets.indexOf(event.target);
-  //   if (index > -1) {
-  //     touchedTargets.splice(index, 1);
-  //     touchedData.splice(index, 1);
-  //   }
-  // });
-  // document.body.addEventListener('touchmove', function (event) {
-  //   console.log('touchmove')
-  //   for (var i = 0; i < event.touches.length; i++) {
-  //     var index = touchedTargets.indexOf(event.touches[i].target);
-  //     if (index > -1) {
-  //       touchedData[index].scroller.scrollTop = touchedData[index].scroller.scrollTop + (event.touches[i].clientY - touchedData[index].y);
-  //       touchedData[index].y = event.touches[i].clientY;
-  //       event.preventDefault();
-  //     }
-  //   }
-  // }, { passive: false });
-
 })
 
