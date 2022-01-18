@@ -186,7 +186,7 @@ $(document).ready(function () {
   const pulsatingCircles = document.querySelectorAll('.pulsating-circle');
   var prevModalId = '';
   pulsatingCircles.forEach(function (pulsatingCircle) {
-    pulsatingCircle.addEventListener('click', function (e) {
+    pulsatingCircle.addEventListener('touchstart', function (e) {
       const modalId = e.currentTarget.dataset.modal_id;
       // console.log(prevModalId)
       // console.log(modalId)
@@ -276,7 +276,7 @@ $(document).ready(function () {
   // CLOSE MODAL
   const closeModal = document.querySelectorAll('.close-modal');
   closeModal.forEach(function (close) {
-    close.addEventListener('click', function () {
+    close.addEventListener('touchstart', function () {
       $(this).parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
         // console.log(value)
         value.pause();
@@ -357,7 +357,6 @@ $(document).ready(function () {
 
 
     //prevent touch move event to disable scroll
-    console.log($(readMoreLink).parents('.modal_box').find('.content_slider')[0])
     $(readMoreLink).parents('.modal_box').find('.content_slider')[0].addEventListener("touchmove", function (e) {
       e.preventDefault();
     }, { passive: false })
