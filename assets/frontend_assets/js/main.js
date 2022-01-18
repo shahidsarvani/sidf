@@ -300,9 +300,11 @@ $(document).ready(function () {
   })
 
 
+  //prevent context menu to open
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   });
+
 
   //Readmore Functionality in modal popup
   const readMoreLinks = document.querySelectorAll('.readmore')
@@ -352,6 +354,14 @@ $(document).ready(function () {
     //     readLessClicked = 0
     //   }
     // });
+
+
+    //prevent touch move event to disable scroll
+    console.log($(readMoreLink).parents('.modal_box').find('.content_slider')[0])
+    $(readMoreLink).parents('.modal_box').find('.content_slider')[0].addEventListener("touchmove", function (e) {
+      e.preventDefault();
+    }, { passive: false })
+
     readMoreLink.addEventListener('touchstart', function (event) {
 
       console.log(Date.now());
