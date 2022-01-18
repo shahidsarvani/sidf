@@ -239,6 +239,9 @@
   <!-- <script type="text/javascript" src="jquery.slimscroll.js"></script> -->
 
   <script>
+    document.body.addEventListener("touchmove", function(e) {
+      e.preventDefault();
+    }, {passive: false})
     const readMoreLinks = document.querySelectorAll('.readmore')
     readMoreLinks.forEach(function (readMoreLink) {
       var readMoreClicked = 1;
