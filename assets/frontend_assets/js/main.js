@@ -154,7 +154,10 @@ $(document).ready(function () {
         });
         $(i).find('.owl-item.active video').each(function (index, value) {
             if(value.readyState >= 3) { //if video has future data or enough data to play
+                console.log('video loaded')
                 value.play();
+            } else {
+                console.log('video not loaded yet')
             }
         });
     }
