@@ -153,12 +153,16 @@ $(document).ready(function () {
             value.currentTime = 0;
         });
         $(i).find('.owl-item.active video').each(function (index, value) {
-            if(value.readyState >= 3) { //if video has future data or enough data to play
-                console.log('video loaded')
-                value.play();
-            } else {
-                console.log('video not loaded yet')
-            }
+            var b = setInterval(() => {
+                if (value.readyState >= 3) { //if video has future data or enough data to play
+                    console.log('video loaded')
+                    value.play();
+                } else {
+                    console.log('video not loaded yet')
+                }
+                //stop checking every half second
+                clearInterval(b);
+            }, 500);
         });
     }
     function modalInitialized(e) {
@@ -198,14 +202,14 @@ $(document).ready(function () {
         if (owlItem[0].nodeName == 'VIDEO') {
 
             //setTimeOut so that the issue with play() and pause() is resolved
-            var b = setTimeout(function () {
-                if(owlItem[0].readyState >= 3) { //if video has future data or enough data to play
+            setTimeout(function () {
+                if (owlItem[0].readyState >= 3) { //if video has future data or enough data to play
                     console.log('video loaded')
                     owlItem[0].play();
                 } else {
                     console.log('video not loaded yet')
                 }
-                clearInterval(b); //clear interval so that it won't run again and again 
+                // clearInterval(b); //clear interval so that it won't run again and again 
             }, modalOpenDelay + 50);
         }
     }
