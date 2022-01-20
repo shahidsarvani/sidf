@@ -130,7 +130,7 @@ readTextFile("modals.json?rm=" + random_number, function (resp_txt) {
         var modal_Data = modalData[arr[i]].modal_data
         if (modal_Data.length > 0) {
             for (var j = 0; j < modal_Data.length; j++) {
-                head.append('<link rel="preload" as="video" href="' + modal_Data[j].src + '" />');
+                head.append('<link rel="preload" href="' + modal_Data[j].src + '" as="video" type="' + modal_Data[j].filetype + '" />');
             }
         }
     }
