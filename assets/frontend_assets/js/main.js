@@ -153,8 +153,9 @@ $(document).ready(function () {
             value.currentTime = 0;
         });
         $(i).find('.owl-item.active video').each(function (index, value) {
-            // value.load();
-            value.play();
+            if(value.readyState >= 3) { //if video has future data or enough data to play
+                value.play();
+            }
         });
     }
     function modalInitialized(e) {
@@ -194,11 +195,12 @@ $(document).ready(function () {
         if (owlItem[0].nodeName == 'VIDEO') {
 
             //setTimeOut so that the issue with play() and pause() is resolved
-            setTimeout(function () {
-                owlItem[0].play();
+            var b = setTimeout(function () {
+                if(owlItem[0].readyState >= 3) { //if video has future data or enough data to play
+                    owlItem[0].play();
+                }
+                clearInterval(b); //clear interval so that it won't run again and again 
             }, modalOpenDelay + 50);
-            // if ($(i).parents('.modal_box').hasClass('active')) {
-            // }
         }
     }
     // OPEN MODAL
