@@ -299,11 +299,12 @@ p.arabic {
   margin: 150px 0 0 320px;
 }
 .box_pin.box_pin_ten {
-  margin: 245px 0 0 270px;
+    margin: 245px 0 0 270px;
+    width: 370px;
 }
 .box_pin.box_pin_eleven {
-  margin: 245px 0 0 -300px;
-  width: 360px;
+    margin: 245px 0 0 -220px;
+    width: 370px;
 }
 .box_pin.box_pin_twelve {
     margin: 20px 0 0 -60px;
@@ -313,7 +314,8 @@ p.arabic {
     margin: 9px 0 0 -10px;
 }
 .box_pin.box_pin_fourteen {
-  margin: 9px 0 0 -10px;
+    margin: 9px 0 0 50px;
+    width: 370px;
 }
 /* .box_pin.box_pin_fifteen {
   margin: 9px 0 0 0px;
@@ -640,7 +642,7 @@ p.arabic {
   height: 600px !important;
 }
 .timeline_items .english {
-    margin-bottom: 50px !important;
+    margin-bottom: 20px !important;
 }
 .box_pin_nine .timeline_items img {
     margin-bottom: 80px;
