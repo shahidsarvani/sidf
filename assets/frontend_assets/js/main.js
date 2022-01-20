@@ -124,19 +124,27 @@ readTextFile("screens.json?rm=" + random_number, function (text) {
 var modalData = ''
 readTextFile("modals.json?rm=" + random_number, function (resp_txt) {
     modalData = JSON.parse(resp_txt);
-    var arr = ['modal1', 'modal2', 'modal3', 'modal4', 'modal5', 'modal6', 'modal7', 'modal8', 'modal9', 'modal10', 'modal11', 'modal12', 'modal13', 'modal14']
-    var head = $('head')
-    for (var i = 0; i < arr.length; i++) {
-        var modal_Data = modalData[arr[i]].modal_data
-        if (modal_Data.length > 0) {
-            for (var j = 0; j < modal_Data.length; j++) {
-                head.append('<link rel="preload" href="' + modal_Data[j].src + '" as="video" type="' + modal_Data[j].filetype + '" />');
-            }
-        }
-    }
+    // var arr = ['modal1', 'modal2', 'modal3', 'modal4', 'modal5', 'modal6', 'modal7', 'modal8', 'modal9', 'modal10', 'modal11', 'modal12', 'modal13', 'modal14']
+    // var head = $('head')
+    // for (var i = 0; i < arr.length; i++) {
+    //     var modal_Data = modalData[arr[i]].modal_data
+    //     if (modal_Data.length > 0) {
+    //         for (var j = 0; j < modal_Data.length; j++) {
+    //             head.append('<link rel="preload" href="' + modal_Data[j].src + '" as="video" type="' + modal_Data[j].filetype + '" />');
+    //         }
+    //     }
+    // }
 });
 
 $(document).ready(function () {
+
+    function loadVideos(video) {
+        $(video).get(0).load();
+        $(video).get(0).addEventListener("canplaythrough", function () {
+            this.play();
+            this.pause();
+        });
+    }
 
     function modalTranslated(e) {
         console.log('modal translated')
@@ -156,7 +164,8 @@ $(document).ready(function () {
             var b = setInterval(() => {
                 if (value.readyState >= 3) { //if video has future data or enough data to play
                     console.log('video loaded')
-                    value.play();
+                    // value.play();
+                    loadVideos(value)
                     clearInterval(b);
                 } else {
                     console.log('video not loaded yet')
@@ -205,7 +214,9 @@ $(document).ready(function () {
             setTimeout(function () {
                 if (owlItem[0].readyState >= 3) { //if video has future data or enough data to play
                     console.log('video loaded')
-                    owlItem[0].play();
+                    // owlItem[0].play();
+
+                    loadVideos(owlItem[0])
                 } else {
                     console.log('video not loaded yet')
                 }
@@ -243,7 +254,7 @@ $(document).ready(function () {
                                 if (data_item['type'] == 'video' || data_item['type'] == '') {
                                     autoplay_val = (p == 1) ? 'autoplay' : '';
                                     // modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
-                                    modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                                    modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls preload="none" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
                                     p++;
                                 } else {
                                     modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
