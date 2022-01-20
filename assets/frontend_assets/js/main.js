@@ -157,11 +157,11 @@ $(document).ready(function () {
                 if (value.readyState >= 3) { //if video has future data or enough data to play
                     console.log('video loaded')
                     value.play();
+                    clearInterval(b);
                 } else {
                     console.log('video not loaded yet')
                 }
                 //stop checking every half second
-                clearInterval(b);
             }, 500);
         });
     }
