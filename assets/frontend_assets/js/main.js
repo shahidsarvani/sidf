@@ -197,7 +197,10 @@ $(document).ready(function () {
             //setTimeOut so that the issue with play() and pause() is resolved
             var b = setTimeout(function () {
                 if(owlItem[0].readyState >= 3) { //if video has future data or enough data to play
+                    console.log('video loaded')
                     owlItem[0].play();
+                } else {
+                    console.log('video not loaded yet')
                 }
                 clearInterval(b); //clear interval so that it won't run again and again 
             }, modalOpenDelay + 50);
