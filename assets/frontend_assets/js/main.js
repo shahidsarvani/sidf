@@ -156,23 +156,23 @@ $(document).ready(function () {
             $(i).parent().find('.lang-eng').removeClass('active');
             $(i).parent().find('.lang-ar').addClass('active');
         }
-        $(i).find('.owl-item video').each(function (index, value) {
-            value.pause();
-            value.currentTime = 0;
-        });
-        $(i).find('.owl-item.active video').each(function (index, value) {
-            var b = setInterval(() => {
-                if (value.readyState >= 3) { //if video has future data or enough data to play
-                    console.log('video loaded')
-                    value.play();
-                    // loadVideos(value)
-                    clearInterval(b);
-                } else {
-                    console.log('video not loaded yet')
-                }
-                //stop checking every half second
-            }, 500);
-        });
+        // $(i).find('.owl-item video').each(function (index, value) {
+        //     value.pause();
+        //     value.currentTime = 0;
+        // });
+        // $(i).find('.owl-item.active video').each(function (index, value) {
+        //     var b = setInterval(() => {
+        //         if (value.readyState >= 3) { //if video has future data or enough data to play
+        //             console.log('video loaded')
+        //             value.play();
+        //             // loadVideos(value)
+        //             clearInterval(b);
+        //         } else {
+        //             console.log('video not loaded yet')
+        //         }
+        //         //stop checking every half second
+        //     }, 500);
+        // });
     }
     function modalInitialized(e) {
         var i = e.currentTarget;
@@ -191,38 +191,38 @@ $(document).ready(function () {
             modal.find('.lang-ar').removeClass('active');
         }
         //text for the readmore
-        if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-            console.log('eng')
-            readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read more</a>'
-        } else {
-            console.log('arabic')
-            readMoreLink[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
-        }
+        // if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+        //     console.log('eng')
+        //     readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read more</a>'
+        // } else {
+        //     console.log('arabic')
+        //     readMoreLink[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
+        // }
         // pause all videos, just play active owl-item video 
-        $.each(inactiveOwlItems, function (index, item) {
-            // if (!$(item).parents('.owl-item').hasClass('active')) {
-            if (item.nodeName == 'VIDEO') {
-                item.pause()
-                item.currentTime = 0;
-            }
-            // }
-        })
-        // console.log(owlItem[0].nodeName)
-        if (owlItem[0].nodeName == 'VIDEO') {
+        // $.each(inactiveOwlItems, function (index, item) {
+        //     // if (!$(item).parents('.owl-item').hasClass('active')) {
+        //     if (item.nodeName == 'VIDEO') {
+        //         item.pause()
+        //         item.currentTime = 0;
+        //     }
+        //     // }
+        // })
+        // // console.log(owlItem[0].nodeName)
+        // if (owlItem[0].nodeName == 'VIDEO') {
 
-            //setTimeOut so that the issue with play() and pause() is resolved
-            setTimeout(function () {
-                if (owlItem[0].readyState >= 3) { //if video has future data or enough data to play
-                    console.log('video loaded')
-                    owlItem[0].play();
+        //     //setTimeOut so that the issue with play() and pause() is resolved
+        //     setTimeout(function () {
+        //         if (owlItem[0].readyState >= 3) { //if video has future data or enough data to play
+        //             console.log('video loaded')
+        //             owlItem[0].play();
 
-                    // loadVideos(owlItem[0])
-                } else {
-                    console.log('video not loaded yet')
-                }
-                // clearInterval(b); //clear interval so that it won't run again and again 
-            }, modalOpenDelay + 50);
-        }
+        //             // loadVideos(owlItem[0])
+        //         } else {
+        //             console.log('video not loaded yet')
+        //         }
+        //         // clearInterval(b); //clear interval so that it won't run again and again 
+        //     }, modalOpenDelay + 50);
+        // }
     }
     // OPEN MODAL
     const pulsatingCircles = document.querySelectorAll('.pulsating-circle');
@@ -290,10 +290,10 @@ $(document).ready(function () {
                         //remove active class from other modal boxes in the same screen to close them
                         $(modal).parents('.main_box').find('.modal_box').removeClass('active')
                         //after removing active class pause the videos in that carousel
-                        $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
-                            value.pause();
-                            value.currentTime = 0;
-                        });
+                        // $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
+                        //     value.pause();
+                        //     value.currentTime = 0;
+                        // });
                         //remove the active class from other modal carousels and destroy the carousel
                         $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
                         //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
@@ -319,11 +319,11 @@ $(document).ready(function () {
     const closeModal = document.querySelectorAll('.close-modal');
     closeModal.forEach(function (close) {
         close.addEventListener('touchstart', function () {
-            $(this).parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
-                // console.log(value)
-                value.pause();
-                value.currentTime = 0;
-            });
+            // $(this).parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
+            //     // console.log(value)
+            //     value.pause();
+            //     value.currentTime = 0;
+            // });
             var conent_slider = $(this).parent().find('.content_slider');
             conent_slider.find('.box_content_innerrr.english').removeClass('active')
             conent_slider.find('.box_content_innerrr.arabic').addClass('active')
