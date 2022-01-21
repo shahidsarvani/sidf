@@ -25,7 +25,7 @@ foreach ($modals as $index => $item) {
                 'text_ar' => html_entity_decode($value["text_ar"]),
                 'active_en' => $value["title_ar"] == '' && $value["text_ar"] == '' ? 'active' : '',
                 'active_ar' => $value["title_ar"] != '' || $value["text_ar"] != '' ? 'active' : '',
-                'iframe_link' => $value["media_id"],
+                'iframe_link' => html_entity_decode($value["media_id"]),
             ];
             // if ($value['media_id'] != '' && $value['media_id'] != 0) {
             //     $media = $modal->get_media($value['media_id']);
