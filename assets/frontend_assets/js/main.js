@@ -251,14 +251,14 @@ $(document).ready(function () {
                             data_items.forEach(function (data_item) {
                                 //here we will make html for the carousel item
                                 //if the type is image then add img tag in carousel else video
-                                if (data_item['type'] == 'video' || data_item['type'] == '') {
-                                    autoplay_val = (p == 1) ? 'autoplay' : '';
+                                // if (data_item['type'] == 'video' || data_item['type'] == '') {
+                                    // autoplay_val = (p == 1) ? 'autoplay' : '';
                                     // modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
-                                    modal_html_text += '<div class="item"><iframe width="1190" height="669" src="https://www.youtube.com/embed/8k-b-7rJAeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
-                                    p++;
-                                } else {
-                                    modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
-                                }
+                                    modal_html_text += '<div class="item">'+iframe_link+'<div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                                //     p++;
+                                // } else {
+                                //     modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                                // }
                             })
                             // console.log(modal_html_text)
                             $(modal).find('.content_slider').html(modal_html_text)

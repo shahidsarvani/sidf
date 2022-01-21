@@ -141,7 +141,7 @@ class Modal
 			$title_ar = filter_var($value['title_ar'], FILTER_SANITIZE_STRING);
 			$text_eng = htmlspecialchars($value['text_eng'], ENT_QUOTES);
 			$text_ar = htmlspecialchars($value['text_ar'], ENT_QUOTES);
-			$media_id = filter_var($value['media_id'], FILTER_SANITIZE_STRING);
+			$media_id = htmlspecialchars($value['media_id'], ENT_QUOTES);
 
 			// echo $text_ar;
 			// die();

@@ -25,30 +25,31 @@ foreach ($modals as $index => $item) {
                 'text_ar' => html_entity_decode($value["text_ar"]),
                 'active_en' => $value["title_ar"] == '' && $value["text_ar"] == '' ? 'active' : '',
                 'active_ar' => $value["title_ar"] != '' || $value["text_ar"] != '' ? 'active' : '',
+                'iframe_link' => $value["media_id"],
             ];
-            if ($value['media_id'] != '' && $value['media_id'] != 0) {
-                $media = $modal->get_media($value['media_id']);
-                // echo json_encode($media);
-                if ($media != false) {
-                    $media = $media->fetch_assoc();
-                    // if ($media['type'] == 'video') {
-                        $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
-                        $temp_data['type'] = $media["type"];
-                        $temp_data['filetype'] = $media["filetype"];
-                    // } else {
-                    //     $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
-                    //     $temp_data['type'] = $media["type"];
-                    // }
-                } else {
-                    $temp_data['src'] = '';
-                    $temp_data['type'] = '';
-                    $temp_data['filetype'] = '';
-                }
-            } else {
-                $temp_data['src'] = '';
-                $temp_data['type'] = '';
-                $temp_data['filetype'] = '';
-            }
+            // if ($value['media_id'] != '' && $value['media_id'] != 0) {
+            //     $media = $modal->get_media($value['media_id']);
+            //     // echo json_encode($media);
+            //     if ($media != false) {
+            //         $media = $media->fetch_assoc();
+            //         // if ($media['type'] == 'video') {
+            //             $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
+            //             $temp_data['type'] = $media["type"];
+            //             $temp_data['filetype'] = $media["filetype"];
+            //         // } else {
+            //         //     $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
+            //         //     $temp_data['type'] = $media["type"];
+            //         // }
+            //     } else {
+            //         $temp_data['src'] = '';
+            //         $temp_data['type'] = '';
+            //         $temp_data['filetype'] = '';
+            //     }
+            // } else {
+            //     $temp_data['src'] = '';
+            //     $temp_data['type'] = '';
+            //     $temp_data['filetype'] = '';
+            // }
             array_push($data, $temp_data);    
         }
     }
