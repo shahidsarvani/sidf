@@ -164,8 +164,8 @@ $(document).ready(function () {
             var b = setInterval(() => {
                 if (value.readyState >= 3) { //if video has future data or enough data to play
                     console.log('video loaded')
-                    // value.play();
-                    loadVideos(value)
+                    value.play();
+                    // loadVideos(value)
                     clearInterval(b);
                 } else {
                     console.log('video not loaded yet')
@@ -214,9 +214,9 @@ $(document).ready(function () {
             setTimeout(function () {
                 if (owlItem[0].readyState >= 3) { //if video has future data or enough data to play
                     console.log('video loaded')
-                    // owlItem[0].play();
+                    owlItem[0].play();
 
-                    loadVideos(owlItem[0])
+                    // loadVideos(owlItem[0])
                 } else {
                     console.log('video not loaded yet')
                 }
