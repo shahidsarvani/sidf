@@ -79,14 +79,10 @@ require ADMIN_VIEW . '/layout/header.php';
                                                 <textarea name="text_ar[]" class="summernote" cols="30" rows="3"><?php echo $item['text_ar'] ?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label>Video Iframe Link:</label>
-                                                <input type="text" name="old_media_id[]" class="form-control" value="<?php echo $item['media_id'] ?>" placeholder="Title">
-                                            </div>
-                                            <!-- <div class="form-group">
                                                 <input type="hidden" class="modal_media" name="old_media_id[]" value="<?php echo $item['media_id']; ?>" data-value="<?php echo isset($item['detail']['name']) ? $items_config['modal_media_url'] . $item['detail']['name'] : '' ?>" data-caption="<?php echo $item['detail']['name'] ?? ''; ?>" data-key="<?php echo $item['detail']['file_key'] ?? ''; ?>" data-size="<?php echo $item['detail']['size'] ?? ''; ?>" data-type="<?php echo $item['detail']['type'] ?? ''; ?>" data-filetype="<?php echo $item['detail']['filetype'] ?? ''; ?>">
                                                 <label>Upload Media:</label>
                                                 <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -144,31 +140,27 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label>Title English:</label>
-                                                        <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Title Arabic:</label>
-                                                        <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>English Description:</label>
-                                                        <textarea name="text_eng[]" class="summernote" cols="30" rows="3"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Arabic Description:</label>
-                                                        <textarea name="text_ar[]" class="summernote" cols="30" rows="3"></textarea>
-                                                    </div>
                                             <div class="form-group">
-                                                <label>Video Iframe Link:</label>
-                                                <input type="text" name="old_media_id[]" class="form-control" placeholder="Link">
+                                                <label>Title English:</label>
+                                                <input type="text" name="title_eng[]" class="form-control" placeholder="Title">
                                             </div>
-                                                    <!-- <div class="form-group">
+                                            <div class="form-group">
+                                                <label>Title Arabic:</label>
+                                                <input type="text" name="title_ar[]" class="form-control" placeholder="العنوان">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>English Description:</label>
+                                                <textarea name="text_eng[]" class="summernote" cols="30" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Arabic Description:</label>
+                                                <textarea name="text_ar[]" class="summernote" cols="30" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
                                                 <input type="hidden" name="old_media_id[]" class="modal_media" >
                                                 <label>Upload Media:</label>
                                                 <input type="file" name="media[]" class="file-input-overwrite-modal" data-fouc>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>`;
