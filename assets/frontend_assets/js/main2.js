@@ -255,16 +255,19 @@ $(document).ready(function () {
               });
             }
 
+            var main_box = $(modal).parents('.main_box');
+
             //remove active class from other modal boxes in the same screen to close them
-            $(modal).parents('.main_box').find('.modal_box').removeClass('active')
+            main_box.find('.modal_box').removeClass('active')
             //after removing active class pause the videos in that carousel
-            $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
+            main_box.find('.content_slider').not($('#' + modalId).find('.content_slider')).find('.owl-item video').not(".owl-item.cloned video").each(function (index, value) {
               value.pause();
               value.currentTime = 0;
             });
             //remove the active class from other modal carousels and destroy the carousel
-            $(modal).parents('.main_box').find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
+            main_box.find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
             //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
+            main_box.find('.overlay').addClass('active');
             setTimeout(function () {
               modal.classList.add('active');
             }, modalOpenDelay);
@@ -287,16 +290,19 @@ $(document).ready(function () {
   const closeModal = document.querySelectorAll('.close-modal');
   closeModal.forEach(function (close) {
     close.addEventListener('click', function () {
-      $(this).parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
+      var _this = $(this);
+      _this.parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
         // console.log(value)
         value.pause();
         value.currentTime = 0;
       });
-      var conent_slider = $(this).parent().find('.content_slider');
+      var conent_slider = _this.parent().find('.content_slider');
       conent_slider.find('.box_content_innerrr.english').removeClass('active')
       conent_slider.find('.box_content_innerrr.arabic').addClass('active')
       conent_slider.removeClass('active').owlCarousel('destroy')
-      $(this).parents('.modal_box').removeClass('active');
+      _this.parents('.modal_box').removeClass('active');
+      //remove overlay
+      _this.parents('.main_box').find('.overlay').removeClass('active');
       prevModalId = '';
     })
   })
