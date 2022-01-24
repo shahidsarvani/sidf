@@ -268,6 +268,13 @@ $(document).ready(function () {
             main_box.find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
             //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
             main_box.find('.overlay').addClass('active');
+            //only apply read more when the content has scrollbar
+            var modal_div = $(modal).find('.box_content_innerrr')[0];
+            var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
+            if(!hasVerticalScrollbar) {
+              console.log(hasVerticalScrollbar)
+              $(modal).find('.readmore').addClass('inactive');
+            }
             setTimeout(function () {
               modal.classList.add('active');
             }, modalOpenDelay);
