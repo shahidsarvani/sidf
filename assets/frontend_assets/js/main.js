@@ -167,7 +167,7 @@ $(document).ready(function () {
     //text for the readmore
     if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
       console.log('eng')
-      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read more</a>'
+      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read More</a>'
     } else {
       console.log('arabic')
       readMoreLink[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
@@ -332,7 +332,7 @@ $(document).ready(function () {
     var readLessClicked = 0;
 
     $(readMoreLink).parents('.modal_box').find('.lang-eng').on('touchstart', function () {
-      readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+      readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.lang-ar').on('touchstart', function () {
@@ -345,7 +345,7 @@ $(document).ready(function () {
     })
     $(readMoreLink).parents('.modal_box').find('.content_slider').on('translate.owl.carousel', function () {
       if ($(readMoreLink).parents('.modal_box').find('.lang-toggle .lang-eng').hasClass('active')) {
-        readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+        readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
       } else {
         readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       }
@@ -375,7 +375,7 @@ $(document).ready(function () {
           function () {
             readMoreClicked = 1
             if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
             } else {
               readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
             }
