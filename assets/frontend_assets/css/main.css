@@ -271,6 +271,9 @@ p.arabic {
 .box_pin.box_pin_two {
   margin-top: 479px;
 }
+.box_pin_two .text.english {
+    padding-bottom: 15px;
+}
 .box_pin.box_pin_three {
   margin: 237px 110px 0 240px;
 }
