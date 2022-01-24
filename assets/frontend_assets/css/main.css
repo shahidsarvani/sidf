@@ -108,9 +108,9 @@ section {
   display: block;
 }
 body {
-    line-height: 1;
-    font-family: "Neo Sans Arabic Regular", sans-serif;
-    overflow-y: hidden;
+  line-height: 1;
+  font-family: "Neo Sans Arabic Regular", sans-serif;
+  overflow-y: hidden;
 }
 /* ol, */
 ul {
@@ -232,14 +232,13 @@ p.arabic {
 }
 
 .box_content_innerrr.english ul {
-    margin-left: 50px;
-    margin-bottom: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
 }
 .box_content_innerrr.english ol {
   margin-left: 40px;
   margin-bottom: 20px;
 }
-
 
 .modal_box .new_inner_img {
   height: 490px;
@@ -299,23 +298,23 @@ p.arabic {
   margin: 150px 0 0 320px;
 }
 .box_pin.box_pin_ten {
-    margin: 245px 0 0 270px;
-    width: 370px;
+  margin: 245px 0 0 270px;
+  width: 370px;
 }
 .box_pin.box_pin_eleven {
-    margin: 245px 0 0 -220px;
-    width: 370px;
+  margin: 245px 0 0 -220px;
+  width: 370px;
 }
 .box_pin.box_pin_twelve {
-    margin: 20px 0 0 -60px;
-    width: 360px;
+  margin: 20px 0 0 -60px;
+  width: 360px;
 }
 .box_pin.box_pin_thirteen {
-    margin: 9px 0 0 -10px;
+  margin: 9px 0 0 -10px;
 }
 .box_pin.box_pin_fourteen {
-    margin: 9px 0 0 50px;
-    width: 370px;
+  margin: 9px 0 0 50px;
+  width: 370px;
 }
 /* .box_pin.box_pin_fifteen {
   margin: 9px 0 0 0px;
@@ -633,7 +632,7 @@ p.arabic {
 }
 
 .box_pin_twelve .border_verti {
-    height: 480px !important;
+  height: 480px !important;
 }
 .box_pin_thirteen .border_verti {
   height: 350px !important;
@@ -642,31 +641,35 @@ p.arabic {
   height: 600px !important;
 }
 .timeline_items .english {
-    margin-bottom: 20px !important;
+  margin-bottom: 20px !important;
 }
 .box_pin_nine .timeline_items img {
-    margin-bottom: 80px;
-    margin-top: 80px;
+  margin-bottom: 80px;
+  margin-top: 80px;
 }
 
 .readmore a {
-    position: absolute;
-    left: 50%;
-    margin: 0 auto;
-    bottom: 16px;
-    z-index: 9;
-    font-size: 26px;
-    line-height: 1.4;
-    text-decoration: none;
-    color: #92b544;
-    font-family: "Neo Sans Arabic Regular", sans-serif;
-    transform: translate(-50px, 0);
+  position: absolute;
+  left: 50%;
+  margin: 0 auto;
+  bottom: 16px;
+  z-index: 9;
+  font-size: 26px;
+  line-height: 1.4;
+  text-decoration: none;
+  color: #92b544;
+  font-family: "Neo Sans Arabic Regular", sans-serif;
+  transform: translate(-50px, 0);
 }
 
 .overlay {
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    background: #00000082;
-    z-index: 2;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: #00000082;
+  z-index: 2;
+  display: none;
+}
+.overlay.active {
+  display: block;
 }
