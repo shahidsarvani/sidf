@@ -139,6 +139,15 @@ $(document).ready(function () {
       $(i).parent().find('.lang-eng').removeClass('active');
       $(i).parent().find('.lang-ar').addClass('active');
     }
+    //only apply read more when the content has scrollbar
+    var modal_div = $(i).find('.owl-item.active .box_content_innerrr')[0];
+    console.log(modal_div.scrollHeight)
+    console.log(modal_div.clientHeight)
+    var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
+    if(!hasVerticalScrollbar) {
+      console.log(hasVerticalScrollbar)
+      $(modal).find('.readmore').addClass('inactive');
+    }
     $(i).find('.owl-item video').each(function (index, value) {
       value.pause();
       value.currentTime = 0;
@@ -269,7 +278,9 @@ $(document).ready(function () {
             //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
             main_box.find('.overlay').addClass('active');
             //only apply read more when the content has scrollbar
-            var modal_div = $(modal).find('.box_content_innerrr')[0];
+            var modal_div = $(modal).find('.owl-item.active .box_content_innerrr')[0];
+            console.log(modal_div.scrollHeight)
+            console.log(modal_div.clientHeight)
             var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
             if(!hasVerticalScrollbar) {
               console.log(hasVerticalScrollbar)
