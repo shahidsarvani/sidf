@@ -685,3 +685,9 @@ p.arabic {
 .overlay.active {
   display: block;
 }
+
+
+
+.modal_box video::-webkit-media-controls-fullscreen-button {
+    display: none;
+}
