@@ -183,8 +183,10 @@ table {
 }
 p.arabic {
     direction: rtl !important;
-    line-height: 30px;
+    line-height: 35px;
 }
+
+
 .modal_box .owl-nav {
   margin: 0 !important;
   position: absolute;
@@ -312,6 +314,9 @@ p.arabic {
 .box_pin.box_pin_twelve {
   margin: 20px 0 0 -60px;
   width: 360px;
+}
+.box_pin_twelve .timeline_items .text.english {
+    margin-bottom: 40px !important;
 }
 .box_pin.box_pin_thirteen {
   margin: 9px 0 0 -10px;
