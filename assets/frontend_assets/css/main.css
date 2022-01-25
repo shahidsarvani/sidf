@@ -572,8 +572,8 @@ p.arabic {
 }
 
 #modal2 .box_content_innerrr {
-  max-height: 270px;
-  overflow: auto !important;
+    max-height: 230px;
+    overflow: auto !important;
 }
 #modal3 .box_content_innerrr {
   max-height: 200px;
