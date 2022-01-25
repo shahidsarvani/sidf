@@ -146,7 +146,9 @@ $(document).ready(function () {
     var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
     if(!hasVerticalScrollbar) {
       console.log(hasVerticalScrollbar)
-      $(modal).find('.readmore').addClass('inactive');
+      $(i).parents('.modal_box').find('.readmore').addClass('inactive');
+    } else {
+      $(i).parents('.modal_box').find('.readmore').removeClass('inactive');
     }
     $(i).find('.owl-item video').each(function (index, value) {
       value.pause();
