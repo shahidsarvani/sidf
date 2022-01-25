@@ -665,6 +665,9 @@ p.arabic {
   font-family: "Neo Sans Arabic Regular", sans-serif;
   transform: translate(-50px, 0);
 }
+.readmore.inactive {
+  display: none;
+}
 
 .overlay {
   position: absolute;

@@ -167,7 +167,7 @@ $(document).ready(function () {
     //text for the readmore
     if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
       console.log('eng')
-      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read more</a>'
+      readMoreLink[0].innerHTML = '<a href="javascript:void(0)">Read More</a>'
     } else {
       console.log('arabic')
       readMoreLink[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
@@ -268,6 +268,13 @@ $(document).ready(function () {
             main_box.find('.content_slider').not($('#' + modalId).find('.content_slider')).removeClass('active').owlCarousel('destroy')
             //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
             main_box.find('.overlay').addClass('active');
+            //only apply read more when the content has scrollbar
+            var modal_div = $(modal).find('.box_content_innerrr')[0];
+            var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
+            if(!hasVerticalScrollbar) {
+              console.log(hasVerticalScrollbar)
+              $(modal).find('.readmore').addClass('inactive');
+            }
             setTimeout(function () {
               modal.classList.add('active');
             }, modalOpenDelay);
@@ -332,7 +339,7 @@ $(document).ready(function () {
     var readLessClicked = 0;
 
     $(readMoreLink).parents('.modal_box').find('.lang-eng').on('click', function () {
-      readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+      readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
       readMoreClicked = 1
     })
     $(readMoreLink).parents('.modal_box').find('.lang-ar').on('click', function () {
@@ -345,7 +352,7 @@ $(document).ready(function () {
     })
     $(readMoreLink).parents('.modal_box').find('.content_slider').on('translate.owl.carousel', function () {
       if ($(readMoreLink).parents('.modal_box').find('.lang-toggle .lang-eng').hasClass('active')) {
-        readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+        readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
       } else {
         readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       }
@@ -375,7 +382,7 @@ $(document).ready(function () {
           function () {
             readMoreClicked = 1
             if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read more</a>'
+              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
             } else {
               readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
             }
