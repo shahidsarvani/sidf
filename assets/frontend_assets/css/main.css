@@ -653,7 +653,8 @@ p.arabic {
   height: 600px !important;
 }
 .timeline_items .english {
-  margin-bottom: 20px !important;
+    margin-bottom: 20px !important;
+    line-height: 30px;
 }
 .box_pin_nine .timeline_items img {
     margin-bottom: 30px;
