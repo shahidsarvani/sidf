@@ -229,9 +229,12 @@ p.arabic {
   list-style: circle;
 }
 
-.box_content_innerrr.arabic ul,
-.box_content_innerrr.arabic ol {
+.box_content_innerrr.arabic ul {
   margin-right: 50px;
+}
+
+.box_content_innerrr.arabic ol {
+    margin-right: 75px;
 }
 
 .box_content_innerrr.english ul {
@@ -239,8 +242,8 @@ p.arabic {
   margin-bottom: 20px;
 }
 .box_content_innerrr.english ol {
-  margin-left: 50px;
-  margin-bottom: 20px;
+    margin-left: 80px;
+    margin-bottom: 20px;
 }
 
 .modal_box .new_inner_img {
