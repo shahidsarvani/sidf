@@ -277,7 +277,7 @@ p.arabic {
   margin-top: 479px;
 }
 .box_pin_two .text.english {
-    padding-bottom: 15px;
+    padding-bottom: 30px;
 }
 .box_pin.box_pin_three {
   margin: 237px 110px 0 240px;
@@ -319,11 +319,12 @@ p.arabic {
   width: 360px;
 }
 .box_pin_twelve .timeline_items .text.english {
-    margin-bottom: 40px !important;
+    margin-bottom: 50px !important;
 }
 .box_pin.box_pin_thirteen {
   margin: 9px 0 0 -10px;
 }
+
 .box_pin.box_pin_fourteen {
   margin: 9px 0 0 50px;
   width: 370px;
@@ -657,8 +658,8 @@ p.arabic {
     line-height: 30px;
 }
 .box_pin_nine .timeline_items img {
-    margin-bottom: 30px;
-    margin-top: 25px;
+    margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 .readmore a {
