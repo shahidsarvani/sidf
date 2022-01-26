@@ -673,7 +673,7 @@ p.arabic {
   text-decoration: none;
   color: #92b544;
   font-family: "Neo Sans Arabic Regular", sans-serif;
-  transform: translate(-50px, 0);
+  transform: translate(-50%, 0);
 }
 .readmore.inactive {
   display: none;
