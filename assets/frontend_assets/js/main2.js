@@ -1,4 +1,5 @@
 const modalOpenDelay = 300;
+const modalCloseTime = 10000;
 function playSlider(element) {
   $(element).trigger('next.owl.carousel');
   $(element).trigger('play.owl.autoplay')
@@ -36,40 +37,57 @@ var random_number = Math.floor(Math.random() * 100);
 //read timeline_items.json file and populate the data
 readTextFile("timeline_items.json?rm=" + random_number, function (text) {
   var data = JSON.parse(text);
-  var timeline_items = document.querySelectorAll('.timeline_items');
-  timeline_items.forEach(function (timeline_item, i) {
+  var timeline_items = document.getElementsByClassName('timeline_items');
+  for (var i = 0; i < timeline_items.length; i++) {
     //year
-    $(timeline_item).find('h3').html(data.timeline_items[i].title);
+    $(timeline_items[i]).find('h3').html(data.timeline_items[i].title);
     //timeline titles in english and arabic - can be multiple
     //first dom element data is added
-    $(timeline_item).find('.english').html(data.timeline_items[i].titles_en[0])
-    $(timeline_item).find('.arabic').html(data.timeline_items[i].titles_ar[0]);
-    //if there are more titles then clone the dom element, change the html and append it to the container but skip the first title
-    data.timeline_items[i].titles_ar.forEach(function (title_ar, j) {
-      if (j !== 0) {
-        //if there is an img tag (incase of year 2016), clone the dom element and insert it before the img tag else just append
-        // if ($(timeline_item).find('img').length > 0) {
-        //   $(timeline_item).find('.arabic').clone().html(title_ar).insertBefore('.mx_auto');
-        // } else {
-        $(timeline_item).find('.arabic').clone().html(title_ar).appendTo(timeline_item);
-        // }
+    // $(timeline_items[i]).find('.english').html(data.timeline_items[i].titles_en[0])
+    // $(timeline_items[i]).find('.arabic').html(data.timeline_items[i].titles_ar[0]);
+    // //if there are more titles then clone the dom element, change the html and append it to the container but skip the first title
+    // data.timeline_items[i].titles_ar.forEach(function (title_ar, j) {
+    //   if (j !== 0) {
+    //     //if there is an img tag (incase of year 2016), clone the dom element and insert it before the img tag else just append
+    //     // if ($(timeline_item).find('img').length > 0) {
+    //     //   $(timeline_item).find('.arabic').clone().html(title_ar).insertBefore('.mx_auto');
+    //     // } else {
+    //     $(timeline_items[i]).find('.arabic').clone().html(title_ar).appendTo(timeline_items[i]);
+    //     // }
+    //   }
+    // })
+    // //same logic for the english titles
+    // data.timeline_items[i].titles_en.forEach(function (title_en, j) {
+    //   if (j !== 0) {
+    //     // if ($(timeline_item).find('img').length > 0) {
+    //     //   $(timeline_item).find('.english').clone().html(title_en).insertBefore('.mx_auto');
+    //     // } else {
+    //     $(timeline_items[i]).find('.english').clone().html(title_en).appendTo(timeline_items[i]);
+    //     // }
+    //   }
+    // })
+    var timelineItemTitleAr = data.timeline_items[i].titles_ar
+    var timelineItemTitleEn = data.timeline_items[i].titles_en
+    // console.log(timelineItemData)
+    for(var j = 0; j < timelineItemTitleAr.length; j++) {
+      if(j < 1) {
+        $(timeline_items[i]).find('.arabic').html(timelineItemTitleAr[j]);
+      } else {
+        $(timeline_items[i]).find('.arabic').clone().html(timelineItemTitleAr[j]).appendTo(timeline_items[i]);
       }
-    })
-    //same logic for the english titles
-    data.timeline_items[i].titles_en.forEach(function (title_en, j) {
-      if (j !== 0) {
-        // if ($(timeline_item).find('img').length > 0) {
-        //   $(timeline_item).find('.english').clone().html(title_en).insertBefore('.mx_auto');
-        // } else {
-        $(timeline_item).find('.english').clone().html(title_en).appendTo(timeline_item);
-        // }
+    }
+    for(var j = 0; j < timelineItemTitleEn.length; j++) {
+      if(j < 1) {
+        $(timeline_items[i]).find('.english').html(timelineItemTitleEn[j]);
+      } else {
+        $(timeline_items[i]).find('.english').clone().html(timelineItemTitleEn[j]).appendTo(timeline_items[i]);
       }
-    })
+    }
     //add img source if the image is there in json data
     if (data.timeline_items[i].image && i == 8) {
-      $(timeline_item).find('img').attr('src', data.timeline_items[i].image);
+      $(timeline_items[i]).find('img').attr('src', data.timeline_items[i].image);
     }
-  })
+  }
 });
 
 //Screens:
@@ -77,14 +95,18 @@ readTextFile("timeline_items.json?rm=" + random_number, function (text) {
 readTextFile("screens.json?rm=" + random_number, function (text) {
   var data = JSON.parse(text);
   // console.log(data);
-  var screens = document.querySelectorAll('.main_box');
-  screens.forEach(function (screen, i) {
+  var screens = document.getElementsByClassName('main_box');
+  for (var i = 0; i < screens.length; i++) {
     var screen_html_text = '';
-    data.screens[i].media.forEach(function (media) {
-      screen_html_text += media
-    })
-    $(screen).find('.slider_box').html(screen_html_text)
-    $(screen).find('.slider_box').owlCarousel({
+    var media =data.screens[i].media
+    for(var j = 0; j < media.length; j++) {
+      screen_html_text += media[j]
+    }
+    // data.screens[i].media.forEach(function (media) {
+      // screen_html_text += media
+    // })
+    $(screens[i]).find('.slider_box').html(screen_html_text)
+    $(screens[i]).find('.slider_box').owlCarousel({
       items: 1,
       animateOut: "fadeOut",
       dots: false,
@@ -96,7 +118,7 @@ readTextFile("screens.json?rm=" + random_number, function (text) {
       onInitialized: screenInitialized,
       onTranslated: screenTranslated,
     });
-  })
+  }
 
   function screenTranslated(e) {
     var i = e.currentTarget;
@@ -131,19 +153,31 @@ $(document).ready(function () {
 
   function modalTranslated(e) {
     console.log('modal translated')
-    var i = e.currentTarget;
-    if ($(i).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
-      $(i).parent().find('.lang-eng').addClass('active');
-      $(i).parent().find('.lang-ar').removeClass('active');
+    var _this = e.currentTarget;
+    if ($(_this).find('.owl-item.active .box_content_innerrr.english').hasClass('active')) {
+      $(_this).parent().find('.lang-eng').addClass('active');
+      $(_this).parent().find('.lang-ar').removeClass('active');
     } else {
-      $(i).parent().find('.lang-eng').removeClass('active');
-      $(i).parent().find('.lang-ar').addClass('active');
+      $(_this).parent().find('.lang-eng').removeClass('active');
+      $(_this).parent().find('.lang-ar').addClass('active');
     }
-    $(i).find('.owl-item video').each(function (index, value) {
+    //only apply read more when the content has scrollbar
+    var modal_div = $(_this).find('.owl-item.active .box_content_innerrr.active')[0];
+    console.log(modal_div)
+    console.log(modal_div.scrollHeight)
+    console.log(modal_div.clientHeight)
+    var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
+    if (!hasVerticalScrollbar) {
+      $(_this).parents('.modal_box').find('.readmore').addClass('inactive');
+    } else {
+      $(_this).parents('.modal_box').find('.readmore').removeClass('inactive');
+    }
+
+    $(_this).find('.owl-item video').each(function (index, value) {
       value.pause();
       value.currentTime = 0;
     });
-    $(i).find('.owl-item.active video').each(function (index, value) {
+    $(_this).find('.owl-item.active video').each(function (index, value) {
       // value.load();
       value.play();
     });
@@ -193,10 +227,10 @@ $(document).ready(function () {
     }
   }
   // OPEN MODAL
-  const pulsatingCircles = document.querySelectorAll('.pulsating-circle');
+  const pulsatingCircles = document.getElementsByClassName('pulsating-circle');
   var prevModalId = '';
-  pulsatingCircles.forEach(function (pulsatingCircle) {
-    pulsatingCircle.addEventListener('click', function (e) {
+  for (var ci = 0; ci < pulsatingCircles.length; ci++) {
+    pulsatingCircles[ci].addEventListener('click', function (e) {
       const modalId = e.currentTarget.dataset.modal_id;
       // console.log(prevModalId)
       // console.log(modalId)
@@ -216,18 +250,31 @@ $(document).ready(function () {
               var autoplay_val = '';
               var loop = data[modalId].loop; //if there is single item in carousel then video will loop else not
               var data_items = data[modalId].modal_data; //all the important data of carousel item
-              data_items.forEach(function (data_item) {
+              for(var di = 0; di < data_items.length; di++) {
                 //here we will make html for the carousel item
                 //if the type is image then add img tag in carousel else video
-                if (data_item['type'] == 'video' || data_item['type'] == '') {
+                if (data_items[di]['type'] == 'video' || data_items[di]['type'] == '') {
                   autoplay_val = (p == 1) ? 'autoplay' : '';
-                  // modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
-                  modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  // modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_items[di]['src'] + '" type="' + data_items[di]['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_items[di]['active_ar'] + '"><h3>' + data_items[di]['title_ar'] + '</h3><p>' + data_items[di]['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_items[di]['active_en'] + '"><h3>' + data_items[di]['title_eng'] + '</h3><p>' + data_items[di]['text_eng'] + '</p></div></div>';
+                  modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls ' + loop + '><source src="' + data_items[di]['src'] + '" type="' + data_items[di]['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_items[di]['active_ar'] + '"><h3>' + data_items[di]['title_ar'] + '</h3><p>' + data_items[di]['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_items[di]['active_en'] + '"><h3>' + data_items[di]['title_eng'] + '</h3><p>' + data_items[di]['text_eng'] + '</p></div></div>';
                   p++;
                 } else {
-                  modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+                  modal_html_text += '<div class="item"><img src="' + data_items[di]['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_items[di]['active_ar'] + '"><h3>' + data_items[di]['title_ar'] + '</h3><p>' + data_items[di]['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_items[di]['active_en'] + '"><h3>' + data_items[di]['title_eng'] + '</h3><p>' + data_items[di]['text_eng'] + '</p></div></div>';
                 }
-              })
+
+              }
+              // data_items.forEach(function (data_item) {
+              //   //here we will make html for the carousel item
+              //   //if the type is image then add img tag in carousel else video
+              //   if (data_item['type'] == 'video' || data_item['type'] == '') {
+              //     autoplay_val = (p == 1) ? 'autoplay' : '';
+              //     // modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls onplay="pauseModalSlider(\'#' + modalId + '\');" onended="playModalSlider(\'#' + modalId + '\');" ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+              //     modal_html_text += '<div class="item"><video class="new_inner_img" ' + autoplay_val + ' controls ' + loop + '><source src="' + data_item['src'] + '" type="' + data_item['filetype'] + '"></video><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+              //     p++;
+              //   } else {
+              //     modal_html_text += '<div class="item"><img src="' + data_item['src'] + '" alt="" class="new_inner_img"><div class="box_content_innerrr arabic ' + data_item['active_ar'] + '"><h3>' + data_item['title_ar'] + '</h3><p>' + data_item['text_ar'] + '</p></div><div class="box_content_innerrr english ' + data_item['active_en'] + '"><h3>' + data_item['title_eng'] + '</h3><p>' + data_item['text_eng'] + '</p></div></div>';
+              //   }
+              // })
               // console.log(modal_html_text)
               $(modal).find('.content_slider').html(modal_html_text)
             }
@@ -269,14 +316,17 @@ $(document).ready(function () {
             //after modalOpenDelay add the active class to current clicked modal box so it can be displayed
             main_box.find('.overlay').addClass('active');
             //only apply read more when the content has scrollbar
-            var modal_div = $(modal).find('.box_content_innerrr')[0];
+            var modal_div = $(modal).find('.owl-item.active .box_content_innerrr')[0];
+            console.log(modal_div.scrollHeight)
+            console.log(modal_div.clientHeight)
             var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
-            if(!hasVerticalScrollbar) {
+            if (!hasVerticalScrollbar) {
               console.log(hasVerticalScrollbar)
               $(modal).find('.readmore').addClass('inactive');
             }
             setTimeout(function () {
               modal.classList.add('active');
+              modalOpened(modal)
             }, modalOpenDelay);
           } else {
             console.log('does not contains data');
@@ -292,11 +342,11 @@ $(document).ready(function () {
         console.log('modal is same')
       }
     })
-  })
+  }
   // CLOSE MODAL
-  const closeModal = document.querySelectorAll('.close-modal');
-  closeModal.forEach(function (close) {
-    close.addEventListener('click', function () {
+  const closeModal = document.getElementsByClassName('close-modal');
+  for (var i = 0; i < closeModal.length; i++) {
+    closeModal[i].addEventListener('click', function () {
       var _this = $(this);
       _this.parent().find('.content_slider').find('.owl-item video').each(function (index, value) {
         // console.log(value)
@@ -312,17 +362,39 @@ $(document).ready(function () {
       _this.parents('.main_box').find('.overlay').removeClass('active');
       prevModalId = '';
     })
-  })
+  }
   //CHANGE LANGUAGE
   $('.lang-eng').on('click', function () {
-    $(this).parents('.modal_box').find('.arabic').scrollTop(0).removeClass('active');
-    $(this).parents('.modal_box').find('.english').addClass('active');
+    var modal_box = $(this).parents('.modal_box')
+    modal_box.find('.arabic').scrollTop(0).removeClass('active');
+    modal_box.find('.english').addClass('active');
     $(this).addClass('active').parent().find('.lang-ar').removeClass('active');
+    //only apply read more when the content has scrollbar
+    var modal_div = modal_box.find('.owl-item.active .box_content_innerrr.active')[0];
+    // console.log(modal_div.scrollHeight)
+    // console.log(modal_div.clientHeight)
+    var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
+    if (!hasVerticalScrollbar) {
+      $(modal_box).find('.readmore').addClass('inactive');
+    } else {
+      $(modal_box).find('.readmore').removeClass('inactive');
+    }
   })
   $('.lang-ar').on('click', function () {
-    $(this).parents('.modal_box').find('.english').scrollTop(0).removeClass('active');
-    $(this).parents('.modal_box').find('.arabic').addClass('active');
+    var modal_box = $(this).parents('.modal_box')
+    modal_box.find('.english').scrollTop(0).removeClass('active');
+    modal_box.find('.arabic').addClass('active');
     $(this).addClass('active').parent().find('.lang-eng').removeClass('active');
+    //only apply read more when the content has scrollbar
+    var modal_div = modal_box.find('.owl-item.active .box_content_innerrr.active')[0];
+    // console.log(modal_div.scrollHeight)
+    // console.log(modal_div.clientHeight)
+    var hasVerticalScrollbar = modal_div.scrollHeight > modal_div.clientHeight;
+    if (!hasVerticalScrollbar) {
+      $(modal_box).find('.readmore').addClass('inactive');
+    } else {
+      $(modal_box).find('.readmore').removeClass('inactive');
+    }
   })
 
 
@@ -333,41 +405,49 @@ $(document).ready(function () {
 
 
   //Readmore Functionality in modal popup
-  const readMoreLinks = document.querySelectorAll('.readmore')
-  readMoreLinks.forEach(function (readMoreLink) {
+  const readMoreLinks = document.getElementsByClassName('readmore')
+  for(var i = 0; i < readMoreLinks.length; i++) {
     var readMoreClicked = 1;
     var readLessClicked = 0;
 
-    $(readMoreLink).parents('.modal_box').find('.lang-eng').on('click', function () {
-      readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
+    var modal_box = $(readMoreLinks[i]).parents('.modal_box')
+    // console.log(modal_box)
+    modal_box.find('.lang-eng').on('click', function () {
+      $(this).parents('.modal_box').find('.readmore')[0].innerHTML = '<a href="javascript:void(0)">Read More</a>'
       readMoreClicked = 1
     })
-    $(readMoreLink).parents('.modal_box').find('.lang-ar').on('click', function () {
-      readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
+    modal_box.find('.lang-ar').on('click', function () {
+      $(this).parents('.modal_box').find('.readmore')[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       readMoreClicked = 1
     })
-    $(readMoreLink).parents('.modal_box').find('.close-modal').on('click', function () {
-      // readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
+    modal_box.find('.close-modal').on('click', function () {
+      // $(this).parents('.modal_box').find('.readmore')[0].innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       readMoreClicked = 1
     })
-    $(readMoreLink).parents('.modal_box').find('.content_slider').on('translate.owl.carousel', function () {
-      if ($(readMoreLink).parents('.modal_box').find('.lang-toggle .lang-eng').hasClass('active')) {
-        readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
+    modal_box.find('.content_slider').on('translate.owl.carousel', function () {
+      var modal = $(this).parents('.modal_box');
+      var readmore = modal.find('.readmore')[0];
+      //scroll to Top after slide is translated
+      modal.find('.box_content_innerrr').scrollTop(0)
+      //readmore text change according to active language
+      if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
+        readmore.innerHTML = '<a href="javascript:void(0)">Read More</a>'
       } else {
-        readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
+        readmore.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
       }
       readMoreClicked = 1
     })
 
     //prevent touch move event to disable scroll
-    $(readMoreLink).parents('.modal_box').find('.content_slider')[0].addEventListener("touchmove", function (e) {
+    $(readMoreLinks[i]).parents('.modal_box').find('.content_slider')[0].addEventListener("touchmove", function (e) {
       e.preventDefault();
     }, { passive: false })
 
-    readMoreLink.addEventListener('click', function (event) {
+    readMoreLinks[i].addEventListener('click', function (e) {
 
-      console.log(Date.now());
-      var modal = $(readMoreLink).parents('.modal_box');
+      var _this = $(e.currentTarget)
+      var __this = e.currentTarget
+      var modal = _this.parents('.modal_box');
       var activeTextBox = modal.find('.owl-item.active .box_content_innerrr.active');
       var height = activeTextBox.outerHeight() * readMoreClicked; //height of the scrollable div * dynamic number of clicks
       // console.log(activeTextBox[0].scrollHeight)
@@ -382,9 +462,9 @@ $(document).ready(function () {
           function () {
             readMoreClicked = 1
             if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-              readMoreLink.innerHTML = '<a href="javascript:void(0)">Read More</a>'
+              __this.innerHTML = '<a href="javascript:void(0)">Read More</a>'
             } else {
-              readMoreLink.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
+              __this.innerHTML = '<a href="javascript:void(0)">لقراءة المزيد</a>'
             }
             readLessClicked = 0;
             return 'slow';
@@ -400,9 +480,9 @@ $(document).ready(function () {
             readMoreClicked++;
             if (activeTextBox[0].scrollHeight - activeTextBox[0].scrollTop === activeTextBox[0].clientHeight) {
               if (modal.find('.lang-toggle .lang-eng').hasClass('active')) {
-                readMoreLink.innerHTML = '<a href="javascript:void(0)">Close</a>'
+                __this.innerHTML = '<a href="javascript:void(0)">Close</a>'
               } else {
-                readMoreLink.innerHTML = '<a href="javascript:void(0)">العودة</a>'
+                __this.innerHTML = '<a href="javascript:void(0)">العودة</a>'
               }
               readLessClicked = 1;
             }
@@ -411,6 +491,43 @@ $(document).ready(function () {
         // return;
       }
     })
-  })
+  }
+  function modalOpened(modal) {
+    console.log('modal opened')
+    var max_time = 600;
+
+    var interval = setInterval(function () {
+      if (max_time == 0) {
+        //window.location = "./home-ar.html";
+        var conent_slider = $(modal).find('.content_slider');
+        conent_slider.find('.owl-item video').each(function (index, value) {
+          // console.log(value)
+          value.pause();
+          value.currentTime = 0;
+        });
+        conent_slider.find('.box_content_innerrr.english').removeClass('active')
+        conent_slider.find('.box_content_innerrr.arabic').addClass('active')
+        conent_slider.removeClass('active').owlCarousel('destroy')
+        modal.classList.remove('active');
+        prevModalId = '';
+        max_time = 600;
+        clearInterval(interval);
+      } else {
+        // console.log(modal.id, max_time)
+        max_time--;
+      }
+    }, 1000);
+    $(modal).on('click', function (event) {
+      max_time = 600;
+    });
+    $('#' + modal.id + ' .close-modal').on('click', function () {
+      clearInterval(interval);
+    })
+    $(modal).on('touchmove', function (event) {
+      max_time = 600;
+    });
+    // setTimeout(function () {
+    // }, modalCloseTime)
+  }
 })
 
