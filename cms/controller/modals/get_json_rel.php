@@ -33,7 +33,7 @@ foreach ($modals as $index => $item) {
                 if ($media != false) {
                     $media = $media->fetch_assoc();
                     // if ($media['type'] == 'video') {
-                        $temp_data['src'] = $items_config["modal_media_url"] . $media["name"];
+                        $temp_data['src'] = '../assets/frontend_assets/modal_media/' . $media["name"];
                         $temp_data['type'] = $media["type"];
                         $temp_data['filetype'] = $media["filetype"];
                     // } else {
@@ -60,7 +60,7 @@ foreach ($modals as $index => $item) {
     ];
     $response[$modal_index] = $modal_data;
 }
-$filename = BASE_PATH . '/modals_abs.json';
+$filename = BASE_PATH . '/modals.json';
 $fp = fopen($filename, 'w');
 $written = fwrite($fp, json_encode($response, JSON_PRETTY_PRINT));
 $close = fclose($fp);

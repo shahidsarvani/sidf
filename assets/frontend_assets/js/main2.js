@@ -35,7 +35,7 @@ var random_number = Math.floor(Math.random() * 100);
 
 //Timeline_items:
 //read timeline_items.json file and populate the data
-readTextFile("timeline_items.json?rm=" + random_number, function (text) {
+readTextFile("timeline_items_abs.json?rm=" + random_number, function (text) {
   var data = JSON.parse(text);
   var timeline_items = document.getElementsByClassName('timeline_items');
   for (var i = 0; i < timeline_items.length; i++) {
@@ -92,7 +92,7 @@ readTextFile("timeline_items.json?rm=" + random_number, function (text) {
 
 //Screens:
 //read screens.json file and add the html and then initialize the owl carousel
-readTextFile("screens.json?rm=" + random_number, function (text) {
+readTextFile("screens_abs.json?rm=" + random_number, function (text) {
   var data = JSON.parse(text);
   // console.log(data);
   var screens = document.getElementsByClassName('main_box');
@@ -144,7 +144,7 @@ readTextFile("screens.json?rm=" + random_number, function (text) {
 //Modals:
 //read modals.json file and save the data in a variable
 var modalData = ''
-readTextFile("modals.json?rm=" + random_number, function (resp_txt) {
+readTextFile("modals_abs.json?rm=" + random_number, function (resp_txt) {
   modalData = JSON.parse(resp_txt);
   // console.log(modalData);
 });
@@ -492,6 +492,7 @@ $(document).ready(function () {
       }
     })
   }
+  //close modal after 10 mins
   function modalOpened(modal) {
     console.log('modal opened')
     var max_time = 600;
@@ -509,6 +510,7 @@ $(document).ready(function () {
         conent_slider.find('.box_content_innerrr.arabic').addClass('active')
         conent_slider.removeClass('active').owlCarousel('destroy')
         modal.classList.remove('active');
+        $(modal).parents('.main_box').find('.overlay').removeClass('active');
         prevModalId = '';
         max_time = 600;
         clearInterval(interval);

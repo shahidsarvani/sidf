@@ -8,9 +8,10 @@ require ADMIN_VIEW . '/layout/header.php';
     require ADMIN_VIEW . '/layout/alert.php';
     ?>
     <div class="w-100 text-right mb-3">
-        <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-brown" id="get_json_abs" data-href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-purple" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/get_json_rel.php' ?>">Create JSON File for Elecron<i class="icon-file-download2 ml-2"></i></button>
         <?php
-        if ($timeline_items->num_rows < 15) :
+        if ($timeline_items->num_rows < 14) :
         ?>
             <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/timelineItems/add.php' ?>">Add Timeline Item<i class="icon-plus-circle2 ml-2"></i></a>
         <?php
@@ -79,9 +80,16 @@ require ADMIN_VIEW . '/layout/footer.php';
             cancelButtonClass: 'btn btn-light'
         });
 
-        $('#get_json').click(function() {
+        $('#get_json_abs').click(function() {
+            createJsonFile($(this).attr('data-href'), "timeline_items_abs.json");
+        })
+        $('#get_json_rel').click(function() {
+            createJsonFile($(this).attr('data-href'), "timeline_items.json");
+        })
+
+        function createJsonFile(url_str, filename) {
             $.ajax({
-                url: $(this).attr('data-href'),
+                url: url_str,
                 method: 'GET',
                 dataType: 'json',
                 success: function(resp) {
@@ -94,7 +102,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 confirmButtonClass: 'btn btn-success',
                                 showLoaderOnConfirm: true,
                                 preConfirm: function(login) {
-                                    return fetch(admin_url + '/controller/download_json.php?name=timeline_items.json')
+                                    return fetch(admin_url + '/controller/download_json.php?name=' + filename)
                                         .then(function(response) {
                                             console.log(response);
                                             if (!response.ok) {
@@ -106,7 +114,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             const a = document.createElement('a');
                                             a.style.display = 'none';
                                             a.href = url;
-                                            a.download = 'timeline_items.json';
+                                            a.download = filename;
                                             document.body.appendChild(a);
                                             a.click();
                                             window.URL.revokeObjectURL(url);
@@ -144,7 +152,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     })
                 }
             })
-        })
+        }
     })
 </script>
 

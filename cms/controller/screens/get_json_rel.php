@@ -19,10 +19,10 @@ foreach ($screens as $index => $value) {
     $medias = array();
     $loop = $item_media->num_rows < 2 ? 'loop' : '';
     foreach ($item_media as $media) {
-        if($media['type'] == 'video'){
-            array_push($medias, '<div class="item"><video class="img_slid" muted onplay="pauseSlider(\'.slider_'.$sliders[$index].'\');" onended="playSlider(\'.slider_'.$sliders[$index].'\');" '.$loop.'><source src="'.$items_config['images_url'] . $media['name'].'" type="'.$media['filetype'].'"></video></div>');
+        if ($media['type'] == 'video') {
+            array_push($medias, '<div class="item"><video class="img_slid" muted onplay="pauseSlider(\'.slider_' . $sliders[$index] . '\');" onended="playSlider(\'.slider_' . $sliders[$index] . '\');" ' . $loop . '><source src="../assets/frontend_assets/screen_media/' . $media['name'] . '" type="' . $media['filetype'] . '"></video></div>');
         } else {
-            array_push($medias, '<div class="item"><img src="'.$items_config['images_url'].$media['name'].'" alt="" class="img_slid"></div>');
+            array_push($medias, '<div class="item"><img src="../assets/frontend_assets/screen_media/' . $media['name'] . '" alt="" class="img_slid"></div>');
         }
     }
     // $temp['screen_name'] = $item['name'];
@@ -30,7 +30,7 @@ foreach ($screens as $index => $value) {
     $temp['media'] = $medias;
     array_push($data['screens'], $temp);
 }
-$filename = BASE_PATH . '/screens_abs.json';
+$filename = BASE_PATH . '/screens.json';
 $fp = fopen($filename, 'w');
 $written = fwrite($fp, json_encode($data, JSON_PRETTY_PRINT));
 $close = fclose($fp);

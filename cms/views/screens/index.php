@@ -8,7 +8,8 @@ require ADMIN_VIEW . '/layout/header.php';
     require ADMIN_VIEW . '/layout/alert.php';
     ?>
     <div class="w-100 text-right mb-3">
-        <button type="button" class="btn bg-brown" id="get_json" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-brown" id="get_json_abs" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
+        <button type="button" class="btn bg-purple" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json_rel.php' ?>">Create JSON File for Elecron<i class="icon-file-download2 ml-2"></i></button>
         <!-- <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/screens/add.php' ?>">Add Screen<i class="icon-plus-circle2 ml-2"></i></a> -->
     </div>
     <style>
@@ -111,9 +112,16 @@ require ADMIN_VIEW . '/layout/footer.php';
             cancelButtonClass: 'btn btn-light'
         });
 
-        $('#get_json').click(function() {
+        $('#get_json_abs').click(function() {
+            createJsonFile($(this).attr('data-href'), "screens_abs.json");
+        })
+        $('#get_json_rel').click(function() {
+            createJsonFile($(this).attr('data-href'), "screens.json");
+        })
+
+        function createJsonFile(url_str, filename) {
             $.ajax({
-                url: $(this).attr('data-href'),
+                url: url_str,
                 method: 'GET',
                 dataType: 'json',
                 success: function(resp) {
@@ -126,7 +134,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                 confirmButtonClass: 'btn btn-success',
                                 showLoaderOnConfirm: true,
                                 preConfirm: function(login) {
-                                    return fetch(admin_url + '/controller/download_json.php?name=screens.json')
+                                    return fetch(admin_url + '/controller/download_json.php?name='+filename)
                                         .then(function(response) {
                                             console.log(response);
                                             if (!response.ok) {
@@ -138,7 +146,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                                             const a = document.createElement('a');
                                             a.style.display = 'none';
                                             a.href = url;
-                                            a.download = 'screens.json';
+                                            a.download = filename;
                                             document.body.appendChild(a);
                                             a.click();
                                             window.URL.revokeObjectURL(url);
@@ -162,7 +170,7 @@ require ADMIN_VIEW . '/layout/footer.php';
                     } else {
                         swalInit.fire({
                             title: 'Error!',
-                            text: 'JSON file is not created 123.',
+                            text: 'JSON file is not created.',
                             type: 'error'
                         })
                     }
@@ -171,12 +179,12 @@ require ADMIN_VIEW . '/layout/footer.php';
                     console.log(result.responseText);
                     swalInit.fire({
                         title: 'Error!',
-                        text: 'JSON file is not created. 456',
+                        text: 'JSON file is not created.',
                         type: 'error'
                     })
                 }
             })
-        })
+        }
     })
 </script>
 
