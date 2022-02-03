@@ -19,16 +19,25 @@ require ADMIN_VIEW . '/layout/header.php';
                     <form action="<?php echo ADMIN_SITE_URL . '/controller/tokens/edit.php' ?>" method="post" enctype="multipart/form-data" id="token-form">
                         <input type="hidden" name="id" value="<?php echo $token['id']; ?>" />
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Token Name:</label>
                                     <input type="text" name="name" class="form-control" placeholder="Token Name" value="<?php echo $token['name'] ?>" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Sort Order:</label>
                                     <input type="text" name="sort_order" class="form-control" placeholder="Sort Order" value="<?php echo $token['sort_order'] ?>" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Token Status:</label>
+                                    <select name="status" id="status" class="form-control" required>
+                                        <option value="1" <?php echo $token['status'] ? 'selected' : ''?>>Active</option>
+                                        <option value="0" <?php echo !$token['status'] ? 'selected' : ''?>>Inactive</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -189,6 +198,9 @@ require ADMIN_VIEW . '/layout/footer.php';
                 name: {
                     required: true,
                 },
+                status: {
+                    required: true,
+                },
                 rfid_card_id: {
                     required: true,
                 },
@@ -211,6 +223,9 @@ require ADMIN_VIEW . '/layout/footer.php';
             messages: {
                 name: {
                     required: "Enter token name",
+                },
+                status: {
+                    required: "Select token status",
                 },
                 rfid_card_id: {
                     required: "Enter Card ID 1",
