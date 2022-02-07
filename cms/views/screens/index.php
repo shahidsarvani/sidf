@@ -8,8 +8,9 @@ require ADMIN_VIEW . '/layout/header.php';
     require ADMIN_VIEW . '/layout/alert.php';
     ?>
     <div class="w-100 text-right mb-3">
-        <button type="button" class="btn bg-brown" id="get_json_abs" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <button type="button" class="btn bg-purple" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json_rel.php' ?>">Create JSON File for Elecron<i class="icon-file-download2 ml-2"></i></button>
+        <!-- <button type="button" class="btn bg-brown" id="get_json_abs" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button> -->
+        <!-- <button type="button" class="btn bg-purple" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json_rel.php' ?>">Create JSON File for Elecron<i class="icon-file-download2 ml-2"></i></button> -->
+        <button type="button" class="btn bg-brown" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/screens/get_json_rel.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
         <!-- <a type="button" class="btn bg-green" href="<?php echo ADMIN_SITE_URL . '/controller/screens/add.php' ?>">Add Screen<i class="icon-plus-circle2 ml-2"></i></a> -->
     </div>
     <style>

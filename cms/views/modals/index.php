@@ -8,8 +8,9 @@ require ADMIN_VIEW . '/layout/header.php';
     require ADMIN_VIEW . '/layout/alert.php';
     ?>
     <div class="w-100 text-right mb-3">
-        <button type="button" class="btn bg-brown" id="get_json_abs" data-href="<?php echo ADMIN_SITE_URL . '/controller/modals/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
-        <button type="button" class="btn bg-purple" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/modals/get_json_rel.php' ?>">Create JSON File for Elecron<i class="icon-file-download2 ml-2"></i></button>
+        <!-- <button type="button" class="btn bg-brown" id="get_json_abs" data-href="<?php echo ADMIN_SITE_URL . '/controller/modals/get_json.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button> -->
+        <!-- <button type="button" class="btn bg-purple" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/modals/get_json_rel.php' ?>">Create JSON File for Elecron<i class="icon-file-download2 ml-2"></i></button> -->
+        <button type="button" class="btn bg-brown" id="get_json_rel" data-href="<?php echo ADMIN_SITE_URL . '/controller/modals/get_json_rel.php' ?>">Create JSON File<i class="icon-file-download2 ml-2"></i></button>
         <?php
         if ($modals->num_rows < 14) :
         ?>
