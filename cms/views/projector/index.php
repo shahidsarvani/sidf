@@ -44,6 +44,21 @@ require ADMIN_VIEW . '/layout/header.php';
                     </form>
                 </div>
             </div>
+            <?php
+            if ($media['file_key']) :
+            ?>
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">Preview Projector Video</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <video src="<?php echo isset($media['name']) ? $items_config['projector_media_url'] . $media['name'] : ''; ?>" controls width="100%"></video>
+                    </div>
+                </div>
+            <?php
+            endif;
+            ?>
         </div>
     </div>
 </div>
@@ -74,10 +89,10 @@ require ADMIN_VIEW . '/layout/footer.php';
             copyTextarea.select();
 
             try {
-                var successful = document.execCommand('copy');
+                var successful = document.execCommand('copy'); //deprecated but working right now bcz navigator.clipboard.writeText api not working on server with http
                 var msg = successful ? 'successful' : 'unsuccessful';
                 swalInit.fire({
-                    text: "Copying text command was " + msg,
+                    text: "Copying text was " + msg,
                     type: 'success',
                     toast: true,
                     showConfirmButton: false,
